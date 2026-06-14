@@ -600,5 +600,27 @@
             for (let i = 0; i < particles.length; i++) {
                 particles[i].update();
                 particles[i].draw();
+            // Remove criteria
+                if (particles[i].y > canvas.height || particles[i].alpha <= 0) {
+                    particles.splice(i, 1);
+                    i--;
+                }
+            }
+            requestAnimationFrame(animateParticles);
+        }
+        animateParticles();
 
+        // Interaction Event Listeners (Touch Rain effect)
+        function createBurst(e) {
+            const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+            const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+            for (let i = 0; i < 5; i++) {
+                particles.push(new Particle(clientX, clientY, true));
+            }
+        }
+        window.addEventListener('mousemove', createBurst);
+        window.addEventListener('touchmove', createBurst);
+    </script>
+</body>
+</html>
      
