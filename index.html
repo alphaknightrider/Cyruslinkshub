@@ -912,7 +912,255 @@ onAuthStateChanged(auth, user => {
         userBox.innerHTML = "Not Logged In";
     }
 });
+  <script type="module">
 
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/12.4.0/firebase-app.js";
+
+import {
+    getAuth,
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword,
+    signOut,
+    sendEmailVerification,
+    onAuthStateChanged
+}
+from "https://www.gstatic.com/firebasejs/12.4.0/firebase-auth.js";
+
+
+/* FIREBASE CONFIG */
+
+const firebaseConfig = {
+    apiKey: "AIzaSyADRUpPYvgmVXicNLEuuWZloZlxLS3gN1w",
+    authDomain: "cyruslinkshub.firebaseapp.com",
+    projectId: "cyruslinkshub",
+    storageBucket: "cyruslinkshub.firebasestorage.app",
+    messagingSenderId: "337440776698",
+    appId: "1:337440776698:web:08e31891fcadfc59298443",
+    measurementId: "G-XKB3PYSJZ7"
+};
+
+
+/* INITIALIZE FIREBASE */
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
+
+/* GET HTML ELEMENTS */
+
+const loginBtn = document.getElementById("loginBtn");
+const signupBtn = document.getElementById("signupBtn");
+const closeAuth = document.getElementById("closeAuth");
+
+const authModal = document.getElementById("authModal");
+const authTitle = document.getElementById("authTitle");
+const authForm = document.getElementById("authForm");
+
+const authEmail = document.getElementById("authEmail");
+const authPassword = document.getElementById("authPassword");
+
+const userBox = document.getElementById("userBox");
+
+
+/* SAFETY CHECK */
+
+if (
+    !loginBtn ||
+    !signupBtn ||
+    !closeAuth ||
+    !authModal ||
+    !authTitle ||
+    !authForm ||
+    !authEmail ||
+    !authPassword ||
+    !userBox
+) {
+
+    console.error(
+        "Authentication HTML elements not found."
+    );
+
+} else {
+
+    let signupMode = false;
+
+
+    /* LOGIN */
+
+    loginBtn.addEventListener("click", () => {
+
+        signupMode = false;
+
+        authTitle.innerText = "Login";
+
+        authModal.style.display = "flex";
+
+    });
+
+
+    /* SIGN UP */
+
+    signupBtn.addEventListener("click", () => {
+
+        signupMode = true;
+
+        authTitle.innerText = "Sign Up";
+
+        authModal.style.display = "flex";
+
+    });
+
+
+    /* CLOSE MODAL */
+
+    closeAuth.addEventListener("click", () => {
+
+        authModal.style.display = "none";
+
+    });
+
+
+    /* FORM SUBMIT */
+
+    authForm.addEventListener(
+        "submit",
+        async (e) => {
+
+            e.preventDefault();
+
+            const email =
+                authEmail.value.trim();
+
+            const password =
+                authPassword.value;
+
+            try {
+
+                if (signupMode) {
+
+                    const userCredential =
+                        await createUserWithEmailAndPassword(
+                            auth,
+                            email,
+                            password
+                        );
+
+                    await sendEmailVerification(
+                        userCredential.user
+                    );
+
+                    alert(
+                        "Account created. Check your email for verification."
+                    );
+
+                } else {
+
+                    const userCredential =
+                        await signInWithEmailAndPassword(
+                            auth,
+                            email,
+                            password
+                        );
+
+                    if (
+                        !userCredential.user.emailVerified
+                    ) {
+
+                        await signOut(auth);
+
+                        alert(
+                            "Please verify your email before logging in."
+                        );
+
+                        return;
+                    }
+
+                    alert(
+                        "Login successful!"
+                    );
+                }
+
+                authForm.reset();
+
+                authModal.style.display =
+                    "none";
+
+            } catch (error) {
+
+                alert(
+                    error.message
+                );
+
+                console.error(error);
+
+            }
+
+        }
+    );
+
+
+    /* USER STATE */
+
+    onAuthStateChanged(
+        auth,
+        (user) => {
+
+            if (user) {
+
+                loginBtn.style.display =
+                    "none";
+
+                signupBtn.style.display =
+                    "none";
+
+                userBox.innerHTML = `
+                    <span>👤 ${user.email}</span>
+                    <button
+                        id="logoutBtn"
+                        class="btn"
+                    >
+                        Logout
+                    </button>
+                `;
+
+                document
+                    .getElementById("logoutBtn")
+                    .addEventListener(
+                        "click",
+                        async () => {
+
+                            await signOut(auth);
+
+                            alert(
+                                "Logged out"
+                            );
+                        }
+                    );
+
+            } else {
+
+                loginBtn.style.display =
+                    "inline-block";
+
+                signupBtn.style.display =
+                    "inline-block";
+
+                userBox.innerHTML =
+                    "Not Logged In";
+
+            }
+
+        }
+    );
+}
+
+console.log(
+    "%cCYRUSLINKSHUB FIREBASE AUTH READY",
+    "color:cyan;font-size:18px;"
+);
+
+</script>
 console.log("%cCYRUSLINKSHUB PRODUCTION ENGINE DEPLOYED", "color:cyan;font-size:18px;");
 </script>
 </body>
