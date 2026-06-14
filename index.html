@@ -853,82 +853,55 @@ document.addEventListener("keydown", e => {
     if(e.key === "/"){ const search = document.getElementById("vaultSearch"); if(search){ e.preventDefault(); search.focus(); } }
     if(e.key === "Escape"){ authModal.style.display = "none"; if(menu) menu.style.display = "none"; }
 });
+<!-- AUTH BUTTONS -->
+<div class="auth-buttons">
+    <button id="loginBtn">Login</button>
+    <button id="signupBtn">Sign Up</button>
+    <div id="userBox">Not Logged In</div>
+</div>
 
-/* =========================
-   FIREBASE AUTH CONTROLLER
-========================= */
-loginBtn.addEventListener("click", () => {
-    signupMode = false;
-    authTitle.innerText = "Login";
-    authModal.style.display = "flex";
-});
+<!-- AUTH MODAL -->
+<div id="authModal" style="display:none;">
+    <div style="background:white;padding:20px;max-width:350px;margin:50px auto;">
+        <span id="closeAuth" style="cursor:pointer;float:right;">✖</span>
 
-signupBtn.addEventListener("click", () => {
-    signupMode = true;
-    authTitle.innerText = "Sign Up";
-    authModal.style.display = "flex";
-});
+        <h2 id="authTitle">Login</h2>
 
-closeAuth.addEventListener("click", () => {
-    authModal.style.display = "none";
-});
+        <form id="authForm">
+            <input
+                type="email"
+                id="authEmail"
+                placeholder="Email"
+                required
+            >
+            <br><br>
 
-authForm.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    const email = document.getElementById("authEmail").value;
-    const password = document.getElementById("authPassword").value;
+            <input
+                type="password"
+                id="authPassword"
+                placeholder="Password"
+                minlength="6"
+                required
+            >
+            <br><br>
 
-    try{
-        if(signupMode){
-            const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-            await sendEmailVerification(userCredential.user);
-            showToast("Account created. Verify your email.");
-        }else{
-            await signInWithEmailAndPassword(auth, email, password);
-            showToast("Login successful!");
-        }
-        authModal.style.display = "none";
-        authForm.reset();
-    }catch(error){
-        showToast(error.message);
-    }
-});
+            <button type="submit">
+                Continue
+            </button>
+        </form>
+    </div>
+</div>
 
-onAuthStateChanged(auth, user => {
-    if(user){
-        loginBtn.style.display = "none";
-        signupBtn.style.display = "none";
-        userBox.innerHTML = `
-            <span>👤 ${user.email}</span>
-            <button id="logoutBtn" class="btn" style="padding: 8px 16px;">Logout</button>
-        `;
-        document.getElementById("logoutBtn").addEventListener("click", async () => {
-            await signOut(auth);
-            showToast("Logged out");
-        });
-    }else{
-        loginBtn.style.display = "block";
-        signupBtn.style.display = "block";
-        userBox.innerHTML = "Not Logged In";
-    }
-});
-  <script type="module">
-
-import { initializeApp }
-from "https://www.gstatic.com/firebasejs/12.4.0/firebase-app.js";
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-app.js";
 
 import {
     getAuth,
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
     signOut,
-    sendEmailVerification,
     onAuthStateChanged
-}
-from "https://www.gstatic.com/firebasejs/12.4.0/firebase-auth.js";
-
-
-/* FIREBASE CONFIG */
+} from "https://www.gstatic.com/firebasejs/12.4.0/firebase-auth.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyADRUpPYvgmVXicNLEuuWZloZlxLS3gN1w",
@@ -936,232 +909,83 @@ const firebaseConfig = {
     projectId: "cyruslinkshub",
     storageBucket: "cyruslinkshub.firebasestorage.app",
     messagingSenderId: "337440776698",
-    appId: "1:337440776698:web:08e31891fcadfc59298443",
-    measurementId: "G-XKB3PYSJZ7"
+    appId: "1:337440776698:web:08e31891fcadfc59298443"
 };
-
-
-/* INITIALIZE FIREBASE */
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-
-/* GET HTML ELEMENTS */
-
 const loginBtn = document.getElementById("loginBtn");
 const signupBtn = document.getElementById("signupBtn");
-const closeAuth = document.getElementById("closeAuth");
-
 const authModal = document.getElementById("authModal");
 const authTitle = document.getElementById("authTitle");
 const authForm = document.getElementById("authForm");
-
-const authEmail = document.getElementById("authEmail");
-const authPassword = document.getElementById("authPassword");
-
+const closeAuth = document.getElementById("closeAuth");
 const userBox = document.getElementById("userBox");
 
+let signupMode = false;
 
-/* SAFETY CHECK */
+/* Login */
+loginBtn.onclick = () => {
+    signupMode = false;
+    authTitle.innerText = "Login";
+    authModal.style.display = "block";
+};
 
-if (
-    !loginBtn ||
-    !signupBtn ||
-    !closeAuth ||
-    !authModal ||
-    !authTitle ||
-    !authForm ||
-    !authEmail ||
-    !authPassword ||
-    !userBox
-) {
+/* Sign Up */
+signupBtn.onclick = () => {
+    signupMode = true;
+    authTitle.innerText = "Sign Up";
+    authModal.style.display = "block";
+};
 
-    console.error(
-        "Authentication HTML elements not found."
-    );
+/* Close */
+closeAuth.onclick = () => {
+    authModal.style.display = "none";
+};
 
-} else {
+/* Submit */
+authForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
 
-    let signupMode = false;
+    const email = document.getElementById("authEmail").value;
+    const password = document.getElementById("authPassword").value;
 
-
-    /* LOGIN */
-
-    loginBtn.addEventListener("click", () => {
-
-        signupMode = false;
-
-        authTitle.innerText = "Login";
-
-        authModal.style.display = "flex";
-
-    });
-
-
-    /* SIGN UP */
-
-    signupBtn.addEventListener("click", () => {
-
-        signupMode = true;
-
-        authTitle.innerText = "Sign Up";
-
-        authModal.style.display = "flex";
-
-    });
-
-
-    /* CLOSE MODAL */
-
-    closeAuth.addEventListener("click", () => {
+    try {
+        if (signupMode) {
+            await createUserWithEmailAndPassword(auth, email, password);
+            alert("Account created! Now login.");
+        } else {
+            await signInWithEmailAndPassword(auth, email, password);
+            alert("Login successful!");
+        }
 
         authModal.style.display = "none";
+        authForm.reset();
 
-    });
+    } catch (error) {
+        alert(error.message);
+    }
+});
 
+/* User State */
+onAuthStateChanged(auth, (user) => {
 
-    /* FORM SUBMIT */
+    if (user) {
+        userBox.innerHTML = `
+            👤 ${user.email}
+            <button id="logoutBtn">Logout</button>
+        `;
 
-    authForm.addEventListener(
-        "submit",
-        async (e) => {
+        document.getElementById("logoutBtn").onclick = async () => {
+            await signOut(auth);
+        };
 
-            e.preventDefault();
-
-            const email =
-                authEmail.value.trim();
-
-            const password =
-                authPassword.value;
-
-            try {
-
-                if (signupMode) {
-
-                    const userCredential =
-                        await createUserWithEmailAndPassword(
-                            auth,
-                            email,
-                            password
-                        );
-
-                    await sendEmailVerification(
-                        userCredential.user
-                    );
-
-                    alert(
-                        "Account created. Check your email for verification."
-                    );
-
-                } else {
-
-                    const userCredential =
-                        await signInWithEmailAndPassword(
-                            auth,
-                            email,
-                            password
-                        );
-
-                    if (
-                        !userCredential.user.emailVerified
-                    ) {
-
-                        await signOut(auth);
-
-                        alert(
-                            "Please verify your email before logging in."
-                        );
-
-                        return;
-                    }
-
-                    alert(
-                        "Login successful!"
-                    );
-                }
-
-                authForm.reset();
-
-                authModal.style.display =
-                    "none";
-
-            } catch (error) {
-
-                alert(
-                    error.message
-                );
-
-                console.error(error);
-
-            }
-
-        }
-    );
-
-
-    /* USER STATE */
-
-    onAuthStateChanged(
-        auth,
-        (user) => {
-
-            if (user) {
-
-                loginBtn.style.display =
-                    "none";
-
-                signupBtn.style.display =
-                    "none";
-
-                userBox.innerHTML = `
-                    <span>👤 ${user.email}</span>
-                    <button
-                        id="logoutBtn"
-                        class="btn"
-                    >
-                        Logout
-                    </button>
-                `;
-
-                document
-                    .getElementById("logoutBtn")
-                    .addEventListener(
-                        "click",
-                        async () => {
-
-                            await signOut(auth);
-
-                            alert(
-                                "Logged out"
-                            );
-                        }
-                    );
-
-            } else {
-
-                loginBtn.style.display =
-                    "inline-block";
-
-                signupBtn.style.display =
-                    "inline-block";
-
-                userBox.innerHTML =
-                    "Not Logged In";
-
-            }
-
-        }
-    );
-}
-
-console.log(
-    "%cCYRUSLINKSHUB FIREBASE AUTH READY",
-    "color:cyan;font-size:18px;"
-);
-
+    } else {
+        userBox.innerHTML = "Not Logged In";
+    }
+});
 </script>
-console.log("%cCYRUSLINKSHUB PRODUCTION ENGINE DEPLOYED", "color:cyan;font-size:18px;");
 </script>
 </body>
 </html>
