@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CyrusLinksHub - Cyber Gaming Hub</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&display=swap" rel="stylesheet">
+
+<style>
+/* ================= BASE ================= */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Orbitron',sans-serif;
+}
+
+body{
+  background:#05010a;
+  color:#fff;
+  overflow-x:hidden;
+}
+
+/* ================= PARTICLE CANVAS ================= */
+canvas{
+  position:fixed;
+  top:0;
+  left:0;
+  z-index:-1;
+}
+
+/* ================= HEADER ================= */
+header{
+  text-align:center;
+  padding:20px;
+  border-bottom:2px solid #ff003c;
+  box-shadow:0 0 20px #ff003c;
+  background:rgba(0,0,0,0.6);
+}
+
+@keyframes glowPulse{
+  50%{transform:scale(1.1);box-shadow:0 0 20px #ff003c;}
+}
+
+header h1{
+  color:#ff003c;
+  text-shadow:0 0 15px #ff003c;
+}
+
+/* ================= NAV ================= */
+nav{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:10px;
+  padding:10px;
+}
+
+nav a{
+  color:#00f7ff;
+  text-decoration:none;
+  padding:8px 12px;
+  border:1px solid #00f7ff;
+  border-radius:20px;
+  transition:0.3s;
+}
+
+nav a:hover{
+  background:#00f7ff;
+  color:black;
+  box-shadow:0 0 15px #00f7ff;
+}
+
+/* ================= HERO ================= */
+.hero{
+  text-align:center;
+  padding:60px 20px;
+}
+
+.hero h2{
+  color:#ff003c;
+  font-size:2.5rem;
+  text-shadow:0 0 15px #ff003c;
+}
+
+.hero p{
+  color:#aaa;
+  margin-top:10px;
+}
+
+/* ================= SECTIONS ================= */
+section{
+  padding:40px 20px;
+}
+
+.section-title{
+  color:#00f7ff;
+  text-shadow:0 0 10px #00f7ff;
+  margin-bottom:5px;
+}
+
+.desc{
+  color:#aaa;
+  margin-bottom:20px;
+  font-size:0.9rem;
+}
+
+/* ================= GRID ================= */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:15px;
+}
+
+.card{
+  background:rgba(255,255,255,0.05);
+  border:1px solid rgba(255,0,60,0.4);
+  padding:15px;
+  border-radius:12px;
+  transition:0.3s;
+}
+
+.card:hover{
+  transform:scale(1.05);
+  box-shadow:0 0 20px #ff003c;
+}
+
+.btn{
+  display:inline-block;
+  margin-top:10px;
+  padding:6px 10px;
+  border:1px solid #ff003c;
+  color:#ff003c;
+  text-decoration:none;
+  border-radius:8px;
+}
+
+.btn:hover{
+  background:#ff003c;
+  color:black;
+}
+
+/* ================= FOOTER ================= */
+footer{
+  text-align:center;
+  padding:20px;
+  border-top:1px solid #00f7ff;
+  color:#aaa;
+}
+
+/* ================= TOP BUTTON ================= */
+#topBtn{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  padding:10px;
+  border:none;
+  border-radius:50%;
+  background:#ff003c;
+  color:white;
+  display:none;
+  cursor:pointer;
+}
+
+.footer-links{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:20px;
+padding:30px 20px;
+background:rgba(255,255,255,0.05);
+}
+.footer-links a{
+display:block;
+color:#aaa;
+text-decoration:none;
+margin:8px 0;
+}
+.footer-links a:hover{
+color:#ff003c;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- PARTICLE BACKGROUND -->
+<canvas id="particles"></canvas>
+
+<header>
+  <div style="display:flex;align-items:center;justify-content:center;gap:10px;">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg"
+         alt="Logo"
+         style="width:40px;height:40px;border-radius:50%;animation:glowPulse 2s infinite;">
+    <h1>CyrusLinksHub</h1>
+  </div>
+  <p>Cyber Gaming • APK • Movies • Music Universe</p>
+</header>
+
+<nav>
+  <a href="#about">About</a>
+  <a href="#games">Games</a>
+  <a href="#apk">APK</a>
+  <a href="#movies">Movies</a>
+  <a href="#music">Music</a>
+  <a href="#community">Community</a>
+  <a href="#faq">FAQ</a>
+</nav>
+
+<div class="hero">
+  <h2>Welcome to Cyber Gaming World</h2>
+  <p>Download • Play • Stream • Explore Everything in One Hub</p>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <h2 class="section-title">About</h2>
+  <p class="desc">CyrusLinksHub is a futuristic gaming and entertainment platform where users can explore games, APKs, movies, and music in one place.</p>
+</section>
+
+<!-- GAMES -->
+<section id="games">
+  <h2 class="section-title">Gaming Hub</h2>
+  <p class="desc">Discover action, adventure, multiplayer, and PC games with quick access links and updates.</p>
+  <div class="grid">
+    <div class="card">Action Games</div>
+    <div class="card">Adventure Games</div>
+    <div class="card">Multiplayer Games</div>
+    <div class="card">PC Games</div>
+  </div>
+</section>
+
+<!-- APK -->
+<section id="apk">
+  <h2 class="section-title">APK Zone</h2>
+  <p class="desc">Download mod APKs, tools, and premium unlocked apps safely and quickly.</p>
+  <div class="grid">
+    <div class="card">Tool APK</div>
+    <div class="card">Mod APK</div>
+    <div class="card">Premium Apps</div>
+  </div>
+</section>
+
+<!-- MOVIES -->
+<section id="movies">
+  <h2 class="section-title">Movies Hub</h2>
+  <p class="desc">Watch and explore Hollywood, Bollywood, dubbed movies, and cartoons in one place.</p>
+  <div class="grid">
+    <div class="card">Hollywood</div>
+    <div class="card">Bollywood</div>
+    <div class="card">Hindi Dubbed</div>
+    <div class="card">Cartoons</div>
+  </div>
+</section>
+
+<!-- MUSIC -->
+<section id="music">
+  <h2 class="section-title">Music Zone</h2>
+  <p class="desc">Enjoy Hindi, English, and Phonk music collections curated for gamers.</p>
+  <div class="grid">
+    <div class="card">Hindi Music</div>
+    <div class="card">English Music</div>
+    <div class="card">Phonk Beats</div>
+  </div>
+</section>
+
+<!-- COMMUNITY -->
+<section id="community">
+  <h2 class="section-title">Community</h2>
+  <p class="desc">Join the CyrusLinksHub gaming community to share links, updates, and discussions.</p>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <h2 class="section-title">FAQ</h2>
+  <p class="desc">Frequently asked questions about downloads, safety, and usage.</p>
+  <p>Q: Is it free? A: Yes</p>
+  <p>Q: Is it safe? A: Always check sources before downloading</p>
+</section>
+
+
+<div class="footer-links">
+<div>
+<h3>Quick Links</h3>
+<a href="#about">About</a>
+<a href="#games">Gaming Hub</a>
+<a href="#apk">APK Zone</a>
+<a href="#movies">Movies Hub</a>
+<a href="#music">Music Zone</a>
+</div>
+
+<div>
+<h3>Other Pages</h3>
+<a href="#">Privacy Policy</a>
+<a href="#">Terms & Conditions</a>
+<a href="#">Support</a>
+<a href="#faq">FAQ</a>
+</div>
+</div>
+
+<footer>
+© 2026 CyrusLinksHub • All Rights Reserved • Made by Kartikey
+</footer>
+
+
+<button id="topBtn" onclick="scrollTopFn()">↑</button>
+
+<script>
+/* ================= BACK TO TOP ================= */
+window.onscroll = function(){
+  document.getElementById("topBtn").style.display =
+  document.documentElement.scrollTop > 200 ? "block":"none";
+};
+
+function scrollTopFn(){
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+/* ================= PARTICLE SYSTEM (TOUCH + MOUSE) ================= */
+const canvas = document.getElementById("particles");
+const ctx = canvas.getContext("2d");
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let particlesArray = [];
+
+class Particle{
+  constructor(x,y){
+    this.x = x;
+    this.y = y;
+    this.size = Math.random()*3+1;
+    this.speedX = Math.random()*2-1;
+    this.speedY = Math.random()*2-1;
+  }
+  update(){
+    this.x += this.speedX;
+    this.y += this.speedY;
+
+    if(this.size>0.2) this.size -= 0.02;
+  }
+  draw(){
+    ctx.fillStyle="#ff003c";
+    ctx.beginPath();
+    ctx.arc(this.x,this.y,this.size,0,Math.PI*2);
+    ctx.fill();
+  }
+}
+
+function initParticles(x,y){
+  for(let i=0;i<5;i++){
+    particlesArray.push(new Particle(x,y));
+  }
+}
+
+function animate(){
+  ctx.fillStyle="rgba(0,0,0,0.2)";
+  ctx.fillRect(0,0,canvas.width,canvas.height);
+
+  for(let i=0;i<particlesArray.length;i++){
+    particlesArray[i].update();
+    particlesArray[i].draw();
+
+    if(particlesArray[i].size<=0.3){
+      particlesArray.splice(i,1);
+      i--;
+    }
+  }
+  requestAnimationFrame(animate);
+}
+
+window.addEventListener("mousemove",function(e){
+  initParticles(e.x,e.y);
+});
+
+window.addEventListener("touchmove",function(e){
+  let t = e.touches[0];
+  initParticles(t.clientX,t.clientY);
+});
+
+window.addEventListener("resize",function(){
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+});
+
+animate();
+</script>
+
+</body>
+</html>
