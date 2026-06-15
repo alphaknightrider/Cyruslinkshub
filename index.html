@@ -1,16 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="cyan">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CyrusLinksHub — Your Gateway to Gaming</title>
+<title>CyrusLinksHub — Ultimate Entertainment & APK Gateway</title>
 <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+  /* MULTI-THEME CONFIGURATION VIA SYSTEM ROOT VARIABLES */
   :root {
-    --cyan: #00f0ff;
-    --cyan-dim: #00b8c4;
     --purple: #9b5de5;
     --dark: #07080f;
     --dark2: #0d0f1c;
@@ -19,9 +18,15 @@
     --surface: #1f2438;
     --text: #e8eaf6;
     --muted: #8890aa;
-    --border: rgba(0,240,255,0.12);
-    --glow: 0 0 18px rgba(0,240,255,0.2);
+    --border: rgba(var(--theme-rgb), 0.15);
+    --glow: 0 0 18px rgba(var(--theme-rgb), 0.25);
+    --glow-strong: 0 0 28px rgba(var(--theme-rgb), 0.5);
   }
+
+  [data-theme="cyan"] { --theme-color: #00f0ff; --theme-rgb: 0, 240, 255; }
+  [data-theme="red"] { --theme-color: #ff3333; --theme-rgb: 255, 51, 51; }
+  [data-theme="pink"] { --theme-color: #ff007f; --theme-rgb: 255, 0, 127; }
+  [data-theme="skyblue"] { --theme-color: #00bfff; --theme-rgb: 0, 191, 255; }
 
   html { scroll-behavior: smooth; }
 
@@ -33,17 +38,27 @@
     overflow-x: hidden;
   }
 
-  /* SCANLINE TEXTURE */
-  body::before {
-    content: '';
+  /* CANVAS FOR TOUCH PARTICLE RAIN & ANIMATED MATRIX */
+  #canvas-container {
     position: fixed;
     inset: 0;
-    background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.03) 2px, rgba(0,0,0,0.03) 4px);
     pointer-events: none;
-    z-index: 0;
+    z-index: 1;
+  }
+  canvas { display: block; }
+
+  /* SCROLL ANIMATION CLASS COUPLERS */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s cubic-bezier(0.15, 0.85, 0.45, 1);
+  }
+  .reveal.active {
+    opacity: 1;
+    transform: translateY(0);
   }
 
-  /* NAV */
+  /* RESPONSIVE HEADERS & FIXED NAV */
   nav {
     position: sticky;
     top: 0;
@@ -59,19 +74,32 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 64px;
+    height: 70px;
+  }
+  .logo-area {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    text-decoration: none;
+  }
+  .logo-img {
+    width: 38px;
+    height: 38px;
+    border-radius: 8px;
+    border: 2px solid var(--theme-color);
+    box-shadow: var(--glow);
+    animation: pulseGlow 3s infinite alternate;
   }
   .logo {
     font-family: 'Rajdhani', sans-serif;
     font-size: 1.5rem;
     font-weight: 700;
     letter-spacing: 0.06em;
-    text-decoration: none;
     color: var(--text);
   }
-  .logo span { color: var(--cyan); }
+  .logo span { color: var(--theme-color); transition: color 0.3s; }
 
-  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links { display: flex; gap: 1.5rem; list-style: none; align-items: center; }
   .nav-links a {
     text-decoration: none;
     color: var(--muted);
@@ -80,12 +108,73 @@
     letter-spacing: 0.04em;
     transition: color 0.2s;
   }
-  .nav-links a:hover { color: var(--cyan); }
+  .nav-links a:hover { color: var(--theme-color); }
+
+  /* ANIMATED EXPANDABLE SEARCH BAR */
+  .search-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  .search-input {
+    width: 40px;
+    height: 38px;
+    background: var(--dark3);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 0 10px 0 35px;
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85rem;
+    outline: none;
+    cursor: pointer;
+    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s, box-shadow 0.3s;
+  }
+  .search-input:focus, .search-input:not(:placeholder-shown) {
+    width: 220px;
+    cursor: text;
+    border-color: var(--theme-color);
+    box-shadow: var(--glow);
+    border-radius: 6px;
+  }
+  .search-icon {
+    position: absolute;
+    left: 12px;
+    pointer-events: none;
+    font-size: 0.9rem;
+    color: var(--muted);
+    transition: color 0.3s;
+  }
+  .search-input:focus + .search-icon { color: var(--theme-color); }
+
+  /* THEME PICKER COMPONENT */
+  .theme-selector {
+    display: flex;
+    gap: 0.4rem;
+    background: var(--dark3);
+    padding: 0.3rem;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+  }
+  .theme-dot {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: transform 0.2s, border-color 0.2s;
+  }
+  .theme-dot:hover { transform: scale(1.2); }
+  .theme-dot.active { border-color: white; }
+  .dot-cyan { background: #00f0ff; }
+  .dot-red { background: #ff3333; }
+  .dot-pink { background: #ff007f; }
+  .dot-skyblue { background: #00bfff; }
 
   .nav-cta {
     background: transparent;
-    border: 1px solid var(--cyan);
-    color: var(--cyan);
+    border: 1px solid var(--theme-color);
+    color: var(--theme-color);
     padding: 0.45rem 1.2rem;
     border-radius: 4px;
     font-family: 'Rajdhani', sans-serif;
@@ -94,81 +183,44 @@
     letter-spacing: 0.08em;
     cursor: pointer;
     text-decoration: none;
-    transition: background 0.2s, box-shadow 0.2s;
+    transition: all 0.3s;
   }
-  .nav-cta:hover { background: rgba(0,240,255,0.08); box-shadow: var(--glow); }
+  .nav-cta:hover { background: rgba(var(--theme-rgb),0.1); box-shadow: var(--glow); }
 
-  /* HERO */
+  /* HERO UPGRADES */
   .hero {
     position: relative;
-    min-height: 90vh;
+    min-height: 85vh;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
     padding: 4rem 2rem;
     overflow: hidden;
+    z-index: 2;
   }
-
   .hero-grid {
     position: absolute;
     inset: 0;
     background-image:
-      linear-gradient(rgba(0,240,255,0.06) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(0,240,255,0.06) 1px, transparent 1px);
-    background-size: 60px 60px;
-    mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black, transparent);
+      linear-gradient(rgba(var(--theme-rgb),0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(var(--theme-rgb),0.05) 1px, transparent 1px);
+    background-size: 50px 50px;
+    mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, black, transparent);
   }
-
-  .hero-glow {
-    position: absolute;
-    width: 600px;
-    height: 600px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(155,93,229,0.18) 0%, transparent 70%);
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    pointer-events: none;
-  }
-
-  .hero-content { position: relative; z-index: 1; max-width: 780px; }
-
-  .hero-badge {
-    display: inline-block;
-    border: 1px solid rgba(0,240,255,0.3);
-    color: var(--cyan);
-    font-size: 0.75rem;
-    font-weight: 500;
-    letter-spacing: 0.12em;
-    padding: 0.35rem 1rem;
-    border-radius: 2px;
-    margin-bottom: 1.5rem;
-    text-transform: uppercase;
-  }
-
+  .hero-content { position: relative; z-index: 5; max-width: 850px; }
+  
   h1 {
     font-family: 'Rajdhani', sans-serif;
-    font-size: clamp(3rem, 8vw, 6rem);
+    font-size: clamp(2.5rem, 7vw, 5.5rem);
     font-weight: 700;
-    line-height: 1;
-    letter-spacing: -0.01em;
+    line-height: 1.05;
     margin-bottom: 1.5rem;
   }
-  h1 .accent { color: var(--cyan); }
-
-  .hero-sub {
-    font-size: 1.1rem;
-    color: var(--muted);
-    max-width: 520px;
-    margin: 0 auto 2.5rem;
-    line-height: 1.7;
-  }
-
-  .hero-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+  h1 .accent { color: var(--theme-color); text-shadow: var(--glow); transition: color 0.3s, text-shadow 0.3s; }
 
   .btn-primary {
-    background: var(--cyan);
+    background: var(--theme-color);
     color: var(--dark);
     border: none;
     padding: 0.75rem 2rem;
@@ -181,579 +233,677 @@
     cursor: pointer;
     text-decoration: none;
     display: inline-block;
-    transition: opacity 0.2s, box-shadow 0.2s;
+    transition: all 0.3s;
   }
-  .btn-primary:hover { opacity: 0.9; box-shadow: 0 0 28px rgba(0,240,255,0.4); }
+  .btn-primary:hover { opacity: 0.95; box-shadow: var(--glow-strong); transform: translateY(-2px); }
 
-  .btn-secondary {
-    background: transparent;
-    color: var(--text);
-    border: 1px solid rgba(255,255,255,0.18);
-    padding: 0.75rem 2rem;
-    border-radius: 4px;
-    font-family: 'Rajdhani', sans-serif;
-    font-size: 1rem;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    cursor: pointer;
-    text-decoration: none;
-    display: inline-block;
-    transition: border-color 0.2s, background 0.2s;
-  }
-  .btn-secondary:hover { border-color: var(--cyan); background: rgba(0,240,255,0.05); }
-
-  /* STATS BAR */
-  .stats-bar {
-    background: var(--dark2);
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-    padding: 1.5rem 2rem;
-  }
-  .stats-inner {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: center;
-    gap: 4rem;
-    flex-wrap: wrap;
-  }
-  .stat { text-align: center; }
-  .stat-num {
-    font-family: 'Rajdhani', sans-serif;
-    font-size: 2rem;
-    font-weight: 700;
-    color: var(--cyan);
-    display: block;
-    line-height: 1;
-  }
-  .stat-label { font-size: 0.8rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 4px; }
-
-  /* SECTIONS */
-  section { padding: 5rem 2rem; }
+  /* HUB CARDS & LAYOUT FRAMEWORKS */
+  section { padding: 6rem 2rem; position: relative; z-index: 2; }
   .container { max-width: 1200px; margin: 0 auto; }
-
+  
   .section-eyebrow {
     font-size: 0.75rem;
-    font-weight: 500;
-    letter-spacing: 0.14em;
+    font-weight: 600;
+    letter-spacing: 0.15em;
     text-transform: uppercase;
-    color: var(--cyan);
-    margin-bottom: 0.75rem;
+    color: var(--theme-color);
+    margin-bottom: 0.5rem;
   }
-  h2 {
-    font-family: 'Rajdhani', sans-serif;
-    font-size: clamp(1.8rem, 4vw, 2.8rem);
-    font-weight: 700;
-    letter-spacing: -0.01em;
-    line-height: 1.1;
-    margin-bottom: 1rem;
-  }
-  .section-desc { font-size: 1rem; color: var(--muted); max-width: 500px; line-height: 1.7; margin-bottom: 3rem; }
+  .section-desc { color: var(--muted); font-size: 0.95rem; margin-bottom: 2.5rem; max-width: 600px; line-height: 1.6; }
 
-  /* GAMES GRID */
-  #games { background: var(--dark2); }
-  .games-grid {
+  /* DYNAMIC CONTENT GRID MODULES */
+  .content-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 1.5rem;
   }
-
-  .game-card {
-    background: var(--dark3);
+  .hub-card {
+    background: rgba(19, 22, 39, 0.7);
+    backdrop-filter: blur(8px);
     border: 1px solid var(--border);
     border-radius: 8px;
-    overflow: hidden;
-    transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
-    cursor: pointer;
+    padding: 1.5rem;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     text-decoration: none;
     color: inherit;
-    display: block;
-  }
-  .game-card:hover {
-    transform: translateY(-4px);
-    border-color: rgba(0,240,255,0.35);
-    box-shadow: 0 8px 32px rgba(0,0,0,0.4), var(--glow);
-  }
-
-  .game-thumb {
-    width: 100%;
-    aspect-ratio: 16/9;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 3.5rem;
-    position: relative;
-    overflow: hidden;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .hub-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(var(--theme-rgb), 0.4);
+    box-shadow: var(--glow), 0 10px 30px rgba(0,0,0,0.5);
+  }
+  .card-top { display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; }
+  .card-icon { font-size: 2rem; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; background: var(--dark4); border-radius: 6px; border: 1px solid var(--border); }
+  .card-title { font-family: 'Rajdhani', sans-serif; font-size: 1.25rem; font-weight: 700; }
+  .card-body { font-size: 0.88rem; color: var(--muted); line-height: 1.5; margin-bottom: 1.25rem; }
+  
+  .card-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .tag { font-size: 0.7rem; font-weight: 500; color: var(--theme-color); background: rgba(var(--theme-rgb), 0.08); border: 1px solid rgba(var(--theme-rgb), 0.15); padding: 0.15rem 0.5rem; border-radius: 3px; }
+
+  /* UNIQUE INTERACTIVE COMPONENT: HUB DIRECTORY DESCRIPTION BOX */
+  .info-panel {
+    background: linear-gradient(90deg, var(--dark3), var(--dark2));
+    border-left: 4px solid var(--theme-color);
+    padding: 1.25rem;
+    border-radius: 0 8px 8px 0;
+    margin-bottom: 2rem;
+    font-size: 0.92rem;
+    color: var(--text);
+    line-height: 1.6;
   }
 
-  .thumb-action   { background: linear-gradient(135deg, #1a0a2e, #2d0a4e); }
-  .thumb-fps      { background: linear-gradient(135deg, #0a1a10, #0a3018); }
-  .thumb-rpg      { background: linear-gradient(135deg, #1a1000, #3a2800); }
-  .thumb-strategy { background: linear-gradient(135deg, #001a2e, #003052); }
-  .thumb-sports   { background: linear-gradient(135deg, #1a0010, #340020); }
-  .thumb-indie    { background: linear-gradient(135deg, #0a0a1a, #18182e); }
-
-  .game-info { padding: 1rem; }
-  .game-title { font-family: 'Rajdhani', sans-serif; font-size: 1.1rem; font-weight: 600; margin-bottom: 0.25rem; }
-  .game-meta { display: flex; align-items: center; justify-content: space-between; }
-  .game-tag {
-    font-size: 0.7rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--cyan-dim);
-    background: rgba(0,240,255,0.06);
-    border: 1px solid rgba(0,240,255,0.12);
-    padding: 0.2rem 0.5rem;
-    border-radius: 3px;
-  }
-  .game-rating { font-size: 0.8rem; color: #fbbf24; }
-
-  /* CATEGORIES */
-  #categories { background: var(--dark); }
-  .cat-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-    gap: 1rem;
-  }
-  .cat-card {
-    background: var(--dark3);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 1.5rem 1rem;
-    text-align: center;
-    cursor: pointer;
-    transition: border-color 0.2s, background 0.2s, transform 0.2s;
-    text-decoration: none;
-    color: inherit;
-    display: block;
-  }
-  .cat-card:hover {
-    border-color: var(--purple);
-    background: var(--dark4);
-    transform: translateY(-2px);
-  }
-  .cat-icon { font-size: 2.2rem; margin-bottom: 0.75rem; }
-  .cat-name { font-family: 'Rajdhani', sans-serif; font-size: 1rem; font-weight: 600; letter-spacing: 0.04em; }
-  .cat-count { font-size: 0.78rem; color: var(--muted); margin-top: 0.2rem; }
-
-  /* FEATURED / TRENDING */
-  #trending { background: var(--dark2); }
-  .trending-list { display: flex; flex-direction: column; gap: 1px; }
-  .trend-item {
-    display: flex;
-    align-items: center;
-    gap: 1.25rem;
-    padding: 1rem 1.25rem;
+  /* ACCORDION SYSTEM FOR FAQ */
+  .faq-list { display: flex; flex-direction: column; gap: 1rem; max-width: 850px; margin: 0 auto; }
+  .faq-item {
     background: var(--dark3);
     border: 1px solid var(--border);
     border-radius: 6px;
-    margin-bottom: 0.75rem;
-    transition: border-color 0.2s, background 0.2s;
-    cursor: pointer;
-  }
-  .trend-item:hover { border-color: rgba(155,93,229,0.4); background: var(--dark4); }
-  .trend-rank {
-    font-family: 'Rajdhani', sans-serif;
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--border);
-    min-width: 32px;
-    line-height: 1;
-  }
-  .trend-rank.top { color: var(--cyan); }
-  .trend-icon { font-size: 2rem; }
-  .trend-title { font-family: 'Rajdhani', sans-serif; font-size: 1.1rem; font-weight: 600; }
-  .trend-genre { font-size: 0.8rem; color: var(--muted); margin-top: 2px; }
-  .trend-badge {
-    margin-left: auto;
-    font-size: 0.72rem;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    padding: 0.25rem 0.65rem;
-    border-radius: 3px;
-    font-weight: 500;
-  }
-  .badge-hot   { background: rgba(239,68,68,0.12); color: #f87171; border: 1px solid rgba(239,68,68,0.2); }
-  .badge-new   { background: rgba(0,240,255,0.08); color: var(--cyan); border: 1px solid rgba(0,240,255,0.18); }
-  .badge-top   { background: rgba(155,93,229,0.1); color: #c084fc; border: 1px solid rgba(155,93,229,0.2); }
-
-  /* CTA SECTION */
-  .cta-section {
-    background: var(--dark);
-    text-align: center;
-    padding: 6rem 2rem;
-    position: relative;
     overflow: hidden;
+    transition: border-color 0.3s;
   }
-  .cta-glow {
-    position: absolute;
-    width: 500px;
-    height: 300px;
-    border-radius: 50%;
-    background: radial-gradient(ellipse, rgba(0,240,255,0.1) 0%, transparent 70%);
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    pointer-events: none;
-  }
-  .cta-section h2 { margin-bottom: 1rem; }
-  .cta-section p { color: var(--muted); margin-bottom: 2.5rem; font-size: 1.05rem; max-width: 480px; margin-left: auto; margin-right: auto; line-height: 1.7; }
-
-  /* FOOTER */
-  footer {
-    background: var(--dark2);
-    border-top: 1px solid var(--border);
-    padding: 3rem 2rem;
-  }
-  .footer-inner {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1fr;
-    gap: 3rem;
-  }
-  .footer-brand p { color: var(--muted); font-size: 0.9rem; line-height: 1.7; margin-top: 0.75rem; max-width: 260px; }
-  .footer-col h4 {
+  .faq-trigger {
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 1.25rem;
+    text-align: left;
+    color: var(--text);
     font-family: 'Rajdhani', sans-serif;
-    font-size: 0.85rem;
+    font-size: 1.15rem;
     font-weight: 600;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 1rem;
-  }
-  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
-  .footer-col a { color: var(--muted); text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
-  .footer-col a:hover { color: var(--cyan); }
-  .footer-bottom {
-    max-width: 1200px;
-    margin: 2rem auto 0;
-    padding-top: 1.5rem;
-    border-top: 1px solid var(--border);
+    cursor: pointer;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-size: 0.8rem;
-    color: var(--muted);
-    flex-wrap: wrap;
-    gap: 0.5rem;
   }
+  .faq-trigger::after { content: '➔'; font-size: 0.8rem; transform: rotate(90deg); transition: transform 0.3s; color: var(--theme-color); }
+  .faq-item.active .faq-trigger::after { transform: rotate(-90deg); }
+  .faq-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s cubic-bezier(0, 1, 0, 1);
+    background: rgba(0,0,0,0.15);
+  }
+  .faq-content p { padding: 1.25rem; font-size: 0.9rem; color: var(--muted); line-height: 1.6; }
+  .faq-item.active .faq-content { max-height: 1000px; transition: max-height 0.3s cubic-bezier(1, 0, 1, 0); }
 
-  /* HAMBURGER MENU */
-  .nav-menu-btn {
-    display: none;
-    background: none;
-    border: none;
-    color: var(--text);
-    font-size: 1.5rem;
-    cursor: pointer;
-    padding: 4px;
-  }
-
-  /* RESPONSIVE */
-  @media (max-width: 768px) {
-    .nav-links { display: none; }
-    .nav-menu-btn { display: block; }
-    .stats-inner { gap: 2rem; }
-    .footer-inner { grid-template-columns: 1fr 1fr; }
-  }
-  @media (max-width: 500px) {
-    .footer-inner { grid-template-columns: 1fr; }
-  }
-
-  /* CURSOR GLOW EFFECT */
-  .cursor-glow {
+  /* CORE BACK TO TOP INTERACTIVE ELEMENT */
+  .back-to-top {
     position: fixed;
-    width: 300px;
-    height: 300px;
+    bottom: 2rem;
+    right: 2rem;
+    background: var(--dark3);
+    color: var(--theme-color);
+    border: 1px solid var(--border);
+    width: 45px;
+    height: 45px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(0,240,255,0.05) 0%, transparent 70%);
-    pointer-events: none;
-    z-index: 9999;
-    transform: translate(-50%, -50%);
-    transition: left 0.1s, top 0.1s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 99;
+    opacity: 0;
+    transform: translateY(15px);
+    transition: all 0.3s;
+    box-shadow: var(--glow);
+  }
+  .back-to-top.visible { opacity: 1; transform: translateY(0); }
+  .back-to-top:hover { background: var(--theme-color); color: var(--dark); box-shadow: var(--glow-strong); }
+
+  /* RESPONSIVE DESIGN INTERFACES */
+  .nav-menu-btn { display: none; background: none; border: none; color: var(--text); font-size: 1.5rem; cursor: pointer; }
+
+  @media (max-width: 992px) {
+    .nav-links { display: none; position: absolute; top: 70px; left: 0; right: 0; background: var(--dark2); border-bottom: 1px solid var(--border); padding: 2rem; flex-direction: column; gap: 1.5rem; align-items: stretch; text-align: center; }
+    .nav-links.open { display: flex; }
+    .nav-menu-btn { display: block; }
+    .search-input:focus { width: 100%; }
+  }
+
+  @keyframes pulseGlow {
+    0% { box-shadow: 0 0 10px rgba(var(--theme-rgb), 0.2); }
+    100% { box-shadow: 0 0 25px rgba(var(--theme-rgb), 0.6); }
   }
 </style>
 </head>
 <body>
 
-<div class="cursor-glow" id="cursorGlow"></div>
+<div id="canvas-container">
+  <canvas id="particleCanvas"></canvas>
+</div>
 
-<!-- NAV -->
+<button class="back-to-top" id="backToTop" aria-label="Scroll back to top">▲</button>
+
 <nav>
   <div class="nav-inner">
-    <a href="#" class="logo">CYRUS<span>LINKS</span>HUB</a>
-    <ul class="nav-links">
-      <li><a href="#games">Games</a></li>
-      <li><a href="#categories">Categories</a></li>
-      <li><a href="#trending">Trending</a></li>
-      <li><a href="#">Community</a></li>
-      <li><a href="#">News</a></li>
+    <a href="#" class="logo-area">
+      <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' fill='%2300f0ff'><path d='M10 20 L50 40 L90 20 L50 80 Z'/></svg>" class="logo-img" alt="Logo" id="webLogo">
+      <div class="logo">CYRUS<span>LINKS</span>HUB</div>
+    </a>
+
+    <ul class="nav-links" id="navLinks">
+      <li>
+        <div class="search-wrapper">
+          <input type="text" class="search-input" placeholder="Search files, mods, titles..." id="hubSearch">
+          <span class="search-icon">🔍</span>
+        </div>
+      </li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#apk-vault">APK Library</a></li>
+      <li><a href="#cinema">Movies</a></li>
+      <li><a href="#audio">Music</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li>
+        <div class="theme-selector">
+          <div class="theme-dot dot-cyan active" data-theme-set="cyan"></div>
+          <div class="theme-dot dot-red" data-theme-set="red"></div>
+          <div class="theme-dot dot-pink" data-theme-set="pink"></div>
+          <div class="theme-dot dot-skyblue" data-theme-set="skyblue"></div>
+        </div>
+      </li>
+      <li><a href="https://discord.gg/3JNaPezM5u" target="_blank" class="nav-cta">Discord</a></li>
     </ul>
-    <a href="#" class="nav-cta">Join Free</a>
-    <button class="nav-menu-btn" aria-label="Open menu">☰</button>
+
+    <button class="nav-menu-btn" id="menuToggle" aria-label="Toggle structural layout menu">☰</button>
   </div>
 </nav>
 
-<!-- HERO -->
 <section class="hero">
   <div class="hero-grid"></div>
-  <div class="hero-glow"></div>
   <div class="hero-content">
-    <div class="hero-badge">⚡ The Ultimate Gaming Hub</div>
-    <h1>PLAY.<br><span class="accent">CONNECT.</span><br>DOMINATE.</h1>
-    <p class="hero-sub">Your one-stop destination for game links, reviews, community finds, and the hottest titles across every genre.</p>
-    <div class="hero-buttons">
-      <a href="#games" class="btn-primary">Explore Games</a>
-      <a href="#" class="btn-secondary">Join Community</a>
+    <div style="text-transform: uppercase; letter-spacing: 0.15em; font-size: 0.85rem; color: var(--theme-color); margin-bottom: 1rem;">⚡ Multi-Purpose Direct Link System</div>
+    <h1>DIGITAL.<br><span class="accent">UNLOCKED.</span><br>STREAMED.</h1>
+    <p style="color: var(--muted); font-size: 1.1rem; max-width: 600px; margin: 0 auto 2.5rem; line-height: 1.6;">
+      Access clean APK packages, modified community apps, high-bitrate streaming media vectors, and premium direct download routes.
+    </p>
+    <div>
+      <a href="#apk-vault" class="btn-primary">Browse Archives</a>
     </div>
   </div>
 </section>
 
-<!-- STATS BAR -->
-<div class="stats-bar">
-  <div class="stats-inner">
-    <div class="stat">
-      <span class="stat-num">2,400+</span>
-      <span class="stat-label">Game Links</span>
-    </div>
-    <div class="stat">
-      <span class="stat-num">180K</span>
-      <span class="stat-label">Gamers</span>
-    </div>
-    <div class="stat">
-      <span class="stat-num">48</span>
-      <span class="stat-label">Genres</span>
-    </div>
-    <div class="stat">
-      <span class="stat-num">Daily</span>
-      <span class="stat-label">Updates</span>
-    </div>
-  </div>
-</div>
-
-<!-- GAMES -->
-<section id="games">
+<section id="about" class="reveal">
   <div class="container">
-    <p class="section-eyebrow">Featured Games</p>
-    <h2>Top Picks Right Now</h2>
-    <p class="section-desc">Hand-curated links to the best games across platforms — updated every day by the community.</p>
-    <div class="games-grid">
-
-      <a href="#" class="game-card">
-        <div class="game-thumb thumb-action"><span>🔫</span></div>
-        <div class="game-info">
-          <div class="game-title">Apex Legends</div>
-          <div class="game-meta">
-            <span class="game-tag">Battle Royale</span>
-            <span class="game-rating">★ 4.7</span>
-          </div>
-        </div>
-      </a>
-
-      <a href="#" class="game-card">
-        <div class="game-thumb thumb-rpg"><span>⚔️</span></div>
-        <div class="game-info">
-          <div class="game-title">Elden Ring</div>
-          <div class="game-meta">
-            <span class="game-tag">Action RPG</span>
-            <span class="game-rating">★ 4.9</span>
-          </div>
-        </div>
-      </a>
-
-      <a href="#" class="game-card">
-        <div class="game-thumb thumb-fps"><span>🎯</span></div>
-        <div class="game-info">
-          <div class="game-title">Valorant</div>
-          <div class="game-meta">
-            <span class="game-tag">Tactical FPS</span>
-            <span class="game-rating">★ 4.6</span>
-          </div>
-        </div>
-      </a>
-
-      <a href="#" class="game-card">
-        <div class="game-thumb thumb-strategy"><span>🏰</span></div>
-        <div class="game-info">
-          <div class="game-title">Civilization VII</div>
-          <div class="game-meta">
-            <span class="game-tag">Strategy</span>
-            <span class="game-rating">★ 4.5</span>
-          </div>
-        </div>
-      </a>
-
-      <a href="#" class="game-card">
-        <div class="game-thumb thumb-sports"><span>⚽</span></div>
-        <div class="game-info">
-          <div class="game-title">FC 25</div>
-          <div class="game-meta">
-            <span class="game-tag">Sports</span>
-            <span class="game-rating">★ 4.3</span>
-          </div>
-        </div>
-      </a>
-
-      <a href="#" class="game-card">
-        <div class="game-thumb thumb-indie"><span>🌿</span></div>
-        <div class="game-info">
-          <div class="game-title">Hollow Knight: Silksong</div>
-          <div class="game-meta">
-            <span class="game-tag">Indie</span>
-            <span class="game-rating">★ 4.8</span>
-          </div>
-        </div>
-      </a>
-
-      <a href="#" class="game-card">
-        <div class="game-thumb thumb-action"><span>🕹️</span></div>
-        <div class="game-info">
-          <div class="game-title">Fortnite</div>
-          <div class="game-meta">
-            <span class="game-tag">Battle Royale</span>
-            <span class="game-rating">★ 4.4</span>
-          </div>
-        </div>
-      </a>
-
-      <a href="#" class="game-card">
-        <div class="game-thumb thumb-rpg"><span>🐉</span></div>
-        <div class="game-info">
-          <div class="game-title">Black Myth: Wukong</div>
-          <div class="game-meta">
-            <span class="game-tag">Action RPG</span>
-            <span class="game-rating">★ 4.8</span>
-          </div>
-        </div>
-      </a>
-
+    <p class="section-eyebrow">Data Matrix Overview</p>
+    <h2>About CyrusLinksHub</h2>
+    <div class="info-panel">
+      <strong>Session Architecture Definition:</strong> This portal serves as a distributed directory layer. Every node on this interface represents an optimized content cluster cataloging clean Android binaries (APKs), entertainment indexes, tracking vectors, and direct global content networks.
     </div>
+    <p style="color: var(--muted); line-height: 1.7; max-width: 800px;">
+      CyrusLinksHub bypasses heavy traditional advertising and visual layers to deliver immediate link payloads directly to terminal operators. Our catalogs are curated dynamically daily and verified under continuous active testing structures.
+    </p>
   </div>
 </section>
 
-<!-- CATEGORIES -->
-<section id="categories">
+<section id="apk-vault" class="reveal">
   <div class="container">
-    <p class="section-eyebrow">Browse by Genre</p>
-    <h2>Find Your Playstyle</h2>
-    <p class="section-desc">Every genre you love, organized and ready to explore.</p>
-    <div class="cat-grid">
-      <a href="#" class="cat-card"><div class="cat-icon">🔫</div><div class="cat-name">FPS</div><div class="cat-count">312 links</div></a>
-      <a href="#" class="cat-card"><div class="cat-icon">⚔️</div><div class="cat-name">RPG</div><div class="cat-count">489 links</div></a>
-      <a href="#" class="cat-card"><div class="cat-icon">🏁</div><div class="cat-name">Racing</div><div class="cat-count">156 links</div></a>
-      <a href="#" class="cat-card"><div class="cat-icon">🏰</div><div class="cat-name">Strategy</div><div class="cat-count">274 links</div></a>
-      <a href="#" class="cat-card"><div class="cat-icon">⚡</div><div class="cat-name">MOBA</div><div class="cat-count">98 links</div></a>
-      <a href="#" class="cat-card"><div class="cat-icon">🌿</div><div class="cat-name">Indie</div><div class="cat-count">601 links</div></a>
-      <a href="#" class="cat-card"><div class="cat-icon">👻</div><div class="cat-name">Horror</div><div class="cat-count">133 links</div></a>
-      <a href="#" class="cat-card"><div class="cat-icon">🏀</div><div class="cat-name">Sports</div><div class="cat-count">210 links</div></a>
-      <a href="#" class="cat-card"><div class="cat-icon">🎲</div><div class="cat-name">Roguelike</div><div class="cat-count">187 links</div></a>
-      <a href="#" class="cat-card"><div class="cat-icon">🌍</div><div class="cat-name">Open World</div><div class="cat-count">341 links</div></a>
+    <p class="section-eyebrow">System Binaries</p>
+    <h2>APK Link Repository</h2>
+    <div class="info-panel">
+      <strong>Session Architecture Definition:</strong> The APK vault is subdivided into system execution toolsets, modified runtime files with unlocked feature capabilities, and pre-patched modern rendering game application files.
+    </div>
+
+    <div class="content-grid" id="apkGrid">
+      <div class="hub-card" data-search-tags="tool root file explorer apk utility manager">
+        <div>
+          <div class="card-top">
+            <div class="card-icon">🛠️</div>
+            <div class="card-title">Root Explorer Pro</div>
+          </div>
+          <p class="card-body">High-priority hardware file manager module optimized for viewing hidden system configurations safely.</p>
+        </div>
+        <div class="card-tags">
+          <span class="tag">Tool APK</span>
+          <span class="tag">v4.12 Direct</span>
+        </div>
+      </div>
+
+      <div class="hub-card" data-search-tags="mod streaming layout adblock premium unlocked premium">
+        <div>
+          <div class="card-top">
+            <div class="card-icon">🔓</div>
+            <div class="card-title">PhotoEdit Pro Mod</div>
+          </div>
+          <p class="card-body">Premium visual filter engine unlocked. Server side validation layers bypassed completely.</p>
+        </div>
+        <div class="card-tags">
+          <span class="tag">Mod APK</span>
+          <span class="tag">Premium Unlocked</span>
+        </div>
+      </div>
+
+      <div class="hub-card" data-search-tags="games rpg sandbox pocket craft block apk">
+        <div>
+          <div class="card-top">
+            <div class="card-icon">🎮</div>
+            <div class="card-title">Sandbox Craft PE</div>
+          </div>
+          <p class="card-body">Full standalone game implementation installer binary. Zero connection tracking required.</p>
+        </div>
+        <div class="card-tags">
+          <span class="tag">Games APK</span>
+          <span class="tag">Offline Patch</span>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- TRENDING -->
-<section id="trending">
+<section id="cinema" style="background: var(--dark2);" class="reveal">
   <div class="container">
-    <p class="section-eyebrow">This Week</p>
-    <h2>Trending on CyrusLinksHub</h2>
-    <p class="section-desc">What the community is clicking, sharing, and playing right now.</p>
-    <div class="trending-list">
-      <div class="trend-item">
-        <span class="trend-rank top">01</span>
-        <span class="trend-icon">🐉</span>
-        <div><div class="trend-title">Black Myth: Wukong</div><div class="trend-genre">Action RPG · PC</div></div>
-        <span class="trend-badge badge-hot">🔥 Hot</span>
+    <p class="section-eyebrow">Visual Decoders</p>
+    <h2>Cinematic Media Links</h2>
+    <div class="info-panel">
+      <strong>Session Architecture Definition:</strong> High-bandwidth direct stream nodes containing multi-genre audio streams (Dual Audio Hindi Dubbed). Covers Western blockbusters, local hits, romance titles, family arrays, and localized high-framerate anime/animation systems.
+    </div>
+
+    <div class="content-grid" id="movieGrid">
+      <div class="hub-card" data-search-tags="hollywood action sci-fi hindi dubbed premium movie">
+        <div>
+          <div class="card-top">
+            <div class="card-icon">🎬</div>
+            <div class="card-title">The Chrono Matrix</div>
+          </div>
+          <p class="card-body">Hollywood sci-fi Masterwork. High-bitrate HEVC link vector with pure Dual Audio Hindi Dubbed paths.</p>
+        </div>
+        <div class="card-tags"><span class="tag">Hollywood</span><span class="tag">Hindi Dubbed</span></div>
       </div>
-      <div class="trend-item">
-        <span class="trend-rank top">02</span>
-        <span class="trend-icon">⚔️</span>
-        <div><div class="trend-title">Elden Ring DLC</div><div class="trend-genre">Action RPG · Multi</div></div>
-        <span class="trend-badge badge-top">👑 Top Rated</span>
+
+      <div class="hub-card" data-search-tags="bollywood action drama dance localized cinema movie">
+        <div>
+          <div class="card-top">
+            <div class="card-icon">🦁</div>
+            <div class="card-title">Ranveer: The Roar</div>
+          </div>
+          <p class="card-body">High impact modern Bollywood action core. Original multi-channel master audio package availability.</p>
+        </div>
+        <div class="card-tags"><span class="tag">Bollywood</span><span class="tag">1080p WebDL</span></div>
       </div>
-      <div class="trend-item">
-        <span class="trend-rank top">03</span>
-        <span class="trend-icon">🎯</span>
-        <div><div class="trend-title">Valorant Season 9</div><div class="trend-genre">Tactical FPS · PC</div></div>
-        <span class="trend-badge badge-new">✨ New</span>
+
+      <div class="hub-card" data-search-tags="romantic drama slice love story movie">
+        <div>
+          <div class="card-top">
+            <div class="card-icon">💖</div>
+            <div class="card-title">Neon Lights in Monsoon</div>
+          </div>
+          <p class="card-body">Subtitled and Hindi audio multiplex pathing. Independent romantic drama production data.</p>
+        </div>
+        <div class="card-tags"><span class="tag">Romantic</span><span class="tag">Dual-Audio</span></div>
       </div>
-      <div class="trend-item">
-        <span class="trend-rank">04</span>
-        <span class="trend-icon">🌿</span>
-        <div><div class="trend-title">Hollow Knight: Silksong</div><div class="trend-genre">Indie · Multi</div></div>
-        <span class="trend-badge badge-hot">🔥 Hot</span>
-      </div>
-      <div class="trend-item">
-        <span class="trend-rank">05</span>
-        <span class="trend-icon">🏰</span>
-        <div><div class="trend-title">Civilization VII</div><div class="trend-genre">Strategy · PC</div></div>
-        <span class="trend-badge badge-new">✨ New</span>
+
+      <div class="hub-card" data-search-tags="cartoon anime animation family friendly movie kids">
+        <div>
+          <div class="card-top">
+            <div class="card-icon">🦊</div>
+            <div class="card-title">Cyber Spirit Academy</div>
+          </div>
+          <p class="card-body">Family optimized modern cartoon animation suite. Clean vocal tracks re-dubbed completely.</p>
+        </div>
+        <div class="card-tags"><span class="tag">Cartoon</span><span class="tag">Family</span></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- CTA -->
-<div class="cta-section">
-  <div class="cta-glow"></div>
-  <div style="position:relative; z-index:1;">
-    <p class="section-eyebrow" style="margin-bottom:1rem;">Join the Community</p>
-    <h2>Your Next Favorite<br>Game is One Click Away</h2>
-    <p>Create a free account to save your game list, submit links, write reviews, and connect with 180,000 gamers worldwide.</p>
-    <a href="#" class="btn-primary" style="font-size:1.05rem; padding:0.85rem 2.5rem;">Create Free Account</a>
-  </div>
-</div>
+<section id="audio" class="reveal">
+  <div class="container">
+    <p class="section-eyebrow">Acoustic Frequencies</p>
+    <h2>Audio Streaming Matrices</h2>
+    <div class="info-panel">
+      <strong>Session Architecture Definition:</strong> High-fidelity lossless compression streams filtering diverse audio profiles including localized releases, traditional Western charts, and synthetic high-bass phonk rhythmic files.
+    </div>
 
-<!-- FOOTER -->
+    <div class="content-grid" id="musicGrid">
+      <div class="hub-card" data-search-tags="hindi music pop traditional indie track">
+        <div>
+          <div class="card-top">
+            <div class="card-icon">🔓</div>
+            <div class="card-title">PhotoEdit Pro Mod</div>
+          </div>
+          <p class="card-body">Premium visual filter engine unlocked. Server side validation layers bypassed completely.</p>
+        </div>
+        <div class="card-tags">
+          <span class="tag">Mod APK</span>
+          <span class="tag">Premium Unlocked</span>
+        </div>
+      </div>
+
+      <div class="hub-card" data-search-tags="games rpg sandbox pocket craft block apk">
+        <div>
+          <div class="card-top">
+            <div class="card-icon">🎮</div>
+            <div class="card-title">Sandbox Craft PE</div>
+          </div>
+          <p class="card-body">Full standalone game implementation installer binary. Zero connection tracking required.</p>
+        </div>
+        <div class="card-tags">
+          <span class="tag">Games APK</span>
+          <span class="tag">Offline Patch</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="cinema" style="background: var(--dark2);" class="reveal">
+  <div class="container">
+    <p class="section-eyebrow">Visual Decoders</p>
+    <h2>Cinematic Media Links</h2>
+    <div class="info-panel">
+      <strong>Session Architecture Definition:</strong> High-bandwidth direct stream nodes containing multi-genre audio streams (Dual Audio Hindi Dubbed). Covers Western blockbusters, local hits, romance titles, family arrays, and localized high-framerate anime/animation systems.
+    </div>
+
+    <div class="content-grid" id="movieGrid">
+      <div class="hub-card" data-search-tags="hollywood action sci-fi hindi dubbed premium movie">
+        <div>
+          <div class="card-top">
+            <div class="card-icon">🎬</div>
+            <div class="card-title">The Chrono Matrix</div>
+          </div>
+          <p class="card-body">Hollywood sci-fi Masterwork. High-bitrate HEVC link vector with pure Dual Audio Hindi Dubbed paths.</p>
+        </div>
+        <div class="card-tags"><span class="tag">Hollywood</span><span class="tag">Hindi Dubbed</span></div>
+      </div>
+
+      <div class="hub-card" data-search-tags="bollywood action drama dance localized cinema movie">
+        <div>
+          <div class="card-top">
+            <div class="card-icon">🦁</div>
+            <div class="card-title">Ranveer: The Roar</div>
+          </div>
+          <p class="card-body">High impact modern Bollywood action core. Original multi-channel master audio package availability.</p>
+        </div>
+        <div class="card-tags"><span class="tag">Bollywood</span><span class="tag">1080p WebDL</span></div>
+      </div>
+
+      <div class="hub-card" data-search-tags="romantic drama slice love story movie">
+        <div>
+          <div class="card-top">
+            <div class="card-icon">💖</div>
+            <div class="card-title">Neon Lights in Monsoon</div>
+          </div>
+          <p class="card-body">Subtitled and Hindi audio multiplex pathing. Independent romantic drama production data.</p>
+        </div>
+        <div class="card-tags"><span class="tag">Romantic</span><span class="tag">Dual-Audio</span></div>
+      </div>
+
+      <div class="hub-card" data-search-tags="cartoon anime animation family friendly movie kids">
+        <div>
+          <div class="card-top">
+            <div class="card-icon">🦊</div>
+            <div class="card-title">Cyber Spirit Academy</div>
+          </div>
+          <p class="card-body">Family optimized modern cartoon animation suite. Clean vocal tracks re-dubbed completely.</p>
+        </div>
+        <div class="card-tags"><span class="tag">Cartoon</span><span class="tag">Family</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="audio" class="reveal">
+  <div class="container">
+    <p class="section-eyebrow">Acoustic Frequencies</p>
+    <h2>Audio Streaming Matrices</h2>
+    <div class="info-panel">
+      <strong>Session Architecture Definition:</strong> High-fidelity lossless compression streams filtering diverse audio profiles including localized releases, traditional Western charts, and synthetic high-bass phonk rhythmic files.
+    </div>
+
+    <div class="content-grid" id="musicGrid">
+      <div class="hub-card" data-search-tags="hindi music pop traditional indie track">
+        <div>
+          <div class="card-top">
+            <div class="card-icon">🎵</div>
+            <div class="card-title">Midnight Gazal Remix</div>
+          </div>
+          <p class="card-body">Lossless audio codec pipeline showcasing experimental indie pop sounds.</p>
+        </div>
+        <div class="card-tags"><span class="tag">Hindi</span><span class="tag">320kbps FLAC</span></div>
+      </div>
+
+      <div class="hub-card" data-search-tags="english music rock alternative synthwave track">
+        <div>
+          <div class="card-top">
+            <div class="card-icon">🎸</div>
+            <div class="card-title">Retrowave Engine</div>
+          </div>
+          <p class="card-body">High energy Western synthwave arrangement tracking system playlists.</p>
+        </div>
+        <div class="card-tags"><span class="tag">English</span><span class="tag">Synthwave</span></div>
+      </div>
+
+      <div class="hub-card" data-search-tags="phonk drift hyper bass high speed track">
+        <div>
+          <div class="card-top">
+            <div class="card-icon">🚗</div>
+            <div class="card-title">DRIFT METROPOLIS</div>
+          </div>
+          <p class="card-body">Aggressive cowbell algorithms with heavy baseline modulation profiles.</p>
+        </div>
+        <div class="card-tags"><span class="tag">Phonk</span><span class="tag">Bass Boosted</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="faq" style="background: var(--dark2);" class="reveal">
+  <div class="container">
+    <p class="section-eyebrow">Support Database</p>
+    <h2>Frequently Asked Questions</h2>
+    <div class="info-panel">
+      <strong>Session Architecture Definition:</strong> Common network execution troubleshooting paths and verification instructions documented explicitly to protect operational runtime.
+    </div>
+
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-trigger">How do I safely deploy the Mod APK binaries?</button>
+        <div class="faq-content">
+          <p>You must enable tracking allowance for "Unknown Sources" inside your device firmware security layer. Ensure your system package manager checksum matches our public verification log entries before running target installation procedures.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-trigger">Where are the Hindi Dubbed tracking options mapped?</button>
+        <div class="faq-content">
+          <p>Open the media payload inside VLC or MX player engines, map tracking to "Audio Track Stack," and switch encoder from Track 1 (Eng) to Track 2 (Hin) natively.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-trigger">Are these downloads monitored or throttled?</button>
+        <div class="faq-content">
+          <p>No. Every file cluster is distributed inside a high-throughput edge network routing matrix allowing full line-speed utilization regardless of global geographical coordinates.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <footer>
-  <div class="footer-inner">
-    <div class="footer-brand">
-      <div class="logo" style="font-size:1.3rem;">CYRUS<span style="color:var(--cyan);">LINKS</span>HUB</div>
-      <p>Your ultimate hub for curated game links, community reviews, and everything gaming. Always free. Always updated.</p>
+  <div class="container" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 3rem;">
+    <div>
+      <div class="logo" style="font-size: 1.3rem; margin-bottom: 1rem;">CYRUS<span>LINKS</span>HUB</div>
+      <p style="color: var(--muted); font-size: 0.85rem; line-height: 1.6;">Direct access interface serving application distribution frameworks and secure file paths.</p>
     </div>
-    <div class="footer-col">
-      <h4>Explore</h4>
-      <ul>
-        <li><a href="#">New Releases</a></li>
-        <li><a href="#">Top Rated</a></li>
-        <li><a href="#">Free to Play</a></li>
-        <li><a href="#">Upcoming</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Community</h4>
-      <ul>
-        <li><a href="#">Forum</a></li>
-        <li><a href="#">Submit a Link</a></li>
-        <li><a href="#">Leaderboard</a></li>
-        <li><a href="#">Discord</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Site</h4>
-      <ul>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Contact</a></li>
-        <li><a href="#">Privacy</a></li>
-        <li><a href="#">Terms</a></li>
+    <div>
+      <h4 style="font-family: 'Rajdhani', sans-serif; font-size: 0.9rem; margin-bottom: 1rem; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase;">External Nodes</h4>
+      <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.88rem;">
+        <li><a href="https://discord.gg/3JNaPezM5u" target="_blank" style="color: var(--theme-color); text-decoration: none;">Join System Discord</a></li>
+      <li><a href="#" style="color: var(--muted); text-decoration: none;">Node System Status</a></li>
       </ul>
     </div>
   </div>
-  <div class="footer-bottom">
-    <span>© 2026 CyrusLinksHub. All rights reserved.</span>
-    <span>Built for gamers, by gamers.</span>
+  <div style="max-width: 1200px; margin: 3rem auto 0; padding-top: 1.5rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--muted); flex-wrap: wrap; gap: 1rem;">
+    <span>© 2026 CyrusLinksHub Framework. All operational vectors active.</span>
+    <span>Secure Decentralized Distribution.</span>
   </div>
 </footer>
 
 <script>
-  const glow = document.getElementById('cursorGlow');
-  document.addEventListener('mousemove', e => {
-    glow.style.left = e.clientX + 'px';
-    glow.style.top = e.clientY + 'px';
+  /* 1. TOUCH PARTICLE RAIN SYSTEM CORE */
+  const canvas = document.getElementById('particleCanvas');
+  const ctx = canvas.getContext('2d');
+  let animationFrameId;
+
+  function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  window.addEventListener('resize', resizeCanvas);
+  resizeCanvas();
+
+  const particles = [];
+  const mouse = { x: null, y: null, active: false };
+
+  class DropParticle {
+    constructor() {
+      this.reset();
+      this.y = Math.random() * canvas.height; 
+    }
+    reset() {
+      this.x = Math.random() * canvas.width;
+      this.y = -20;
+      this.length = Math.random() * 20 + 15;
+      this.speed = Math.random() * 5 + 6;
+      this.weight = Math.random() * 1 + 0.5;
+    }
+    update() {
+      this.y += this.speed;
+      
+      // Basic vertical path tracking altered on user proximity bounds
+      if (mouse.active) {
+        const dx = this.x - mouse.x;
+        const dy = this.y - mouse.y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+        if (distance < 120) {
+          if (this.x < mouse.x) this.x -= 3;
+          else this.x += 3;
+        }
+      }
+
+      if (this.y > canvas.height) {
+        this.reset();
+      }
+    }
+    draw() {
+      // Pull dynamic color matrices assigned currently to root scopes
+      const themeColor = getComputedStyle(document.documentElement).getPropertyValue('--theme-color').trim();
+      ctx.beginPath();
+      ctx.strokeStyle = themeColor;
+      ctx.lineWidth = this.weight;
+      ctx.moveTo(this.x, this.y);
+      ctx.lineTo(this.x, this.y + this.length);
+      ctx.stroke();
+    }
+  }
+
+  // Populate localized array metrics
+  const poolSize = Math.min(120, Math.floor(window.innerWidth / 8));
+  for (let i = 0; i < poolSize; i++) {
+    particles.push(new DropParticle());
+  }
+
+  function handleInteraction(e) {
+    mouse.active = true;
+    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+    const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+    mouse.x = clientX;
+    mouse.y = clientY;
+  }
+
+  window.addEventListener('mousemove', handleInteraction);
+  window.addEventListener('touchmove', handleInteraction, { passive: true });
+  window.addEventListener('mouseleave', () => mouse.active = false);
+  window.addEventListener('touchend', () => mouse.active = false);
+
+  function executeRenderPipeline() {
+    ctx.fillStyle = 'rgba(7, 8, 15, 0.25)'; // Smooth trails logic
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    
+    particles.forEach(p => {
+      p.update();
+      p.draw();
+    });
+    animationFrameId = requestAnimationFrame(executeRenderPipeline);
+  }
+  executeRenderPipeline();
+
+  /* 2. DYNAMIC SYSTEM ENGINE GLOBAL THEME CHANGER */
+  const dots = document.querySelectorAll('.theme-dot');
+  dots.forEach(dot => {
+    dot.addEventListener('click', () => {
+      dots.forEach(d => d.classList.remove('active'));
+      dot.classList.add('active');
+      const chosenTheme = dot.getAttribute('data-theme-set');
+      document.documentElement.setAttribute('data-theme', chosenTheme);
+      
+      // Modify dynamic base64 matching indicator components natively
+      const svgColorCode = chosenTheme === 'cyan' ? '%2300f0ff' : chosenTheme === 'red' ? '%23ff3333' : chosenTheme === 'pink' ? '%23ff007f' : '%2300bfff';
+      document.getElementById('webLogo').src = `data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' fill='${svgColorCode}'><path d='M10 20 L50 40 L90 20 L50 80 Z'/></svg>`;
+    });
+  });
+
+  /* 3. MULTI-LEVEL LOGICAL SEARCH ALGORITHM ENGINE */
+  const searchInput = document.getElementById('hubSearch');
+  searchInput.addEventListener('input', (e) => {
+    const filterTerm = e.target.value.toLowerCase().trim();
+    const cards = document.querySelectorAll('.hub-card');
+    
+    cards.forEach(card => {
+      const searchTargetPool = card.getAttribute('data-search-tags') + " " + card.querySelector('.card-title').textContent;
+      if (searchTargetPool.toLowerCase().includes(filterTerm)) {
+        card.style.display = 'flex';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  });
+
+  /* 4. SCROLL ANIMATION SUB-SYSTEM HANDLING (REVEALS) */
+  const revealElements = document.querySelectorAll('.reveal');
+  function runIntersectionObserver() {
+    const activationPoint = window.innerHeight * 0.88;
+    revealElements.forEach(el => {
+      const elementTop = el.getBoundingClientRect().top;
+      if (elementTop < activationPoint) {
+        el.classList.add('active');
+      }
+    });
+  }
+  window.addEventListener('scroll', runIntersectionObserver);
+  runIntersectionObserver(); // Run initialization frame once to load hero-view elements
+
+  /* 5. INTERACTIVE COMPONENT LAYER: ACCORDION MANIPULATION */
+  const faqItems = document.querySelectorAll('.faq-item');
+  faqItems.forEach(item => {
+    const trigger = item.querySelector('.faq-trigger');
+    trigger.addEventListener('click', () => {
+      const isCurrentlyActive = item.classList.contains('active');
+      faqItems.forEach(f => f.classList.remove('active'));
+      if(!isCurrentlyActive) {
+        item.classList.add('active');
+      }
+    });
+  });
+
+  /* 6. CONTROL PANEL ELEMENT INTERACTION: BACK TO TOP BUTTON */
+  const bttButton = document.getElementById('backToTop');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 400) bttButton.classList.add('visible');
+    else bttButton.classList.remove('visible');
+  });
+  bttButton.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  /* 7. RESPONSIVE LAYER MENU ROUTING MECHANISMS */
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('navLinks');
+  menuToggle.addEventListener('click', () => {
+    navLinks.classList.toggle('open');
   });
 </script>
-
 </body>
 </html>
