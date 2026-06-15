@@ -666,3 +666,62 @@ class Particle {
 
   draw() {
     ctx.fillStyle = this.color;
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+    ctx.fill();
+  }
+}
+
+function populateAmbient() {
+  const ambientCount = Math.min(60, Math.floor((width * height) / 25000));
+  for (let i = 0; i < ambientCount; i++) {
+    particlesArray.push(new Particle(Math.random() * width, Math.random() * height, true));
+  }
+}
+
+function initParticles(x, y){
+  for(let i = 0; i < 3; i++){
+    particlesArray.push(new Particle(x, y, false));
+  }
+}
+
+function animate(){
+  ctx.fillStyle = "rgba(5, 1, 10, 0.15)";
+  ctx.fillRect(0, 0, width, height);
+
+  for(let i = 0; i < particlesArray.length; i++){
+    particlesArray[i].update();
+    particlesArray[i].draw();
+
+    if(!particlesArray[i].isAmbient && particlesArray[i].size <= 0.15){
+      particlesArray.splice(i, 1);
+      i--;
+    }
+  }
+  requestAnimationFrame(animate);
+}
+
+window.addEventListener("mousemove", function(e){
+  initParticles(e.clientX, e.clientY);
+});
+
+window.addEventListener("touchmove", function(e){
+  if(e.touches.length > 0) {
+    let t = e.touches[0];
+    initParticles(t.clientX, t.clientY);
+  }
+});
+
+window.addEventListener("resize", function(){
+  width = canvas.width = window.innerWidth;
+  height = canvas.height = window.innerHeight;
+  particlesArray = [];
+  populateAmbient();
+});
+
+populateAmbient();
+animate();
+</script>
+
+</body>
+</html>
