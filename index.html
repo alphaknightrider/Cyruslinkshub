@@ -631,4 +631,153 @@ footer{
     <h2 class="section-title">About CyrusLinksHub</h2>
   </div>
   <p class="desc">
-    Welcome to CyrusLinksHub, the definitive decentralized nexus engineered for contemporary digital enthusiasts. Our ecosystem delivers optimized, unrestricted access to next-generation software development kits, modifications, modern cinematic universes, and adrenaline-fueled soundtracks explicitly curated for tactical gameplay. Empowering millions globally, we consistently bypass conventional platform distribution choke points, guarante
+    Welcome to CyrusLinksHub, the definitive decentralized nexus engineered for contemporary digital enthusiasts. Our ecosystem delivers optimized, unrestricted access to next-generation software development kits, modifications, modern cinematic universes, and adrenaline-fueled soundtracks explicitly curated for tactical gameplay. Empowering millions globally, we consistently bypass conventional platform distribution choke points, guaranteeing high-velocity file distribution networks alongside comprehensive cryptographic safety protocols directly inside your web console.
+  </p>
+</section>
+
+<!-- FOOTER LINKS WITH QUICK LINKS & OTHER PAGES -->
+<div class="footer-links">
+  <div>
+    <h3>Quick Links</h3>
+    <a href="#about">About Hub</a>
+    <a href="#games">Gaming Hub</a>
+    <a href="#apk">APK Zone</a>
+    <a href="#movies">Movies Hub</a>
+    <a href="#music">Music Zone</a>
+  </div>
+
+  <div>
+    <h3>Other Pages</h3>
+    <a href="#">Privacy Policy</a>
+    <a href="#">Terms &amp; Conditions</a>
+    <a href="#">Technical Support</a>
+    <a href="#faq">System FAQ</a>
+  </div>
+  
+  <div>
+    <h3>Network Status</h3>
+    <p style="color: var(--neon-cyan); font-size: 0.9rem;">● ALL SYSTEMS OPERATIONAL</p>
+    <p style="color: #666; font-size: 0.8rem; margin-top: 5px;">Server Node: C_LINKS_HUB_2026</p>
+  </div>
+</div>
+
+<!-- GLOWING FOOTER -->
+<footer>
+  &copy; 2026 CyrusLinksHub • All Rights Reserved • Made by Kartikey
+</footer>
+
+<!-- BACK TO TOP BUTTON -->
+<button id="topBtn" onclick="scrollTopFn()" title="Return to Top Target">↑</button>
+
+<script>
+/* ================= BACK TO TOP CONTROLLER ================= */
+window.onscroll = function(){
+  document.getElementById("topBtn").style.display =
+  document.documentElement.scrollTop > 300 ? "block" : "none";
+};
+
+function scrollTopFn(){
+  window.scrollTo({top:0, behavior:"smooth"});
+}
+
+/* ================= AMBIENT CONSTANT PARTICLE SYSTEM + MOUSE/TOUCH INTERACTION ================= */
+const canvas = document.getElementById("particles");
+const ctx = canvas.getContext("2d");
+
+let width = canvas.width = window.innerWidth;
+let height = canvas.height = window.innerHeight;
+
+let particlesArray = [];
+
+class Particle {
+  constructor(x, y, isAmbient = false) {
+    this.x = x;
+    this.y = y;
+    this.isAmbient = isAmbient;
+    this.size = Math.random() * 2.5 + 0.8;
+    
+    if (this.isAmbient) {
+      this.speedX = Math.random() * 0.6 - 0.3;
+      this.speedY = Math.random() * -0.5 - 0.1; 
+      this.color = Math.random() > 0.5 ? "rgba(0, 247, 255, 0.4)" : "rgba(255, 0, 60, 0.3)";
+    } else {
+      this.speedX = Math.random() * 2.4 - 1.2;
+      this.speedY = Math.random() * 2.4 - 1.2;
+      this.color = Math.random() > 0.4 ? "var(--neon-red)" : "var(--neon-cyan)";
+    }
+  }
+
+  update() {
+    this.x += this.speedX;
+    this.y += this.speedY;
+
+    if (this.isAmbient) {
+      if (this.y < 0) this.y = height;
+      if (this.x < 0) this.x = width;
+      if (this.x > width) this.x = 0;
+    } else {
+      if (this.size > 0.1) this.size -= 0.03;
+    }
+  }
+
+  draw() {
+    ctx.fillStyle = this.color;
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+    ctx.fill();
+  }
+}
+
+function populateAmbient() {
+  const ambientCount = Math.min(60, Math.floor((width * height) / 25000));
+  for (let i = 0; i < ambientCount; i++) {
+    particlesArray.push(new Particle(Math.random() * width, Math.random() * height, true));
+  }
+}
+
+function initParticles(x, y){
+  for(let i = 0; i < 3; i++){
+    particlesArray.push(new Particle(x, y, false));
+  }
+}
+
+function animate(){
+  ctx.fillStyle = "rgba(5, 1, 10, 0.15)";
+  ctx.fillRect(0, 0, width, height);
+
+  for(let i = 0; i < particlesArray.length; i++){
+    particlesArray[i].update();
+    particlesArray[i].draw();
+
+    if(!particlesArray[i].isAmbient && particlesArray[i].size <= 0.15){
+      particlesArray.splice(i, 1);
+      i--;
+    }
+  }
+  requestAnimationFrame(animate);
+}
+
+window.addEventListener("mousemove", function(e){
+  initParticles(e.clientX, e.clientY);
+});
+
+window.addEventListener("touchmove", function(e){
+  if(e.touches.length > 0) {
+    let t = e.touches[0];
+    initParticles(t.clientX, t.clientY);
+  }
+});
+
+window.addEventListener("resize", function(){
+  width = canvas.width = window.innerWidth;
+  height = canvas.height = window.innerHeight;
+  particlesArray = [];
+  populateAmbient();
+});
+
+populateAmbient();
+animate();
+</script>
+
+</body>
+</html>
