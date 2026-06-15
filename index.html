@@ -594,4 +594,100 @@
                 const revealTop = reveal.getBoundingClientRect().top;
                 const revealPoint = 100;
                 if (revealTop < windowHeight - revealPoint) {
- 
+                    reveal.classList.add('active');
+                }
+            });
+
+            const bttBtn = document.getElementById('backToTop');
+            if (window.scrollY > 500) {
+                bttBtn.style.display = 'flex';
+            } else {
+                bttBtn.style.display = 'none';
+            }
+        }
+        revealSections();
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        /* 6. Interactive Touch Particle Rain Canvas */
+        const canvas = document.getElementById('particle-canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        class Particle {
+            constructor(x, y, isTouch = false) {
+                this.x = x;
+                this.y = y;
+                this.size = isTouch ? Math.random() * 4 + 2 : Math.random() * 2 + 1;
+                this.speedY = isTouch ? Math.random() * 4 + 2 : Math.random() * 3 + 4; 
+                this.speedX = (Math.random() - 0.5) * 1; 
+                this.color = getComputedStyle(document.documentElement).getPropertyValue('--primary-neon').trim();
+                this.alpha = 1;
+                this.isTouch = isTouch;
+            }
+
+            update() {
+                this.y += this.speedY;
+                this.x += this.speedX;
+                if (this.isTouch) {
+                    this.alpha -= 0.015; 
+                }
+            }
+
+            draw() {
+                ctx.save();
+                ctx.globalAlpha = this.alpha;
+                ctx.shadowBlur = 8;
+                ctx.shadowColor = this.color;
+                ctx.fillStyle = this.color;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.restore();
+            }
+        }
+
+        function initRain() {
+            if (particles.length < 100) {
+                particles.push(new Particle(Math.random() * canvas.width, -10));
+            }
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            initRain();
+            
+            for (let i = 0; i < particles.length; i++) {
+                particles[i].update();
+                particles[i].draw();
+
+                if (particles[i].y > canvas.height || particles[i].alpha <= 0) {
+                    particles.splice(i, 1);
+                    i--;
+                }
+            }
+            requestAnimationFrame(animateParticles);
+        }
+        animateParticles();
+
+        function createBurst(e) {
+            const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+            const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+            for (let i = 0; i < 5; i++) {
+                particles.push(new Particle(clientX, clientY, true));
+            }
+        }
+        window.addEventListener('mousemove', createBurst);
+        window.addEventListener('touchmove', createBurst);
+    </script>
+</body>
+</html>
