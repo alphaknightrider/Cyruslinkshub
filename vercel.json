@@ -1,0 +1,20 @@
+{
+  "rewrites": [
+    {
+      "source": "/games",
+      "destination": "/games.html"
+    },
+    {
+      "source": "/apk",
+      "destination": "/apk.html"
+    },
+    {
+      "source": "/movies",
+      "destination": "/movies.html"
+    },
+    {
+      "source": "/music",
+      "destination": "/music.html"
+    }
+  ]
+}
