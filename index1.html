@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CyrusLinksHub — Your Gateway to Gaming</title>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cyan: #00f0ff;
+    --cyan-dim: #00b8c4;
+    --purple: #9b5de5;
+    --dark: #07080f;
+    --dark2: #0d0f1c;
+    --dark3: #131627;
+    --dark4: #1a1e30;
+    --surface: #1f2438;
+    --text: #e8eaf6;
+    --muted: #8890aa;
+    --border: rgba(0,240,255,0.12);
+    --glow: 0 0 18px rgba(0,240,255,0.2);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--dark);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* SCANLINE TEXTURE */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.03) 2px, rgba(0,0,0,0.03) 4px);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* NAV */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(7,8,15,0.92);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+  }
+  .nav-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+  }
+  .logo {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-decoration: none;
+    color: var(--text);
+  }
+  .logo span { color: var(--cyan); }
+
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    text-decoration: none;
+    color: var(--muted);
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--cyan); }
+
+  .nav-cta {
+    background: transparent;
+    border: 1px solid var(--cyan);
+    color: var(--cyan);
+    padding: 0.45rem 1.2rem;
+    border-radius: 4px;
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 600;
+    font-size: 0.9rem;
+    letter-spacing: 0.08em;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.2s, box-shadow 0.2s;
+  }
+  .nav-cta:hover { background: rgba(0,240,255,0.08); box-shadow: var(--glow); }
+
+  /* HERO */
+  .hero {
+    position: relative;
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 4rem 2rem;
+    overflow: hidden;
+  }
+
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(0,240,255,0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,240,255,0.06) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black, transparent);
+  }
+
+  .hero-glow {
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(155,93,229,0.18) 0%, transparent 70%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+  }
+
+  .hero-content { position: relative; z-index: 1; max-width: 780px; }
+
+  .hero-badge {
+    display: inline-block;
+    border: 1px solid rgba(0,240,255,0.3);
+    color: var(--cyan);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    padding: 0.35rem 1rem;
+    border-radius: 2px;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+  }
+
+  h1 {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: clamp(3rem, 8vw, 6rem);
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -0.01em;
+    margin-bottom: 1.5rem;
+  }
+  h1 .accent { color: var(--cyan); }
+
+  .hero-sub {
+    font-size: 1.1rem;
+    color: var(--muted);
+    max-width: 520px;
+    margin: 0 auto 2.5rem;
+    line-height: 1.7;
+  }
+
+  .hero-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+  .btn-primary {
+    background: var(--cyan);
+    color: var(--dark);
+    border: none;
+    padding: 0.75rem 2rem;
+    border-radius: 4px;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: opacity 0.2s, box-shadow 0.2s;
+  }
+  .btn-primary:hover { opacity: 0.9; box-shadow: 0 0 28px rgba(0,240,255,0.4); }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--text);
+    border: 1px solid rgba(255,255,255,0.18);
+    padding: 0.75rem 2rem;
+    border-radius: 4px;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .btn-secondary:hover { border-color: var(--cyan); background: rgba(0,240,255,0.05); }
+
+  /* STATS BAR */
+  .stats-bar {
+    background: var(--dark2);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 1.5rem 2rem;
+  }
+  .stats-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    gap: 4rem;
+    flex-wrap: wrap;
+  }
+  .stat { text-align: center; }
+  .stat-num {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--cyan);
+    display: block;
+    line-height: 1;
+  }
+  .stat-label { font-size: 0.8rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 4px; }
+
+  /* SECTIONS */
+  section { padding: 5rem 2rem; }
+  .container { max-width: 1200px; margin: 0 auto; }
+
+  .section-eyebrow {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--cyan);
+    margin-bottom: 0.75rem;
+  }
+  h2 {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    line-height: 1.1;
+    margin-bottom: 1rem;
+  }
+  .section-desc { font-size: 1rem; color: var(--muted); max-width: 500px; line-height: 1.7; margin-bottom: 3rem; }
+
+  /* GAMES GRID */
+  #games { background: var(--dark2); }
+  .games-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .game-card {
+    background: var(--dark3);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+  .game-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(0,240,255,0.35);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4), var(--glow);
+  }
+
+  .game-thumb {
+    width: 100%;
+    aspect-ratio: 16/9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .thumb-action   { background: linear-gradient(135deg, #1a0a2e, #2d0a4e); }
+  .thumb-fps      { background: linear-gradient(135deg, #0a1a10, #0a3018); }
+  .thumb-rpg      { background: linear-gradient(135deg, #1a1000, #3a2800); }
+  .thumb-strategy { background: linear-gradient(135deg, #001a2e, #003052); }
+  .thumb-sports   { background: linear-gradient(135deg, #1a0010, #340020); }
+  .thumb-indie    { background: linear-gradient(135deg, #0a0a1a, #18182e); }
+
+  .game-info { padding: 1rem; }
+  .game-title { font-family: 'Rajdhani', sans-serif; font-size: 1.1rem; font-weight: 600; margin-bottom: 0.25rem; }
+  .game-meta { display: flex; align-items: center; justify-content: space-between; }
+  .game-tag {
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--cyan-dim);
+    background: rgba(0,240,255,0.06);
+    border: 1px solid rgba(0,240,255,0.12);
+    padding: 0.2rem 0.5rem;
+    border-radius: 3px;
+  }
+  .game-rating { font-size: 0.8rem; color: #fbbf24; }
+
+  /* CATEGORIES */
+  #categories { background: var(--dark); }
+  .cat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 1rem;
+  }
+  .cat-card {
+    background: var(--dark3);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.5rem 1rem;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s, transform 0.2s;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+  .cat-card:hover {
+    border-color: var(--purple);
+    background: var(--dark4);
+    transform: translateY(-2px);
+  }
+  .cat-icon { font-size: 2.2rem; margin-bottom: 0.75rem; }
+  .cat-name { font-family: 'Rajdhani', sans-serif; font-size: 1rem; font-weight: 600; letter-spacing: 0.04em; }
+  .cat-count { font-size: 0.78rem; color: var(--muted); margin-top: 0.2rem; }
+
+  /* FEATURED / TRENDING */
+  #trending { background: var(--dark2); }
+  .trending-list { display: flex; flex-direction: column; gap: 1px; }
+  .trend-item {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    padding: 1rem 1.25rem;
+    background: var(--dark3);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    margin-bottom: 0.75rem;
+    transition: border-color 0.2s, background 0.2s;
+    cursor: pointer;
+  }
+  .trend-item:hover { border-color: rgba(155,93,229,0.4); background: var(--dark4); }
+  .trend-rank {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--border);
+    min-width: 32px;
+    line-height: 1;
+  }
+  .trend-rank.top { color: var(--cyan); }
+  .trend-icon { font-size: 2rem; }
+  .trend-title { font-family: 'Rajdhani', sans-serif; font-size: 1.1rem; font-weight: 600; }
+  .trend-genre { font-size: 0.8rem; color: var(--muted); margin-top: 2px; }
+  .trend-badge {
+    margin-left: auto;
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 0.25rem 0.65rem;
+    border-radius: 3px;
+    font-weight: 500;
+  }
+  .badge-hot   { background: rgba(239,68,68,0.12); color: #f87171; border: 1px solid rgba(239,68,68,0.2); }
+  .badge-new   { background: rgba(0,240,255,0.08); color: var(--cyan); border: 1px solid rgba(0,240,255,0.18); }
+  .badge-top   { background: rgba(155,93,229,0.1); color: #c084fc; border: 1px solid rgba(155,93,229,0.2); }
+
+  /* CTA SECTION */
+  .cta-section {
+    background: var(--dark);
+    text-align: center;
+    padding: 6rem 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-glow {
+    position: absolute;
+    width: 500px;
+    height: 300px;
+    border-radius: 50%;
+    background: radial-gradient(ellipse, rgba(0,240,255,0.1) 0%, transparent 70%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+  }
+  .cta-section h2 { margin-bottom: 1rem; }
+  .cta-section p { color: var(--muted); margin-bottom: 2.5rem; font-size: 1.05rem; max-width: 480px; margin-left: auto; margin-right: auto; line-height: 1.7; }
+
+  /* FOOTER */
+  footer {
+    background: var(--dark2);
+    border-top: 1px solid var(--border);
+    padding: 3rem 2rem;
+  }
+  .footer-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 3rem;
+  }
+  .footer-brand p { color: var(--muted); font-size: 0.9rem; line-height: 1.7; margin-top: 0.75rem; max-width: 260px; }
+  .footer-col h4 {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 1rem;
+  }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+  .footer-col a { color: var(--muted); text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
+  .footer-col a:hover { color: var(--cyan); }
+  .footer-bottom {
+    max-width: 1200px;
+    margin: 2rem auto 0;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.8rem;
+    color: var(--muted);
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  /* HAMBURGER MENU */
+  .nav-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--text);
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 4px;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .nav-menu-btn { display: block; }
+    .stats-inner { gap: 2rem; }
+    .footer-inner { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 500px) {
+    .footer-inner { grid-template-columns: 1fr; }
+  }
+
+  /* CURSOR GLOW EFFECT */
+  .cursor-glow {
+    position: fixed;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0,240,255,0.05) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: left 0.1s, top 0.1s;
+  }
+</style>
+</head>
+<body>
+
+<div class="cursor-glow" id="cursorGlow"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="logo">CYRUS<span>LINKS</span>HUB</a>
+    <ul class="nav-links">
+      <li><a href="#games">Games</a></li>
+      <li><a href="#categories">Categories</a></li>
+      <li><a href="#trending">Trending</a></li>
+      <li><a href="#">Community</a></li>
+      <li><a href="#">News</a></li>
+    </ul>
+    <a href="#" class="nav-cta">Join Free</a>
+    <button class="nav-menu-btn" aria-label="Open menu">☰</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-content">
+    <div class="hero-badge">⚡ The Ultimate Gaming Hub</div>
+    <h1>PLAY.<br><span class="accent">CONNECT.</span><br>DOMINATE.</h1>
+    <p class="hero-sub">Your one-stop destination for game links, reviews, community finds, and the hottest titles across every genre.</p>
+    <div class="hero-buttons">
+      <a href="#games" class="btn-primary">Explore Games</a>
+      <a href="#" class="btn-secondary">Join Community</a>
+    </div>
+  </div>
+</section>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div class="stat">
+      <span class="stat-num">2,400+</span>
+      <span class="stat-label">Game Links</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">180K</span>
+      <span class="stat-label">Gamers</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">48</span>
+      <span class="stat-label">Genres</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">Daily</span>
+      <span class="stat-label">Updates</span>
+    </div>
+  </div>
+</div>
+
+<!-- GAMES -->
+<section id="games">
+  <div class="container">
+    <p class="section-eyebrow">Featured Games</p>
+    <h2>Top Picks Right Now</h2>
+    <p class="section-desc">Hand-curated links to the best games across platforms — updated every day by the community.</p>
+    <div class="games-grid">
+
+      <a href="#" class="game-card">
+        <div class="game-thumb thumb-action"><span>🔫</span></div>
+        <div class="game-info">
+          <div class="game-title">Apex Legends</div>
+          <div class="game-meta">
+            <span class="game-tag">Battle Royale</span>
+            <span class="game-rating">★ 4.7</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="#" class="game-card">
+        <div class="game-thumb thumb-rpg"><span>⚔️</span></div>
+        <div class="game-info">
+          <div class="game-title">Elden Ring</div>
+          <div class="game-meta">
+            <span class="game-tag">Action RPG</span>
+            <span class="game-rating">★ 4.9</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="#" class="game-card">
+        <div class="game-thumb thumb-fps"><span>🎯</span></div>
+        <div class="game-info">
+          <div class="game-title">Valorant</div>
+          <div class="game-meta">
+            <span class="game-tag">Tactical FPS</span>
+            <span class="game-rating">★ 4.6</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="#" class="game-card">
+        <div class="game-thumb thumb-strategy"><span>🏰</span></div>
+        <div class="game-info">
+          <div class="game-title">Civilization VII</div>
+          <div class="game-meta">
+            <span class="game-tag">Strategy</span>
+            <span class="game-rating">★ 4.5</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="#" class="game-card">
+        <div class="game-thumb thumb-sports"><span>⚽</span></div>
+        <div class="game-info">
+          <div class="game-title">FC 25</div>
+          <div class="game-meta">
+            <span class="game-tag">Sports</span>
+            <span class="game-rating">★ 4.3</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="#" class="game-card">
+        <div class="game-thumb thumb-indie"><span>🌿</span></div>
+        <div class="game-info">
+          <div class="game-title">Hollow Knight: Silksong</div>
+          <div class="game-meta">
+            <span class="game-tag">Indie</span>
+            <span class="game-rating">★ 4.8</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="#" class="game-card">
+        <div class="game-thumb thumb-action"><span>🕹️</span></div>
+        <div class="game-info">
+          <div class="game-title">Fortnite</div>
+          <div class="game-meta">
+            <span class="game-tag">Battle Royale</span>
+            <span class="game-rating">★ 4.4</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="#" class="game-card">
+        <div class="game-thumb thumb-rpg"><span>🐉</span></div>
+        <div class="game-info">
+          <div class="game-title">Black Myth: Wukong</div>
+          <div class="game-meta">
+            <span class="game-tag">Action RPG</span>
+            <span class="game-rating">★ 4.8</span>
+          </div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- CATEGORIES -->
+<section id="categories">
+  <div class="container">
+    <p class="section-eyebrow">Browse by Genre</p>
+    <h2>Find Your Playstyle</h2>
+    <p class="section-desc">Every genre you love, organized and ready to explore.</p>
+    <div class="cat-grid">
+      <a href="#" class="cat-card"><div class="cat-icon">🔫</div><div class="cat-name">FPS</div><div class="cat-count">312 links</div></a>
+      <a href="#" class="cat-card"><div class="cat-icon">⚔️</div><div class="cat-name">RPG</div><div class="cat-count">489 links</div></a>
+      <a href="#" class="cat-card"><div class="cat-icon">🏁</div><div class="cat-name">Racing</div><div class="cat-count">156 links</div></a>
+      <a href="#" class="cat-card"><div class="cat-icon">🏰</div><div class="cat-name">Strategy</div><div class="cat-count">274 links</div></a>
+      <a href="#" class="cat-card"><div class="cat-icon">⚡</div><div class="cat-name">MOBA</div><div class="cat-count">98 links</div></a>
+      <a href="#" class="cat-card"><div class="cat-icon">🌿</div><div class="cat-name">Indie</div><div class="cat-count">601 links</div></a>
+      <a href="#" class="cat-card"><div class="cat-icon">👻</div><div class="cat-name">Horror</div><div class="cat-count">133 links</div></a>
+      <a href="#" class="cat-card"><div class="cat-icon">🏀</div><div class="cat-name">Sports</div><div class="cat-count">210 links</div></a>
+      <a href="#" class="cat-card"><div class="cat-icon">🎲</div><div class="cat-name">Roguelike</div><div class="cat-count">187 links</div></a>
+      <a href="#" class="cat-card"><div class="cat-icon">🌍</div><div class="cat-name">Open World</div><div class="cat-count">341 links</div></a>
+    </div>
+  </div>
+</section>
+
+<!-- TRENDING -->
+<section id="trending">
+  <div class="container">
+    <p class="section-eyebrow">This Week</p>
+    <h2>Trending on CyrusLinksHub</h2>
+    <p class="section-desc">What the community is clicking, sharing, and playing right now.</p>
+    <div class="trending-list">
+      <div class="trend-item">
+        <span class="trend-rank top">01</span>
+        <span class="trend-icon">🐉</span>
+        <div><div class="trend-title">Black Myth: Wukong</div><div class="trend-genre">Action RPG · PC</div></div>
+        <span class="trend-badge badge-hot">🔥 Hot</span>
+      </div>
+      <div class="trend-item">
+        <span class="trend-rank top">02</span>
+        <span class="trend-icon">⚔️</span>
+        <div><div class="trend-title">Elden Ring DLC</div><div class="trend-genre">Action RPG · Multi</div></div>
+        <span class="trend-badge badge-top">👑 Top Rated</span>
+      </div>
+      <div class="trend-item">
+        <span class="trend-rank top">03</span>
+        <span class="trend-icon">🎯</span>
+        <div><div class="trend-title">Valorant Season 9</div><div class="trend-genre">Tactical FPS · PC</div></div>
+        <span class="trend-badge badge-new">✨ New</span>
+      </div>
+      <div class="trend-item">
+        <span class="trend-rank">04</span>
+        <span class="trend-icon">🌿</span>
+        <div><div class="trend-title">Hollow Knight: Silksong</div><div class="trend-genre">Indie · Multi</div></div>
+        <span class="trend-badge badge-hot">🔥 Hot</span>
+      </div>
+      <div class="trend-item">
+        <span class="trend-rank">05</span>
+        <span class="trend-icon">🏰</span>
+        <div><div class="trend-title">Civilization VII</div><div class="trend-genre">Strategy · PC</div></div>
+        <span class="trend-badge badge-new">✨ New</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-section">
+  <div class="cta-glow"></div>
+  <div style="position:relative; z-index:1;">
+    <p class="section-eyebrow" style="margin-bottom:1rem;">Join the Community</p>
+    <h2>Your Next Favorite<br>Game is One Click Away</h2>
+    <p>Create a free account to save your game list, submit links, write reviews, and connect with 180,000 gamers worldwide.</p>
+    <a href="#" class="btn-primary" style="font-size:1.05rem; padding:0.85rem 2.5rem;">Create Free Account</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="logo" style="font-size:1.3rem;">CYRUS<span style="color:var(--cyan);">LINKS</span>HUB</div>
+      <p>Your ultimate hub for curated game links, community reviews, and everything gaming. Always free. Always updated.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Explore</h4>
+      <ul>
+        <li><a href="#">New Releases</a></li>
+        <li><a href="#">Top Rated</a></li>
+        <li><a href="#">Free to Play</a></li>
+        <li><a href="#">Upcoming</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Community</h4>
+      <ul>
+        <li><a href="#">Forum</a></li>
+        <li><a href="#">Submit a Link</a></li>
+        <li><a href="#">Leaderboard</a></li>
+        <li><a href="#">Discord</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Site</h4>
+      <ul>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Contact</a></li>
+        <li><a href="#">Privacy</a></li>
+        <li><a href="#">Terms</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 CyrusLinksHub. All rights reserved.</span>
+    <span>Built for gamers, by gamers.</span>
+  </div>
+</footer>
+
+<script>
+  const glow = document.getElementById('cursorGlow');
+  document.addEventListener('mousemove', e => {
+    glow.style.left = e.clientX + 'px';
+    glow.style.top = e.clientY + 'px';
+  });
+</script>
+
+</body>
+</html>
