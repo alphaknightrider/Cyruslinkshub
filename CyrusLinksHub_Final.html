@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CyrusLinksHub</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Orbitron,sans-serif;scroll-behavior:smooth}
+body{background:#05010a;color:#fff}
+header{position:sticky;top:0;display:flex;justify-content:space-between;align-items:center;padding:15px 20px;background:#000c;border-bottom:2px solid #ff003c}
+.logo{display:flex;align-items:center;gap:10px}
+.logo img{width:40px;height:40px;border-radius:50%;animation:pulse 2s infinite}
+@keyframes pulse{50%{transform:scale(1.1);box-shadow:0 0 20px #ff003c}}
+nav a{color:#00f7ff;margin:0 5px;text-decoration:none}
+.hero{text-align:center;padding:60px 20px}
+section{padding:40px 20px}
+h2{display:inline-block;border-left:3px solid #ff003c;border-right:3px solid #00f7ff;padding:6px 12px}
+img.banner{width:100%;max-height:250px;object-fit:cover;border-radius:12px;margin:15px 0}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:15px}
+.card{background:#ffffff10;padding:15px;border-radius:10px}
+.footer-links{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));padding:30px 20px;background:#ffffff08}
+.footer-links a{display:block;color:#aaa;text-decoration:none;margin:8px 0}
+footer{text-align:center;padding:20px;animation:glow 2.5s infinite}
+@keyframes glow{50%{text-shadow:0 0 15px #00f7ff,0 0 25px #ff003c}}
+</style>
+</head>
+<body>
+
+<header>
+<div class="logo">
+<img src="https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg" alt="logo">
+<h1>CyrusLinksHub</h1>
+</div>
+<nav>
+<a href="#about">About</a>
+<a href="#games">Games</a>
+<a href="#apk">APK</a>
+<a href="#movies">Movies</a>
+<a href="#music">Music</a>
+</nav>
+</header>
+
+<div class="hero">
+<h1>Welcome to CyrusLinksHub</h1>
+<p>Download • Play • Stream • Explore</p>
+</div>
+
+<section id="about">
+<h2>About</h2>
+<img class="banner" src="https://images.unsplash.com/photo-1511512578047-dfb367046420?w=1200&q=80">
+<p>CyrusLinksHub is a cyber-themed platform bringing games, entertainment, music and useful resources together in one place with a modern gaming-inspired design.</p>
+</section>
+
+<section id="games">
+<h2>Gaming Hub</h2>
+<img class="banner" src="https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?w=1200&q=80">
+<div class="grid">
+<div class="card">Action Games</div>
+<div class="card">Adventure Games</div>
+<div class="card">Multiplayer Games</div>
+<div class="card">PC Games</div>
+</div>
+</section>
+
+<section id="apk">
+<h2>APK Zone</h2>
+<img class="banner" src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=1200&q=80">
+<div class="grid">
+<div class="card">Tool APK</div>
+<div class="card">Mod APK</div>
+<div class="card">Premium Apps</div>
+</div>
+</section>
+
+<section id="movies">
+<h2>Movies Hub</h2>
+<img class="banner" src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=1200&q=80">
+<div class="grid">
+<div class="card">Hollywood</div>
+<div class="card">Bollywood</div>
+<div class="card">Hindi Dubbed</div>
+<div class="card">Cartoons</div>
+</div>
+</section>
+
+<section id="music">
+<h2>Music Zone</h2>
+<img class="banner" src="https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=1200&q=80">
+<div class="grid">
+<div class="card">Hindi</div>
+<div class="card">English</div>
+<div class="card">Phonk</div>
+</div>
+</section>
+
+<div class="footer-links">
+<div>
+<h3>Quick Links</h3>
+<a href="#about">About</a>
+<a href="#games">Gaming Hub</a>
+<a href="#apk">APK Zone</a>
+<a href="#movies">Movies Hub</a>
+</div>
+<div>
+<h3>Other Pages</h3>
+<a href="#">Privacy Policy</a>
+<a href="#">Terms & Conditions</a>
+<a href="#">Support</a>
+<a href="#">FAQ</a>
+</div>
+</div>
+
+<footer>
+© 2026 CyrusLinksHub • All Rights Reserved • Made by Kartikey
+</footer>
+
+</body>
+</html>
