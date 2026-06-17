@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -12,186 +11,230 @@
 <style>
 
 :root{
---bg:#05010a;
---cyan:#00f7ff;
---red:#ff003c;
---card:#0d0818;
+    --bg:#05010a;
+    --cyan:#00f7ff;
+    --red:#ff003c;
+    --card:#0d0818;
 }
 
 *{
-margin:0;
-padding:0;
-box-sizing:border-box;
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
 html{
-scroll-behavior:smooth;
+    scroll-behavior:smooth;
 }
 
 body{
-background:var(--bg);
-font-family:'Orbitron',sans-serif;
-color:white;
-overflow-x:hidden;
+    background:var(--bg);
+    color:white;
+    font-family:'Orbitron',sans-serif;
+    overflow-x:hidden;
 }
 
 #particles{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-z-index:-1;
+    position:fixed;
+    inset:0;
+    z-index:-1;
 }
 
-/* HEADER */
-
 header{
-background:rgba(0,0,0,.65);
-backdrop-filter:blur(10px);
-border-bottom:2px solid var(--red);
-padding:20px;
-position:sticky;
-top:0;
-z-index:100;
+    position:sticky;
+    top:0;
+    z-index:100;
+    background:rgba(0,0,0,.7);
+    backdrop-filter:blur(10px);
+    border-bottom:2px solid var(--red);
+    padding:18px;
 }
 
 .header-container{
-max-width:1200px;
-margin:auto;
-display:flex;
-justify-content:space-between;
-align-items:center;
+    max-width:1200px;
+    margin:auto;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
 }
 
 .logo-area{
-display:flex;
-align-items:center;
-gap:15px;
+    display:flex;
+    align-items:center;
+    gap:15px;
 }
 
 .logo{
-width:48px;
-height:48px;
-border-radius:50%;
-border:2px solid var(--cyan);
-display:flex;
-align-items:center;
-justify-content:center;
-box-shadow:0 0 15px var(--cyan);
-animation:spin 10s linear infinite;
+    width:48px;
+    height:48px;
+    border-radius:50%;
+    border:2px solid var(--cyan);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    box-shadow:0 0 15px var(--cyan);
+    animation:spin 10s linear infinite;
 }
 
 .logo svg{
-width:22px;
-height:22px;
-stroke:var(--cyan);
-fill:none;
-stroke-width:3;
+    width:22px;
+    height:22px;
+    stroke:var(--cyan);
+    fill:none;
+    stroke-width:3;
 }
 
 @keyframes spin{
-from{
-transform:rotate(0deg);
-}
-to{
-transform:rotate(360deg);
-}
+    from{transform:rotate(0deg);}
+    to{transform:rotate(360deg);}
 }
 
 .site-title{
-font-size:1.8rem;
-color:var(--red);
-text-shadow:0 0 15px var(--red);
+    color:var(--red);
+    font-size:1.8rem;
+    text-shadow:0 0 15px var(--red);
 }
 
 .settings-btn{
-width:45px;
-height:45px;
-border:none;
-cursor:pointer;
-border-radius:50%;
-background:rgba(255,255,255,.05);
-border:1px solid var(--cyan);
-color:var(--cyan);
-font-size:20px;
-transition:.3s;
+    width:45px;
+    height:45px;
+    border-radius:50%;
+    border:1px solid var(--cyan);
+    background:transparent;
+    color:var(--cyan);
+    cursor:pointer;
+    font-size:20px;
 }
-
-.settings-btn:hover{
-transform:rotate(90deg);
-box-shadow:0 0 15px var(--cyan);
-}
-
-/* HERO */
 
 .hero{
-text-align:center;
-padding:90px 20px;
+    text-align:center;
+    padding:90px 20px;
 }
 
 .hero h1{
-font-size:3rem;
-color:var(--red);
-text-shadow:0 0 25px var(--red);
-margin-bottom:15px;
+    color:var(--red);
+    font-size:3rem;
+    text-shadow:0 0 20px var(--red);
 }
 
 .hero p{
-font-family:'Rajdhani',sans-serif;
-font-size:1.2rem;
-color:#ccc;
+    margin-top:15px;
+    color:#ccc;
+    font-family:'Rajdhani',sans-serif;
+    font-size:1.2rem;
 }
 
 /* SETTINGS MODAL */
 
 .modal{
-position:fixed;
-inset:0;
-background:rgba(0,0,0,.85);
-display:none;
-justify-content:center;
-align-items:center;
-z-index:9999;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.85);
+    display:none;
+    justify-content:center;
+    align-items:center;
+    z-index:9999;
 }
 
 .modal-content{
-width:90%;
-max-width:450px;
-background:#12081f;
-border:2px solid var(--cyan);
-border-radius:12px;
-padding:25px;
-box-shadow:0 0 30px rgba(0,247,255,.3);
+    width:90%;
+    max-width:420px;
+    background:#12081f;
+    border:2px solid var(--cyan);
+    border-radius:12px;
+    padding:25px;
 }
 
 .modal-content h2{
-color:var(--cyan);
-margin-bottom:20px;
+    color:var(--cyan);
+    margin-bottom:20px;
 }
 
 .setting-item{
-display:flex;
-justify-content:space-between;
-align-items:center;
-margin:15px 0;
-font-family:'Rajdhani',sans-serif;
-font-size:1.1rem;
+    display:flex;
+    justify-content:space-between;
+    margin:15px 0;
 }
 
 .close-btn{
-margin-top:20px;
-width:100%;
-padding:12px;
-border:none;
-background:var(--red);
-color:black;
-font-weight:bold;
-cursor:pointer;
-border-radius:6px;
+    width:100%;
+    margin-top:20px;
+    padding:12px;
+    border:none;
+    border-radius:6px;
+    background:var(--red);
+    color:black;
+    cursor:pointer;
 }
 
-/* MAIN */
+</style>
+</head>
+
+<body id="top">
+
+<canvas id="particles"></canvas>
+
+<div class="modal" id="settingsModal">
+
+<div class="modal-content">
+
+<h2>Settings</h2>
+
+<div class="setting-item">
+<span>Particles</span>
+<input type="checkbox" id="particleToggle" checked>
+</div>
+
+<div class="setting-item">
+<span>Performance Mode</span>
+<input type="checkbox" id="performanceToggle">
+</div>
+
+<button class="close-btn" onclick="closeSettings()">
+Close
+</button>
+
+</div>
+</div>
+
+<header>
+
+<div class="header-container">
+
+<div class="logo-area">
+
+<div class="logo">
+<svg viewBox="0 0 24 24">
+<path d="M20 6L9 17L4 12"/>
+</svg>
+</div>
+
+<div class="site-title">
+CyrusLinksHub
+</div>
+
+</div>
+
+<button class="settings-btn" onclick="openSettings()">
+⚙
+</button>
+
+</div>
+
+</header>
+
+<div class="hero">
+
+<h1>
+WELCOME TO CYRUSLINKSHUB MOVIES HUB
+</h1>
+
+<p>
+Hollywood Movies • Bollywood Movies
+</p>
+
+</div>
+<style>
 
 .container{
 max-width:1200px;
@@ -201,9 +244,8 @@ padding:30px 20px;
 
 .section-title{
 color:var(--cyan);
-margin-bottom:20px;
 font-size:1.6rem;
-text-transform:uppercase;
+margin-bottom:25px;
 text-shadow:0 0 10px var(--cyan);
 }
 
@@ -216,7 +258,7 @@ gap:25px;
 
 .movie-card{
 background:var(--card);
-border:1px solid rgba(0,247,255,.4);
+border:1px solid rgba(0,247,255,.3);
 border-radius:12px;
 padding:30px;
 transition:.3s;
@@ -235,113 +277,62 @@ margin-bottom:20px;
 
 .visit-btn{
 display:inline-block;
-padding:12px 25px;
-border:1px solid var(--red);
-color:var(--red);
+padding:12px 24px;
 text-decoration:none;
 border-radius:6px;
+border:1px solid var(--red);
+color:var(--red);
 transition:.3s;
 }
 
 .visit-btn:hover{
 background:var(--red);
-color:black;
+color:#000;
 }
 
-@media(max-width:768px){
-
-.site-title{
-font-size:1.3rem;
+.faq-item{
+background:var(--card);
+padding:20px;
+margin-bottom:15px;
+border-left:3px solid var(--cyan);
+border-radius:0 10px 10px 0;
 }
 
-.hero h1{
-font-size:2rem;
+.faq-item h3{
+color:var(--cyan);
+margin-bottom:10px;
 }
 
+footer{
+margin-top:50px;
+padding:30px;
+text-align:center;
+border-top:1px solid rgba(255,0,60,.2);
+color:#888;
+}
+
+#topBtn{
+position:fixed;
+right:20px;
+bottom:20px;
+width:50px;
+height:50px;
+border:none;
+border-radius:50%;
+background:var(--cyan);
+color:#000;
+font-size:20px;
+font-weight:bold;
+cursor:pointer;
+display:none;
+z-index:1000;
 }
 
 </style>
 
-</head>
+<!-- MOVIES -->
 
-<body>
-
-<canvas id="particles"></canvas>
-
-<!-- SETTINGS MODAL -->
-
-<div class="modal" id="settingsModal">
-
-<div class="modal-content">
-
-<h2>Settings</h2>
-
-<div class="setting-item">
-<span>Particles</span>
-<input type="checkbox" id="particleToggle" checked>
-</div>
-
-<div class="setting-item">
-<span>Performance Mode</span>
-<input type="checkbox" id="performanceToggle">
-</div>
-
-<button class="close-btn"
-onclick="closeSettings()">
-
-Close
-
-</button>
-
-</div>
-
-</div>
-
-<header>
-
-<div class="header-container">
-
-<div class="logo-area">
-
-<div class="logo">
-
-<svg viewBox="0 0 24 24">
-<path d="M20 6L9 17L4 12"/>
-</svg>
-
-</div>
-
-<div class="site-title">
-CyrusLinksHub
-</div>
-
-</div>
-
-<button class="settings-btn"
-onclick="openSettings()">
-
-⚙
-
-</button>
-
-</div>
-
-</header>
-
-<div class="hero">
-
-<h1>
-WELCOME TO CYRUSLINKSHUB MOVIES HUB
-</h1>
-
-<p>
-Hollywood Movies • Bollywood Movies
-</p>
-
-</div>
-<!-- ================= MOVIES SECTION ================= -->
-
-<div class="container">
+<section class="container">
 
 <h2 class="section-title">
 Movies Categories
@@ -381,185 +372,82 @@ Visit
 
 </div>
 
-</div>
-<!-- ================= HOME BUTTON ================= -->
+</section>
 
-<section id="home-return">
+<!-- NAVIGATION -->
 
-<div class="section-header">
+<section class="container">
+
 <h2 class="section-title">
 Navigation
 </h2>
-</div>
 
-<div class="center-container">
+<div class="movie-card">
 
-<div class="card">
-
-<div class="card-content">
-
-<div class="card-title">
+<div class="movie-title">
 Return To Homepage
 </div>
 
-<a href="/" class="btn">
+<a href="/"
+class="visit-btn">
+
 Back To Home
+
 </a>
 
 </div>
 
+</section>
+
+<!-- FAQ -->
+
+<section class="container">
+
+<h2 class="section-title">
+FAQ
+</h2>
+
+<div class="faq-item">
+
+<h3>
+What is Movies Hub?
+</h3>
+
+<p>
+Browse Hollywood and Bollywood movie sections.
+</p>
+
 </div>
+
+<div class="faq-item">
+
+<h3>
+Is CyrusLinksHub Free?
+</h3>
+
+<p>
+Yes, all sections are free to access.
+</p>
+
+</div>
+
+<div class="faq-item">
+
+<h3>
+How do I return Home?
+</h3>
+
+<p>
+Use the Back To Home button above.
+</p>
 
 </div>
 
 </section>
-<!-- ================= FOOTER ================= -->
-
-<style>
-
-/* FAQ BLOCK */
-
-.faq-block{
-    background:rgba(255,255,255,.03);
-    border-left:3px solid var(--neon-cyan);
-    padding:15px 20px;
-    margin-bottom:15px;
-    border-radius:0 8px 8px 0;
-}
-
-/* FOOTER */
-
-.footer-links{
-    display:grid;
-    grid-template-columns:
-    repeat(auto-fit,minmax(220px,1fr));
-    gap:30px;
-    max-width:1200px;
-    margin:40px auto 0;
-    padding:40px 20px;
-    background:rgba(5,1,10,.8);
-    border-top:1px solid rgba(0,247,255,.2);
-}
-
-.footer-links h3{
-    color:var(--neon-cyan);
-    margin-bottom:15px;
-}
-
-.footer-links a{
-    display:block;
-    color:#aaa;
-    text-decoration:none;
-    margin:10px 0;
-    transition:.3s;
-}
-
-.footer-links a:hover{
-    color:var(--neon-red);
-    padding-left:5px;
-}
-
-footer{
-    text-align:center;
-    padding:30px 20px;
-    background:#020005;
-    color:#888;
-    border-top:1px solid rgba(255,0,60,.2);
-}
-
-/* TOP BUTTON */
-
-#topBtn{
-    position:fixed;
-    right:25px;
-    bottom:25px;
-    width:45px;
-    height:45px;
-    border:none;
-    border-radius:5px;
-    cursor:pointer;
-    display:none;
-    background:rgba(5,1,10,.9);
-    color:var(--neon-cyan);
-    border:1px solid var(--neon-cyan);
-    transition:.3s;
-    z-index:1000;
-}
-
-#topBtn:hover{
-    background:var(--neon-cyan);
-    color:#000;
-    box-shadow:0 0 15px var(--neon-cyan);
-}
-
-/* MOBILE */
-
-@media(max-width:768px){
-
-header h1{
-    font-size:1.6rem;
-}
-
-.hero h2{
-    font-size:1.9rem;
-}
-
-section{
-    padding:40px 15px;
-}
-
-.card-content{
-    padding:25px 20px;
-}
-
-.footer-links{
-    text-align:center;
-}
-
-.settings-btn{
-    position:static;
-}
-
-.title-row{
-    flex-direction:column;
-}
-}
-
-</style>
-
-<div class="footer-links">
-
-<div>
-<h3>LINKS</h3>
-<a href="#">Bollywood Movies</a>
-<a href="#">Hollywood Movies</a>
-</div>
-
-<div>
-<h3>Navigation</h3>
-<a href="/">Home</a>
-<a href="#games">Movies</a>
-<a href="#top">Top</a>
-</div>
-
-<div>
-<h3>Status</h3>
-
-<p style="color:var(--neon-cyan);">
-● ALL SYSTEMS OPERATIONAL
-</p>
-
-<p style="font-size:.9rem;color:#888;">
-Server Node: CYRUS_MOVIE_HUB
-</p>
-
-</div>
-
-</div>
 
 <footer>
 
-© 2026 CyrusLinksHub • Movies Hub • Made by Kartikey
+© 2026 CyrusLinksHub Movies Hub
 
 </footer>
 
@@ -568,72 +456,97 @@ Server Node: CYRUS_MOVIE_HUB
 ↑
 
 </button>
-
 <script>
 
-/* SETTINGS */
+/* ================= SETTINGS ================= */
 
 const settingsModal =
-document.getElementById("settingsModal");
+document.getElementById(
+"settingsModal"
+);
 
-function openSettings(e){
-e.stopPropagation();
-settingsModal.style.display="flex";
+function openSettings(){
+
+settingsModal.style.display =
+"flex";
+
 }
 
 function closeSettings(){
-settingsModal.style.display="none";
+
+settingsModal.style.display =
+"none";
+
 }
 
-settingsModal.addEventListener("click",function(e){
+settingsModal.addEventListener(
+"click",
+function(e){
 
-if(e.target===settingsModal){
+if(
+e.target === settingsModal
+){
+
 closeSettings();
+
 }
 
-});
+}
+);
 
-/* TOP BUTTON */
+/* ================= TOP BUTTON ================= */
 
 const topBtn =
-document.getElementById("topBtn");
+document.getElementById(
+"topBtn"
+);
 
-window.addEventListener("scroll",()=>{
+window.addEventListener(
+"scroll",
+()=>{
+
+if(
+window.scrollY > 250
+){
 
 topBtn.style.display =
-window.scrollY > 300
-? "block"
-: "none";
+"block";
 
-});
+}else{
 
-topBtn.addEventListener("click",()=>{
-
-window.scrollTo({
-top:0,
-behavior:"smooth"
-});
-
-});
-
-function scrollTopFn(e){
-
-e.preventDefault();
-
-window.scrollTo({
-top:0,
-behavior:"smooth"
-});
+topBtn.style.display =
+"none";
 
 }
 
-/* PARTICLES */
+}
+);
+
+topBtn.addEventListener(
+"click",
+()=>{
+
+window.scrollTo({
+
+top:0,
+behavior:"smooth"
+
+});
+
+}
+);
+
+/* ================= PARTICLES ================= */
 
 const canvas =
-document.getElementById("particles");
+document.getElementById(
+"particles"
+);
 
 const ctx =
-canvas.getContext("2d");
+canvas.getContext(
+"2d"
+);
 
 let width;
 let height;
@@ -657,73 +570,95 @@ window.addEventListener(
 resizeCanvas
 );
 
-let particles=[];
+/* ================= OPTIONS ================= */
 
-let ambientEnabled=true;
-let performanceMode=false;
+let particlesEnabled =
+true;
+
+let performanceMode =
+false;
+
+let particles = [];
+
+/* ================= PARTICLE CLASS ================= */
 
 class Particle{
 
-constructor(x,y,ambient=false){
+constructor(
+x,
+y,
+ambient=false
+){
 
-this.x=x;
-this.y=y;
-this.ambient=ambient;
+this.x = x;
+this.y = y;
 
-this.size=
+this.ambient =
+ambient;
+
+this.size =
 ambient
 ? Math.random()*2+1
-: Math.random()*2+.5;
+: Math.random()*2+0.5;
 
-this.color=
-Math.random()>.5
+this.color =
+Math.random() > 0.5
 ? "#00f7ff"
 : "#ff003c";
 
 if(ambient){
 
-this.vx=
-Math.random()*.4-.2;
+this.vx =
+Math.random()*0.4-0.2;
 
-this.vy=
-Math.random()*.4-.2;
+this.vy =
+Math.random()*0.4-0.2;
 
 }else{
 
-this.vx=
+this.vx =
 Math.random()*2-1;
 
-this.vy=
+this.vy =
 Math.random()*2-1;
 
 }
+
 }
 
 update(){
 
-this.x+=this.vx;
-this.y+=this.vy;
+this.x += this.vx;
+this.y += this.vy;
 
 if(this.ambient){
 
-if(this.x<0)this.x=width;
-if(this.x>width)this.x=0;
+if(this.x < 0)
+this.x = width;
 
-if(this.y<0)this.y=height;
-if(this.y>height)this.y=0;
+if(this.x > width)
+this.x = 0;
+
+if(this.y < 0)
+this.y = height;
+
+if(this.y > height)
+this.y = 0;
 
 }else{
 
-this.size-=0.05;
+this.size -= 0.05;
 
 }
+
 }
 
 draw(){
 
 ctx.beginPath();
 
-ctx.fillStyle=this.color;
+ctx.fillStyle =
+this.color;
 
 ctx.arc(
 this.x,
@@ -736,54 +671,107 @@ Math.PI*2
 ctx.fill();
 
 }
+
 }
 
-function createAmbient(){
+/* ================= CREATE PARTICLES ================= */
 
-particles=[];
+function createAmbientParticles(){
 
-if(!ambientEnabled)return;
+particles = [];
 
-const count=
+if(!particlesEnabled)
+return;
+
+const count =
 performanceMode
-? 20
-: 50;
+? 15
+: 30;
 
-for(let i=0;i<count;i++){
+for(
+let i=0;
+i<count;
+i++
+){
 
 particles.push(
+
 new Particle(
+
 Math.random()*width,
 Math.random()*height,
 true
+
 )
+
 );
 
 }
+
 }
 
-createAmbient();
+createAmbientParticles();
+
+/* ================= TOUCH EFFECT ================= */
 
 function spawnBurst(x,y){
 
-if(performanceMode)return;
+if(
+performanceMode ||
+!particlesEnabled
+){
+return;
+}
 
-for(let i=0;i<3;i++){
+for(
+let i=0;
+i<2;
+i++
+){
 
 particles.push(
-new Particle(x,y,false)
+
+new Particle(
+x,
+y,
+false
+)
+
 );
 
 }
+
 }
 
 window.addEventListener(
 "mousemove",
-e=>spawnBurst(
+e=>{
+
+spawnBurst(
 e.clientX,
 e.clientY
-)
 );
+
+}
+);
+
+window.addEventListener(
+"touchmove",
+e=>{
+
+const touch =
+e.touches[0];
+
+spawnBurst(
+touch.clientX,
+touch.clientY
+);
+
+},
+{passive:true}
+);
+
+/* ================= ANIMATION ================= */
 
 function animate(){
 
@@ -800,16 +788,22 @@ i>=0;
 i--
 ){
 
-const p=particles[i];
+const p =
+particles[i];
 
 p.update();
 p.draw();
 
 if(
 !p.ambient &&
-p.size<=.2
+p.size <= 0.2
 ){
-particles.splice(i,1);
+
+particles.splice(
+i,
+1
+);
+
 }
 
 }
@@ -822,32 +816,36 @@ animate
 
 animate();
 
-/* TOGGLES */
+/* ================= SETTINGS TOGGLES ================= */
 
 document
-.getElementById("particleToggle")
+.getElementById(
+"particleToggle"
+)
 .addEventListener(
 "change",
 function(){
 
-ambientEnabled=
+particlesEnabled =
 this.checked;
 
-createAmbient();
+createAmbientParticles();
 
 }
 );
 
 document
-.getElementById("performanceToggle")
+.getElementById(
+"performanceToggle"
+)
 .addEventListener(
 "change",
 function(){
 
-performanceMode=
+performanceMode =
 this.checked;
 
-createAmbient();
+createAmbientParticles();
 
 }
 );
