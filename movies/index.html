@@ -1,11 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>CyrusLinksHub Movies</title>
 
@@ -17,7 +15,7 @@ content="width=device-width, initial-scale=1.0">
 --bg:#05010a;
 --cyan:#00f7ff;
 --red:#ff003c;
---card:rgba(10,5,20,.75);
+--card:#0d0818;
 }
 
 *{
@@ -32,112 +30,173 @@ scroll-behavior:smooth;
 
 body{
 background:var(--bg);
-color:white;
 font-family:'Orbitron',sans-serif;
+color:white;
 overflow-x:hidden;
 }
 
-canvas{
+#particles{
 position:fixed;
-inset:0;
+top:0;
+left:0;
+width:100%;
+height:100%;
 z-index:-1;
 }
 
 /* HEADER */
 
 header{
-padding:20px;
-text-align:center;
-background:rgba(0,0,0,.4);
+background:rgba(0,0,0,.65);
 backdrop-filter:blur(10px);
 border-bottom:2px solid var(--red);
-box-shadow:0 0 20px rgba(255,0,60,.3);
+padding:20px;
+position:sticky;
+top:0;
+z-index:100;
 }
 
-.logo-wrap{
+.header-container{
+max-width:1200px;
+margin:auto;
 display:flex;
-justify-content:center;
+justify-content:space-between;
+align-items:center;
+}
+
+.logo-area{
+display:flex;
 align-items:center;
 gap:15px;
 }
 
 .logo{
-width:50px;
-height:50px;
+width:48px;
+height:48px;
 border-radius:50%;
 border:2px solid var(--cyan);
 display:flex;
-justify-content:center;
 align-items:center;
+justify-content:center;
 box-shadow:0 0 15px var(--cyan);
-animation:spin 8s linear infinite;
-}
-
-@keyframes spin{
-from{transform:rotate(0deg);}
-to{transform:rotate(360deg);}
+animation:spin 10s linear infinite;
 }
 
 .logo svg{
-width:25px;
-height:25px;
+width:22px;
+height:22px;
 stroke:var(--cyan);
 fill:none;
 stroke-width:3;
 }
 
-h1{
+@keyframes spin{
+from{
+transform:rotate(0deg);
+}
+to{
+transform:rotate(360deg);
+}
+}
+
+.site-title{
+font-size:1.8rem;
 color:var(--red);
 text-shadow:0 0 15px var(--red);
 }
 
-/* SETTINGS */
-
-.settings-area{
-margin-top:15px;
-}
-
 .settings-btn{
-padding:10px 20px;
-background:transparent;
+width:45px;
+height:45px;
+border:none;
+cursor:pointer;
+border-radius:50%;
+background:rgba(255,255,255,.05);
 border:1px solid var(--cyan);
 color:var(--cyan);
-cursor:pointer;
-border-radius:6px;
+font-size:20px;
 transition:.3s;
 }
 
 .settings-btn:hover{
-background:var(--cyan);
-color:black;
+transform:rotate(90deg);
+box-shadow:0 0 15px var(--cyan);
 }
 
 /* HERO */
 
 .hero{
-padding:80px 20px;
 text-align:center;
+padding:90px 20px;
 }
 
-.hero h2{
-font-size:2.3rem;
+.hero h1{
+font-size:3rem;
 color:var(--red);
-text-shadow:0 0 20px var(--red);
+text-shadow:0 0 25px var(--red);
+margin-bottom:15px;
 }
 
 .hero p{
-margin-top:15px;
 font-family:'Rajdhani',sans-serif;
 font-size:1.2rem;
-color:#bbb;
+color:#ccc;
 }
 
-/* SECTION */
+/* SETTINGS MODAL */
 
-section{
+.modal{
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.85);
+display:none;
+justify-content:center;
+align-items:center;
+z-index:9999;
+}
+
+.modal-content{
+width:90%;
+max-width:450px;
+background:#12081f;
+border:2px solid var(--cyan);
+border-radius:12px;
+padding:25px;
+box-shadow:0 0 30px rgba(0,247,255,.3);
+}
+
+.modal-content h2{
+color:var(--cyan);
+margin-bottom:20px;
+}
+
+.setting-item{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin:15px 0;
+font-family:'Rajdhani',sans-serif;
+font-size:1.1rem;
+}
+
+.close-btn{
+margin-top:20px;
+width:100%;
+padding:12px;
+border:none;
+background:var(--red);
+color:black;
+font-weight:bold;
+cursor:pointer;
+border-radius:6px;
+}
+
+/* MAIN */
+
+.container{
 max-width:1200px;
 margin:auto;
-padding:40px 20px;
+padding:30px 20px;
 }
 
 .section-title{
@@ -145,78 +204,60 @@ color:var(--cyan);
 margin-bottom:20px;
 font-size:1.6rem;
 text-transform:uppercase;
+text-shadow:0 0 10px var(--cyan);
 }
 
-.grid{
+.movies-grid{
 display:grid;
 grid-template-columns:
 repeat(auto-fit,minmax(280px,1fr));
 gap:25px;
 }
 
-.card{
+.movie-card{
 background:var(--card);
-border:1px solid var(--cyan);
-border-radius:10px;
-overflow:hidden;
+border:1px solid rgba(0,247,255,.4);
+border-radius:12px;
+padding:30px;
 transition:.3s;
 }
 
-.card:hover{
+.movie-card:hover{
 transform:translateY(-5px);
 border-color:var(--red);
 box-shadow:0 0 20px rgba(255,0,60,.4);
 }
 
-.card-content{
-padding:30px;
-text-align:center;
-}
-
-.card-title{
-font-size:1.2rem;
+.movie-title{
+font-size:1.3rem;
 margin-bottom:20px;
 }
 
-.btn{
-display:block;
-padding:12px;
-text-decoration:none;
+.visit-btn{
+display:inline-block;
+padding:12px 25px;
 border:1px solid var(--red);
 color:var(--red);
-border-radius:5px;
+text-decoration:none;
+border-radius:6px;
 transition:.3s;
 }
 
-.btn:hover{
+.visit-btn:hover{
 background:var(--red);
 color:black;
 }
 
-/* MODAL */
+@media(max-width:768px){
 
-.modal{
-position:fixed;
-inset:0;
-display:none;
-justify-content:center;
-align-items:center;
-background:rgba(0,0,0,.85);
-z-index:9999;
+.site-title{
+font-size:1.3rem;
 }
 
-.modal-box{
-width:90%;
-max-width:420px;
-padding:25px;
-border-radius:10px;
-background:#0d0614;
-border:2px solid var(--cyan);
+.hero h1{
+font-size:2rem;
 }
 
-.modal-box h3{
-color:var(--cyan);
-margin-bottom:20px;
 }
 
 </style>
@@ -227,17 +268,26 @@ margin-bottom:20px;
 
 <canvas id="particles"></canvas>
 
+<!-- SETTINGS MODAL -->
+
 <div class="modal" id="settingsModal">
 
-<div class="modal-box">
+<div class="modal-content">
 
-<h3>Settings</h3>
+<h2>Settings</h2>
 
-<p>Particle controls will be added in Part 2.</p>
+<div class="setting-item">
+<span>Particles</span>
+<input type="checkbox" id="particleToggle" checked>
+</div>
 
-<button
-onclick="closeSettings()"
-class="settings-btn">
+<div class="setting-item">
+<span>Performance Mode</span>
+<input type="checkbox" id="performanceToggle">
+</div>
+
+<button class="close-btn"
+onclick="closeSettings()">
 
 Close
 
@@ -249,29 +299,28 @@ Close
 
 <header>
 
-<div class="logo-wrap">
+<div class="header-container">
+
+<div class="logo-area">
 
 <div class="logo">
 
 <svg viewBox="0 0 24 24">
-
 <path d="M20 6L9 17L4 12"/>
-
 </svg>
 
 </div>
 
-<h1>CyrusLinksHub</h1>
+<div class="site-title">
+CyrusLinksHub
+</div>
 
 </div>
 
-<div class="settings-area">
-
-<button
-class="settings-btn"
+<button class="settings-btn"
 onclick="openSettings()">
 
-⚙ Settings
+⚙
 
 </button>
 
@@ -281,35 +330,33 @@ onclick="openSettings()">
 
 <div class="hero">
 
-<h2>
+<h1>
 WELCOME TO CYRUSLINKSHUB MOVIES HUB
-</h2>
+</h1>
 
 <p>
 Hollywood Movies • Bollywood Movies
 </p>
 
 </div>
-<!-- ================= MOVIES ================= -->
+<!-- ================= MOVIES SECTION ================= -->
 
-<section>
+<div class="container">
 
 <h2 class="section-title">
 Movies Categories
 </h2>
 
-<div class="grid">
+<div class="movies-grid">
 
-<div class="card">
+<div class="movie-card">
 
-<div class="card-content">
-
-<div class="card-title">
+<div class="movie-title">
 Hollywood Movies
 </div>
 
 <a href="/hollywood.html"
-class="btn">
+class="visit-btn">
 
 Visit
 
@@ -317,18 +364,14 @@ Visit
 
 </div>
 
-</div>
+<div class="movie-card">
 
-<div class="card">
-
-<div class="card-content">
-
-<div class="card-title">
+<div class="movie-title">
 Bollywood Movies
 </div>
 
 <a href="/bollywood.html"
-class="btn">
+class="visit-btn">
 
 Visit
 
@@ -340,26 +383,22 @@ Visit
 
 </div>
 
-</section>
+<!-- ================= HOME BUTTON ================= -->
 
-<!-- ================= HOME ================= -->
-
-<section>
+<div class="container">
 
 <h2 class="section-title">
 Navigation
 </h2>
 
-<div class="card">
+<div class="movie-card">
 
-<div class="card-content">
-
-<div class="card-title">
+<div class="movie-title">
 Return To Homepage
 </div>
 
 <a href="/"
-class="btn">
+class="visit-btn">
 
 Back To Home
 
@@ -369,7 +408,54 @@ Back To Home
 
 </div>
 
-</section>
+<!-- ================= STATUS ================= -->
+
+<div class="container">
+
+<h2 class="section-title">
+System Status
+</h2>
+
+<div class="movie-card">
+
+<div style="
+color:#00f7ff;
+font-size:1.1rem;
+font-weight:bold;
+">
+
+● ALL SYSTEMS OPERATIONAL
+
+</div>
+
+<p style="
+margin-top:12px;
+color:#999;
+font-family:'Rajdhani',sans-serif;
+">
+
+Server Node : CYRUSLINKSHUB
+
+</p>
+
+</div>
+
+</div>
+
+<!-- ================= FOOTER ================= -->
+
+<footer style="
+margin-top:60px;
+padding:35px;
+text-align:center;
+border-top:1px solid rgba(255,0,60,.25);
+color:#888;
+font-family:'Rajdhani',sans-serif;
+">
+
+CyrusLinksHub Movies Hub © 2026
+
+</footer>
 
 <!-- ================= FLOATING MENU ================= -->
 
@@ -379,19 +465,27 @@ Back To Home
 
 </button>
 
+<!-- ================= TOP BUTTON ================= -->
+
+<button id="topBtn">
+
+↑
+
+</button>
+
 <style>
 
 #menuBtn{
 
 position:fixed;
 left:20px;
-bottom:100px;
+bottom:95px;
 
 width:55px;
 height:55px;
 
-border:none;
 border-radius:50%;
+border:1px solid var(--cyan);
 
 background:rgba(0,0,0,.6);
 color:white;
@@ -400,11 +494,9 @@ font-size:28px;
 
 cursor:pointer;
 
-border:1px solid var(--cyan);
-
-box-shadow:0 0 15px var(--cyan);
-
 z-index:999;
+
+box-shadow:0 0 12px rgba(0,247,255,.4);
 
 }
 
@@ -423,7 +515,7 @@ border-radius:50%;
 background:var(--cyan);
 color:black;
 
-font-size:24px;
+font-size:22px;
 font-weight:bold;
 
 cursor:pointer;
@@ -432,101 +524,87 @@ display:none;
 
 z-index:999;
 
-}
-
-footer{
-
-margin-top:60px;
-padding:30px;
-
-text-align:center;
-
-border-top:1px solid rgba(255,0,60,.3);
-
-color:#888;
-
-}
-
-@media(max-width:768px){
-
-.hero h2{
-font-size:1.8rem;
-}
-
-h1{
-font-size:1.5rem;
-}
+box-shadow:0 0 15px rgba(0,247,255,.5);
 
 }
 
 </style>
-
-<!-- ================= FOOTER ================= -->
-
-<footer>
-
-© 2026 CyrusLinksHub Movies Hub
-
-</footer>
-
-<!-- ================= TOP BUTTON ================= -->
-
-<button id="topBtn">
-
-↑
-
-</button>
-
 <script>
 
-/* SETTINGS */
+/* ================= SETTINGS ================= */
+
+const settingsModal =
+document.getElementById(
+"settingsModal"
+);
 
 function openSettings(){
 
-document
-.getElementById("settingsModal")
-.style.display="flex";
+settingsModal.style.display =
+"flex";
 
 }
 
 function closeSettings(){
 
-document
-.getElementById("settingsModal")
-.style.display="none";
+settingsModal.style.display =
+"none";
 
 }
 
-/* MENU BUTTON */
+settingsModal.addEventListener(
+"click",
+function(e){
+
+if(e.target===settingsModal){
+
+closeSettings();
+
+}
+
+}
+);
+
+/* ================= MENU BUTTON ================= */
 
 document
 .getElementById("menuBtn")
-.addEventListener("click",()=>{
+.addEventListener(
+"click",
+()=>{
 
-document
-.getElementById("settingsModal")
-.style.display="flex";
+openSettings();
 
-});
+}
+);
 
-/* TOP BUTTON */
+/* ================= TOP BUTTON ================= */
 
 const topBtn =
-document.getElementById("topBtn");
+document.getElementById(
+"topBtn"
+);
 
 window.addEventListener(
 "scroll",
 ()=>{
 
-topBtn.style.display =
-window.scrollY > 250
-? "block"
-: "none";
+if(window.scrollY>300){
+
+topBtn.style.display="block";
+
+}else{
+
+topBtn.style.display="none";
+
+}
 
 }
 );
 
-topBtn.onclick=()=>{
+topBtn.addEventListener(
+"click",
+()=>{
 
 window.scrollTo({
 
@@ -535,9 +613,10 @@ behavior:"smooth"
 
 });
 
-};
+}
+);
 
-/* PARTICLES */
+/* ================= PARTICLES ================= */
 
 const canvas =
 document.getElementById(
@@ -547,83 +626,164 @@ document.getElementById(
 const ctx =
 canvas.getContext("2d");
 
-let w,h;
+let width;
+let height;
 
-function resize(){
+function resizeCanvas(){
 
-w=canvas.width=
+width =
+canvas.width =
 window.innerWidth;
 
-h=canvas.height=
+height =
+canvas.height =
 window.innerHeight;
 
 }
 
-resize();
+resizeCanvas();
 
 window.addEventListener(
 "resize",
-resize
+resizeCanvas
 );
 
-const particles=[];
+let particles=[];
 
-function createParticle(x,y){
+let particlesEnabled=true;
+let performanceMode=false;
 
-return{
+/* PARTICLE CLASS */
 
-x:x,
-y:y,
+class Particle{
 
-vx:(Math.random()-0.5)*2,
-vy:(Math.random()-0.5)*2,
+constructor(x,y,ambient=false){
 
-size:Math.random()*3+1,
+this.x=x;
+this.y=y;
 
-life:100,
+this.ambient=ambient;
 
-color:
+this.size=
+ambient
+? Math.random()*2+1
+: Math.random()*2;
+
+this.color=
 Math.random()>.5
 ? "#00f7ff"
-: "#ff003c"
+: "#ff003c";
 
-};
+if(ambient){
+
+this.vx=
+Math.random()*0.3-0.15;
+
+this.vy=
+Math.random()*0.3-0.15;
+
+}else{
+
+this.vx=
+Math.random()*2-1;
+
+this.vy=
+Math.random()*2-1;
 
 }
 
-/* AMBIENT PARTICLES */
+}
 
-for(let i=0;i<70;i++){
+update(){
 
-particles.push({
+this.x+=this.vx;
+this.y+=this.vy;
 
-x:Math.random()*w,
-y:Math.random()*h,
+if(this.ambient){
 
-vx:(Math.random()-0.5)*0.4,
-vy:(Math.random()-0.5)*0.4,
+if(this.x<0)this.x=width;
+if(this.x>width)this.x=0;
 
-size:Math.random()*3+1,
+if(this.y<0)this.y=height;
+if(this.y>height)this.y=0;
 
-ambient:true,
+}else{
 
-color:
-Math.random()>.5
-? "#00f7ff"
-: "#ff003c"
-
-});
+this.size-=0.05;
 
 }
 
-/* TOUCH + MOUSE BURST */
+}
+
+draw(){
+
+ctx.beginPath();
+
+ctx.fillStyle=this.color;
+
+ctx.arc(
+this.x,
+this.y,
+this.size,
+0,
+Math.PI*2
+);
+
+ctx.fill();
+
+}
+
+}
+
+/* CREATE AMBIENT PARTICLES */
+
+function createAmbientParticles(){
+
+particles=[];
+
+if(!particlesEnabled)return;
+
+const count =
+performanceMode
+? 15
+: 30;
+
+for(let i=0;i<count;i++){
+
+particles.push(
+
+new Particle(
+
+Math.random()*width,
+Math.random()*height,
+true
+
+)
+
+);
+
+}
+
+}
+
+createAmbientParticles();
+
+/* TOUCH / MOUSE EFFECT */
 
 function spawnBurst(x,y){
 
-for(let i=0;i<6;i++){
+if(performanceMode)return;
+
+for(let i=0;i<2;i++){
 
 particles.push(
-createParticle(x,y)
+
+new Particle(
+x,
+y,
+false
+)
+
 );
 
 }
@@ -646,11 +806,12 @@ window.addEventListener(
 "touchmove",
 e=>{
 
-const t=e.touches[0];
+const touch =
+e.touches[0];
 
 spawnBurst(
-t.clientX,
-t.clientY
+touch.clientX,
+touch.clientY
 );
 
 },
@@ -661,7 +822,12 @@ t.clientY
 
 function animate(){
 
-ctx.clearRect(0,0,w,h);
+ctx.clearRect(
+0,
+0,
+width,
+height
+);
 
 for(
 let i=particles.length-1;
@@ -669,45 +835,20 @@ i>=0;
 i--
 ){
 
-const p=particles[i];
+const p =
+particles[i];
 
-p.x+=p.vx;
-p.y+=p.vy;
+p.update();
+p.draw();
 
-if(p.ambient){
-
-if(p.x<0)p.x=w;
-if(p.x>w)p.x=0;
-
-if(p.y<0)p.y=h;
-if(p.y>h)p.y=0;
-
-}else{
-
-p.life--;
-
-if(p.life<=0){
+if(
+!p.ambient &&
+p.size<=0.2
+){
 
 particles.splice(i,1);
-continue;
 
 }
-
-}
-
-ctx.beginPath();
-
-ctx.fillStyle=p.color;
-
-ctx.arc(
-p.x,
-p.y,
-p.size,
-0,
-Math.PI*2
-);
-
-ctx.fill();
 
 }
 
@@ -718,6 +859,40 @@ animate
 }
 
 animate();
+
+/* SETTINGS TOGGLES */
+
+document
+.getElementById(
+"particleToggle"
+)
+.addEventListener(
+"change",
+function(){
+
+particlesEnabled =
+this.checked;
+
+createAmbientParticles();
+
+}
+);
+
+document
+.getElementById(
+"performanceToggle"
+)
+.addEventListener(
+"change",
+function(){
+
+performanceMode =
+this.checked;
+
+createAmbientParticles();
+
+}
+);
 
 </script>
 
