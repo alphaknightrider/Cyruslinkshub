@@ -1,1 +1,1033 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
 
+<meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>
+CyrusLinksHub - Technical Support
+</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=Rajdhani:wght@500;700&display=swap"
+rel="stylesheet">
+
+<style>
+
+:root{
+    --neon-red:#ff003c;
+    --neon-cyan:#00f7ff;
+    --bg-dark:#05010a;
+    --card-bg:rgba(10,5,20,.75);
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:var(--bg-dark);
+    color:#fff;
+    overflow-x:hidden;
+    font-family:'Orbitron',sans-serif;
+}
+
+canvas{
+    position:fixed;
+    inset:0;
+    z-index:-1;
+    pointer-events:none;
+}
+
+/* HEADER */
+
+header{
+    text-align:center;
+    padding:20px;
+    border-bottom:2px solid var(--neon-red);
+    background:rgba(5,1,10,.95);
+    backdrop-filter:blur(10px);
+    box-shadow:0 0 25px rgba(255,0,60,.4);
+}
+
+.title-row{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:15px;
+    position:relative;
+    max-width:700px;
+    margin:auto;
+}
+
+.title-link{
+    text-decoration:none;
+    display:flex;
+    align-items:center;
+    gap:15px;
+    color:white;
+}
+
+.logo-container{
+    width:42px;
+    height:42px;
+    border-radius:50%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    border:2px solid var(--neon-cyan);
+    box-shadow:0 0 15px var(--neon-cyan);
+    animation:spin 8s linear infinite;
+}
+
+.logo-tick{
+    width:22px;
+    height:22px;
+    fill:none;
+    stroke:var(--neon-cyan);
+    stroke-width:4;
+}
+
+@keyframes spin{
+from{transform:rotate(0deg);}
+to{transform:rotate(360deg);}
+}
+
+header h1{
+    color:var(--neon-red);
+    text-shadow:0 0 15px var(--neon-red);
+}
+
+/* DISCORD BUTTON */
+
+.discord-btn{
+    background:#5865F2;
+    color:white;
+    text-decoration:none;
+    padding:8px 14px;
+    border-radius:20px;
+    font-size:.9rem;
+    transition:.3s;
+}
+
+.discord-btn:hover{
+    transform:translateY(-2px);
+    box-shadow:0 0 15px #5865F2;
+}
+
+/* SETTINGS */
+
+.settings-btn{
+    width:40px;
+    height:40px;
+    border:none;
+    cursor:pointer;
+    border-radius:5px;
+    background:transparent;
+    color:var(--neon-cyan);
+    border:1px solid var(--neon-cyan);
+    transition:.3s;
+}
+
+.settings-btn:hover{
+    background:var(--neon-cyan);
+    color:#000;
+}
+
+/* HERO */
+
+.hero{
+    text-align:center;
+    padding:90px 20px;
+}
+
+.hero h2{
+    color:var(--neon-red);
+    font-size:2.5rem;
+    text-shadow:0 0 20px var(--neon-red);
+}
+
+.hero p{
+    margin-top:15px;
+    color:#ccc;
+    font-family:'Rajdhani',sans-serif;
+    font-size:1.2rem;
+}
+
+/* SETTINGS MODAL */
+
+.modal-overlay{
+    position:fixed;
+    inset:0;
+    display:none;
+    justify-content:center;
+    align-items:center;
+    background:rgba(0,0,0,.85);
+    z-index:9999;
+}
+
+.modal-content{
+    width:90%;
+    max-width:420px;
+    background:#12081f;
+    border:2px solid var(--neon-cyan);
+    border-radius:10px;
+    padding:25px;
+}
+
+.modal-content h3{
+    color:var(--neon-cyan);
+    margin-bottom:20px;
+}
+
+.setting-row{
+    display:flex;
+    justify-content:space-between;
+    margin:15px 0;
+}
+
+.close-modal-btn{
+    width:100%;
+    padding:10px;
+    margin-top:20px;
+    border:none;
+    cursor:pointer;
+    background:var(--neon-red);
+    color:#000;
+    font-weight:bold;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<canvas id="particles"></canvas>
+
+<!-- SETTINGS MODAL -->
+
+<div class="modal-overlay"
+id="settingsModal">
+
+<div class="modal-content">
+
+<h3>
+SYSTEM SETTINGS
+</h3>
+
+<div class="setting-row">
+
+<span>
+Particles
+</span>
+
+<input type="checkbox"
+id="particleToggle"
+checked>
+
+</div>
+
+<div class="setting-row">
+
+<span>
+Performance Mode
+</span>
+
+<input type="checkbox"
+id="performanceToggle">
+
+</div>
+
+<button class="close-modal-btn"
+onclick="closeSettings()">
+
+Close
+
+</button>
+
+</div>
+
+</div>
+
+<header id="top">
+
+<div class="title-row">
+
+<a href="/"
+class="title-link">
+
+<div class="logo-container">
+
+<svg class="logo-tick"
+viewBox="0 0 24 24">
+
+<path d="M20 6L9 17L4 12"/>
+
+</svg>
+
+</div>
+
+<h1>
+CyrusLinksHub
+</h1>
+
+</a>
+
+<a href="https://discord.gg/3JNaPezM5u"
+target="_blank"
+class="discord-btn">
+
+💬 Discord
+
+</a>
+
+<button class="settings-btn"
+onclick="openSettings(event)">
+
+⚙
+
+</button>
+
+</div>
+
+</header>
+
+<div class="hero">
+
+<h2>
+TECHNICAL SUPPORT
+</h2>
+
+<p>
+Customer Support & Assistance Center
+</p>
+
+</div>
+<!-- ================= SUPPORT SECTION ================= -->
+
+<section id="support">
+
+<div class="section-header">
+
+<h2 class="section-title">
+TECHNICAL SUPPORT
+</h2>
+
+</div>
+
+<div class="faq-block">
+
+<div class="faq-question">
+Need Help?
+</div>
+
+<div class="faq-answer">
+
+If you experience issues while using
+CyrusLinksHub, our support team is
+available to assist you.
+
+</div>
+
+</div>
+
+<div class="faq-block">
+
+<div class="faq-question">
+Games Not Loading
+</div>
+
+<div class="faq-answer">
+
+Try refreshing the page,
+clearing your browser cache,
+or checking your internet connection.
+
+</div>
+
+</div>
+
+<div class="faq-block">
+
+<div class="faq-question">
+Movies Page Issues
+</div>
+
+<div class="faq-answer">
+
+If a movie category or page
+fails to load correctly,
+please report the issue
+through our support channels.
+
+</div>
+
+</div>
+
+<div class="faq-block">
+
+<div class="faq-question">
+Discord Community Support
+</div>
+
+<div class="faq-answer">
+
+For Discord server issues,
+moderation questions, or
+community assistance,
+contact a staff member through
+our official Discord server.
+
+</div>
+
+</div>
+
+<div class="faq-block">
+
+<div class="faq-question">
+Bug Reports
+</div>
+
+<div class="faq-answer">
+
+When reporting bugs, include:
+
+<br><br>
+
+• Device Name<br>
+• Browser Name<br>
+• Screenshot (if possible)<br>
+• Description Of The Issue
+
+</div>
+
+</div>
+
+<div class="faq-block">
+
+<div class="faq-question">
+Response Time
+</div>
+
+<div class="faq-answer">
+
+Support requests are reviewed
+as quickly as possible.
+
+Response times may vary
+depending on support volume.
+
+</div>
+
+</div>
+
+<div class="faq-block">
+
+<div class="faq-question">
+Official Support Server
+</div>
+
+<div class="faq-answer">
+
+<a href="https://discord.gg/3JNaPezM5u"
+target="_blank"
+class="btn">
+
+Join Discord Support
+
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ================= HOME BUTTON ================= -->
+
+<section id="home-return">
+
+<div class="section-header">
+
+<h2 class="section-title">
+Navigation
+</h2>
+
+</div>
+
+<div class="center-container">
+
+<div class="card">
+
+<div class="card-content">
+
+<div class="card-title">
+Return To Homepage
+</div>
+
+<a href="/"
+class="btn">
+
+Back To Home
+
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ================= FOOTER LINKS ================= -->
+
+<div class="footer-links">
+
+<div>
+
+<h3>Legal</h3>
+
+<a href="/privacy.html">
+Privacy Policy
+</a>
+
+<a href="/terms.html">
+Terms & Conditions
+</a>
+
+<a href="/support.html">
+Technical Support
+</a>
+
+</div>
+
+<div>
+
+<h3>Navigation</h3>
+
+<a href="/">
+Home
+</a>
+
+<a href="/games.html">
+Games
+</a>
+
+<a href="/movies.html">
+Movies
+</a>
+
+</div>
+
+<div>
+
+<h3>Status</h3>
+
+<p style="color:var(--neon-cyan);">
+● ALL SYSTEMS OPERATIONAL
+</p>
+
+<p style="font-size:.9rem;color:#888;">
+Server Node: CYRUS_SUPPORT_HUB
+</p>
+
+</div>
+
+</div>
+
+<footer>
+
+© 2026 CyrusLinksHub • Support Center
+
+</footer>
+
+<button id="topBtn">
+
+↑
+
+</button>
+<style>
+
+/* ================= SECTIONS ================= */
+
+section{
+    max-width:1200px;
+    margin:auto;
+    padding:60px 20px;
+}
+
+.section-header{
+    text-align:center;
+    margin-bottom:40px;
+}
+
+.section-title{
+    color:var(--neon-cyan);
+    font-size:2rem;
+    text-shadow:0 0 15px var(--neon-cyan);
+}
+
+/* ================= FAQ ================= */
+
+.faq-block{
+    background:rgba(255,255,255,.03);
+    border-left:3px solid var(--neon-cyan);
+    padding:20px;
+    margin-bottom:20px;
+    border-radius:0 8px 8px 0;
+}
+
+.faq-question{
+    color:var(--neon-cyan);
+    font-size:1.2rem;
+    margin-bottom:10px;
+}
+
+.faq-answer{
+    color:#ccc;
+    font-family:'Rajdhani',sans-serif;
+    font-size:1.05rem;
+}
+
+/* ================= CARD ================= */
+
+.center-container{
+    display:flex;
+    justify-content:center;
+}
+
+.card{
+    width:100%;
+    max-width:420px;
+    background:var(--card-bg);
+    border:1px solid rgba(0,247,255,.25);
+    border-radius:10px;
+    overflow:hidden;
+}
+
+.card-content{
+    padding:30px;
+    text-align:center;
+}
+
+.card-title{
+    font-size:1.3rem;
+    margin-bottom:20px;
+}
+
+/* ================= BUTTONS ================= */
+
+.btn{
+    display:block;
+    width:100%;
+    padding:12px;
+    border-radius:5px;
+    text-decoration:none;
+    text-align:center;
+    color:var(--neon-red);
+    border:1px solid var(--neon-red);
+    transition:.3s;
+}
+
+.btn:hover{
+    background:var(--neon-red);
+    color:#000;
+    box-shadow:0 0 15px var(--neon-red);
+}
+
+/* ================= FOOTER ================= */
+
+.footer-links{
+    display:grid;
+    grid-template-columns:
+    repeat(auto-fit,minmax(220px,1fr));
+    gap:30px;
+    max-width:1200px;
+    margin:40px auto 0;
+    padding:40px 20px;
+    background:rgba(5,1,10,.85);
+    border-top:1px solid rgba(0,247,255,.25);
+}
+
+.footer-links h3{
+    color:var(--neon-cyan);
+    margin-bottom:15px;
+}
+
+.footer-links a{
+    display:block;
+    color:#aaa;
+    text-decoration:none;
+    margin:10px 0;
+    transition:.3s;
+}
+
+.footer-links a:hover{
+    color:var(--neon-red);
+    padding-left:5px;
+}
+
+footer{
+    text-align:center;
+    padding:25px;
+    color:#888;
+    border-top:1px solid rgba(255,0,60,.2);
+}
+
+/* ================= TOP BUTTON ================= */
+
+#topBtn{
+    position:fixed;
+    right:25px;
+    bottom:25px;
+    width:45px;
+    height:45px;
+    border:none;
+    border-radius:5px;
+    display:none;
+    cursor:pointer;
+    z-index:1000;
+    background:#05010a;
+    color:var(--neon-cyan);
+    border:1px solid var(--neon-cyan);
+}
+
+#topBtn:hover{
+    background:var(--neon-cyan);
+    color:#000;
+    box-shadow:0 0 15px var(--neon-cyan);
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-width:768px){
+
+.hero h2{
+    font-size:1.8rem;
+}
+
+header h1{
+    font-size:1.4rem;
+}
+
+.title-row{
+    flex-direction:column;
+}
+
+}
+
+</style>
+
+<script>
+
+/* ================= SETTINGS ================= */
+
+const settingsModal =
+document.getElementById("settingsModal");
+
+function openSettings(e){
+
+if(e){
+e.stopPropagation();
+}
+
+settingsModal.style.display="flex";
+
+}
+
+function closeSettings(){
+
+settingsModal.style.display="none";
+
+}
+
+settingsModal.addEventListener("click",e=>{
+
+if(e.target===settingsModal){
+
+closeSettings();
+
+}
+
+});
+
+/* ================= TOP BUTTON ================= */
+
+const topBtn =
+document.getElementById("topBtn");
+
+window.addEventListener("scroll",()=>{
+
+topBtn.style.display =
+window.scrollY > 300
+? "block"
+: "none";
+
+});
+
+topBtn.addEventListener("click",()=>{
+
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
+
+});
+
+/* ================= PARTICLES ================= */
+
+const canvas =
+document.getElementById("particles");
+
+const ctx =
+canvas.getContext("2d");
+
+let width;
+let height;
+
+function resizeCanvas(){
+
+width =
+canvas.width =
+window.innerWidth;
+
+height =
+canvas.height =
+window.innerHeight;
+
+}
+
+resizeCanvas();
+
+window.addEventListener(
+"resize",
+resizeCanvas
+);
+
+let particles=[];
+
+let ambientEnabled=true;
+let performanceMode=false;
+
+class Particle{
+
+constructor(x,y,ambient=false){
+
+this.x=x;
+this.y=y;
+this.ambient=ambient;
+
+this.size=
+ambient
+? Math.random()*2+1
+: Math.random()*2+.5;
+
+this.color=
+Math.random()>.5
+? "#00f7ff"
+: "#ff003c";
+
+if(ambient){
+
+this.vx=
+Math.random()*.4-.2;
+
+this.vy=
+Math.random()*.4-.2;
+
+}else{
+
+this.vx=
+Math.random()*2-1;
+
+this.vy=
+Math.random()*2-1;
+
+}
+
+}
+
+update(){
+
+this.x+=this.vx;
+this.y+=this.vy;
+
+if(this.ambient){
+
+if(this.x<0)this.x=width;
+if(this.x>width)this.x=0;
+
+if(this.y<0)this.y=height;
+if(this.y>height)this.y=0;
+
+}else{
+
+this.size-=0.05;
+
+}
+
+}
+
+draw(){
+
+ctx.beginPath();
+
+ctx.fillStyle=this.color;
+
+ctx.arc(
+this.x,
+this.y,
+this.size,
+0,
+Math.PI*2
+);
+
+ctx.fill();
+
+}
+
+}
+
+function createAmbient(){
+
+particles=[];
+
+if(!ambientEnabled)return;
+
+const count=
+performanceMode
+? 20
+: 50;
+
+for(let i=0;i<count;i++){
+
+particles.push(
+new Particle(
+Math.random()*width,
+Math.random()*height,
+true
+)
+);
+
+}
+
+}
+
+createAmbient();
+
+function spawnBurst(x,y){
+
+if(performanceMode)return;
+
+for(let i=0;i<3;i++){
+
+particles.push(
+new Particle(x,y,false)
+);
+
+}
+
+}
+
+window.addEventListener(
+"mousemove",
+e=>spawnBurst(
+e.clientX,
+e.clientY
+)
+);
+
+window.addEventListener(
+"touchmove",
+e=>{
+
+const touch=e.touches[0];
+
+spawnBurst(
+touch.clientX,
+touch.clientY
+);
+
+}
+);
+
+function animate(){
+
+ctx.clearRect(
+0,
+0,
+width,
+height
+);
+
+for(
+let i=particles.length-1;
+i>=0;
+i--
+){
+
+const p=particles[i];
+
+p.update();
+p.draw();
+
+if(
+!p.ambient &&
+p.size<=0.2
+){
+particles.splice(i,1);
+}
+
+}
+
+requestAnimationFrame(
+animate
+);
+
+}
+
+animate();
+
+/* ================= TOGGLES ================= */
+
+document
+.getElementById("particleToggle")
+.addEventListener(
+"change",
+function(){
+
+ambientEnabled=
+this.checked;
+
+createAmbient();
+
+}
+);
+
+document
+.getElementById("performanceToggle")
+.addEventListener(
+"change",
+function(){
+
+performanceMode=
+this.checked;
+
+createAmbient();
+
+}
+);
+
+</script>
+
+</body>
+</html>
