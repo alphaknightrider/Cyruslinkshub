@@ -1,1 +1,1110 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>CyrusLinksHub Tools</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=Rajdhani:wght@500;700&display=swap"
+      rel="stylesheet">
+
+<style>
+
+:root{
+
+--bg:#05010a;
+--card:#0d0818;
+--neon-cyan:#00f7ff;
+--neon-red:#ff003c;
+--glass:rgba(255,255,255,.05);
+
+}
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+html{
+scroll-behavior:smooth;
+}
+
+body{
+
+background:var(--bg);
+
+font-family:'Orbitron',sans-serif;
+
+color:white;
+
+overflow-x:hidden;
+
+}
+
+#particles{
+
+position:fixed;
+
+top:0;
+left:0;
+
+width:100%;
+height:100%;
+
+z-index:-1;
+
+}
+
+/* ================= HEADER ================= */
+
+header{
+
+position:sticky;
+
+top:0;
+
+z-index:999;
+
+background:rgba(0,0,0,.75);
+
+backdrop-filter:blur(10px);
+
+border-bottom:1px solid rgba(0,247,255,.25);
+
+padding:15px 20px;
+
+}
+
+.title-row{
+
+max-width:1300px;
+
+margin:auto;
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+}
+
+/* ================= LOGO ================= */
+
+.title-link{
+
+display:flex;
+
+align-items:center;
+
+gap:15px;
+
+text-decoration:none;
+
+color:white;
+
+}
+
+.logo-container{
+
+width:55px;
+
+height:55px;
+
+border-radius:50%;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+border:2px solid var(--neon-cyan);
+
+box-shadow:0 0 20px var(--neon-cyan);
+
+animation:spinLogo 10s linear infinite;
+
+}
+
+.logo-tick{
+
+width:25px;
+
+height:25px;
+
+stroke:var(--neon-cyan);
+
+fill:none;
+
+stroke-width:3;
+
+}
+
+@keyframes spinLogo{
+
+from{
+transform:rotate(0deg);
+}
+
+to{
+transform:rotate(360deg);
+}
+
+}
+
+.title-link h1{
+
+font-size:2rem;
+
+color:var(--neon-red);
+
+text-shadow:0 0 15px var(--neon-red);
+
+}
+
+/* ================= HEADER BUTTONS ================= */
+
+.header-buttons{
+
+display:flex;
+
+align-items:center;
+
+gap:10px;
+
+}
+
+.discord-btn{
+
+background:#5865F2;
+
+color:white;
+
+padding:10px 16px;
+
+border-radius:25px;
+
+text-decoration:none;
+
+font-weight:bold;
+
+animation:discordPulse 2s infinite;
+
+}
+
+@keyframes discordPulse{
+
+0%{
+box-shadow:0 0 0px #5865F2;
+}
+
+50%{
+box-shadow:0 0 18px #5865F2;
+}
+
+100%{
+box-shadow:0 0 0px #5865F2;
+}
+
+}
+
+.settings-btn{
+
+width:50px;
+
+height:50px;
+
+border:none;
+
+cursor:pointer;
+
+border-radius:50%;
+
+background:rgba(255,255,255,.05);
+
+border:1px solid var(--neon-cyan);
+
+color:var(--neon-cyan);
+
+font-size:22px;
+
+transition:.3s;
+
+}
+
+.settings-btn:hover{
+
+transform:rotate(90deg);
+
+box-shadow:0 0 15px var(--neon-cyan);
+
+}
+
+/* ================= HERO ================= */
+
+.hero{
+
+text-align:center;
+
+padding:90px 20px;
+
+}
+
+.hero h2{
+
+font-size:3rem;
+
+color:var(--neon-red);
+
+text-shadow:0 0 20px var(--neon-red);
+
+margin-bottom:15px;
+
+}
+
+.hero p{
+
+font-family:'Rajdhani',sans-serif;
+
+font-size:1.2rem;
+
+color:#bbb;
+
+}
+
+/* ================= TOOL CARDS ================= */
+
+.tools-grid{
+
+max-width:1300px;
+
+margin:auto;
+
+padding:30px 20px;
+
+display:grid;
+
+grid-template-columns:
+repeat(auto-fit,minmax(320px,1fr));
+
+gap:25px;
+
+}
+
+.tool-card{
+
+background:var(--glass);
+
+border:1px solid rgba(0,247,255,.25);
+
+border-radius:15px;
+
+padding:25px;
+
+backdrop-filter:blur(10px);
+
+transition:.3s;
+
+}
+
+.tool-card:hover{
+
+transform:translateY(-5px);
+
+box-shadow:0 0 20px rgba(0,247,255,.25);
+
+}
+
+.tool-card h3{
+
+margin-bottom:15px;
+
+color:var(--neon-cyan);
+
+}
+
+.tool-card input{
+
+width:100%;
+
+padding:12px;
+
+margin-bottom:12px;
+
+background:#111;
+
+border:1px solid rgba(0,247,255,.3);
+
+border-radius:8px;
+
+color:white;
+
+}
+
+.tool-btn{
+
+width:100%;
+
+padding:12px;
+
+border:none;
+
+cursor:pointer;
+
+border-radius:8px;
+
+font-weight:bold;
+
+background:var(--neon-red);
+
+color:black;
+
+transition:.3s;
+
+}
+
+.tool-btn:hover{
+
+box-shadow:0 0 15px var(--neon-red);
+
+}
+
+.result{
+
+margin-top:15px;
+
+font-family:'Rajdhani',sans-serif;
+
+color:#ddd;
+
+line-height:1.6;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<canvas id="particles"></canvas>
+
+<header>
+
+<div class="title-row">
+
+<a href="/"
+class="title-link">
+
+<div class="logo-container">
+
+<svg class="logo-tick"
+viewBox="0 0 24 24">
+
+<path d="M20 6L9 17L4 12"/>
+
+</svg>
+
+</div>
+
+<h1>CyrusLinksHub Tools</h1>
+
+</a>
+
+<div class="header-buttons">
+
+<a href="https://discord.gg/3JNaPezM5u"
+target="_blank"
+class="discord-btn">
+
+💬 Discord
+
+</a>
+
+<button class="settings-btn">
+
+⚙
+
+</button>
+
+</div>
+
+</div>
+
+</header>
+
+<section class="hero">
+
+<h2>
+🔧 TOOLS HUB
+</h2>
+
+<p>
+Server Utilities • Minecraft Tools • Network Tools
+</p>
+
+</section>
+<!-- TOOLS GRID -->
+
+<div class="tools-grid">
+
+<!-- MINECRAFT STATUS -->
+
+<div class="tool-card">
+
+<h3>🎮 Minecraft Server Status</h3>
+
+<input
+type="text"
+id="mc-ip"
+placeholder="mc.hypixel.net">
+
+<button
+class="tool-btn"
+onclick="checkMinecraft()">
+
+Check Status
+
+</button>
+
+<div
+class="result"
+id="mc-result">
+
+Enter a server IP above.
+
+</div>
+
+</div>
+
+<!-- PAPERMC -->
+
+<div class="tool-card">
+
+<h3>📦 PaperMC Build Checker</h3>
+
+<button
+class="tool-btn"
+onclick="getPaperBuild()">
+
+Get Latest Version
+
+</button>
+
+<div
+class="result"
+id="paper-result">
+
+Click button to fetch latest build.
+
+</div>
+
+</div>
+
+<!-- WEBSITE STATUS -->
+
+<div class="tool-card">
+
+<h3>🌐 Website Status Checker</h3>
+
+<input
+type="text"
+id="site-url"
+placeholder="https://example.com">
+
+<button
+class="tool-btn"
+onclick="checkWebsite()">
+
+Check Website
+
+</button>
+
+<div
+class="result"
+id="site-result">
+
+Enter a website URL.
+
+</div>
+
+</div>
+
+<!-- IP LOOKUP -->
+
+<div class="tool-card">
+
+<h3>📍 IP Lookup</h3>
+
+<input
+type="text"
+id="ip-input"
+placeholder="8.8.8.8">
+
+<button
+class="tool-btn"
+onclick="lookupIP()">
+
+Lookup IP
+
+</button>
+
+<div
+class="result"
+id="ip-result">
+
+Enter an IP address.
+
+</div>
+
+</div>
+
+</div>
+<div class="tools-grid">
+
+<!-- PASSWORD GENERATOR -->
+
+<div class="tool-card">
+
+<h3>🔐 Password Generator</h3>
+
+<button
+class="tool-btn"
+onclick="generatePassword()">
+
+Generate Password
+
+</button>
+
+<div
+class="result"
+id="password-result">
+
+Click Generate.
+
+</div>
+
+</div>
+
+<!-- RANDOM GAME PICKER -->
+
+<div class="tool-card">
+
+<h3>🎲 Random Game Picker</h3>
+
+<button
+class="tool-btn"
+onclick="pickGame()">
+
+Pick A Game
+
+</button>
+
+<div
+class="result"
+id="game-result">
+
+Click button to choose.
+
+</div>
+
+</div>
+
+<!-- DISCORD -->
+
+<div class="tool-card">
+
+<h3>💬 Discord Community</h3>
+
+<p class="result">
+
+Join the official CyrusLinksHub Discord server.
+
+</p>
+
+<a href="https://discord.gg/3JNaPezM5u"
+target="_blank">
+
+<button class="tool-btn">
+
+Join Discord
+
+</button>
+
+</a>
+
+</div>
+
+<!-- SERVER TIME -->
+
+<div class="tool-card">
+
+<h3>🕒 Live Server Time</h3>
+
+<div
+class="result"
+id="server-time">
+
+Loading...
+
+</div>
+
+</div>
+
+</div>
+
+<!-- HOME BUTTON -->
+
+<section
+style="
+max-width:1300px;
+margin:auto;
+padding:20px;
+">
+
+<div class="tool-card">
+
+<h3>
+🏠 Navigation
+</h3>
+
+<a href="/"
+style="text-decoration:none;">
+
+<button class="tool-btn">
+
+Back To Home
+
+</button>
+
+</a>
+
+</div>
+
+</section>
+
+<!-- FOOTER -->
+
+<footer
+style="
+margin-top:50px;
+padding:30px;
+text-align:center;
+border-top:1px solid rgba(0,247,255,.2);
+color:#888;
+">
+
+<p>
+
+© 2026 CyrusLinksHub Tools Hub
+
+</p>
+
+<p
+style="
+margin-top:10px;
+color:#00f7ff;
+">
+
+● ALL SYSTEMS OPERATIONAL
+
+</p>
+
+</footer>
+<script>
+
+/* ================= MINECRAFT STATUS ================= */
+
+async function checkMinecraft(){
+
+const ip =
+document.getElementById("mc-ip").value;
+
+const result =
+document.getElementById("mc-result");
+
+if(!ip){
+
+result.innerHTML =
+"Please enter a server IP.";
+
+return;
+
+}
+
+result.innerHTML =
+"Loading...";
+
+try{
+
+const res =
+await fetch(
+`https://api.mcsrvstat.us/2/${ip}`
+);
+
+const data =
+await res.json();
+
+result.innerHTML =
+`
+Status:
+${data.online ? "🟢 Online" : "🔴 Offline"}
+<br><br>
+Players:
+${data.players?.online || 0}
+<br><br>
+Version:
+${data.version || "Unknown"}
+`;
+
+}catch{
+
+result.innerHTML =
+"Failed to fetch server data.";
+
+}
+
+}
+
+/* ================= PAPERMC ================= */
+
+async function getPaperBuild(){
+
+const result =
+document.getElementById("paper-result");
+
+result.innerHTML =
+"Loading...";
+
+try{
+
+const res =
+await fetch(
+"https://api.papermc.io/v2/projects/paper"
+);
+
+const data =
+await res.json();
+
+result.innerHTML =
+`
+Latest Version:
+${data.versions[data.versions.length-1]}
+`;
+
+}catch{
+
+result.innerHTML =
+"Failed to fetch.";
+
+}
+
+}
+
+/* ================= WEBSITE CHECKER ================= */
+
+async function checkWebsite(){
+
+const url =
+document.getElementById("site-url").value;
+
+const result =
+document.getElementById("site-result");
+
+if(!url){
+
+result.innerHTML =
+"Please enter a URL.";
+
+return;
+
+}
+
+result.innerHTML =
+"Checking...";
+
+try{
+
+await fetch(
+"https://api.allorigins.win/raw?url=" +
+encodeURIComponent(url)
+);
+
+result.innerHTML =
+"🟢 Website Reachable";
+
+}catch{
+
+result.innerHTML =
+"🔴 Website Unreachable";
+
+}
+
+}
+
+/* ================= IP LOOKUP ================= */
+
+async function lookupIP(){
+
+const ip =
+document.getElementById("ip-input").value;
+
+const result =
+document.getElementById("ip-result");
+
+if(!ip){
+
+result.innerHTML =
+"Please enter an IP.";
+
+return;
+
+}
+
+result.innerHTML =
+"Loading...";
+
+try{
+
+const res =
+await fetch(
+`https://ipapi.co/${ip}/json/`
+);
+
+const data =
+await res.json();
+
+result.innerHTML =
+`
+Country:
+${data.country_name || "Unknown"}
+<br><br>
+City:
+${data.city || "Unknown"}
+<br><br>
+ISP:
+${data.org || "Unknown"}
+`;
+
+}catch{
+
+result.innerHTML =
+"Lookup failed.";
+
+}
+
+}
+
+/* ================= PASSWORD GENERATOR ================= */
+
+function generatePassword(){
+
+const chars =
+"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*";
+
+let password="";
+
+for(let i=0;i<16;i++){
+
+password +=
+chars.charAt(
+Math.floor(
+Math.random()*chars.length
+)
+);
+
+}
+
+document.getElementById(
+"password-result"
+).innerHTML =
+password;
+
+}
+
+/* ================= RANDOM GAME ================= */
+
+function pickGame(){
+
+const games=[
+
+"Minecraft",
+"Free Fire Max",
+"Roblox",
+"GTA V",
+"Fortnite",
+"Valorant",
+"BGMI",
+"Call Of Duty"
+
+];
+
+const game =
+games[
+Math.floor(
+Math.random()*games.length
+)
+];
+
+document.getElementById(
+"game-result"
+).innerHTML =
+game;
+
+}
+
+/* ================= SERVER TIME ================= */
+
+function updateTime(){
+
+document.getElementById(
+"server-time"
+).innerHTML =
+new Date().toLocaleString();
+
+}
+
+setInterval(
+updateTime,
+1000
+);
+
+updateTime();
+
+/* ================= PARTICLES ================= */
+
+const canvas =
+document.getElementById(
+"particles"
+);
+
+const ctx =
+canvas.getContext("2d");
+
+let width;
+let height;
+
+function resizeCanvas(){
+
+width =
+canvas.width =
+window.innerWidth;
+
+height =
+canvas.height =
+window.innerHeight;
+
+}
+
+resizeCanvas();
+
+window.addEventListener(
+"resize",
+resizeCanvas
+);
+
+let particles=[];
+
+class Particle{
+
+constructor(){
+
+this.x =
+Math.random()*width;
+
+this.y =
+Math.random()*height;
+
+this.size =
+Math.random()*2+1;
+
+this.vx =
+Math.random()*0.4-0.2;
+
+this.vy =
+Math.random()*0.4-0.2;
+
+this.color =
+Math.random()>.5
+? "#00f7ff"
+: "#ff003c";
+
+}
+
+update(){
+
+this.x += this.vx;
+this.y += this.vy;
+
+if(this.x<0)this.x=width;
+if(this.x>width)this.x=0;
+
+if(this.y<0)this.y=height;
+if(this.y>height)this.y=0;
+
+}
+
+draw(){
+
+ctx.beginPath();
+
+ctx.fillStyle =
+this.color;
+
+ctx.arc(
+this.x,
+this.y,
+this.size,
+0,
+Math.PI*2
+);
+
+ctx.fill();
+
+}
+
+}
+
+for(let i=0;i<50;i++){
+
+particles.push(
+new Particle()
+);
+
+}
+
+function animate(){
+
+ctx.clearRect(
+0,
+0,
+width,
+height
+);
+
+particles.forEach(p=>{
+
+p.update();
+p.draw();
+
+});
+
+requestAnimationFrame(
+animate
+);
+
+}
+
+animate();
+
+</script>
+
+</body>
+</html>
