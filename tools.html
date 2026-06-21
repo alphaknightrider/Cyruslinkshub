@@ -1,0 +1,1252 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>CyrusLinksHub Tools</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;800&display=swap"
+rel="stylesheet">
+
+<style>
+
+:root{
+
+--bg:#05010a;
+--card:#0d0818;
+--cyan:#00f7ff;
+--red:#ff003c;
+--glass:rgba(255,255,255,.05);
+
+}
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+
+font-family:'Orbitron',sans-serif;
+
+background:var(--bg);
+
+color:white;
+
+overflow-x:hidden;
+
+}
+
+/* PARTICLE BACKGROUND */
+
+#particles{
+
+position:fixed;
+
+top:0;
+left:0;
+
+width:100%;
+height:100%;
+
+z-index:-1;
+
+}
+
+/* HEADER */
+
+header{
+
+position:sticky;
+
+top:0;
+
+z-index:999;
+
+background:rgba(0,0,0,.8);
+
+backdrop-filter:blur(10px);
+
+border-bottom:1px solid rgba(0,247,255,.2);
+
+padding:15px 20px;
+
+}
+
+.title-row{
+
+max-width:1300px;
+
+margin:auto;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+}
+
+.logo{
+
+display:flex;
+
+align-items:center;
+
+gap:15px;
+
+}
+
+.logo-circle{
+
+width:60px;
+height:60px;
+
+border-radius:50%;
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+border:2px solid var(--cyan);
+
+box-shadow:0 0 20px var(--cyan);
+
+animation:spin 8s linear infinite;
+
+}
+
+.logo-circle span{
+
+color:var(--cyan);
+
+font-size:22px;
+
+font-weight:bold;
+
+}
+
+@keyframes spin{
+
+from{
+transform:rotate(0deg);
+}
+
+to{
+transform:rotate(360deg);
+}
+
+}
+
+.logo h1{
+
+color:var(--red);
+
+font-size:2rem;
+
+text-shadow:0 0 15px var(--red);
+
+}
+
+/* HERO */
+
+.hero{
+
+padding:80px 20px;
+
+text-align:center;
+
+}
+
+.hero h2{
+
+font-size:3rem;
+
+color:var(--red);
+
+text-shadow:0 0 20px var(--red);
+
+margin-bottom:15px;
+
+}
+
+.hero p{
+
+color:#aaa;
+
+}
+
+/* TOOL GRID */
+
+.tools-grid{
+
+max-width:1300px;
+
+margin:auto;
+
+padding:20px;
+
+display:grid;
+
+grid-template-columns:
+repeat(auto-fit,minmax(330px,1fr));
+
+gap:25px;
+
+}
+
+.tool-card{
+
+background:var(--glass);
+
+border:1px solid rgba(0,247,255,.2);
+
+border-radius:15px;
+
+padding:25px;
+
+backdrop-filter:blur(12px);
+
+transition:.3s;
+
+}
+
+.tool-card:hover{
+
+transform:translateY(-5px);
+
+box-shadow:0 0 20px rgba(0,247,255,.25);
+
+}
+
+.tool-card h3{
+
+color:var(--cyan);
+
+margin-bottom:15px;
+
+}
+
+.tool-card input,
+.tool-card select{
+
+width:100%;
+
+padding:12px;
+
+background:#111;
+
+color:white;
+
+border:none;
+
+outline:none;
+
+border-radius:8px;
+
+margin-bottom:10px;
+
+font-family:'Orbitron',sans-serif;
+
+}
+
+.tool-btn{
+
+width:100%;
+
+padding:12px;
+
+background:var(--red);
+
+color:white;
+
+border:none;
+
+border-radius:8px;
+
+font-weight:bold;
+
+cursor:pointer;
+
+transition:.3s;
+
+margin-top:5px;
+
+}
+
+.tool-btn:hover{
+
+box-shadow:0 0 15px var(--red);
+
+}
+
+.result{
+
+margin-top:15px;
+
+line-height:1.7;
+
+color:#ddd;
+
+word-break:break-word;
+
+}
+
+footer{
+
+text-align:center;
+
+padding:30px;
+
+margin-top:40px;
+
+border-top:1px solid rgba(0,247,255,.2);
+
+color:#888;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<canvas id="particles"></canvas>
+
+<header>
+
+<div class="title-row">
+
+<div class="logo">
+
+<div class="logo-circle">
+<span>CL</span>
+</div>
+
+<h1>CyrusLinksHub Tools</h1>
+
+</div>
+
+</div>
+
+</header>
+
+<section class="hero">
+
+<h2>
+🔧 TOOLS HUB
+</h2>
+
+<p>
+Minecraft • Utilities • Security
+</p>
+
+</section>
+
+<div class="tools-grid">
+  <!-- MINECRAFT STATUS -->
+
+<div class="tool-card">
+
+<h3>🎮 Minecraft Java + Bedrock Status</h3>
+
+<input
+type="text"
+id="mc-ip"
+placeholder="play.example.com">
+
+<input
+type="number"
+id="mc-port"
+placeholder="19132 (Bedrock Port Optional)">
+
+<button
+class="tool-btn"
+onclick="checkMinecraft()">
+
+Check Server
+
+</button>
+
+<div
+id="mc-result"
+class="result">
+
+Enter a server IP.
+
+</div>
+
+</div>
+
+<!-- PAPER BUILD CHECKER -->
+
+<div class="tool-card">
+
+<h3>📦 PaperMC Build Checker</h3>
+
+<select id="paper-version">
+
+<option>
+Loading versions...
+</option>
+
+</select>
+
+<button
+class="tool-btn"
+onclick="getPaperBuild()">
+
+Get Build Number
+
+</button>
+
+<div
+id="paper-result"
+class="result">
+
+Select a version.
+
+</div>
+
+</div>
+
+<!-- PASSWORD GENERATOR -->
+
+<div class="tool-card">
+
+<h3>🔐 Password Generator</h3>
+
+<button
+class="tool-btn"
+onclick="generatePassword()">
+
+Generate Password
+
+</button>
+
+<button
+class="tool-btn"
+onclick="copyPassword()">
+
+Copy Password
+
+</button>
+
+<div
+id="password-result"
+class="result">
+
+Generated password appears here.
+
+</div>
+
+</div>
+
+<!-- QR GENERATOR -->
+
+<div class="tool-card">
+
+<h3>📷 QR Generator</h3>
+
+<input
+type="text"
+id="qr-text"
+placeholder="Enter URL or Text">
+
+<button
+class="tool-btn"
+onclick="generateQR()">
+
+Generate QR
+
+</button>
+
+<button
+class="tool-btn"
+onclick="downloadQR()">
+
+Download QR
+
+</button>
+
+<div
+id="qr-result"
+class="result">
+
+Enter text to generate QR.
+
+</div>
+
+</div>
+
+<!-- COLOR PICKER -->
+
+<div class="tool-card">
+
+<h3>🎨 Color Picker & HEX/RGB Converter</h3>
+
+<input
+type="color"
+id="colorPicker"
+value="#00f7ff">
+
+<div
+id="color-result"
+class="result">
+
+HEX: #00f7ff
+
+<br><br>
+
+RGB: rgb(0,247,255)
+
+</div>
+
+</div>
+
+<!-- MOTD FORMATTER -->
+
+<div class="tool-card">
+
+<h3>🎮 Minecraft MOTD Formatter</h3>
+
+<input
+type="text"
+id="motd-input"
+placeholder="&aWelcome &bTo &cServer">
+
+<button
+class="tool-btn"
+onclick="formatMOTD()">
+
+Format MOTD
+
+</button>
+
+<div
+id="motd-result"
+class="result">
+
+Formatted MOTD appears here.
+
+</div>
+
+</div>
+
+<!-- USERNAME LOOKUP -->
+
+<div class="tool-card">
+
+<h3>🔍 Minecraft Username Lookup</h3>
+
+<input
+type="text"
+id="mc-username"
+placeholder="Minecraft Username">
+
+<button
+class="tool-btn"
+onclick="lookupUsername()">
+
+Lookup Username
+
+</button>
+
+<div
+id="username-result"
+class="result">
+
+Enter username.
+
+</div>
+
+</div>
+
+<!-- LIVE CLOCK -->
+
+<div class="tool-card">
+
+<h3>🕒 Live Date & Time</h3>
+
+<div
+id="clock-result"
+class="result">
+
+Loading...
+
+</div>
+
+</div>
+
+</div>
+
+<!-- NAVIGATION -->
+
+<section
+style="
+max-width:1200px;
+margin:auto;
+padding:20px;
+">
+
+<div class="tool-card">
+
+<h3>
+🏠 Navigation
+</h3>
+
+<a href="/"
+style="text-decoration:none;">
+
+<button class="tool-btn">
+
+Back To Home
+
+</button>
+
+</a>
+
+</div>
+
+</section>
+
+<footer>
+
+<p>
+© 2026 CyrusLinksHub
+</p>
+
+<p
+style="
+margin-top:10px;
+color:#00f7ff;
+">
+
+● ALL SYSTEMS OPERATIONAL
+
+</p>
+
+</footer>
+<script>
+
+/* =========================
+   PAPERMC VERSIONS
+========================= */
+
+async function loadPaperVersions(){
+
+const select =
+document.getElementById(
+"paper-version"
+);
+
+try{
+
+const res =
+await fetch(
+"https://api.papermc.io/v2/projects/paper"
+);
+
+const data =
+await res.json();
+
+select.innerHTML = "";
+
+data.versions.reverse().forEach(version=>{
+
+const option =
+document.createElement("option");
+
+option.value = version;
+option.textContent = version;
+
+select.appendChild(option);
+
+});
+
+}catch{
+
+select.innerHTML =
+"<option>Failed to load</option>";
+
+}
+
+}
+
+loadPaperVersions();
+
+/* =========================
+   PAPERMC BUILD CHECKER
+========================= */
+
+async function getPaperBuild(){
+
+const version =
+document.getElementById(
+"paper-version"
+).value;
+
+const result =
+document.getElementById(
+"paper-result"
+);
+
+result.innerHTML =
+"Checking...";
+
+try{
+
+const res =
+await fetch(
+`https://api.papermc.io/v2/projects/paper/versions/${version}`
+);
+
+const data =
+await res.json();
+
+const latestBuild =
+data.builds[
+data.builds.length - 1
+];
+
+result.innerHTML =
+`
+📦 Version: ${version}
+
+<br><br>
+
+🔨 Latest Build:
+#${latestBuild}
+`;
+
+}catch{
+
+result.innerHTML =
+"❌ Failed";
+
+}
+
+}
+
+/* =========================
+   MC STATUS
+========================= */
+
+async function checkMinecraft(){
+
+const ip =
+document.getElementById(
+"mc-ip"
+).value.trim();
+
+const port =
+document.getElementById(
+"mc-port"
+).value.trim();
+
+const result =
+document.getElementById(
+"mc-result"
+);
+
+if(!ip){
+
+result.innerHTML =
+"❌ Enter server IP";
+
+return;
+
+}
+
+result.innerHTML =
+"Checking...";
+
+try{
+
+const javaRes =
+await fetch(
+`https://api.mcstatus.io/v2/status/java/${ip}`
+);
+
+const javaData =
+await javaRes.json();
+
+let html =
+
+`
+🎮 JAVA EDITION
+
+<br><br>
+
+${javaData.online
+? "🟢 Online"
+: "🔴 Offline"}
+
+<br>
+
+👥 ${javaData.players?.online || 0}/${javaData.players?.max || 0}
+
+<br>
+
+⚙ ${javaData.version?.name_clean || "Unknown"}
+`;
+
+if(port){
+
+try{
+
+const bedrockRes =
+await fetch(
+`https://api.mcstatus.io/v2/status/bedrock/${ip}:${port}`
+);
+
+const bedrockData =
+await bedrockRes.json();
+
+html +=
+
+`
+<hr style="margin:15px 0;">
+
+📱 BEDROCK EDITION
+
+<br><br>
+
+${bedrockData.online
+? "🟢 Online"
+: "🔴 Offline"}
+
+<br>
+
+👥 ${bedrockData.players?.online || 0}/${bedrockData.players?.max || 0}
+
+<br>
+
+⚙ ${bedrockData.version?.name || "Unknown"}
+`;
+
+}catch{}
+
+}
+
+result.innerHTML =
+html;
+
+}catch{
+
+result.innerHTML =
+"❌ Server not found";
+
+}
+
+}
+
+/* =========================
+   PASSWORD
+========================= */
+
+function generatePassword(){
+
+const chars =
+"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_-+=";
+
+let password = "";
+
+for(let i=0;i<16;i++){
+
+password += chars.charAt(
+Math.floor(
+Math.random()*chars.length
+)
+);
+
+}
+
+document.getElementById(
+"password-result"
+).innerHTML =
+password;
+
+}
+
+function copyPassword(){
+
+const text =
+document.getElementById(
+"password-result"
+).innerText;
+
+navigator.clipboard.writeText(
+text);
+
+alert(
+"Password copied!"
+);
+
+}
+
+/* =========================
+   QR GENERATOR
+========================= */
+
+function generateQR(){
+
+const text =
+document.getElementById(
+"qr-text"
+).value.trim();
+
+const result =
+document.getElementById(
+"qr-result"
+);
+
+if(!text){
+
+result.innerHTML =
+"❌ Enter text";
+
+return;
+
+}
+
+result.innerHTML =
+
+`
+<img
+id="qr-image"
+src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(text)}"
+style="
+max-width:250px;
+background:white;
+padding:10px;
+border-radius:10px;
+">
+`;
+
+}
+
+function downloadQR(){
+
+const img =
+document.getElementById(
+"qr-image"
+);
+
+if(!img){
+
+alert(
+"Generate QR first"
+);
+
+return;
+
+}
+
+const a =
+document.createElement(
+"a"
+);
+
+a.href =
+img.src;
+
+a.download =
+"qr-code.png";
+
+a.click();
+
+}
+
+/* =========================
+   COLOR PICKER
+========================= */
+
+const colorPicker =
+document.getElementById(
+"colorPicker"
+);
+
+if(colorPicker){
+
+colorPicker.addEventListener(
+"input",
+function(){
+
+const hex =
+this.value;
+
+const r =
+parseInt(
+hex.substring(1,3),
+16
+);
+
+const g =
+parseInt(
+hex.substring(3,5),
+16
+);
+
+const b =
+parseInt(
+hex.substring(5,7),
+16
+);
+
+document.getElementById(
+"color-result"
+).innerHTML =
+
+`
+HEX: ${hex}
+
+<br><br>
+
+RGB: rgb(${r}, ${g}, ${b})
+`;
+
+});
+
+}
+
+/* =========================
+   MOTD FORMATTER
+========================= */
+
+function formatMOTD(){
+
+const text =
+document.getElementById(
+"motd-input"
+).value;
+
+const formatted =
+text.replaceAll("&","§");
+
+document.getElementById(
+"motd-result"
+).innerHTML =
+
+`
+Formatted MOTD:
+
+<br><br>
+
+${formatted}
+`;
+
+}
+
+/* =========================
+   USERNAME LOOKUP
+========================= */
+
+async function lookupUsername(){
+
+const username =
+document.getElementById(
+"mc-username"
+).value.trim();
+
+const result =
+document.getElementById(
+"username-result"
+);
+
+if(!username){
+
+result.innerHTML =
+"❌ Enter username";
+
+return;
+
+}
+
+result.innerHTML =
+"Looking up...";
+
+try{
+
+const res =
+await fetch(
+`https://api.mojang.com/users/profiles/minecraft/${username}`
+);
+
+if(!res.ok){
+
+throw new Error();
+
+}
+
+const data =
+await res.json();
+
+result.innerHTML =
+
+`
+👤 Username:
+${data.name}
+
+<br><br>
+
+🆔 UUID:
+
+${data.id}
+`;
+
+}catch{
+
+result.innerHTML =
+"❌ Username not found";
+
+}
+
+}
+
+/* =========================
+   CLOCK
+========================= */
+
+function updateClock(){
+
+const now =
+new Date();
+
+const date =
+now.toLocaleDateString(
+'en-IN',
+{
+weekday:'long',
+year:'numeric',
+month:'long',
+day:'numeric'
+}
+);
+
+const time =
+now.toLocaleTimeString(
+'en-IN'
+);
+
+document.getElementById(
+"clock-result"
+).innerHTML =
+
+`
+📅 ${date}
+
+<br><br>
+
+🕒 ${time}
+`;
+
+}
+
+updateClock();
+
+setInterval(
+updateClock,
+1000
+);
+
+/* =========================
+   PARTICLES
+========================= */
+
+const canvas =
+document.getElementById(
+"particles"
+);
+
+const ctx =
+canvas.getContext("2d");
+
+function resizeCanvas(){
+
+canvas.width =
+window.innerWidth;
+
+canvas.height =
+window.innerHeight;
+
+}
+
+resizeCanvas();
+
+window.addEventListener(
+"resize",
+resizeCanvas
+);
+
+const particles=[];
+
+for(let i=0;i<100;i++){
+
+particles.push({
+
+x:Math.random()*canvas.width,
+y:Math.random()*canvas.height,
+size:Math.random()*2+1,
+vx:Math.random()*0.4-0.2,
+vy:Math.random()*0.4-0.2
+
+});
+
+}
+
+function animate(){
+
+ctx.clearRect(
+0,0,
+canvas.width,
+canvas.height
+);
+
+particles.forEach(p=>{
+
+p.x += p.vx;
+p.y += p.vy;
+
+if(p.x<0)p.x=canvas.width;
+if(p.x>canvas.width)p.x=0;
+
+if(p.y<0)p.y=canvas.height;
+if(p.y>canvas.height)p.y=0;
+
+ctx.beginPath();
+
+ctx.arc(
+p.x,
+p.y,
+p.size,
+0,
+Math.PI*2
+);
+
+ctx.fillStyle =
+"#00f7ff";
+
+ctx.fill();
+
+});
+
+requestAnimationFrame(
+animate
+);
+
+}
+
+animate();
+
+</script>
+
+</body>
+</html>
