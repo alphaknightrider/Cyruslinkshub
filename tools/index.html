@@ -10,19 +10,18 @@ content="width=device-width, initial-scale=1.0">
 
 <title>CyrusLinksHub Tools</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;800&display=swap"
+<link
+href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;800&display=swap"
 rel="stylesheet">
 
 <style>
 
 :root{
-
 --bg:#05010a;
 --card:#0d0818;
 --cyan:#00f7ff;
---red:#ff003c;
+--red:#ff0048;
 --glass:rgba(255,255,255,.05);
-
 }
 
 *{
@@ -32,276 +31,161 @@ box-sizing:border-box;
 }
 
 body{
-
 font-family:'Orbitron',sans-serif;
-
 background:var(--bg);
-
 color:white;
-
 overflow-x:hidden;
-
 }
 
 #particles{
-
 position:fixed;
-
 top:0;
 left:0;
-
 width:100%;
 height:100%;
-
 z-index:-1;
-
 }
 
 header{
-
 position:sticky;
-
 top:0;
-
 z-index:999;
-
 background:rgba(0,0,0,.8);
-
 backdrop-filter:blur(12px);
-
-padding:15px 20px;
-
+padding:15px;
 border-bottom:1px solid rgba(0,247,255,.2);
-
 }
 
 .logo{
-
 display:flex;
-
 justify-content:center;
-
 align-items:center;
-
 gap:15px;
-
 }
 
 .logo-circle{
-
 width:60px;
 height:60px;
-
 border-radius:50%;
-
 border:2px solid var(--cyan);
-
 display:flex;
-
-justify-content:center;
-
 align-items:center;
-
+justify-content:center;
 box-shadow:0 0 20px var(--cyan);
-
 animation:spin 8s linear infinite;
-
 }
 
 .logo-circle span{
-
-color:var(--cyan);
-
-font-weight:bold;
-
 font-size:20px;
-
+font-weight:bold;
+color:var(--cyan);
 }
 
 @keyframes spin{
-
-from{
-transform:rotate(0deg);
-}
-
-to{
-transform:rotate(360deg);
-}
-
+from{transform:rotate(0deg);}
+to{transform:rotate(360deg);}
 }
 
 .logo h1{
-
 color:var(--red);
-
 text-shadow:0 0 15px var(--red);
-
 }
 
 .hero{
-
 text-align:center;
-
 padding:70px 20px;
-
 }
 
 .hero h2{
-
 font-size:3rem;
-
 color:var(--red);
-
 text-shadow:0 0 20px var(--red);
-
-margin-bottom:15px;
-
 }
 
 .hero p{
-
 color:#aaa;
-
+margin-top:10px;
 }
 
 .section-title{
-
 text-align:center;
-
 font-size:2rem;
-
 margin:40px 0 20px;
-
 color:var(--cyan);
-
 text-shadow:0 0 15px var(--cyan);
-
 }
 
 .tools-grid{
-
 max-width:1300px;
-
 margin:auto;
-
 padding:20px;
-
 display:grid;
-
 grid-template-columns:
 repeat(auto-fit,minmax(320px,1fr));
-
 gap:25px;
-
 }
 
 .tool-card{
-
 background:var(--glass);
-
 border:1px solid rgba(0,247,255,.2);
-
 border-radius:15px;
-
 padding:25px;
-
 backdrop-filter:blur(12px);
-
 transition:.3s;
-
 }
 
 .tool-card:hover{
-
 transform:translateY(-5px);
-
-box-shadow:0 0 20px rgba(0,247,255,.25);
-
+box-shadow:0 0 25px rgba(0,247,255,.25);
 }
 
 .tool-card h3{
-
 color:var(--cyan);
-
 margin-bottom:15px;
-
 }
 
 .tool-card input,
 .tool-card select{
-
 width:100%;
-
 padding:12px;
-
 border:none;
-
 outline:none;
-
 background:#111;
-
 color:white;
-
 border-radius:8px;
-
 margin-bottom:10px;
-
 font-family:'Orbitron',sans-serif;
-
 }
 
 .tool-btn{
-
 width:100%;
-
 padding:12px;
-
 background:var(--red);
-
-border:none;
-
-border-radius:8px;
-
-cursor:pointer;
-
 color:white;
-
+border:none;
+border-radius:8px;
+cursor:pointer;
 font-weight:bold;
-
 margin-top:5px;
-
 }
 
 .tool-btn:hover{
-
 box-shadow:0 0 15px var(--red);
-
 }
 
 .result{
-
 margin-top:15px;
-
 line-height:1.7;
-
 color:#ddd;
-
 word-break:break-word;
-
 }
 
 footer{
-
 text-align:center;
-
 padding:30px;
-
 margin-top:40px;
-
 border-top:1px solid rgba(0,247,255,.2);
-
 color:#888;
-
 }
 
 </style>
@@ -343,7 +227,8 @@ Minecraft • Utilities • Network Tools
 </h2>
 
 <div class="tools-grid">
-  <!-- MINECRAFT STATUS CHECKER -->
+
+<!-- MINECRAFT STATUS -->
 
 <div class="tool-card">
 
@@ -371,13 +256,13 @@ Check Server
 id="mc-result"
 class="result">
 
-Enter a server IP.
+Enter server IP.
 
 </div>
 
 </div>
 
-<!-- PAPERMC BUILD CHECKER -->
+<!-- PAPERMC CHECKER -->
 
 <div class="tool-card">
 
@@ -403,7 +288,82 @@ Get Build Number
 id="paper-result"
 class="result">
 
-Select a version.
+Select version.
+
+</div>
+
+</div>
+<!-- MINECRAFT SKIN DOWNLOADER -->
+
+<div class="tool-card">
+
+<h3>🧑 Minecraft Skin Downloader</h3>
+
+<input
+type="text"
+id="skin-username"
+placeholder="Minecraft Username">
+
+<button
+class="tool-btn"
+onclick="downloadSkin()">
+
+Get Skin
+
+</button>
+
+<div
+id="skin-result"
+class="result">
+
+Enter username.
+
+</div>
+
+</div>
+
+<!-- MINECRAFT TEXT GENERATOR -->
+
+<div class="tool-card">
+
+<h3>🎨 Minecraft Text Generator</h3>
+
+<input
+type="text"
+id="logoText"
+placeholder="Enter text">
+
+<input
+type="color"
+id="logoColor"
+value="#00f7ff">
+
+<label>
+
+<input
+type="checkbox"
+id="logoGlow"
+checked>
+
+ Glow Effect
+
+</label>
+
+<br><br>
+
+<button
+class="tool-btn"
+onclick="generateLogo()">
+
+Generate Text
+
+</button>
+
+<div
+id="logoPreview"
+class="result">
+
+Preview will appear here.
 
 </div>
 
@@ -418,27 +378,42 @@ Select a version.
 <div class="result">
 
 <span style="color:#000000">§0 Black</span><br>
+
 <span style="color:#0000AA">§1 Dark Blue</span><br>
+
 <span style="color:#00AA00">§2 Dark Green</span><br>
+
 <span style="color:#00AAAA">§3 Dark Aqua</span><br>
+
 <span style="color:#AA0000">§4 Dark Red</span><br>
+
 <span style="color:#AA00AA">§5 Dark Purple</span><br>
+
 <span style="color:#FFAA00">§6 Gold</span><br>
+
 <span style="color:#AAAAAA">§7 Gray</span><br>
+
 <span style="color:#555555">§8 Dark Gray</span><br>
+
 <span style="color:#5555FF">§9 Blue</span><br>
+
 <span style="color:#55FF55">§a Green</span><br>
+
 <span style="color:#55FFFF">§b Aqua</span><br>
+
 <span style="color:#FF5555">§c Red</span><br>
+
 <span style="color:#FF55FF">§d Pink</span><br>
+
 <span style="color:#FFFF55">§e Yellow</span><br>
+
 <span style="color:#FFFFFF">§f White</span>
 
 </div>
 
 </div>
 
-<!-- MINECRAFT FORMATTING -->
+<!-- MINECRAFT FORMATTING CODES -->
 
 <div class="tool-card">
 
@@ -469,7 +444,8 @@ Select a version.
 </h2>
 
 <div class="tools-grid">
-  <!-- PASSWORD GENERATOR -->
+
+<!-- PASSWORD GENERATOR -->
 
 <div class="tool-card">
 
@@ -553,7 +529,6 @@ Loading...
 </div>
 
 </div>
-
 </div>
 
 <h2 class="section-title">
@@ -585,7 +560,7 @@ Check Website
 id="website-result"
 class="result">
 
-Enter a website URL.
+Enter website URL.
 
 </div>
 
@@ -606,10 +581,12 @@ padding:20px;
 🏠 Navigation
 </h3>
 
-<a href="/"
+<a
+href="/"
 style="text-decoration:none;">
 
-<button class="tool-btn">
+<button
+class="tool-btn">
 
 Back To Home
 
@@ -638,10 +615,11 @@ color:#00f7ff;
 </p>
 
 </footer>
+
 <script>
 
 /* =========================
-   LOAD PAPERMC VERSIONS
+   PAPERMC
 ========================= */
 
 async function loadPaperVersions(){
@@ -661,20 +639,17 @@ await fetch(
 const data =
 await res.json();
 
-select.innerHTML = "";
+select.innerHTML="";
 
-data.versions.reverse().forEach(version=>{
+data.versions.reverse().forEach(v=>{
 
 const option =
 document.createElement(
 "option"
 );
 
-option.value =
-version;
-
-option.textContent =
-version;
+option.value=v;
+option.textContent=v;
 
 select.appendChild(
 option
@@ -685,17 +660,13 @@ option
 }catch{
 
 select.innerHTML =
-"<option>Failed to load</option>";
+"<option>Failed</option>";
 
 }
 
 }
 
 loadPaperVersions();
-
-/* =========================
-   PAPER BUILD CHECKER
-========================= */
 
 async function getPaperBuild(){
 
@@ -722,19 +693,20 @@ await fetch(
 const data =
 await res.json();
 
-const latestBuild =
+const build =
 data.builds[
-data.builds.length - 1
+data.builds.length-1
 ];
 
 result.innerHTML =
 `
-📦 Version: ${version}
+📦 Version:
+${version}
 
 <br><br>
 
-🔨 Latest Build:
-#${latestBuild}
+🔨 Build:
+#${build}
 `;
 
 }catch{
@@ -747,7 +719,7 @@ result.innerHTML =
 }
 
 /* =========================
-   MINECRAFT STATUS
+   MC STATUS
 ========================= */
 
 async function checkMinecraft(){
@@ -755,11 +727,6 @@ async function checkMinecraft(){
 const ip =
 document.getElementById(
 "mc-ip"
-).value.trim();
-
-const port =
-document.getElementById(
-"mc-port"
 ).value.trim();
 
 const result =
@@ -770,7 +737,7 @@ document.getElementById(
 if(!ip){
 
 result.innerHTML =
-"❌ Enter server IP";
+"❌ Enter IP";
 
 return;
 
@@ -781,72 +748,28 @@ result.innerHTML =
 
 try{
 
-const javaRes =
+const res =
 await fetch(
 `https://api.mcstatus.io/v2/status/java/${ip}`
 );
 
-const javaData =
-await javaRes.json();
-
-let html =
-`
-🎮 JAVA EDITION
-
-<br><br>
-
-${javaData.online ? "🟢 Online" : "🔴 Offline"}
-
-<br>
-
-👥 Players:
-${javaData.players?.online || 0}/${javaData.players?.max || 0}
-
-<br>
-
-⚙ Version:
-${javaData.version?.name_clean || "Unknown"}
-`;
-
-if(port){
-
-try{
-
-const bedrockRes =
-await fetch(
-`https://api.mcstatus.io/v2/status/bedrock/${ip}:${port}`
-);
-
-const bedrockData =
-await bedrockRes.json();
-
-html +=
-`
-<hr style="margin:15px 0;">
-
-📱 BEDROCK EDITION
-
-<br><br>
-
-${bedrockData.online ? "🟢 Online" : "🔴 Offline"}
-
-<br>
-
-👥 Players:
-${bedrockData.players?.online || 0}/${bedrockData.players?.max || 0}
-
-<br>
-
-⚙ Version:
-${bedrockData.version?.name || "Unknown"}
-`;
-
-}catch{}
-
-}
+const data =
+await res.json();
 
 result.innerHTML =
-html;
+`
+${data.online ? "🟢 Online" : "🔴 Offline"}
+
+<br><br>
+
+👥 Players:
+${data.players?.online || 0}/${data.players?.max || 0}
+
+<br><br>
+
+⚙ Version:
+${data.version?.name_clean || "Unknown"}
+`;
 
 }catch{
 
@@ -858,19 +781,134 @@ result.innerHTML =
 }
 
 /* =========================
-   PASSWORD GENERATOR
+   SKIN DOWNLOADER
+========================= */
+
+async function downloadSkin(){
+
+const username =
+document.getElementById(
+"skin-username"
+).value.trim();
+
+const result =
+document.getElementById(
+"skin-result"
+);
+
+if(!username){
+
+result.innerHTML =
+"❌ Enter username";
+
+return;
+
+}
+
+result.innerHTML =
+"Loading...";
+
+try{
+
+const res =
+await fetch(
+`https://api.mojang.com/users/profiles/minecraft/${username}`
+);
+
+const data =
+await res.json();
+
+result.innerHTML =
+`
+<img
+src="https://mc-heads.net/body/${data.id}/150"
+style="
+display:block;
+margin:auto;
+">
+
+<br>
+
+<a
+href="https://mc-heads.net/skin/${data.id}"
+target="_blank">
+
+<button
+class="tool-btn">
+
+⬇ Download Skin
+
+</button>
+
+</a>
+`;
+
+}catch{
+
+result.innerHTML =
+"❌ Username not found";
+
+}
+
+}
+
+/* =========================
+   TEXT GENERATOR
+========================= */
+
+function generateLogo(){
+
+const text =
+document.getElementById(
+"logoText"
+).value || "Minecraft";
+
+const color =
+document.getElementById(
+"logoColor"
+).value;
+
+const glow =
+document.getElementById(
+"logoGlow"
+).checked;
+
+document.getElementById(
+"logoPreview"
+).innerHTML =
+`
+<div style="
+font-size:40px;
+font-weight:900;
+text-align:center;
+color:${color};
+text-shadow:${glow ?
+`0 0 10px ${color},
+0 0 20px ${color},
+0 0 30px ${color}` :
+'none'};
+">
+${text}
+</div>
+`;
+
+}
+
+/* =========================
+   PASSWORD
 ========================= */
 
 function generatePassword(){
 
 const chars =
-"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_-+=";
+"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*";
 
-let password = "";
+let password="";
 
 for(let i=0;i<16;i++){
 
-password += chars.charAt(
+password +=
+chars.charAt(
 Math.floor(
 Math.random()*chars.length
 )
@@ -887,22 +925,20 @@ password;
 
 function copyPassword(){
 
-const text =
+navigator.clipboard.writeText(
 document.getElementById(
 "password-result"
-).innerText;
-
-navigator.clipboard.writeText(
-text);
+).innerText
+);
 
 alert(
-"Password copied!"
+"Copied!"
 );
 
 }
 
 /* =========================
-   QR GENERATOR
+   QR
 ========================= */
 
 function generateQR(){
@@ -910,23 +946,11 @@ function generateQR(){
 const text =
 document.getElementById(
 "qr-text"
-).value.trim();
+).value;
 
-const result =
 document.getElementById(
 "qr-result"
-);
-
-if(!text){
-
-result.innerHTML =
-"❌ Enter text";
-
-return;
-
-}
-
-result.innerHTML =
+).innerHTML =
 `
 <img
 id="qr-image"
@@ -963,18 +987,16 @@ document.createElement(
 "a"
 );
 
-a.href =
-img.src;
+a.href=img.src;
 
-a.download =
-"qr-code.png";
+a.download="qr.png";
 
 a.click();
 
 }
 
 /* =========================
-   LIVE CLOCK
+   CLOCK
 ========================= */
 
 function updateClock(){
@@ -982,31 +1004,15 @@ function updateClock(){
 const now =
 new Date();
 
-const date =
-now.toLocaleDateString(
-'en-IN',
-{
-weekday:'long',
-year:'numeric',
-month:'long',
-day:'numeric'
-}
-);
-
-const time =
-now.toLocaleTimeString(
-'en-IN'
-);
-
 document.getElementById(
 "clock-result"
 ).innerHTML =
 `
-📅 ${date}
+📅 ${now.toLocaleDateString()}
 
 <br><br>
 
-🕒 ${time}
+🕒 ${now.toLocaleTimeString()}
 `;
 
 }
@@ -1019,7 +1025,7 @@ updateClock,
 );
 
 /* =========================
-   WEBSITE STATUS CHECKER
+   WEBSITE CHECKER
 ========================= */
 
 async function checkWebsite(){
@@ -1056,29 +1062,28 @@ await fetch(
 );
 
 const ping =
-Date.now() - start;
+Date.now()-start;
 
 result.innerHTML =
 `
-🟢 Website Online
+🟢 Online
 
 <br><br>
 
-⚡ Response Time:
-${ping} ms
+⚡ ${ping} ms
 `;
 
 }catch{
 
 result.innerHTML =
-"🔴 Website Offline or Blocked";
+"🔴 Offline";
 
 }
 
 }
 
 /* =========================
-   PARTICLE BACKGROUND
+   PARTICLES
 ========================= */
 
 const canvas =
@@ -1091,7 +1096,7 @@ canvas.getContext(
 "2d"
 );
 
-function resizeCanvas(){
+function resize(){
 
 canvas.width =
 window.innerWidth;
@@ -1101,14 +1106,14 @@ window.innerHeight;
 
 }
 
-resizeCanvas();
+resize();
 
 window.addEventListener(
 "resize",
-resizeCanvas
+resize
 );
 
-const particles = [];
+const particles=[];
 
 for(let i=0;i<100;i++){
 
@@ -1116,9 +1121,7 @@ particles.push({
 
 x:Math.random()*canvas.width,
 y:Math.random()*canvas.height,
-
 size:Math.random()*2+1,
-
 vx:Math.random()*0.4-0.2,
 vy:Math.random()*0.4-0.2
 
@@ -1129,20 +1132,18 @@ vy:Math.random()*0.4-0.2
 function animate(){
 
 ctx.clearRect(
-0,
-0,
+0,0,
 canvas.width,
 canvas.height
 );
 
 particles.forEach(p=>{
 
-p.x += p.vx;
-p.y += p.vy;
+p.x+=p.vx;
+p.y+=p.vy;
 
 if(p.x<0)p.x=canvas.width;
 if(p.x>canvas.width)p.x=0;
-
 if(p.y<0)p.y=canvas.height;
 if(p.y>canvas.height)p.y=0;
 
