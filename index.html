@@ -396,12 +396,69 @@ box-shadow:0 0 10px #5865F2;
 }
 
 }
-    </style>
+    <.navbar{
+position:sticky;
+top:0;
+z-index:9999;
+display:flex;
+gap:12px;
+align-items:center;
+overflow-x:auto;
+padding:15px;
+background:rgba(5,1,10,.95);
+backdrop-filter:blur(12px);
+border-bottom:2px solid #00f7ff;
+}
+
+.navbar::-webkit-scrollbar{
+display:none;
+}
+
+.nav-item{
+text-decoration:none;
+color:#fff;
+padding:12px 22px;
+border-radius:20px;
+background:rgba(255,255,255,.05);
+border:1px solid rgba(255,255,255,.1);
+white-space:nowrap;
+transition:.3s;
+}
+
+.nav-item:hover{
+background:#ff0048;
+box-shadow:0 0 15px #ff0048;
+}>
 </head>
 
 <body>
 
 <canvas id="particles"></canvas>
+    <body>
+
+<canvas id="particles"></canvas>
+
+<nav class="navbar">
+
+<a href="#top" class="nav-item active">🏠 Home</a>
+
+<a href="tools.html" class="nav-item">🔧 Tools</a>
+
+<a href="games.html" class="nav-item">🎮 Games</a>
+
+<a href="movies.html" class="nav-item">🎬 Movies</a>
+
+<a href="apk.html" class="nav-item">📱 APKs</a>
+
+<a href="music.html" class="nav-item">🎵 Music</a>
+
+<a href="#about" class="nav-item">ℹ️ About</a>
+
+</nav>
+
+<header>
+...
+</header>
 
 <!-- SETTINGS MODAL -->
 <div class="modal-overlay" id="settingsModal">
