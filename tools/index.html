@@ -4,172 +4,188 @@
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Tools - CyrusLinksHub</title>
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
 
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&display=swap" rel="stylesheet">
+<title>CyrusLinksHub Tools</title>
+
+<link
+href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;800&display=swap"
+rel="stylesheet">
 
 <style>
 
 :root{
 --bg:#05010a;
---card:#111827;
---red:#ff0048;
+--card:#0d0818;
 --cyan:#00f7ff;
---text:#ffffff;
+--red:#ff0048;
+--glass:rgba(255,255,255,.05);
 }
 
 *{
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:'Orbitron',sans-serif;
 }
 
 body{
+font-family:'Orbitron',sans-serif;
 background:var(--bg);
-color:var(--text);
-min-height:100vh;
+color:white;
+overflow-x:hidden;
 }
 
-/* NAVBAR */
+#particles{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+z-index:-1;
+}
 
-.navbar{
+header{
 position:sticky;
 top:0;
-z-index:9999;
-display:flex;
-gap:12px;
-overflow-x:auto;
+z-index:999;
+background:rgba(0,0,0,.8);
+backdrop-filter:blur(12px);
 padding:15px;
-background:#0b0b12;
-border-bottom:2px solid var(--cyan);
+border-bottom:1px solid rgba(0,247,255,.2);
 }
 
-.navbar::-webkit-scrollbar{
-display:none;
+.logo{
+display:flex;
+justify-content:center;
+align-items:center;
+gap:15px;
 }
 
-.nav-item{
-text-decoration:none;
-color:white;
-padding:12px 20px;
-border-radius:20px;
-background:#1a1a25;
-white-space:nowrap;
-transition:.3s;
+.logo-circle{
+width:60px;
+height:60px;
+border-radius:50%;
+border:2px solid var(--cyan);
+display:flex;
+align-items:center;
+justify-content:center;
+box-shadow:0 0 20px var(--cyan);
+animation:spin 8s linear infinite;
 }
 
-.nav-item:hover{
-background:var(--red);
+.logo-circle span{
+font-size:20px;
+font-weight:bold;
+color:var(--cyan);
 }
 
-.nav-item.active{
-border:1px solid var(--cyan);
-box-shadow:0 0 15px var(--cyan);
+@keyframes spin{
+from{transform:rotate(0deg);}
+to{transform:rotate(360deg);}
 }
 
-/* HERO */
+.logo h1{
+color:var(--red);
+text-shadow:0 0 15px var(--red);
+}
 
 .hero{
 text-align:center;
-padding:60px 20px;
+padding:70px 20px;
 }
 
-.hero h1{
+.hero h2{
 font-size:3rem;
 color:var(--red);
-text-shadow:0 0 15px var(--red);
-margin-bottom:15px;
+text-shadow:0 0 20px var(--red);
 }
 
 .hero p{
 color:#aaa;
-max-width:700px;
-margin:auto;
-}
-
-/* SEARCH */
-
-.search-box{
-max-width:700px;
-margin:30px auto;
-padding:0 20px;
-}
-
-.search-box input{
-width:100%;
-padding:15px;
-border:none;
-outline:none;
-border-radius:12px;
-background:#12121b;
-color:white;
-font-size:16px;
-border:1px solid #333;
-}
-
-/* SECTION */
-
-.section{
-padding:30px 20px;
-max-width:1200px;
-margin:auto;
+margin-top:10px;
 }
 
 .section-title{
-font-size:2rem;
-margin-bottom:20px;
-color:var(--cyan);
 text-align:center;
+font-size:2rem;
+margin:40px 0 20px;
+color:var(--cyan);
+text-shadow:0 0 15px var(--cyan);
 }
 
-/* TOOL GRID */
-
 .tools-grid{
+max-width:1300px;
+margin:auto;
+padding:20px;
 display:grid;
 grid-template-columns:
-repeat(auto-fit,minmax(280px,1fr));
-gap:20px;
+repeat(auto-fit,minmax(320px,1fr));
+gap:25px;
 }
 
 .tool-card{
-background:var(--card);
-border:1px solid rgba(255,255,255,.08);
+background:var(--glass);
+border:1px solid rgba(0,247,255,.2);
 border-radius:15px;
-padding:20px;
+padding:25px;
+backdrop-filter:blur(12px);
 transition:.3s;
 }
 
 .tool-card:hover{
 transform:translateY(-5px);
-border-color:var(--cyan);
+box-shadow:0 0 25px rgba(0,247,255,.25);
 }
 
 .tool-card h3{
-margin-bottom:10px;
 color:var(--cyan);
+margin-bottom:15px;
 }
 
-.tool-card p{
-color:#bbb;
-margin-bottom:15px;
-font-size:14px;
+.tool-card input,
+.tool-card select{
+width:100%;
+padding:12px;
+border:none;
+outline:none;
+background:#111;
+color:white;
+border-radius:8px;
+margin-bottom:10px;
+font-family:'Orbitron',sans-serif;
 }
 
 .tool-btn{
-display:inline-block;
-padding:10px 18px;
+width:100%;
+padding:12px;
 background:var(--red);
 color:white;
-text-decoration:none;
+border:none;
 border-radius:8px;
+cursor:pointer;
+font-weight:bold;
+margin-top:5px;
 }
 
 .tool-btn:hover{
-background:var(--cyan);
-color:black;
+box-shadow:0 0 15px var(--red);
+}
+
+.result{
+margin-top:15px;
+line-height:1.7;
+color:#ddd;
+word-break:break-word;
+}
+
+footer{
+text-align:center;
+padding:30px;
+margin-top:40px;
+border-top:1px solid rgba(0,247,255,.2);
+color:#888;
 }
 
 </style>
@@ -178,437 +194,115 @@ color:black;
 
 <body>
 
-<nav class="navbar">
+<canvas id="particles"></canvas>
 
-<a href="/" class="nav-item">
-🏠 Home
-</a>
+<header>
 
-<a href="tools" class="nav-item active">
-🔧 Tools
-</a>
+<div class="logo">
 
-<a href="games" class="nav-item">
-🎮 Games
-</a>
+<div class="logo-circle">
+<span>CL</span>
+</div>
 
-<a href="movies" class="nav-item">
-🎬 Movies
-</a>
+<h1>CyrusLinksHub Tools</h1>
 
-<a href="apk" class="nav-item">
-📱 APKs
-</a>
+</div>
 
-
-<a href="about" class="nav-item">
-ℹ️ About
-</a>
-
-</nav>
+</header>
 
 <section class="hero">
 
-<h1>🔧 Tools Hub</h1>
+<h2>
+🔧 TOOLS HUB
+</h2>
 
 <p>
-Access all Minecraft tools, utility tools,
-generators, converters and status checkers.
+Minecraft • Utilities • Network Tools
 </p>
 
 </section>
 
-<div class="search-box">
-<input
-type="text"
-id="toolSearch"
-placeholder="Search tools...">
-</div>
-
-<section class="section">
-
-</div>
-
-  
-</div>
-
-</section>
-
-<section class="section">
-
 <h2 class="section-title">
-🛠️ Utility Tools
-
-<!-- PASSWORD GENERATOR -->
-
-<section
-class="section"
-id="password-generator">
-
-<h2 class="section-title">
-🎲 Password Generator
+🎮 Minecraft Tools
 </h2>
 
+<div class="tools-grid">
+
+<!-- MINECRAFT STATUS -->
+
 <div class="tool-card">
+
+<h3>🎮 Minecraft Java + Bedrock Status</h3>
+
+<input
+type="text"
+id="mc-ip"
+placeholder="play.hypixel.net">
 
 <input
 type="number"
-id="passwordLength"
-placeholder="Length"
-value="16"
-style="width:100%;padding:12px;margin-bottom:10px;">
+id="mc-port"
+placeholder="19132 (Bedrock Optional)">
 
 <button
 class="tool-btn"
-onclick="generatePassword()">
+onclick="checkMinecraft()">
 
-Generate Password
-
-</button>
-
-<br><br>
-
-<input
-type="text"
-id="generatedPassword"
-readonly
-style="width:100%;padding:12px;">
-
-</div>
-
-</section>
-
-<!-- QR GENERATOR -->
-
-<section
-class="section"
-id="qr-generator">
-
-<h2 class="section-title">
-📱 QR Code Generator
-</h2>
-
-<div class="tool-card">
-
-<input
-type="text"
-id="qrInput"
-placeholder="Enter text or URL"
-style="width:100%;padding:12px;">
-
-<br><br>
-
-<button
-class="tool-btn"
-onclick="generateQR()">
-
-Generate QR
+Check Server
 
 </button>
 
-<br><br>
+<div
+id="mc-result"
+class="result">
 
-<div id="qrResult"></div>
-
-</div>
-
-</section>
-
-<!-- WEBSITE PING -->
-
-<section
-class="section"
-id="website-ping">
-
-<h2 class="section-title">
-🌐 Website Ping Checker
-</h2>
-
-<div class="tool-card">
-
-<input
-type="text"
-id="websiteUrl"
-placeholder="https://example.com"
-style="width:100%;padding:12px;">
-
-<br><br>
-
-<button
-class="tool-btn"
-onclick="checkWebsite()">
-
-Check Website
-
-</button>
-
-<br><br>
-
-<div id="websiteResult"></div>
+Enter server IP.
 
 </div>
 
-</section>
-<!-- MINECRAFT SERVER STATUS -->
+</div>
 
-<section
-class="section"
-id="mc-status">
-
-<h2 class="section-title">
-🖥️ Minecraft Server Status
-</h2>
+<!-- PAPERMC CHECKER -->
 
 <div class="tool-card">
 
-<input
-type="text"
-id="serverIp"
-placeholder="Server IP"
-style="width:100%;padding:12px;margin-bottom:10px;">
+<h3>📦 PaperMC Build Checker</h3>
 
-<input
-type="number"
-id="serverPort"
-placeholder="Port (Optional)"
-style="width:100%;padding:12px;margin-bottom:10px;">
+<select id="paper-version">
 
-<select
-id="serverType"
-style="width:100%;padding:12px;margin-bottom:10px;">
-
-<option value="java">
-Java Edition
-</option>
-
-<option value="bedrock">
-Bedrock Edition
+<option>
+Loading versions...
 </option>
 
 </select>
 
 <button
 class="tool-btn"
-onclick="checkMinecraftServer()">
-
-Check Server
-
-</button>
-
-<br><br>
-
-<div id="mcStatusResult"></div>
-
-</div>
-
-</section>
-
-<!-- PAPER BUILD CHECKER -->
-
-<section
-class="section"
-id="paper-build">
-
-<h2 class="section-title">
-📦 Paper Build Checker
-</h2>
-
-<div class="tool-card">
-
-<input
-type="text"
-id="paperVersion"
-placeholder="Example: 1.21.4"
-style="width:100%;padding:12px;">
-
-<br><br>
-
-<button
-class="tool-btn"
 onclick="getPaperBuild()">
 
-Get Latest Build
+Get Build Number
 
 </button>
 
-<br><br>
+<div
+id="paper-result"
+class="result">
 
-<div id="paperBuildResult"></div>
-
-</div>
-
-</section>
-
-<!-- MINECRAFT COLOR CODES -->
-
-<section
-class="section"
-id="mc-codes">
-
-<h2 class="section-title">
-✨ Minecraft Color & Format Codes
-</h2>
-
-<div class="tool-card">
-
-<table
-style="
-width:100%;
-border-collapse:collapse;
-text-align:left;
-">
-
-<tr>
-<th>Code</th>
-<th>Name</th>
-<th>Preview</th>
-</tr>
-
-<tr>
-<td>§0</td>
-<td>Black</td>
-<td style="color:black;">Black</td>
-</tr>
-
-<tr>
-<td>§1</td>
-<td>Dark Blue</td>
-<td style="color:#0000AA;">Dark Blue</td>
-</tr>
-
-<tr>
-<td>§2</td>
-<td>Dark Green</td>
-<td style="color:#00AA00;">Dark Green</td>
-</tr>
-
-<tr>
-<td>§3</td>
-<td>Dark Aqua</td>
-<td style="color:#00AAAA;">Dark Aqua</td>
-</tr>
-
-<tr>
-<td>§4</td>
-<td>Dark Red</td>
-<td style="color:#AA0000;">Dark Red</td>
-</tr>
-
-<tr>
-<td>§5</td>
-<td>Purple</td>
-<td style="color:#AA00AA;">Purple</td>
-</tr>
-
-<tr>
-<td>§6</td>
-<td>Gold</td>
-<td style="color:#FFAA00;">Gold</td>
-</tr>
-
-<tr>
-<td>§7</td>
-<td>Gray</td>
-<td style="color:#AAAAAA;">Gray</td>
-</tr>
-
-<tr>
-<td>§8</td>
-<td>Dark Gray</td>
-<td style="color:#555555;">Dark Gray</td>
-</tr>
-
-<tr>
-<td>§9</td>
-<td>Blue</td>
-<td style="color:#5555FF;">Blue</td>
-</tr>
-
-<tr>
-<td>§a</td>
-<td>Green</td>
-<td style="color:#55FF55;">Green</td>
-</tr>
-
-<tr>
-<td>§b</td>
-<td>Aqua</td>
-<td style="color:#55FFFF;">Aqua</td>
-</tr>
-
-<tr>
-<td>§c</td>
-<td>Red</td>
-<td style="color:#FF5555;">Red</td>
-</tr>
-
-<tr>
-<td>§d</td>
-<td>Light Purple</td>
-<td style="color:#FF55FF;">Light Purple</td>
-</tr>
-
-<tr>
-<td>§e</td>
-<td>Yellow</td>
-<td style="color:#FFFF55;">Yellow</td>
-</tr>
-
-<tr>
-<td>§f</td>
-<td>White</td>
-<td style="color:white;">White</td>
-</tr>
-
-<tr>
-<td>§l</td>
-<td>Bold</td>
-<td><b>Bold</b></td>
-</tr>
-
-<tr>
-<td>§o</td>
-<td>Italic</td>
-<td><i>Italic</i></td>
-</tr>
-
-<tr>
-<td>§n</td>
-<td>Underline</td>
-<td><u>Underline</u></td>
-</tr>
-
-<tr>
-<td>§m</td>
-<td>Strikethrough</td>
-<td><s>Strikethrough</s></td>
-</tr>
-
-</table>
+Select version.
 
 </div>
 
-</section>
-
-<!-- SKIN DOWNLOADER -->
-
-<section
-class="section"
-id="skin-downloader">
-
-<h2 class="section-title">
-👤 Minecraft Skin Downloader
-</h2>
+</div>
+<!-- MINECRAFT SKIN DOWNLOADER -->
 
 <div class="tool-card">
+
+<h3>🧑 Minecraft Skin Downloader</h3>
 
 <input
 type="text"
-id="mcUsername"
-placeholder="Minecraft Username"
-style="width:100%;padding:12px;">
-
-<br><br>
+id="skin-username"
+placeholder="Minecraft Username">
 
 <button
 class="tool-btn"
@@ -618,76 +312,867 @@ Get Skin
 
 </button>
 
+<div
+id="skin-result"
+class="result">
+
+Enter username.
+
+</div>
+
+</div>
+
+<!-- MINECRAFT TEXT GENERATOR -->
+
+<div class="tool-card">
+
+<h3>🎨 Minecraft Text Generator</h3>
+
+<input
+type="text"
+id="logoText"
+placeholder="Enter text">
+
+<input
+type="color"
+id="logoColor"
+value="#00f7ff">
+
+<label>
+
+<input
+type="checkbox"
+id="logoGlow"
+checked>
+
+ Glow Effect
+
+</label>
+
 <br><br>
 
-<div id="skinResult"></div>
+<button
+class="tool-btn"
+onclick="generateLogo()">
+
+Generate Text
+
+</button>
+
+<div
+id="logoPreview"
+class="result">
+
+Preview will appear here.
+
+</div>
+
+</div>
+
+<!-- MINECRAFT COLOR CODES -->
+
+<div class="tool-card">
+
+<h3>🎨 Minecraft Color Codes</h3>
+
+<div class="result">
+
+<span style="color:#000000">§0 Black</span><br>
+
+<span style="color:#0000AA">§1 Dark Blue</span><br>
+
+<span style="color:#00AA00">§2 Dark Green</span><br>
+
+<span style="color:#00AAAA">§3 Dark Aqua</span><br>
+
+<span style="color:#AA0000">§4 Dark Red</span><br>
+
+<span style="color:#AA00AA">§5 Dark Purple</span><br>
+
+<span style="color:#FFAA00">§6 Gold</span><br>
+
+<span style="color:#AAAAAA">§7 Gray</span><br>
+
+<span style="color:#555555">§8 Dark Gray</span><br>
+
+<span style="color:#5555FF">§9 Blue</span><br>
+
+<span style="color:#55FF55">§a Green</span><br>
+
+<span style="color:#55FFFF">§b Aqua</span><br>
+
+<span style="color:#FF5555">§c Red</span><br>
+
+<span style="color:#FF55FF">§d Pink</span><br>
+
+<span style="color:#FFFF55">§e Yellow</span><br>
+
+<span style="color:#FFFFFF">§f White</span>
+
+</div>
+
+</div>
+
+<!-- MINECRAFT FORMATTING CODES -->
+
+<div class="tool-card">
+
+<h3>✨ Minecraft Formatting Codes</h3>
+
+<div class="result">
+
+<b>§l Bold</b><br><br>
+
+<i>§o Italic</i><br><br>
+
+<u>§n Underline</u><br><br>
+
+<s>§m Strikethrough</s><br><br>
+
+§k Obfuscated / Magic Text<br><br>
+
+§r Reset Formatting
+
+</div>
+
+</div>
+
+</div>
+
+<h2 class="section-title">
+🛠 Utilities
+</h2>
+
+<div class="tools-grid">
+
+<!-- PASSWORD GENERATOR -->
+
+<div class="tool-card">
+
+<h3>🔐 Password Generator</h3>
+
+<button
+class="tool-btn"
+onclick="generatePassword()">
+
+Generate Password
+
+</button>
+
+<button
+class="tool-btn"
+onclick="copyPassword()">
+
+Copy Password
+
+</button>
+
+<div
+id="password-result"
+class="result">
+
+Generated password will appear here.
+
+</div>
+
+</div>
+
+<!-- QR GENERATOR -->
+
+<div class="tool-card">
+
+<h3>📷 QR Generator</h3>
+
+<input
+type="text"
+id="qr-text"
+placeholder="Enter URL or Text">
+
+<button
+class="tool-btn"
+onclick="generateQR()">
+
+Generate QR
+
+</button>
+
+<button
+class="tool-btn"
+onclick="downloadQR()">
+
+Download QR
+
+</button>
+
+<div
+id="qr-result"
+class="result">
+
+Enter text to generate QR.
+
+</div>
+
+</div>
+
+<!-- LIVE CLOCK -->
+
+<div class="tool-card">
+
+<h3>🕒 Live Date & Time</h3>
+
+<div
+id="clock-result"
+class="result">
+
+Loading...
+
+</div>
+
+</div>
+</div>
+
+<h2 class="section-title">
+🌐 Network Tools
+</h2>
+
+<div class="tools-grid">
+
+<!-- WEBSITE STATUS CHECKER -->
+
+<div class="tool-card">
+
+<h3>🌐 Website Status Checker</h3>
+
+<input
+type="text"
+id="website-url"
+placeholder="https://example.com">
+
+<button
+class="tool-btn"
+onclick="checkWebsite()">
+
+Check Website
+
+</button>
+
+<div
+id="website-result"
+class="result">
+
+Enter website URL.
+
+</div>
+
+</div>
+
+</div>
+
+<section
+style="
+max-width:1200px;
+margin:auto;
+padding:20px;
+">
+
+<div class="tool-card">
+
+<h3>
+🏠 Navigation
+</h3>
+
+<a
+href="/"
+style="text-decoration:none;">
+
+<button
+class="tool-btn">
+
+Back To Home
+
+</button>
+
+</a>
 
 </div>
 
 </section>
 
-<footer
+<footer>
+
+<p>
+© 2026 CyrusLinksHub
+</p>
+
+<p
 style="
-text-align:center;
-padding:30px;
-margin-top:50px;
-border-top:1px solid #333;
+margin-top:10px;
+color:#00f7ff;
 ">
 
-© 2026 CyrusLinksHub
+● ALL SYSTEMS OPERATIONAL
+
+</p>
 
 </footer>
 
 <script>
 
-async function checkMinecraftServer(){
+/* =========================
+   PAPERMC
+========================= */
 
-const ip =
-document.getElementById(
-"serverIp"
-).value;
+async function loadPaperVersions(){
 
+const select =
 document.getElementById(
-"mcStatusResult"
-).innerHTML =
-"Checking server...";
+"paper-version"
+);
+
+try{
+
+const res =
+await fetch(
+"https://api.papermc.io/v2/projects/paper"
+);
+
+const data =
+await res.json();
+
+select.innerHTML="";
+
+data.versions.reverse().forEach(v=>{
+
+const option =
+document.createElement(
+"option"
+);
+
+option.value=v;
+option.textContent=v;
+
+select.appendChild(
+option
+);
+
+});
+
+}catch{
+
+select.innerHTML =
+"<option>Failed</option>";
 
 }
+
+}
+
+loadPaperVersions();
 
 async function getPaperBuild(){
 
 const version =
 document.getElementById(
-"paperVersion"
+"paper-version"
 ).value;
 
+const result =
 document.getElementById(
-"paperBuildResult"
-).innerHTML =
-"Searching latest build for " +
-version + "...";
+"paper-result"
+);
+
+result.innerHTML =
+"Checking...";
+
+try{
+
+const res =
+await fetch(
+`https://api.papermc.io/v2/projects/paper/versions/${version}`
+);
+
+const data =
+await res.json();
+
+const build =
+data.builds[
+data.builds.length-1
+];
+
+result.innerHTML =
+`
+📦 Version:
+${version}
+
+<br><br>
+
+🔨 Build:
+#${build}
+`;
+
+}catch{
+
+result.innerHTML =
+"❌ Failed";
 
 }
 
-function downloadSkin(){
+}
+
+/* =========================
+   MC STATUS
+========================= */
+
+async function checkMinecraft(){
+
+const ip =
+document.getElementById(
+"mc-ip"
+).value.trim();
+
+const result =
+document.getElementById(
+"mc-result"
+);
+
+if(!ip){
+
+result.innerHTML =
+"❌ Enter IP";
+
+return;
+
+}
+
+result.innerHTML =
+"Checking...";
+
+try{
+
+const res =
+await fetch(
+`https://api.mcstatus.io/v2/status/java/${ip}`
+);
+
+const data =
+await res.json();
+
+result.innerHTML =
+`
+${data.online ? "🟢 Online" : "🔴 Offline"}
+
+<br><br>
+
+👥 Players:
+${data.players?.online || 0}/${data.players?.max || 0}
+
+<br><br>
+
+⚙ Version:
+${data.version?.name_clean || "Unknown"}
+`;
+
+}catch{
+
+result.innerHTML =
+"❌ Server not found";
+
+}
+
+}
+
+/* =========================
+   SKIN DOWNLOADER
+========================= */
+
+async function downloadSkin(){
 
 const username =
 document.getElementById(
-"mcUsername"
-).value;
+"skin-username"
+).value.trim();
 
+const result =
 document.getElementById(
-"skinResult"
-).innerHTML =
-'<a target="_blank" href="https://mc-heads.net/download/' +
-username +
-'">Download Skin</a>';
+"skin-result"
+);
+
+if(!username){
+
+result.innerHTML =
+"❌ Enter username";
+
+return;
 
 }
 
-</script>
+result.innerHTML =
+"Loading...";
 
-<script src="navbar.js"></script>
+try{
+
+const res =
+await fetch(
+`https://api.mojang.com/users/profiles/minecraft/${username}`
+);
+
+const data =
+await res.json();
+
+result.innerHTML =
+`
+<img
+src="https://mc-heads.net/body/${data.id}/150"
+style="
+display:block;
+margin:auto;
+">
+
+<br>
+
+<a
+href="https://mc-heads.net/skin/${data.id}"
+target="_blank">
+
+<button
+class="tool-btn">
+
+⬇ Download Skin
+
+</button>
+
+</a>
+`;
+
+}catch{
+
+result.innerHTML =
+"❌ Username not found";
+
+}
+
+}
+
+/* =========================
+   TEXT GENERATOR
+========================= */
+
+function generateLogo(){
+
+const text =
+document.getElementById(
+"logoText"
+).value || "Minecraft";
+
+const color =
+document.getElementById(
+"logoColor"
+).value;
+
+const glow =
+document.getElementById(
+"logoGlow"
+).checked;
+
+document.getElementById(
+"logoPreview"
+).innerHTML =
+`
+<div style="
+font-size:40px;
+font-weight:900;
+text-align:center;
+color:${color};
+text-shadow:${glow ?
+`0 0 10px ${color},
+0 0 20px ${color},
+0 0 30px ${color}` :
+'none'};
+">
+${text}
+</div>
+`;
+
+}
+
+/* =========================
+   PASSWORD
+========================= */
+
+function generatePassword(){
+
+const chars =
+"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*";
+
+let password="";
+
+for(let i=0;i<16;i++){
+
+password +=
+chars.charAt(
+Math.floor(
+Math.random()*chars.length
+)
+);
+
+}
+
+document.getElementById(
+"password-result"
+).innerHTML =
+password;
+
+}
+
+function copyPassword(){
+
+navigator.clipboard.writeText(
+document.getElementById(
+"password-result"
+).innerText
+);
+
+alert(
+"Copied!"
+);
+
+}
+
+/* =========================
+   QR
+========================= */
+
+function generateQR(){
+
+const text =
+document.getElementById(
+"qr-text"
+).value;
+
+document.getElementById(
+"qr-result"
+).innerHTML =
+`
+<img
+id="qr-image"
+src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(text)}"
+style="
+max-width:250px;
+background:white;
+padding:10px;
+border-radius:10px;
+">
+`;
+
+}
+
+function downloadQR(){
+
+const img =
+document.getElementById(
+"qr-image"
+);
+
+if(!img){
+
+alert(
+"Generate QR first"
+);
+
+return;
+
+}
+
+const a =
+document.createElement(
+"a"
+);
+
+a.href=img.src;
+
+a.download="qr.png";
+
+a.click();
+
+}
+
+/* =========================
+   CLOCK
+========================= */
+
+function updateClock(){
+
+const now =
+new Date();
+
+document.getElementById(
+"clock-result"
+).innerHTML =
+`
+📅 ${now.toLocaleDateString()}
+
+<br><br>
+
+🕒 ${now.toLocaleTimeString()}
+`;
+
+}
+
+updateClock();
+
+setInterval(
+updateClock,
+1000
+);
+
+/* =========================
+   WEBSITE CHECKER
+========================= */
+
+async function checkWebsite(){
+
+const url =
+document.getElementById(
+"website-url"
+).value.trim();
+
+const result =
+document.getElementById(
+"website-result"
+);
+
+if(!url){
+
+result.innerHTML =
+"❌ Enter URL";
+
+return;
+
+}
+
+result.innerHTML =
+"Checking...";
+
+try{
+
+const start =
+Date.now();
+
+await fetch(
+`https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`
+);
+
+const ping =
+Date.now()-start;
+
+result.innerHTML =
+`
+🟢 Online
+
+<br><br>
+
+⚡ ${ping} ms
+`;
+
+}catch{
+
+result.innerHTML =
+"🔴 Offline";
+
+}
+
+}
+
+/* =========================
+   PARTICLES
+========================= */
+
+const canvas =
+document.getElementById(
+"particles"
+);
+
+const ctx =
+canvas.getContext(
+"2d"
+);
+
+function resize(){
+
+canvas.width =
+window.innerWidth;
+
+canvas.height =
+window.innerHeight;
+
+}
+
+resize();
+
+window.addEventListener(
+"resize",
+resize
+);
+
+const particles=[];
+
+for(let i=0;i<100;i++){
+
+particles.push({
+
+x:Math.random()*canvas.width,
+y:Math.random()*canvas.height,
+size:Math.random()*2+1,
+vx:Math.random()*0.4-0.2,
+vy:Math.random()*0.4-0.2
+
+});
+
+}
+
+function animate(){
+
+ctx.clearRect(
+0,0,
+canvas.width,
+canvas.height
+);
+
+particles.forEach(p=>{
+
+p.x+=p.vx;
+p.y+=p.vy;
+
+if(p.x<0)p.x=canvas.width;
+if(p.x>canvas.width)p.x=0;
+if(p.y<0)p.y=canvas.height;
+if(p.y>canvas.height)p.y=0;
+
+ctx.beginPath();
+
+ctx.arc(
+p.x,
+p.y,
+p.size,
+0,
+Math.PI*2
+);
+
+ctx.fillStyle =
+"#00f7ff";
+
+ctx.fill();
+
+});
+
+requestAnimationFrame(
+animate
+);
+
+}
+
+animate();
+
+</script>
 
 </body>
 </html>
