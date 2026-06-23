@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>
+CyrusLinksHub - The Ultimate Link Portal
+</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=Rajdhani:wght@500;700&display=swap"
+rel="stylesheet">
+
+<style>
+
+/* ================= ROOT VARIABLES ================= */
+
+:root{
+
+--neon-red:#ff003c;
+--neon-cyan:#00f7ff;
+--bg-dark:#05010a;
+--card-bg:rgba(10,5,20,.75);
+
+}
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+html{
+scroll-behavior:smooth;
+}
+
+body{
+background:var(--bg-dark);
+color:#fff;
+overflow-x:hidden;
+font-family:'Orbitron',sans-serif;
+line-height:1.6;
+}
+
+/* ================= PARTICLES ================= */
+
+canvas{
+position:fixed;
+inset:0;
+z-index:-1;
+pointer-events:none;
+}
+
+/* ================= NAVBAR ================= */
+
+.navbar{
+position:sticky;
+top:0;
+z-index:9999;
+display:flex;
+align-items:center;
+gap:12px;
+overflow-x:auto;
+padding:15px;
+background:rgba(5,1,10,.95);
+backdrop-filter:blur(12px);
+border-bottom:2px solid var(--neon-cyan);
+}
+
+.navbar::-webkit-scrollbar{
+display:none;
+}
+
+.nav-item{
+text-decoration:none;
+color:#fff;
+padding:12px 22px;
+border-radius:20px;
+background:rgba(255,255,255,.05);
+border:1px solid rgba(255,255,255,.1);
+white-space:nowrap;
+transition:.3s;
+font-size:.95rem;
+}
+
+.nav-item:hover{
+background:var(--neon-red);
+box-shadow:0 0 15px var(--neon-red);
+}
+
+.nav-item.active{
+border:1px solid var(--neon-cyan);
+box-shadow:0 0 15px var(--neon-cyan);
+}
+
+/* ================= TYPOGRAPHY ================= */
+
+h1,h2,h3{
+letter-spacing:2px;
+}
+
+p{
+font-family:'Rajdhani',sans-serif;
+font-size:1.1rem;
+color:#ccc;
+}
+
+/* ================= HEADER ================= */
+
+header{
+text-align:center;
+padding:20px;
+border-bottom:2px solid var(--neon-red);
+background:rgba(5,1,10,.95);
+backdrop-filter:blur(10px);
+box-shadow:0 0 25px rgba(255,0,60,.4);
+}
+
+.title-row{
+display:flex;
+justify-content:center;
+align-items:center;
+gap:15px;
+position:relative;
+max-width:700px;
+margin:auto;
+}
+
+.title-link{
+text-decoration:none;
+display:flex;
+align-items:center;
+gap:15px;
+color:inherit;
+}
+
+header h1{
+color:var(--neon-red);
+font-size:2rem;
+text-shadow:0 0 15px var(--neon-red);
+}
+
+/* ================= LOGO ================= */
+
+.logo-container{
+width:42px;
+height:42px;
+border-radius:50%;
+display:flex;
+justify-content:center;
+align-items:center;
+border:2px solid var(--neon-cyan);
+box-shadow:0 0 12px var(--neon-cyan);
+animation:logoRotate 8s linear infinite;
+}
+
+.logo-tick{
+width:22px;
+height:22px;
+fill:none;
+stroke:var(--neon-cyan);
+stroke-width:4;
+stroke-linecap:round;
+stroke-linejoin:round;
+}
+
+@keyframes logoRotate{
+
+from{
+transform:rotate(0deg);
+}
+
+to{
+transform:rotate(360deg);
+}
+
+}
+
+.settings-btn{
+position:absolute;
+right:0;
+width:36px;
+height:36px;
+border-radius:5px;
+border:1px solid var(--neon-cyan);
+background:transparent;
+color:var(--neon-cyan);
+cursor:pointer;
+}
+
+/* ================= HERO ================= */
+
+.hero{
+text-align:center;
+padding:70px 20px;
+background:
+radial-gradient(
+circle,
+rgba(255,0,60,.12) 0%,
+transparent 70%
+);
+}
+
+.hero h2{
+color:var(--neon-red);
+font-size:2.5rem;
+text-shadow:0 0 20px rgba(255,0,60,.7);
+}
+
+.hero p{
+margin-top:15px;
+font-size:1.2rem;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<canvas id="particles"></canvas>
+
+<nav class="navbar">
+
+<a href="#top"
+class="nav-item active">
+🏠 Home
+</a>
+
+<a href="tools.html"
+class="nav-item">
+🔧 Tools
+</a>
+
+<a href="games.html"
+class="nav-item">
+🎮 Games
+</a>
+
+<a href="movies.html"
+class="nav-item">
+🎬 Movies
+</a>
+
+<a href="apk.html"
+class="nav-item">
+📱 APKs
+</a>
+
+<a href="music.html"
+class="nav-item">
+🎵 Music
+</a>
+
+<a href="#about"
+class="nav-item">
+ℹ️ About
+</a>
+
+</nav>
+
+<!-- SETTINGS MODAL STARTS HERE -->
+  <!-- SETTINGS MODAL -->
+
+<div class="modal-overlay"
+     id="settingsModal">
+
+    <div class="modal-content">
+
+        <h3>
+            SYSTEM SETTINGS
+        </h3>
+
+        <div class="setting-row">
+
+            <span>
+                Ambient Particles
+            </span>
+
+            <label class="switch">
+
+                <input type="checkbox"
+                       id="particleToggle"
+                       checked>
+
+                <span class="slider">
+                </span>
+
+            </label>
+
+        </div>
+
+        <div class="setting-row">
+
+            <span>
+                Performance Mode
+            </span>
+
+            <label class="switch">
+
+                <input type="checkbox"
+                       id="performanceToggle">
+
+                <span class="slider">
+                </span>
+
+            </label>
+
+        </div>
+
+        <button class="close-modal-btn"
+                onclick="closeSettings()">
+
+            CLOSE
+
+        </button>
+
+    </div>
+
+</div>
+
+<!-- HEADER -->
+
+<header id="top">
+
+    <div class="title-row">
+
+        <a href="#top"
+           class="title-link"
+           onclick="scrollTopFn(event)">
+
+            <div class="logo-container">
+
+                <svg class="logo-tick"
+                     viewBox="0 0 24 24">
+
+                    <path d="M20 6L9 17L4 12"/>
+
+                </svg>
+
+            </div>
+
+            <h1>
+                CyrusLinksHub
+            </h1>
+
+        </a>
+
+        <button class="settings-btn"
+                onclick="openSettings(event)"
+                title="Settings">
+
+            ⚙
+
+        </button>
+
+    </div>
+
+</header>
+
+<!-- HERO -->
+
+<div class="hero">
+
+    <h2>
+        WELCOME TO CYRUSLINKSHUB
+    </h2>
+
+    <p>
+        Download • Play • Discover • Connect
+    </p>
+
+</div>
+
+<!-- COMMUNITY -->
+
+<section id="community">
+
+    <div class="section-header">
+
+        <h2 class="section-title">
+
+            Community
+
+        </h2>
+
+    </div>
+
+    <p class="desc">
+
+        Connect with fellow users,
+        exchange ideas,
+        suggest improvements,
+        and help shape the future
+        of CyrusLinksHub through
+        constructive discussions.
+
+    </p>
+
+</section>
+
+<!-- FAQ -->
+
+<section id="faq">
+
+    <div class="section-header">
+
+        <h2 class="section-title">
+
+            FAQ
+
+        </h2>
+
+    </div>
+
+    <p class="desc">
+
+        Frequently asked questions
+        about the platform.
+
+    </p>
+
+    <div class="faq-block">
+
+        <div class="faq-question">
+
+            Q: Is everything free to access?
+
+        </div>
+
+        <div class="faq-answer">
+
+            A: Yes. The website is designed
+            to provide freely accessible
+            resources whenever possible.
+
+        </div>
+
+    </div>
+
+    <div class="faq-block">
+
+        <div class="faq-question">
+
+            Q: Are downloads guaranteed safe?
+
+        </div>
+
+        <div class="faq-answer">
+
+            A: Always verify files yourself
+            using trusted security tools
+            before installation.
+
+        </div>
+
+    </div>
+
+</section>
+<!-- ABOUT -->
+
+<section id="about">
+
+    <div class="section-header">
+
+        <h2 class="section-title">
+
+            About CyrusLinksHub
+
+        </h2>
+
+    </div>
+
+    <p class="desc">
+
+        CyrusLinksHub is a modern resource hub
+        designed to provide useful tools,
+        downloads, entertainment resources,
+        Minecraft utilities and community
+        features in one place.
+
+    </p>
+
+    <div class="about-grid">
+
+        <div class="about-card">
+
+            <h3>
+                Our Mission
+            </h3>
+
+            <p>
+
+                To create a fast,
+                reliable and user-friendly
+                platform that helps users
+                discover resources easily.
+
+            </p>
+
+        </div>
+
+        <div class="about-card">
+
+            <h3>
+                What We Offer
+            </h3>
+
+            <p>
+
+                Tools, downloads,
+                gaming resources,
+                useful links and more.
+
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- FOOTER -->
+
+<footer>
+
+    <div class="footer-links">
+
+        <a href="tools.html">
+            Tools
+        </a>
+
+        <a href="games.html">
+            Games
+        </a>
+
+        <a href="movies.html">
+            Movies
+        </a>
+
+        <a href="apk.html">
+            APKs
+        </a>
+
+        <a href="music.html">
+            Music
+        </a>
+
+    </div>
+
+    <p class="footer-text">
+
+        © 2026 CyrusLinksHub
+
+    </p>
+
+    <p class="footer-status">
+
+        ● ALL SYSTEMS OPERATIONAL
+
+    </p>
+
+</footer>
+
+<!-- BACK TO TOP -->
+
+<button id="backToTop"
+        onclick="scrollToTop()">
+
+    ↑
+
+</button>
+
+<style>
+
+/* ABOUT */
+
+.about-grid{
+
+    display:grid;
+    grid-template-columns:
+    repeat(auto-fit,minmax(280px,1fr));
+
+    gap:20px;
+    margin-top:30px;
+
+}
+
+.about-card{
+
+    background:rgba(255,255,255,.05);
+    border:1px solid rgba(0,247,255,.25);
+    border-radius:15px;
+    padding:20px;
+    backdrop-filter:blur(10px);
+
+}
+
+.about-card h3{
+
+    color:var(--neon-cyan);
+    margin-bottom:10px;
+
+}
+
+/* FOOTER */
+
+footer{
+
+    margin-top:60px;
+    text-align:center;
+    padding:30px 20px;
+    border-top:1px solid rgba(0,247,255,.2);
+
+}
+
+.footer-links{
+
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:15px;
+    margin-bottom:20px;
+
+}
+
+.footer-links a{
+
+    color:var(--neon-cyan);
+    text-decoration:none;
+
+}
+
+.footer-links a:hover{
+
+    color:var(--neon-red);
+
+}
+
+.footer-text{
+
+    color:#aaa;
+
+}
+
+.footer-status{
+
+    margin-top:10px;
+    color:var(--neon-cyan);
+
+}
+
+/* FAQ */
+
+.faq-block{
+
+    background:rgba(255,255,255,.05);
+    border:1px solid rgba(0,247,255,.2);
+    border-radius:12px;
+    padding:18px;
+    margin-top:15px;
+
+}
+
+.faq-question{
+
+    color:var(--neon-cyan);
+    font-weight:bold;
+    margin-bottom:10px;
+
+}
+
+.faq-answer{
+
+    color:#ccc;
+
+}
+
+/* BACK TO TOP */
+
+#backToTop{
+
+    position:fixed;
+    bottom:20px;
+    right:20px;
+    width:50px;
+    height:50px;
+    border:none;
+    border-radius:50%;
+    cursor:pointer;
+
+    background:var(--neon-red);
+    color:white;
+    font-size:22px;
+
+    box-shadow:0 0 20px var(--neon-red);
+
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+    .hero h2{
+
+        font-size:2rem;
+
+    }
+
+    .section-title{
+
+        font-size:1.5rem;
+
+    }
+
+}
+
+</style>
+<script>
+
+/* =========================
+   PARTICLE BACKGROUND
+========================= */
+
+const canvas =
+document.getElementById(
+"particles"
+);
+
+const ctx =
+canvas.getContext(
+"2d"
+);
+
+function resizeCanvas(){
+
+canvas.width =
+window.innerWidth;
+
+canvas.height =
+window.innerHeight;
+
+}
+
+resizeCanvas();
+
+window.addEventListener(
+"resize",
+resizeCanvas
+);
+
+let particlesEnabled = true;
+
+const particles = [];
+
+for(let i=0;i<100;i++){
+
+particles.push({
+
+x:Math.random()*canvas.width,
+y:Math.random()*canvas.height,
+size:Math.random()*3+1,
+vx:(Math.random()-0.5)*0.5,
+vy:(Math.random()-0.5)*0.5
+
+});
+
+}
+
+function animateParticles(){
+
+ctx.clearRect(
+0,
+0,
+canvas.width,
+canvas.height
+);
+
+if(particlesEnabled){
+
+particles.forEach(p=>{
+
+p.x += p.vx;
+p.y += p.vy;
+
+if(p.x < 0) p.x = canvas.width;
+if(p.x > canvas.width) p.x = 0;
+
+if(p.y < 0) p.y = canvas.height;
+if(p.y > canvas.height) p.y = 0;
+
+ctx.beginPath();
+
+ctx.arc(
+p.x,
+p.y,
+p.size,
+0,
+Math.PI*2
+);
+
+ctx.fillStyle =
+"#00f7ff";
+
+ctx.fill();
+
+});
+
+}
+
+requestAnimationFrame(
+animateParticles
+);
+
+}
+
+animateParticles();
+
+/* =========================
+   SETTINGS MODAL
+========================= */
+
+function openSettings(event){
+
+event.preventDefault();
+
+document.getElementById(
+"settingsModal"
+).style.display =
+"flex";
+
+}
+
+function closeSettings(){
+
+document.getElementById(
+"settingsModal"
+).style.display =
+"none";
+
+}
+
+document.getElementById(
+"particleToggle"
+).addEventListener(
+"change",
+function(){
+
+particlesEnabled =
+this.checked;
+
+}
+);
+
+document.getElementById(
+"performanceToggle"
+).addEventListener(
+"change",
+function(){
+
+if(this.checked){
+
+particles.length = 30;
+
+}else{
+
+while(
+particles.length < 100
+){
+
+particles.push({
+
+x:Math.random()*canvas.width,
+y:Math.random()*canvas.height,
+size:Math.random()*3+1,
+vx:(Math.random()-0.5)*0.5,
+vy:(Math.random()-0.5)*0.5
+
+});
+
+}
+
+}
+
+}
+);
+
+/* =========================
+   SCROLL FUNCTIONS
+========================= */
+
+function scrollToTop(){
+
+window.scrollTo({
+
+top:0,
+behavior:"smooth"
+
+});
+
+}
+
+function scrollTopFn(event){
+
+event.preventDefault();
+
+window.scrollTo({
+
+top:0,
+behavior:"smooth"
+
+});
+
+}
+
+/* =========================
+   CLOSE MODAL OUTSIDE CLICK
+========================= */
+
+window.addEventListener(
+"click",
+function(event){
+
+const modal =
+document.getElementById(
+"settingsModal"
+);
+
+if(event.target === modal){
+
+closeSettings();
+
+}
+
+}
+);
+
+</script>
+
+</body>
+
+</html>
