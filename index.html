@@ -14,97 +14,51 @@ CyrusLinksHub
 </title>
 
 <link
-href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;800&family=Rajdhani:wght@500;600;700&display=swap"
+href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=Rajdhani:wght@500;700&display=swap"
 rel="stylesheet">
 
 <style>
 
-/* ================= ROOT ================= */
-
 :root{
 
---neon-red:#ff003c;
---neon-cyan:#00f7ff;
-
---bg-dark:#05010a;
-
---card-bg:
-rgba(10,5,20,.75);
+--red:#ff003c;
+--cyan:#00f7ff;
+--bg:#05010a;
 
 }
-
-/* ================= RESET ================= */
 
 *{
 
 margin:0;
 padding:0;
-
 box-sizing:border-box;
-
-}
-
-html{
-
-scroll-behavior:smooth;
 
 }
 
 body{
 
-background:var(--bg-dark);
-
+background:var(--bg);
 color:white;
 
-font-family:
-'Orbitron',
-sans-serif;
+font-family:'Orbitron',sans-serif;
 
 overflow-x:hidden;
 
-line-height:1.6;
-
 }
 
-/* ================= PARTICLES ================= */
-
-canvas{
-
-position:fixed;
-
-inset:0;
-
-z-index:-1;
-
-pointer-events:none;
-
-}
-
-/* ================= HEADER ================= */
+/* HEADER */
 
 header{
 
-background:
-rgba(5,1,10,.95);
+background:#08020f;
 
-backdrop-filter:
-blur(12px);
-
-border-bottom:
-2px solid
-var(--neon-red);
+border-bottom:2px solid var(--red);
 
 padding:20px;
 
-box-shadow:
-0 0 25px
-rgba(255,0,60,.3);
-
 }
 
-/* ================= TITLE ROW ================= */
-
-.title-row{
+.topbar{
 
 max-width:1200px;
 
@@ -112,16 +66,13 @@ margin:auto;
 
 display:flex;
 
-justify-content:
-space-between;
+justify-content:space-between;
 
 align-items:center;
 
-gap:20px;
-
 }
 
-.title-link{
+.brand{
 
 display:flex;
 
@@ -129,173 +80,78 @@ align-items:center;
 
 gap:15px;
 
-text-decoration:none;
+}
 
-color:white;
+.brand h1{
+
+color:var(--red);
+
+text-shadow:
+0 0 10px var(--red);
 
 }
 
-/* ================= LOGO ================= */
+.logo{
 
-.logo-container{
-
-width:48px;
-height:48px;
+width:50px;
+height:50px;
 
 border-radius:50%;
 
+border:2px solid var(--cyan);
+
 display:flex;
 
-justify-content:center;
 align-items:center;
 
-border:
-2px solid
-var(--neon-cyan);
+justify-content:center;
 
 box-shadow:
-0 0 15px
-var(--neon-cyan);
-
-animation:
-logoRotate 8s linear infinite;
+0 0 15px var(--cyan);
 
 }
-
-.logo-tick{
-
-width:24px;
-height:24px;
-
-fill:none;
-
-stroke:
-var(--neon-cyan);
-
-stroke-width:4;
-
-stroke-linecap:round;
-stroke-linejoin:round;
-
-}
-
-@keyframes logoRotate{
-
-from{
-
-transform:
-rotate(0deg);
-
-}
-
-to{
-
-transform:
-rotate(360deg);
-
-}
-
-}
-
-header h1{
-
-font-size:2rem;
-
-color:
-var(--neon-red);
-
-text-shadow:
-0 0 15px
-var(--neon-red);
-
-}
-
-/* ================= DISCORD BUTTON ================= */
 
 .discord-btn{
 
-display:flex;
+background:#5865F2;
 
-align-items:center;
+padding:12px 20px;
 
-gap:10px;
-
-padding:
-12px 20px;
-
-border-radius:
-30px;
+border-radius:25px;
 
 text-decoration:none;
 
 color:white;
 
-font-weight:700;
-
-background:
-rgba(88,101,242,.15);
-
-border:
-1px solid #5865F2;
-
-transition:.3s;
+font-weight:bold;
 
 box-shadow:
-0 0 10px #5865F2,
-0 0 20px rgba(88,101,242,.4);
+0 0 15px #5865F2;
 
 }
 
 .discord-btn:hover{
 
-transform:
-translateY(-2px);
-
 box-shadow:
-0 0 20px #5865F2,
-0 0 35px #5865F2,
-0 0 60px rgba(88,101,242,.8);
+0 0 30px #5865F2;
 
 }
 
-.discord-logo{
-
-width:24px;
-height:24px;
-
-object-fit:contain;
-
-}
-
-/* ================= NAVBAR ================= */
+/* NAVBAR */
 
 .navbar{
 
 display:flex;
 
-align-items:center;
-
-gap:12px;
+gap:10px;
 
 overflow-x:auto;
 
-overflow-y:hidden;
-
-white-space:nowrap;
-
 padding:15px;
 
-background:
-rgba(5,1,10,.95);
-
-border-bottom:
-2px solid
-var(--neon-cyan);
+background:#0a0314;
 
 scrollbar-width:none;
-
--webkit-overflow-scrolling:
-touch;
 
 }
 
@@ -305,66 +161,39 @@ display:none;
 
 }
 
-.nav-item{
-
-flex:0 0 auto;
+.navbar a{
 
 text-decoration:none;
 
 color:white;
 
-padding:
-12px 20px;
+padding:10px 18px;
 
 border-radius:20px;
 
 background:
 rgba(255,255,255,.05);
 
-border:
-1px solid
-rgba(255,255,255,.1);
-
-transition:.3s;
+white-space:nowrap;
 
 }
 
-.nav-item:hover{
+.navbar a.active{
 
-background:
-var(--neon-red);
+border:1px solid var(--cyan);
 
 box-shadow:
-0 0 15px
-var(--neon-red);
+0 0 10px var(--cyan);
 
 }
 
-.nav-item.active{
-
-border:
-1px solid
-var(--neon-cyan);
-
-box-shadow:
-0 0 15px
-var(--neon-cyan);
-
-}
-   /* ================= HERO ================= */
+/* HERO */
 
 .hero{
 
+padding:100px 20px;
+
 text-align:center;
-
-padding:90px 20px;
-
-background:
-radial-gradient(
-circle,
-rgba(255,0,60,.12) 0%,
-transparent 70%
-);
 
 }
 
@@ -372,29 +201,24 @@ transparent 70%
 
 font-size:3rem;
 
-color:var(--neon-red);
+color:var(--red);
 
 text-shadow:
-0 0 20px
-var(--neon-red);
-
-margin-bottom:15px;
+0 0 20px var(--red);
 
 }
 
 .hero p{
 
-font-family:
-'Rajdhani',
-sans-serif;
+margin-top:15px;
 
-font-size:1.3rem;
+font-size:1.2rem;
 
-color:#cccccc;
+font-family:'Rajdhani',sans-serif;
+
+color:#ccc;
 
 }
-
-/* ================= SECTION ================= */
 
 .section{
 
@@ -402,326 +226,48 @@ max-width:1200px;
 
 margin:auto;
 
-padding:70px 20px;
+padding:60px 20px;
 
 }
 
 .section-title{
 
-text-align:center;
+color:var(--cyan);
 
-font-size:2rem;
-
-margin-bottom:25px;
-
-color:
-var(--neon-cyan);
-
-text-shadow:
-0 0 10px
-var(--neon-cyan);
+margin-bottom:20px;
 
 }
 
-.desc{
+</style>
 
-text-align:center;
+</head>
 
-font-family:
-'Rajdhani',
-sans-serif;
+<body>
 
-font-size:1.15rem;
+<header>
 
-color:#cccccc;
+<div class="topbar">
 
-max-width:850px;
+<div class="brand">
 
-margin:auto;
+<div class="logo">
 
-}
-
-/* ================= FAQ ================= */
-
-.faq-block{
-
-margin-top:20px;
-
-background:
-rgba(255,255,255,.04);
-
-border:
-1px solid
-rgba(0,247,255,.25);
-
-border-radius:15px;
-
-padding:20px;
-
-backdrop-filter:
-blur(10px);
-
-}
-
-.faq-question{
-
-color:
-var(--neon-cyan);
-
-font-weight:bold;
-
-margin-bottom:10px;
-
-}
-
-.faq-answer{
-
-font-family:
-'Rajdhani',
-sans-serif;
-
-color:#cccccc;
-
-}
-
-/* ================= ABOUT ================= */
-
-.about-grid{
-
-display:grid;
-
-grid-template-columns:
-repeat(
-auto-fit,
-minmax(260px,1fr)
-);
-
-gap:20px;
-
-margin-top:30px;
-
-}
-
-.about-card{
-
-background:
-rgba(255,255,255,.05);
-
-border:
-1px solid
-rgba(0,247,255,.25);
-
-border-radius:15px;
-
-padding:20px;
-
-backdrop-filter:
-blur(10px);
-
-transition:.3s;
-
-}
-
-.about-card:hover{
-
-transform:
-translateY(-5px);
-
-border-color:
-var(--neon-cyan);
-
-box-shadow:
-0 0 20px
-rgba(0,247,255,.25);
-
-}
-
-.about-card h3{
-
-margin-bottom:10px;
-
-color:
-var(--neon-cyan);
-
-}
-
-.about-card p{
-
-font-family:
-'Rajdhani',
-sans-serif;
-
-color:#cccccc;
-
-}
-
-/* ================= FOOTER ================= */
-
-footer{
-
-margin-top:60px;
-
-padding:35px 20px;
-
-text-align:center;
-
-border-top:
-1px solid
-rgba(0,247,255,.2);
-
-}
-
-.footer-text{
-
-font-family:
-'Rajdhani',
-sans-serif;
-
-font-size:1rem;
-
-color:#aaaaaa;
-
-}
-
-/* ================= BACK TO TOP ================= */
-
-#backToTop{
-
-position:fixed;
-
-bottom:20px;
-right:20px;
-
-width:50px;
-height:50px;
-
-border:none;
-
-border-radius:50%;
-
-cursor:pointer;
-
-background:
-var(--neon-red);
-
-color:white;
-
-font-size:22px;
-
-z-index:999;
-
-box-shadow:
-0 0 20px
-var(--neon-red);
-
-transition:.3s;
-
-}
-
-#backToTop:hover{
-
-transform:
-translateY(-3px);
-
-box-shadow:
-0 0 25px
-var(--neon-red),
-0 0 45px
-var(--neon-red);
-
-}
-
-/* ================= MOBILE ================= */
-
-@media(max-width:768px){
-
-.title-row{
-
-flex-direction:column;
-
-}
-
-header h1{
-
-font-size:1.7rem;
-
-}
-
-.hero h2{
-
-font-size:2rem;
-
-}
-
-.hero p{
-
-font-size:1.1rem;
-
-}
-
-.section-title{
-
-font-size:1.5rem;
-
-}
-
-.discord-btn{
-
-margin-top:10px;
-
-}
-
-   }
-   <body>
-
-<canvas id="particles"></canvas>
-
-<!-- HEADER -->
-
-<header id="top">
-
-<div class="title-row">
-
-<a
-href="#top"
-class="title-link"
-onclick="scrollTopFn(event)">
-
-<div class="logo-container">
-
-<svg
-class="logo-tick"
-viewBox="0 0 24 24">
-
-<path d="M20 6L9 17L4 12"/>
-
-</svg>
+✓
 
 </div>
 
 <h1>
-
 CyrusLinksHub
-
 </h1>
 
-</a>
+</div>
 
 <a
 href="https://discord.gg/YOUR_INVITE"
 target="_blank"
 class="discord-btn">
 
-<img
-src="discord.png"
-alt="Discord"
-class="discord-logo">
-
-<span>
-
 Discord
-
-</span>
 
 </a>
 
@@ -729,86 +275,50 @@ Discord
 
 </header>
 
-<!-- NAVIGATION -->
-
 <nav class="navbar">
 
-<a
-href="index.html"
-class="nav-item active">
-
+<a href="index.html" class="active">
 🏠 Home
-
 </a>
 
-<a
-href="tools.html"
-class="nav-item">
-
+<a href="tools.html">
 🔧 Tools
-
 </a>
 
-<a
-href="games.html"
-class="nav-item">
-
+<a href="games.html">
 🎮 Games
-
 </a>
 
-<a
-href="movies.html"
-class="nav-item">
-
+<a href="movies.html">
 🎬 Movies
-
 </a>
 
-<a
-href="apk.html"
-class="nav-item">
-
+<a href="apk.html">
 📱 APKs
-
 </a>
 
-<a
-href="music.html"
-class="nav-item">
-
+<a href="music.html">
 🎵 Music
-
 </a>
 
-<a
-href="#about"
-class="nav-item">
-
+<a href="#about">
 ℹ️ About
-
 </a>
 
 </nav>
 
-<!-- HERO -->
-
 <section class="hero">
 
 <h2>
-
 WELCOME TO CYRUSLINKSHUB
-
 </h2>
 
 <p>
-
-Download • Play • Discover • Connect
-
+Downloads • Tools • Games • Movies • APKs • Music
 </p>
 
 </section>
-   <!-- COMMUNITY -->
+<!-- COMMUNITY -->
 
 <section
 id="community"
@@ -820,12 +330,11 @@ class="section">
 
 </h2>
 
-<p class="desc">
+<p style="color:#ccc;font-family:Rajdhani,sans-serif;font-size:1.1rem;">
 
-Connect with fellow users,
+Join our growing community,
 share ideas, suggest features,
-report issues and help improve
-CyrusLinksHub.
+and help improve CyrusLinksHub.
 
 </p>
 
@@ -843,56 +352,41 @@ class="section">
 
 </h2>
 
-<div class="faq-block">
+<div class="faq-card">
 
-<div class="faq-question">
+<h3>
+Is CyrusLinksHub free?
+</h3>
 
-Q: Is CyrusLinksHub free?
-
-</div>
-
-<div class="faq-answer">
-
-A: Yes. All public resources,
-tools and pages are completely
-free to access.
+<p>
+Yes. All tools and resources
+are freely accessible.
+</p>
 
 </div>
 
-</div>
+<div class="faq-card">
 
-<div class="faq-block">
+<h3>
+Are downloads safe?
+</h3>
 
-<div class="faq-question">
-
-Q: Are downloads safe?
-
-</div>
-
-<div class="faq-answer">
-
-A: Always scan files using
-trusted antivirus software
-before installation.
+<p>
+Always scan downloaded files
+with trusted antivirus software.
+</p>
 
 </div>
 
-</div>
+<div class="faq-card">
 
-<div class="faq-block">
+<h3>
+Do I need an account?
+</h3>
 
-<div class="faq-question">
-
-Q: Do I need an account?
-
-</div>
-
-<div class="faq-answer">
-
-A: No account is required
-for browsing the website.
-
-</div>
+<p>
+No account is required.
+</p>
 
 </div>
 
@@ -906,19 +400,9 @@ class="section">
 
 <h2 class="section-title">
 
-🚀 Why Choose CyrusLinksHub
+🚀 About CyrusLinksHub
 
 </h2>
-
-<p class="desc">
-
-A modern platform bringing
-together tools, downloads,
-games, movies, APKs,
-music and useful resources
-in one place.
-
-</p>
 
 <div class="about-grid">
 
@@ -926,33 +410,15 @@ in one place.
 
 <h3>
 
-🎯 Our Mission
+🎯 Mission
 
 </h3>
 
 <p>
 
-Provide a fast,
-modern and reliable
-resource hub for everyone.
-
-</p>
-
-</div>
-
-<div class="about-card">
-
-<h3>
-
-🛠 What We Offer
-
-</h3>
-
-<p>
-
-Useful tools,
-gaming resources,
-downloads and more.
+Provide useful tools,
+downloads and resources
+in one place.
 
 </p>
 
@@ -968,8 +434,8 @@ downloads and more.
 
 <p>
 
-Easy navigation and
-quick access to resources.
+Simple navigation and
+easy access to content.
 
 </p>
 
@@ -979,14 +445,32 @@ quick access to resources.
 
 <h3>
 
-🔒 Trusted Resources
+🔧 Useful Tools
 
 </h3>
 
 <p>
 
-Carefully selected
-links and useful content.
+Minecraft utilities,
+download tools,
+converters and more.
+
+</p>
+
+</div>
+
+<div class="about-card">
+
+<h3>
+
+🌎 Community
+
+</h3>
+
+<p>
+
+Built for users,
+by users.
 
 </p>
 
@@ -1000,45 +484,181 @@ links and useful content.
 
 <footer>
 
-<p class="footer-text">
+<p>
 
-© 2026 CyrusLinksHub •
-Made by Kartikey •
+© 2026 CyrusLinksHub
+• Made by Kartikey •
+
 All Rights Reserved
 
 </p>
 
 </footer>
-   <!-- BACK TO TOP -->
+
+<!-- BACK TO TOP -->
 
 <button
-id="backToTop"
-onclick="scrollToTop()">
+id="topBtn">
 
 ↑
 
 </button>
 
+<style>
+
+.faq-card{
+
+background:
+rgba(255,255,255,.05);
+
+padding:20px;
+
+border-radius:15px;
+
+margin-top:15px;
+
+border:
+1px solid
+rgba(0,247,255,.2);
+
+}
+
+.faq-card h3{
+
+color:var(--cyan);
+
+margin-bottom:10px;
+
+}
+
+.faq-card p{
+
+color:#ccc;
+
+font-family:
+Rajdhani,sans-serif;
+
+}
+
+.about-grid{
+
+display:grid;
+
+grid-template-columns:
+repeat(
+auto-fit,
+minmax(250px,1fr)
+);
+
+gap:20px;
+
+}
+
+.about-card{
+
+background:
+rgba(255,255,255,.05);
+
+padding:20px;
+
+border-radius:15px;
+
+border:
+1px solid
+rgba(0,247,255,.2);
+
+}
+
+.about-card h3{
+
+color:var(--cyan);
+
+margin-bottom:10px;
+
+}
+
+.about-card p{
+
+color:#ccc;
+
+font-family:
+Rajdhani,sans-serif;
+
+}
+
+footer{
+
+margin-top:60px;
+
+padding:30px;
+
+text-align:center;
+
+border-top:
+1px solid
+rgba(0,247,255,.2);
+
+color:#aaa;
+
+}
+
+#topBtn{
+
+position:fixed;
+
+bottom:20px;
+right:20px;
+
+width:50px;
+height:50px;
+
+border:none;
+
+border-radius:50%;
+
+background:var(--red);
+
+color:white;
+
+font-size:22px;
+
+cursor:pointer;
+
+box-shadow:
+0 0 15px
+var(--red);
+
+}
+
+@media(max-width:768px){
+
+.topbar{
+
+flex-direction:column;
+
+gap:15px;
+
+}
+
+.hero h2{
+
+font-size:2rem;
+
+}
+
+}
+
+</style>
+
 <script>
 
-/* =========================
-   SCROLL TO TOP
-========================= */
+/* BACK TO TOP */
 
-function scrollToTop(){
-
-window.scrollTo({
-
-top:0,
-behavior:"smooth"
-
-});
-
-}
-
-function scrollTopFn(event){
-
-event.preventDefault();
+document
+.getElementById(
+"topBtn"
+)
+.onclick = ()=>{
 
 window.scrollTo({
 
@@ -1047,189 +667,33 @@ behavior:"smooth"
 
 });
 
-}
+};
 
-/* =========================
-   ACTIVE NAVBAR
-========================= */
+/* ACTIVE PAGE */
 
-document.addEventListener(
-"DOMContentLoaded",
-()=>{
-
-let currentPage =
+const currentPage =
 window.location.pathname
 .split("/")
 .pop();
 
-if(
-currentPage === ""
-){
-
-currentPage =
-"index.html";
-
-}
-
 document
 .querySelectorAll(
-".nav-item"
+".navbar a"
 )
 .forEach(link=>{
 
-const href =
-link.getAttribute(
-"href"
-);
-
 if(
-href === currentPage
+link.getAttribute("href")
+=== currentPage
 ){
 
 link.classList.add(
 "active"
 );
 
-}else{
-
-link.classList.remove(
-"active"
-);
-
 }
 
 });
-
-}
-);
-
-/* =========================
-   PARTICLE BACKGROUND
-========================= */
-
-const canvas =
-document.getElementById(
-"particles"
-);
-
-const ctx =
-canvas.getContext(
-"2d"
-);
-
-canvas.width =
-window.innerWidth;
-
-canvas.height =
-window.innerHeight;
-
-const particles = [];
-
-for(
-let i = 0;
-i < 100;
-i++
-){
-
-particles.push({
-
-x:
-Math.random() *
-canvas.width,
-
-y:
-Math.random() *
-canvas.height,
-
-size:
-Math.random() * 3 + 1,
-
-speedX:
-(Math.random() - .5),
-
-speedY:
-(Math.random() - .5)
-
-});
-
-}
-
-function animateParticles(){
-
-ctx.clearRect(
-0,
-0,
-canvas.width,
-canvas.height
-);
-
-particles.forEach(p=>{
-
-ctx.beginPath();
-
-ctx.arc(
-
-p.x,
-p.y,
-p.size,
-
-0,
-Math.PI * 2
-
-);
-
-ctx.fillStyle =
-"rgba(0,247,255,.7)";
-
-ctx.fill();
-
-p.x += p.speedX;
-p.y += p.speedY;
-
-if(
-p.x < 0 ||
-p.x > canvas.width
-){
-
-p.speedX *= -1;
-
-}
-
-if(
-p.y < 0 ||
-p.y > canvas.height
-){
-
-p.speedY *= -1;
-
-}
-
-});
-
-requestAnimationFrame(
-animateParticles
-);
-
-}
-
-animateParticles();
-
-/* =========================
-   RESIZE
-========================= */
-
-window.addEventListener(
-"resize",
-()=>{
-
-canvas.width =
-window.innerWidth;
-
-canvas.height =
-window.innerHeight;
-
-}
-);
 
 </script>
 
