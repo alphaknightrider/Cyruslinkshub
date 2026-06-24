@@ -5,19 +5,21 @@
 
 <meta charset="UTF-8">
 
-<meta name="viewport"
+<meta
+name="viewport"
 content="width=device-width, initial-scale=1.0">
 
 <title>
-CyrusLinksHub - The Ultimate Link Portal
+CyrusLinksHub
 </title>
 
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=Rajdhani:wght@500;700&display=swap"
+<link
+href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=Rajdhani:wght@500;700&display=swap"
 rel="stylesheet">
 
 <style>
 
-/* ================= ROOT VARIABLES ================= */
+/* ================= ROOT ================= */
 
 :root{
 
@@ -29,240 +31,325 @@ rel="stylesheet">
 }
 
 *{
+
 margin:0;
 padding:0;
 box-sizing:border-box;
+
 }
 
 html{
+
 scroll-behavior:smooth;
+
 }
 
 body{
+
 background:var(--bg-dark);
-color:#fff;
-overflow-x:hidden;
+color:white;
+
 font-family:'Orbitron',sans-serif;
-line-height:1.6;
+
+overflow-x:hidden;
+
 }
 
 /* ================= PARTICLES ================= */
 
 canvas{
+
 position:fixed;
 inset:0;
+
 z-index:-1;
+
 pointer-events:none;
-}
 
-/* ================= NAVBAR ================= */
-
-.navbar{
-position:sticky;
-top:0;
-z-index:9999;
-display:flex;
-align-items:center;
-gap:12px;
-overflow-x:auto;
-padding:15px;
-background:rgba(5,1,10,.95);
-backdrop-filter:blur(12px);
-border-bottom:2px solid var(--neon-cyan);
-}
-
-.navbar::-webkit-scrollbar{
-display:none;
-}
-
-.nav-item{
-text-decoration:none;
-color:#fff;
-padding:12px 22px;
-border-radius:20px;
-background:rgba(255,255,255,.05);
-border:1px solid rgba(255,255,255,.1);
-white-space:nowrap;
-transition:.3s;
-font-size:.95rem;
-}
-
-.nav-item:hover{
-background:var(--neon-red);
-box-shadow:0 0 15px var(--neon-red);
-}
-
-.nav-item.active{
-border:1px solid var(--neon-cyan);
-box-shadow:0 0 15px var(--neon-cyan);
-}
-
-/* ================= TYPOGRAPHY ================= */
-
-h1,h2,h3{
-letter-spacing:2px;
-}
-
-p{
-font-family:'Rajdhani',sans-serif;
-font-size:1.1rem;
-color:#ccc;
 }
 
 /* ================= HEADER ================= */
 
 header{
-text-align:center;
+
 padding:20px;
-border-bottom:2px solid var(--neon-red);
+
 background:rgba(5,1,10,.95);
+
+border-bottom:2px solid var(--neon-red);
+
 backdrop-filter:blur(10px);
-box-shadow:0 0 25px rgba(255,0,60,.4);
+
+box-shadow:
+0 0 25px rgba(255,0,60,.4);
+
 }
 
+/* ================= TITLE ROW ================= */
+
 .title-row{
+
 display:flex;
-justify-content:center;
+
+justify-content:space-between;
+
 align-items:center;
-gap:15px;
-position:relative;
-max-width:700px;
+
+max-width:1200px;
+
 margin:auto;
+
+gap:20px;
+
 }
 
 .title-link{
-text-decoration:none;
-display:flex;
-align-items:center;
-gap:15px;
-color:inherit;
-}
 
-header h1{
-color:var(--neon-red);
-font-size:2rem;
-text-shadow:0 0 15px var(--neon-red);
+display:flex;
+
+align-items:center;
+
+gap:15px;
+
+text-decoration:none;
+
+color:white;
+
 }
 
 /* ================= LOGO ================= */
 
 .logo-container{
-width:42px;
-height:42px;
+
+width:45px;
+height:45px;
+
 border-radius:50%;
+
 display:flex;
-justify-content:center;
+
 align-items:center;
+
+justify-content:center;
+
 border:2px solid var(--neon-cyan);
-box-shadow:0 0 12px var(--neon-cyan);
-animation:logoRotate 8s linear infinite;
+
+box-shadow:
+0 0 15px var(--neon-cyan);
+
+animation:
+logoRotate 8s linear infinite;
+
 }
 
 .logo-tick{
-width:22px;
-height:22px;
+
+width:24px;
+height:24px;
+
 fill:none;
+
 stroke:var(--neon-cyan);
+
 stroke-width:4;
+
 stroke-linecap:round;
 stroke-linejoin:round;
+
 }
 
 @keyframes logoRotate{
 
 from{
+
 transform:rotate(0deg);
+
 }
 
 to{
+
 transform:rotate(360deg);
-}
 
 }
 
-.settings-btn{
-position:absolute;
-right:0;
-width:36px;
-height:36px;
-border-radius:5px;
+}
+
+header h1{
+
+font-size:2rem;
+
+color:var(--neon-red);
+
+text-shadow:
+0 0 15px var(--neon-red);
+
+}
+
+/* ================= DISCORD BUTTON ================= */
+
+.discord-btn{
+
+display:flex;
+
+align-items:center;
+
+gap:10px;
+
+text-decoration:none;
+
+padding:12px 20px;
+
+background:rgba(88,101,242,.12);
+
+border:1px solid #5865F2;
+
+border-radius:30px;
+
+color:white;
+
+font-weight:700;
+
+transition:.3s;
+
+box-shadow:
+0 0 10px #5865F2,
+0 0 20px rgba(88,101,242,.4);
+
+}
+
+.discord-btn:hover{
+
+transform:translateY(-2px);
+
+box-shadow:
+0 0 20px #5865F2,
+0 0 35px #5865F2,
+0 0 60px rgba(88,101,242,.8);
+
+}
+
+.discord-logo{
+
+width:24px;
+height:24px;
+
+object-fit:contain;
+
+filter:
+drop-shadow(0 0 5px #5865F2);
+
+}
+
+/* ================= NAVBAR ================= */
+
+.navbar{
+
+display:flex;
+
+align-items:center;
+
+gap:12px;
+
+overflow-x:auto;
+
+overflow-y:hidden;
+
+white-space:nowrap;
+
+padding:15px;
+
+background:rgba(5,1,10,.95);
+
+border-bottom:2px solid var(--neon-cyan);
+
+scrollbar-width:none;
+
+-webkit-overflow-scrolling:touch;
+
+}
+
+.navbar::-webkit-scrollbar{
+
+display:none;
+
+}
+
+.nav-item{
+
+flex:0 0 auto;
+
+text-decoration:none;
+
+color:white;
+
+padding:12px 20px;
+
+border-radius:20px;
+
+background:rgba(255,255,255,.05);
+
+border:1px solid rgba(255,255,255,.1);
+
+transition:.3s;
+
+}
+
+.nav-item:hover{
+
+background:var(--neon-red);
+
+box-shadow:
+0 0 15px var(--neon-red);
+
+}
+
+.nav-item.active{
+
 border:1px solid var(--neon-cyan);
-background:transparent;
-color:var(--neon-cyan);
-cursor:pointer;
+
+box-shadow:
+0 0 15px var(--neon-cyan);
+
 }
 
 /* ================= HERO ================= */
 
-
-
-</div>
-
-<!-- HEADER -->
-
-<header id="top">
-
-    <div class="title-row">
-
-        <a href="#top"
-           class="title-link"
-           onclick="scrollTopFn(event)">
-
-            <div class="logo-container">
-
-                <svg class="logo-tick"
-                     viewBox="0 0 24 24">
-
-                    <path d="M20 6L9 17L4 12"/>
-
-                </svg>
-
-            </div>
-
-            <h1>
-                CyrusLinksHub
-            </h1>
-
-        </a>
-
-    </div>
-
-
-<!-- HERO -->
-
-<div class="hero">
-
-    <h2>
-        WELCOME TO CYRUSLINKSHUB
-    </h2>
-
-    <p>
-        Download • Play • Discover • Connect
-    </p>
-
-</div>
-    /* ================= HERO ================= */
-
 .hero{
+
 text-align:center;
-padding:70px 20px;
+
+padding:80px 20px;
+
 background:
 radial-gradient(
 circle,
 rgba(255,0,60,.12) 0%,
 transparent 70%
 );
+
 }
 
 .hero h2{
+
+font-size:3rem;
+
 color:var(--neon-red);
-font-size:2.5rem;
-text-shadow:0 0 20px rgba(255,0,60,.7);
+
+text-shadow:
+0 0 20px var(--neon-red);
+
 }
 
 .hero p{
+
 margin-top:15px;
+
+font-family:'Rajdhani',sans-serif;
+
 font-size:1.2rem;
+
+color:#ccc;
+
 }
 
 </style>
@@ -272,343 +359,382 @@ font-size:1.2rem;
 <body>
 
 <canvas id="particles"></canvas>
+<!-- HEADER -->
+
+<header id="top">
+
+<div class="title-row">
+
+<a href="#top"
+class="title-link"
+onclick="scrollTopFn(event)">
+
+<div class="logo-container">
+
+<svg
+class="logo-tick"
+viewBox="0 0 24 24">
+
+<path d="M20 6L9 17L4 12"/>
+
+</svg>
+
+</div>
+
+<h1>
+CyrusLinksHub
+</h1>
+
+</a>
+
+<a
+href="https://discord.gg/YOUR_INVITE"
+target="_blank"
+class="discord-btn">
+
+<img
+src="discord.png"
+alt="Discord"
+class="discord-logo">
+
+<span>
+Discord
+</span>
+
+</a>
+
+</div>
+
+</header>
+
+<!-- NAVBAR -->
 
 <nav class="navbar">
 
-<a href="#top"
+<a href="index.html"
 class="nav-item active">
+
 🏠 Home
+
 </a>
 
-<a href="tools"
+<a href="tools.html"
 class="nav-item">
+
 🔧 Tools
+
 </a>
 
-<a href="games"
+<a href="games.html"
 class="nav-item">
+
 🎮 Games
+
 </a>
 
-<a href="movies"
+<a href="movies.html"
 class="nav-item">
+
 🎬 Movies
+
 </a>
 
-<a href="apk"
+<a href="apk.html"
 class="nav-item">
+
 📱 APKs
+
 </a>
 
-<a href="about"
+<a href="music.html"
 class="nav-item">
+
+🎵 Music
+
+</a>
+
+<a href="#about"
+class="nav-item">
+
 ℹ️ About
+
 </a>
 
 </nav>
 
+<!-- HERO -->
 
-</div>
+<section class="hero">
 
+<h2>
+
+WELCOME TO CYRUSLINKSHUB
+
+</h2>
+
+<p>
+
+Download • Play • Discover • Connect
+
+</p>
+
+</section>
 <!-- COMMUNITY -->
 
-<section id="community">
+<section
+id="community"
+class="section">
 
-    <div class="section-header">
+<h2 class="section-title">
 
-        <h2 class="section-title">
+🌐 Community
 
-            Community
+</h2>
 
-        </h2>
+<p>
 
-    </div>
+Connect with fellow users,
+exchange ideas, report issues,
+suggest improvements and help
+shape the future of CyrusLinksHub.
 
-    <p class="desc">
-
-        Connect with fellow users,
-        exchange ideas,
-        suggest improvements,
-        and help shape the future
-        of CyrusLinksHub through
-        constructive discussions.
-
-    </p>
+</p>
 
 </section>
 
 <!-- FAQ -->
 
-<section id="faq">
+<section
+id="faq"
+class="section">
 
-    <div class="section-header">
+<h2 class="section-title">
 
-        <h2 class="section-title">
+❓ Frequently Asked Questions
 
-            FAQ
+</h2>
 
-        </h2>
+<div class="faq-block">
 
-    </div>
+<div class="faq-question">
 
-    <p class="desc">
+Q: Is CyrusLinksHub free?
 
-        Frequently asked questions
-        about the platform.
+</div>
 
-    </p>
+<div class="faq-answer">
 
-    <div class="faq-block">
+A: Yes. All public resources
+and tools are free to access.
 
-        <div class="faq-question">
+</div>
 
-            Q: Is everything free to access?
+</div>
 
-        </div>
+<div class="faq-block">
 
-        <div class="faq-answer">
+<div class="faq-question">
 
-            A: Yes. The website is designed
-            to provide freely accessible
-            resources whenever possible.
+Q: Are downloads safe?
 
-        </div>
+</div>
 
-    </div>
+<div class="faq-answer">
 
-    <div class="faq-block">
+A: Always scan files with
+trusted antivirus software
+before installing.
 
-        <div class="faq-question">
+</div>
 
-            Q: Are downloads guaranteed safe?
+</div>
 
-        </div>
+<div class="faq-block">
 
-        <div class="faq-answer">
+<div class="faq-question">
 
-            A: Always verify files yourself
-            using trusted security tools
-            before installation.
+Q: How often is content updated?
 
-        </div>
+</div>
 
-    </div>
+<div class="faq-answer">
+
+A: Content is updated
+regularly whenever new
+resources become available.
+
+</div>
+
+</div>
 
 </section>
+
 <!-- ABOUT -->
 
-<section id="about">
+<section
+id="about"
+class="section">
 
-    <div class="section-header">
+<h2 class="section-title">
 
-        <h2 class="section-title">
+🚀 Why Choose CyrusLinksHub
 
-            Why Choose CyrusLinksHub
+</h2>
 
-        </h2>
+<p>
 
-    </div>
+CyrusLinksHub is a modern
+resource hub bringing together
+tools, downloads, games,
+movies, APKs and useful links
+in one place.
 
-    <p class="desc">
+</p>
 
-        CyrusLinksHub is a modern resource hub
-        designed to provide useful tools,
-        downloads, entertainment resources,
-        Minecraft utilities and community
-        features in one place.
+<div class="about-grid">
 
-    </p>
+<div class="about-card">
 
-    <div class="about-grid">
+<h3>
 
-        <div class="about-card">
+🎯 Our Mission
 
-            <h3>
-                Our Mission
-            </h3>
+</h3>
 
-            <p>
+<p>
 
-                To create a fast,
-                reliable and user-friendly
-                platform that helps users
-                discover resources easily.
+Provide a fast,
+modern and reliable
+platform for everyone.
 
-            </p>
+</p>
 
-        </div>
+</div>
 
-        <div class="about-card">
+<div class="about-card">
 
-            <h3>
-                What We Offer
-            </h3>
+<h3>
 
-            <p>
+🛠 What We Offer
 
-                Tools, downloads,
-                gaming resources,
-                useful links and more.
+</h3>
 
-            </p>
+<p>
 
-        </div>
+Minecraft tools,
+utilities, downloads,
+entertainment resources
+and more.
 
-    </div>
+</p>
+
+</div>
+
+<div class="about-card">
+
+<h3>
+
+⚡ Fast Access
+
+</h3>
+
+<p>
+
+Everything organized
+for quick and easy
+navigation.
+
+</p>
+
+</div>
+
+<div class="about-card">
+
+<h3>
+
+🔒 Reliable Resources
+
+</h3>
+
+<p>
+
+Carefully selected
+links and useful
+online resources.
+
+</p>
+
+</div>
+
+</div>
 
 </section>
-    
+
 <!-- FOOTER -->
 
 <footer>
 
-    <div class="footer-links">
+<p class="footer-text">
 
+© 2026 CyrusLinksHub
+• Made by Kartikey •
+All Rights Reserved
 
-    </div>
-
-    <p class="footer-text">
-
-        © 2026 CyrusLinksHub . Made by Kartikey . All Rights Reserved 
-
-    </p>
-
-
+</p>
 
 </footer>
-
 <!-- BACK TO TOP -->
 
-<button id="backToTop"
-        onclick="scrollToTop()">
+<button
+id="backToTop"
+onclick="scrollToTop()">
 
-    ↑
+↑
 
 </button>
 
 <style>
 
-/* ABOUT */
-
-.about-grid{
-
-    display:grid;
-    grid-template-columns:
-    repeat(auto-fit,minmax(280px,1fr));
-
-    gap:20px;
-    margin-top:30px;
-
-}
-
-.about-card{
-
-    background:rgba(255,255,255,.05);
-    border:1px solid rgba(0,247,255,.25);
-    border-radius:15px;
-    padding:20px;
-    backdrop-filter:blur(10px);
-
-}
-
-.about-card h3{
-
-    color:var(--neon-cyan);
-    margin-bottom:10px;
-
-}
-
-/* FOOTER */
-
-footer{
-
-    margin-top:60px;
-    text-align:center;
-    padding:30px 20px;
-    border-top:1px solid rgba(0,247,255,.2);
-
-}
-
-.footer-links{
-
-    display:flex;
-    justify-content:center;
-    flex-wrap:wrap;
-    gap:15px;
-    margin-bottom:20px;
-
-}
-
-.footer-links a{
-
-    color:var(--neon-cyan);
-    text-decoration:none;
-
-}
-
-.footer-links a:hover{
-
-    color:var(--neon-red);
-
-}
-
-.footer-text{
-
-    color:#aaa;
-
-}
-
-.footer-status{
-
-    margin-top:10px;
-    color:var(--neon-cyan);
-
-}
-
-/* FAQ */
-
-.faq-block{
-
-    background:rgba(255,255,255,.05);
-    border:1px solid rgba(0,247,255,.2);
-    border-radius:12px;
-    padding:18px;
-    margin-top:15px;
-
-}
-
-.faq-question{
-
-    color:var(--neon-cyan);
-    font-weight:bold;
-    margin-bottom:10px;
-
-}
-
-.faq-answer{
-
-    color:#ccc;
-
-}
-
 /* BACK TO TOP */
 
 #backToTop{
 
-    position:fixed;
-    bottom:20px;
-    right:20px;
-    width:50px;
-    height:50px;
-    border:none;
-    border-radius:50%;
-    cursor:pointer;
+position:fixed;
 
-    background:var(--neon-red);
-    color:white;
-    font-size:22px;
+bottom:20px;
+right:20px;
 
-    box-shadow:0 0 20px var(--neon-red);
+width:50px;
+height:50px;
+
+border:none;
+
+border-radius:50%;
+
+cursor:pointer;
+
+background:var(--neon-red);
+
+color:white;
+
+font-size:22px;
+
+box-shadow:
+0 0 20px var(--neon-red);
+
+z-index:999;
+
+transition:.3s;
+
+}
+
+#backToTop:hover{
+
+transform:translateY(-3px);
+
+box-shadow:
+0 0 25px var(--neon-red),
+0 0 45px var(--neon-red);
 
 }
 
@@ -616,27 +742,39 @@ footer{
 
 @media(max-width:768px){
 
-    .hero h2{
+.hero h2{
 
-        font-size:2rem;
+font-size:2rem;
 
-    }
+}
 
-    .section-title{
+.section-title{
 
-        font-size:1.5rem;
+font-size:1.5rem;
 
-    }
+}
+
+.title-row{
+
+flex-wrap:wrap;
+justify-content:center;
+
+}
+
+.discord-btn{
+
+margin-top:10px;
+
+}
 
 }
 
 </style>
+
 <script>
 
-
-  
 /* =========================
-   SCROLL FUNCTIONS
+   SCROLL TOP
 ========================= */
 
 function scrollToTop(){
@@ -664,23 +802,150 @@ behavior:"smooth"
 }
 
 /* =========================
-   CLOSE MODAL OUTSIDE CLICK
+   ACTIVE NAVBAR
 ========================= */
 
-window.addEventListener(
-"click",
-function(event){
+document.addEventListener(
+"DOMContentLoaded",
+()=>{
 
-const modal =
-document.getElementById(
-"settingsModal"
-);
+let currentPage =
+window.location.pathname
+.split("/")
+.pop();
 
-if(event.target === modal){
+if(currentPage===""){
 
-closeSettings();
+currentPage="index.html";
 
 }
+
+document
+.querySelectorAll(".nav-item")
+.forEach(link=>{
+
+const href =
+link.getAttribute("href");
+
+if(href===currentPage){
+
+link.classList.add("active");
+
+}else{
+
+link.classList.remove("active");
+
+}
+
+});
+
+}
+);
+
+/* =========================
+   PARTICLES
+========================= */
+
+const canvas =
+document.getElementById(
+"particles"
+);
+
+const ctx =
+canvas.getContext("2d");
+
+canvas.width =
+window.innerWidth;
+
+canvas.height =
+window.innerHeight;
+
+const particles=[];
+
+for(let i=0;i<80;i++){
+
+particles.push({
+
+x:Math.random()*canvas.width,
+
+y:Math.random()*canvas.height,
+
+size:Math.random()*3+1,
+
+speedX:(Math.random()-0.5),
+
+speedY:(Math.random()-0.5)
+
+});
+
+}
+
+function animateParticles(){
+
+ctx.clearRect(
+0,
+0,
+canvas.width,
+canvas.height
+);
+
+particles.forEach(p=>{
+
+ctx.beginPath();
+
+ctx.arc(
+p.x,
+p.y,
+p.size,
+0,
+Math.PI*2
+);
+
+ctx.fillStyle=
+"rgba(0,247,255,.7)";
+
+ctx.fill();
+
+p.x+=p.speedX;
+p.y+=p.speedY;
+
+if(
+p.x<0||
+p.x>canvas.width
+){
+
+p.speedX*=-1;
+
+}
+
+if(
+p.y<0||
+p.y>canvas.height
+){
+
+p.speedY*=-1;
+
+}
+
+});
+
+requestAnimationFrame(
+animateParticles
+);
+
+}
+
+animateParticles();
+
+window.addEventListener(
+"resize",
+()=>{
+
+canvas.width=
+window.innerWidth;
+
+canvas.height=
+window.innerHeight;
 
 }
 );
@@ -688,5 +953,4 @@ closeSettings();
 </script>
 
 </body>
-
 </html>
