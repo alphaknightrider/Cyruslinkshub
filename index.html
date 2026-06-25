@@ -17,7 +17,7 @@ href="https://fonts.googleapis.com">
 href="https://fonts.gstatic.com"
 crossorigin>
 
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=Rajdhani:wght@500;700&display=swap"
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=Rajdhani:wght@400;600;700&display=swap"
 rel="stylesheet">
 
 <style>
@@ -27,7 +27,6 @@ rel="stylesheet">
 --red:#ff003c;
 --cyan:#00f7ff;
 --dark:#05010a;
---glass:rgba(255,255,255,.08);
 
 }
 
@@ -49,17 +48,17 @@ body{
 
 font-family:'Orbitron',sans-serif;
 
-background:#000;
-
 color:white;
 
 overflow-x:hidden;
 
+background:#000;
+
 }
 
-/* ===================
-   ANIMATED GIF BG
-=================== */
+/* ======================
+   GIF BACKGROUND
+====================== */
 
 .gif-bg{
 
@@ -93,34 +92,9 @@ rgba(0,0,0,.65);
 
 }
 
-/* ===================
-   SCROLL ANIMATION
-=================== */
-
-.hidden{
-
-opacity:0;
-
-transform:
-translateY(60px);
-
-transition:
-all .8s ease;
-
-}
-
-.show{
-
-opacity:1;
-
-transform:
-translateY(0);
-
-}
-
-/* ===================
+/* ======================
    HEADER
-=================== */
+====================== */
 
 header{
 
@@ -129,8 +103,6 @@ position:sticky;
 top:0;
 
 z-index:999;
-
-padding:18px;
 
 background:
 rgba(0,0,0,.45);
@@ -143,11 +115,15 @@ border-bottom:
 
 }
 
+/* TOP BAR */
+
 .topbar{
 
-max-width:1300px;
+max-width:1400px;
 
 margin:auto;
+
+padding:18px 20px;
 
 display:flex;
 
@@ -158,6 +134,8 @@ align-items:center;
 gap:20px;
 
 }
+
+/* BRAND */
 
 .brand{
 
@@ -171,29 +149,31 @@ gap:15px;
 
 .logo{
 
-width:55px;
-height:55px;
+width:52px;
+height:52px;
+
+border-radius:50%;
 
 display:flex;
 
 justify-content:center;
 align-items:center;
 
-border-radius:50%;
-
 border:2px solid var(--cyan);
 
 box-shadow:
 0 0 20px var(--cyan);
 
-font-size:28px;
+color:var(--cyan);
+
+font-size:24px;
 
 animation:
-logoSpin 8s linear infinite;
+spinLogo 8s linear infinite;
 
 }
 
-@keyframes logoSpin{
+@keyframes spinLogo{
 
 from{
 
@@ -211,18 +191,16 @@ transform:rotate(360deg);
 
 .brand h1{
 
-color:var(--red);
-
 font-size:2rem;
 
+color:var(--red);
+
 text-shadow:
-0 0 20px var(--red);
+0 0 15px var(--red);
 
 }
 
-/* ===================
-   DISCORD BUTTON
-=================== */
+/* DISCORD BUTTON */
 
 .discord-btn{
 
@@ -232,9 +210,9 @@ align-items:center;
 
 gap:10px;
 
-padding:12px 22px;
+padding:12px 20px;
 
-border-radius:30px;
+border-radius:12px;
 
 background:
 linear-gradient(
@@ -243,28 +221,26 @@ linear-gradient(
 #7289DA
 );
 
-color:white;
-
 text-decoration:none;
+
+color:white;
 
 font-weight:bold;
 
 box-shadow:
-0 0 20px #5865F2,
-0 0 40px #5865F2;
+0 0 20px #5865F2;
+
+transition:.3s;
 
 animation:
 discordGlow 2s infinite alternate;
-
-transition:.3s;
 
 }
 
 .discord-btn:hover{
 
 transform:
-translateY(-3px)
-scale(1.05);
+translateY(-3px);
 
 }
 
@@ -272,8 +248,6 @@ scale(1.05);
 
 width:24px;
 height:24px;
-
-object-fit:contain;
 
 }
 
@@ -295,9 +269,10 @@ box-shadow:
 }
 
 }
-   /* ===================
+
+/* ======================
    NAVBAR
-=================== */
+====================== */
 
 .navbar{
 
@@ -307,13 +282,10 @@ gap:12px;
 
 overflow-x:auto;
 
-padding:15px;
+padding:15px 20px;
 
 background:
-rgba(0,0,0,.45);
-
-backdrop-filter:
-blur(10px);
+rgba(0,0,0,.25);
 
 scrollbar-width:none;
 
@@ -335,81 +307,55 @@ color:white;
 
 padding:12px 22px;
 
-border-radius:25px;
-
-white-space:nowrap;
+border-radius:12px;
 
 background:
 rgba(255,255,255,.08);
 
-transition:.35s;
+border:
+1px solid rgba(255,255,255,.1);
+
+white-space:nowrap;
+
+transition:.3s;
 
 overflow:hidden;
 
 }
 
-.nav-link::before{
-
-content:"";
-
-position:absolute;
-
-top:0;
-left:-100%;
-
-width:100%;
-height:100%;
-
-background:
-linear-gradient(
-90deg,
-transparent,
-rgba(255,255,255,.35),
-transparent
-);
-
-transition:.7s;
-
-}
-
-.nav-link:hover::before{
-
-left:100%;
-
-}
-
 .nav-link:hover{
 
-transform:
-translateY(-3px);
+border-color:var(--cyan);
 
 box-shadow:
 0 0 15px var(--cyan);
+
+transform:
+translateY(-2px);
 
 }
 
 .nav-link.active{
 
-border:1px solid var(--cyan);
+border-color:var(--cyan);
 
 box-shadow:
 0 0 20px var(--cyan);
 
 }
-
-/* ===================
-   HERO SECTION
-=================== */
+   /* ======================
+   HERO
+====================== */
 
 .hero{
-
-text-align:center;
-
-padding:120px 20px;
 
 max-width:1200px;
 
 margin:auto;
+
+padding:120px 20px;
+
+text-align:center;
 
 }
 
@@ -440,8 +386,8 @@ text-shadow:
 to{
 
 text-shadow:
-0 0 35px var(--red),
-0 0 70px var(--red);
+0 0 40px var(--red),
+0 0 80px var(--red);
 
 }
 
@@ -451,22 +397,22 @@ text-shadow:
 
 margin-top:20px;
 
-font-size:1.3rem;
-
 font-family:'Rajdhani',sans-serif;
+
+font-size:1.3rem;
 
 color:#ddd;
 
-max-width:700px;
+max-width:800px;
 
 margin-left:auto;
 margin-right:auto;
 
 }
 
-/* ===================
-   BUTTONS
-=================== */
+/* ======================
+   BUTTON
+====================== */
 
 .btn{
 
@@ -476,13 +422,13 @@ margin-top:25px;
 
 padding:14px 28px;
 
-border-radius:30px;
+border-radius:12px;
 
 text-decoration:none;
 
-color:white;
-
 font-weight:bold;
+
+color:white;
 
 background:
 linear-gradient(
@@ -501,7 +447,7 @@ transition:.3s;
 .btn:hover{
 
 transform:
-translateY(-4px)
+translateY(-3px)
 scale(1.05);
 
 box-shadow:
@@ -510,80 +456,34 @@ box-shadow:
 
 }
 
-/* ===================
-   CARDS
-=================== */
+/* ======================
+   SCROLL ANIMATION
+====================== */
 
-.cards{
+.hidden{
 
-max-width:1300px;
-
-margin:auto;
-
-padding:40px 20px;
-
-display:grid;
-
-grid-template-columns:
-repeat(auto-fit,minmax(280px,1fr));
-
-gap:25px;
-
-}
-
-.card{
-
-background:
-rgba(255,255,255,.08);
-
-backdrop-filter:
-blur(12px);
-
-border:
-1px solid rgba(255,255,255,.15);
-
-border-radius:20px;
-
-padding:25px;
-
-transition:.4s;
-
-}
-
-.card:hover{
+opacity:0;
 
 transform:
-translateY(-10px);
+translateY(60px);
 
-border-color:
-var(--cyan);
-
-box-shadow:
-0 0 25px var(--cyan);
+transition:
+all .8s ease;
 
 }
 
-.card h3{
+.show{
 
-color:var(--cyan);
+opacity:1;
 
-margin-bottom:15px;
-
-}
-
-.card p{
-
-font-family:'Rajdhani',sans-serif;
-
-color:#ddd;
-
-margin-bottom:15px;
+transform:
+translateY(0);
 
 }
 
-/* ===================
-   SECTION STYLE
-=================== */
+/* ======================
+   SECTION
+====================== */
 
 .section{
 
@@ -601,14 +501,18 @@ text-align:center;
 
 font-size:2rem;
 
-margin-bottom:25px;
-
 color:var(--cyan);
+
+margin-bottom:25px;
 
 text-shadow:
 0 0 15px var(--cyan);
 
 }
+
+/* ======================
+   GLASS BOX
+====================== */
 
 .glass-box{
 
@@ -619,19 +523,84 @@ backdrop-filter:
 blur(12px);
 
 border:
-1px solid rgba(255,255,255,.15);
+1px solid rgba(255,255,255,.12);
 
 border-radius:20px;
 
 padding:25px;
 
+line-height:1.8;
+
+font-family:'Rajdhani',sans-serif;
+
+font-size:1.1rem;
+
+color:#ddd;
+
+transition:.3s;
+
+}
+
+.glass-box:hover{
+
+border-color:var(--cyan);
+
+box-shadow:
+0 0 20px rgba(0,247,255,.4);
+
+}
+
+/* ======================
+   FAQ
+====================== */
+
+.faq-item{
+
 margin-bottom:20px;
 
 }
 
-/* ===================
+.faq-question{
+
+color:var(--cyan);
+
+font-weight:bold;
+
+margin-bottom:10px;
+
+}
+
+/* ======================
+   FOOTER
+====================== */
+
+footer{
+
+margin-top:70px;
+
+padding:30px;
+
+text-align:center;
+
+background:
+rgba(0,0,0,.45);
+
+border-top:
+1px solid rgba(255,255,255,.12);
+
+}
+
+footer p{
+
+font-family:'Rajdhani',sans-serif;
+
+color:#ccc;
+
+}
+
+/* ======================
    MOBILE
-=================== */
+====================== */
 
 @media(max-width:768px){
 
@@ -669,9 +638,12 @@ font-size:1rem;
 
 }
    </style>
+
 </head>
 
 <body>
+
+<!-- GIF BACKGROUND -->
 
 <div class="gif-bg"></div>
 
@@ -683,158 +655,115 @@ font-size:1rem;
 
 <div class="brand">
 
-<div class="logo">✓</div>
+<div class="logo">
+✓
+</div>
 
-<h1>CyrusLinksHub</h1>
+<h1>
+CyrusLinksHub
+</h1>
 
 </div>
 
-<a href="https://discord.gg/YOUR_INVITE"
+<a
+href="https://discord.gg/YOUR_INVITE"
 target="_blank"
 class="discord-btn">
 
-<img src="discord-logo.png"
-class="discord-logo"
-alt="Discord">
+<img
+src="discord-logo.png"
+alt="Discord"
+class="discord-logo">
 
-<span>Discord</span>
+Discord
 
 </a>
 
 </div>
 
-</header>
-
-<!-- NAVBAR -->
+<!-- NAVBAR BELOW TITLE -->
 
 <nav class="navbar">
 
-<a href="index.html" class="nav-link active">Home 🏠 </a>
+<a href="index.html"
+class="nav-link active">
+🏠 Home
+</a>
 
-<a href="./tools/" class="nav-link">🔧 Tools</a>
+<a href="./tools/"
+class="nav-link">
+🔧 Tools
+</a>
 
-<a href="./games/" class="nav-link">🎮 Games</a>
+<a href="./games/"
+class="nav-link">
+🎮 Games
+</a>
 
-<a href="./movies/" class="nav-link">🎬 Movies</a>
+<a href="./movies/"
+class="nav-link">
+🎬 Movies
+</a>
 
-<a href="./music/" class="nav-link">🎵 Music</a>
+<a href="./apk/"
+class="nav-link">
+📱 APKs
+</a>
 
-<a href="./apk/" class="nav-link">📱 APKs</a>
-
-<a href="./about/" class="nav-link">ℹ️ About</a>
+<a href="./about/"
+class="nav-link">
+ℹ️ About
+</a>
 
 </nav>
+
+</header>
 
 <!-- HERO -->
 
 <section class="hero hidden">
 
 <h2>
-WELCOME TO CYRUSLINKSHUB
+WELCOME TO
+CYRUSLINKSHUB
 </h2>
 
 <p>
-Downloads • Games • Movies • Music • APKs • Tools
+
+Your modern hub for useful resources,
+downloads, tools, entertainment and community updates.
+
 </p>
 
-<a href="./games/" class="btn">
-Explore Now
+<a href="./about/"
+class="btn">
+
+Learn More
+
 </a>
 
 </section>
 
-<!-- FEATURE CARDS -->
+<!-- INTRODUCTION -->
 
-<section class="cards">
+<section class="section hidden">
 
-<div class="card hidden">
+<h2 class="section-title">
 
-<h3>🎮 Games</h3>
+🚀 Welcome
 
-<p>
-Minecraft, Roblox, GTA V, Fortnite,
-Free Fire Max and more.
-</p>
+</h2>
 
-<a href="./games/" class="btn">
-Open
-</a>
+<div class="glass-box">
 
-</div>
+CyrusLinksHub is designed to provide users with
+easy access to useful tools, entertainment resources,
+community updates and online content through a modern,
+clean and user-friendly experience.
 
-<div class="card hidden">
-
-<h3>🔧 Tools</h3>
-
-<p>
-QR Generator, Password Generator,
-Website Checker and useful utilities.
-</p>
-
-<a href="./tools/" class="btn">
-Open
-</a>
-
-</div>
-
-<div class="card hidden">
-
-<h3>📱 APKs</h3>
-
-<p>
-Game APKs, Tool APKs,
-Mod APKs and resources.
-</p>
-
-<a href="./apk/" class="btn">
-Open
-</a>
-
-</div>
-
-<div class="card hidden">
-
-<h3>🎬 Movies</h3>
-
-<p>
-Hollywood, Bollywood,
-Anime and Trending Movies.
-</p>
-
-<a href="./movies/" class="btn">
-Open
-</a>
-
-</div>
-
-<div class="card hidden">
-
-<h3>🎵 Music</h3>
-
-<p>
-Phonk, EDM, Remix,
-Gaming and Trending Music.
-</p>
-
-<a href="./music/" class="btn">
-Open
-</a>
-
-</div>
-
-<div class="card hidden">
-
-<h3>🌐 Community</h3>
-
-<p>
-Join our Discord community,
-share ideas and stay updated.
-</p>
-
-<a href="https://discord.gg/YOUR_INVITE"
-class="btn">
-Join
-</a>
+Our mission is to keep everything simple,
+fast and accessible while continuously improving
+the platform with new features and resources.
 
 </div>
 
@@ -845,14 +774,18 @@ Join
 <section class="section hidden">
 
 <h2 class="section-title">
+
 🌐 Community
+
 </h2>
 
 <div class="glass-box">
 
-Connect with users,
-share suggestions,
-discover updates and help improve CyrusLinksHub.
+Join the CyrusLinksHub community to stay informed
+about updates, improvements and new content.
+
+Your suggestions and feedback help shape the future
+of the platform.
 
 </div>
 
@@ -863,27 +796,47 @@ discover updates and help improve CyrusLinksHub.
 <section class="section hidden">
 
 <h2 class="section-title">
-❓ FAQ
+
+❓ Frequently Asked Questions
+
 </h2>
 
-<div class="glass-box">
+<div class="glass-box faq-item">
 
-<b>Is everything free?</b>
+<div class="faq-question">
 
-<br><br>
-
-Yes, CyrusLinksHub provides
-free access to resources whenever possible.
+Q: Is CyrusLinksHub free to use?
 
 </div>
 
-<div class="glass-box">
+Yes. The website provides free access
+to available resources and information.
 
-<b>Are downloads safe?</b>
+</div>
 
-<br><br>
+<div class="glass-box faq-item">
 
-Always scan downloaded files using trusted security software.
+<div class="faq-question">
+
+Q: Are downloads safe?
+
+</div>
+
+Always verify downloaded files using
+trusted antivirus and security software.
+
+</div>
+
+<div class="glass-box faq-item">
+
+<div class="faq-question">
+
+Q: Will new content be added?
+
+</div>
+
+Yes. The platform is continuously updated
+with improvements and additional resources.
 
 </div>
 
@@ -894,14 +847,20 @@ Always scan downloaded files using trusted security software.
 <section class="section hidden">
 
 <h2 class="section-title">
-🚀 About CyrusLinksHub
+
+ℹ️ About CyrusLinksHub
+
 </h2>
 
 <div class="glass-box">
 
-CyrusLinksHub is a modern platform
-for games, movies, music,
-tools, APKs and online resources.
+CyrusLinksHub was created to bring together
+useful resources, tools, community features
+and entertainment content into one organized platform.
+
+The website focuses on performance,
+modern design and a smooth user experience
+across all devices.
 
 </div>
 
@@ -909,20 +868,9 @@ tools, APKs and online resources.
 
 <!-- FOOTER -->
 
-<footer
-style="
-margin-top:60px;
-padding:30px;
-text-align:center;
-background:rgba(0,0,0,.45);
-border-top:1px solid rgba(255,255,255,.15);
-">
+<footer>
 
-<p
-style="
-font-family:Rajdhani,sans-serif;
-color:#ccc;
-">
+<p>
 
 © 2026 CyrusLinksHub • Made by Kartikey
 
@@ -935,9 +883,9 @@ color:#ccc;
 <script>
 
 const observer =
-new IntersectionObserver(entries=>{
+new IntersectionObserver(entries => {
 
-entries.forEach(entry=>{
+entries.forEach(entry => {
 
 if(entry.isIntersecting){
 
@@ -951,7 +899,7 @@ entry.target.classList.add("show");
 
 document
 .querySelectorAll(".hidden")
-.forEach(el=>{
+.forEach(el => {
 
 observer.observe(el);
 
@@ -960,4 +908,5 @@ observer.observe(el);
 </script>
 
 </body>
+
 </html>
