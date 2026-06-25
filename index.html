@@ -22,9 +22,9 @@ rel="stylesheet">
 
 <style>
 
-/* =========================
+/* ======================
    ROOT
-========================= */
+====================== */
 
 :root{
 
@@ -60,9 +60,9 @@ overflow-x:hidden;
 
 }
 
-/* =========================
+/* ======================
    GIF BACKGROUND
-========================= */
+====================== */
 
 .gif-bg{
 
@@ -96,9 +96,9 @@ rgba(0,0,0,.65);
 
 }
 
-/* =========================
+/* ======================
    HEADER
-========================= */
+====================== */
 
 header{
 
@@ -119,17 +119,11 @@ border-bottom:
 
 }
 
-/* =========================
+/* ======================
    TOP BAR
-========================= */
+====================== */
 
 .topbar{
-
-max-width:1400px;
-
-margin:auto;
-
-padding:15px 20px;
 
 display:flex;
 
@@ -137,13 +131,19 @@ justify-content:space-between;
 
 align-items:center;
 
-gap:15px;
+padding:15px 20px;
+
+max-width:1400px;
+
+margin:auto;
+
+gap:10px;
 
 }
 
-/* =========================
+/* ======================
    BRAND
-========================= */
+====================== */
 
 .brand{
 
@@ -152,6 +152,10 @@ display:flex;
 align-items:center;
 
 gap:15px;
+
+flex:1;
+
+min-width:0;
 
 }
 
@@ -167,22 +171,22 @@ display:flex;
 justify-content:center;
 align-items:center;
 
-font-size:26px;
-
-border:2px solid var(--cyan);
+font-size:24px;
 
 color:var(--cyan);
+
+border:2px solid var(--cyan);
 
 box-shadow:
 0 0 20px var(--cyan),
 0 0 50px var(--cyan);
 
 animation:
-logoSpin 8s linear infinite;
+spinLogo 8s linear infinite;
 
 }
 
-@keyframes logoSpin{
+@keyframes spinLogo{
 
 from{
 
@@ -202,6 +206,8 @@ transform:rotate(360deg);
 
 font-size:2rem;
 
+white-space:nowrap;
+
 color:var(--red);
 
 text-shadow:
@@ -210,9 +216,9 @@ text-shadow:
 
 }
 
-/* =========================
+/* ======================
    DISCORD BUTTON
-========================= */
+====================== */
 
 .discord-btn{
 
@@ -220,7 +226,9 @@ display:flex;
 
 align-items:center;
 
-gap:10px;
+justify-content:center;
+
+gap:8px;
 
 padding:12px 18px;
 
@@ -233,19 +241,23 @@ linear-gradient(
 #7289DA
 );
 
-text-decoration:none;
-
 color:white;
 
+text-decoration:none;
+
 font-weight:bold;
+
+white-space:nowrap;
+
+flex-shrink:0;
 
 box-shadow:
 0 0 20px #5865F2;
 
-transition:.3s;
-
 animation:
 discordGlow 2s infinite alternate;
+
+transition:.3s;
 
 }
 
@@ -258,8 +270,8 @@ translateY(-3px);
 
 .discord-logo{
 
-width:24px;
-height:24px;
+width:22px;
+height:22px;
 
 object-fit:contain;
 
@@ -284,9 +296,9 @@ box-shadow:
 
 }
 
-/* =========================
+/* ======================
    NAVBAR
-========================= */
+====================== */
 
 .navbar{
 
@@ -333,9 +345,9 @@ rgba(255,255,255,.08);
 border:
 1px solid rgba(255,255,255,.1);
 
-color:white;
-
 text-decoration:none;
+
+color:white;
 
 white-space:nowrap;
 
@@ -363,9 +375,10 @@ box-shadow:
 0 0 25px var(--cyan);
 
 }
-   /* =========================
+   
+/* ======================
    HERO
-========================= */
+====================== */
 
 .hero{
 
@@ -381,7 +394,7 @@ text-align:center;
 
 .hero h2{
 
-font-size:3rem;
+font-size:3.2rem;
 
 line-height:1.2;
 
@@ -389,7 +402,7 @@ color:var(--red);
 
 text-shadow:
 0 0 20px var(--red),
-0 0 50px var(--red);
+0 0 60px var(--red);
 
 animation:
 heroGlow 2s infinite alternate;
@@ -419,9 +432,9 @@ text-shadow:
 
 margin-top:20px;
 
-font-size:1.2rem;
-
 font-family:'Rajdhani',sans-serif;
+
+font-size:1.25rem;
 
 color:#ddd;
 
@@ -432,9 +445,9 @@ margin-right:auto;
 
 }
 
-/* =========================
-   BUTTONS
-========================= */
+/* ======================
+   BUTTON
+====================== */
 
 .btn{
 
@@ -478,9 +491,9 @@ box-shadow:
 
 }
 
-/* =========================
-   SECTIONS
-========================= */
+/* ======================
+   SECTION
+====================== */
 
 .section{
 
@@ -507,9 +520,9 @@ text-shadow:
 
 }
 
-/* =========================
+/* ======================
    GLASS CARD
-========================= */
+====================== */
 
 .glass-card{
 
@@ -543,13 +556,13 @@ transition:.3s;
 border-color:var(--cyan);
 
 box-shadow:
-0 0 20px rgba(0,247,255,.4);
+0 0 25px rgba(0,247,255,.4);
 
 }
 
-/* =========================
+/* ======================
    FAQ
-========================= */
+====================== */
 
 .faq-item{
 
@@ -561,15 +574,15 @@ margin-bottom:20px;
 
 font-weight:bold;
 
-color:var(--cyan);
-
 margin-bottom:10px;
+
+color:var(--cyan);
 
 }
 
-/* =========================
+/* ======================
    SCROLL ANIMATION
-========================= */
+====================== */
 
 .hidden{
 
@@ -592,9 +605,9 @@ translateY(0);
 
 }
 
-/* =========================
+/* ======================
    FOOTER
-========================= */
+====================== */
 
 footer{
 
@@ -620,21 +633,47 @@ color:#aaa;
 
 }
 
-/* =========================
-   MOBILE
-========================= */
+/* ======================
+   MOBILE FIXES
+====================== */
 
 @media(max-width:768px){
 
 .topbar{
 
-flex-direction:column;
+flex-direction:row;
+
+padding:12px;
+
+}
+
+.logo{
+
+width:45px;
+height:45px;
+
+font-size:20px;
 
 }
 
 .brand h1{
 
-font-size:1.5rem;
+font-size:1.2rem;
+
+}
+
+.discord-btn{
+
+padding:8px 12px;
+
+font-size:.8rem;
+
+}
+
+.discord-logo{
+
+width:18px;
+height:18px;
 
 }
 
@@ -660,13 +699,17 @@ font-size:1rem;
 
 min-width:100px;
 
-height:52px;
+height:50px;
+
+font-size:.9rem;
 
 }
 
 }
 
 </style>
+</head>
+
 <body>
 
 <!-- GIF BACKGROUND -->
@@ -695,6 +738,8 @@ CyrusLinksHub
 
 </div>
 
+<!-- DISCORD BUTTON RIGHT SIDE -->
+
 <a
 href="https://discord.gg/YOURINVITE"
 target="_blank"
@@ -715,37 +760,43 @@ Discord
 
 <nav class="navbar">
 
-<a href="/" class="nav-link active">
+<a href="/"
+class="nav-link active">
 
 🏠 Home
 
 </a>
 
-<a href="/tools/" class="nav-link">
+<a href="/tools/"
+class="nav-link">
 
 🔧 Tools
 
 </a>
 
-<a href="/games/" class="nav-link">
+<a href="/games/"
+class="nav-link">
 
 🎮 Games
 
 </a>
 
-<a href="/movies/" class="nav-link">
+<a href="/movies/"
+class="nav-link">
 
 🎬 Movies
 
 </a>
 
-<a href="/apk/" class="nav-link">
+<a href="/apk/"
+class="nav-link">
 
 📱 APKs
 
 </a>
 
-<a href="/about/" class="nav-link">
+<a href="/about/"
+class="nav-link">
 
 ℹ️ About
 
@@ -768,9 +819,9 @@ CYRUSLINKSHUB
 
 <p>
 
-Your modern hub for useful resources,
-downloads, tools, guides, community updates
-and entertainment content.
+Your modern destination for tools,
+downloads, resources, entertainment,
+community updates and useful content.
 
 </p>
 
@@ -778,13 +829,13 @@ and entertainment content.
 href="/about/"
 class="btn">
 
-Learn More
+Explore More
 
 </a>
 
 </section>
 
-<!-- ABOUT -->
+<!-- WELCOME SECTION -->
 
 <section class="section hidden">
 
@@ -797,13 +848,13 @@ Learn More
 <div class="glass-card">
 
 CyrusLinksHub is a modern resource hub
-built to provide users with easy access
-to tools, downloads, gaming resources,
-community content and useful information.
+designed to provide users with quick access
+to useful tools, downloads, gaming resources,
+community updates and online content.
 
-Our goal is to keep everything fast,
-organized and easy to access on both
-desktop and mobile devices.
+The platform focuses on speed,
+simplicity and a smooth user experience
+across both desktop and mobile devices.
 
 </div>
 
@@ -823,10 +874,11 @@ desktop and mobile devices.
 
 Join the CyrusLinksHub community to stay
 updated with announcements, future updates,
-new features and discussions.
+website improvements and new resources.
 
-Community feedback helps improve the platform
-and create a better experience for everyone.
+Community feedback helps improve the
+platform and build a better experience
+for everyone.
 
 </div>
 
@@ -846,12 +898,12 @@ and create a better experience for everyone.
 
 <div class="faq-question">
 
-Q: Is CyrusLinksHub free?
+Q: Is CyrusLinksHub free to use?
 
 </div>
 
-Yes. All public resources on the website
-are freely accessible.
+Yes. All public resources available on
+CyrusLinksHub are freely accessible.
 
 </div>
 
@@ -865,8 +917,8 @@ Q: Will more content be added?
 
 </div>
 
-Yes. The platform is continuously updated
-with new resources and improvements.
+Yes. The website is continuously updated
+with new resources, improvements and features.
 
 </div>
 
@@ -880,7 +932,33 @@ Q: How can I join the community?
 
 </div>
 
-Use the Discord button at the top of the page.
+You can join using the Discord button
+located beside the CyrusLinksHub title.
+
+</div>
+
+</section>
+
+<!-- ABOUT -->
+
+<section class="section hidden">
+
+<h2 class="section-title">
+
+ℹ️ About CyrusLinksHub
+
+</h2>
+
+<div class="glass-card">
+
+CyrusLinksHub was created to bring useful
+resources, entertainment, tools and community
+features together in one modern platform.
+
+Our goal is to provide a fast, clean and
+user-friendly experience while continuously
+improving the website with new content and
+better functionality.
 
 </div>
 
@@ -898,7 +976,7 @@ Use the Discord button at the top of the page.
 
 </footer>
 
-<!-- SCROLL ANIMATION -->
+<!-- SCROLL REVEAL ANIMATION -->
 
 <script>
 
