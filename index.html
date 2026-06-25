@@ -22,6 +22,10 @@ rel="stylesheet">
 
 <style>
 
+/* =========================
+   ROOT
+========================= */
+
 :root{
 
 --red:#ff003c;
@@ -48,17 +52,17 @@ body{
 
 font-family:'Orbitron',sans-serif;
 
+background:#000;
+
 color:white;
 
 overflow-x:hidden;
 
-background:#000;
-
 }
 
-/* ======================
+/* =========================
    GIF BACKGROUND
-====================== */
+========================= */
 
 .gif-bg{
 
@@ -92,9 +96,9 @@ rgba(0,0,0,.65);
 
 }
 
-/* ======================
+/* =========================
    HEADER
-====================== */
+========================= */
 
 header{
 
@@ -105,17 +109,19 @@ top:0;
 z-index:999;
 
 background:
-rgba(0,0,0,.45);
+rgba(0,0,0,.75);
 
 backdrop-filter:
-blur(12px);
+blur(15px);
 
 border-bottom:
 2px solid var(--red);
 
 }
 
-/* TOP BAR */
+/* =========================
+   TOP BAR
+========================= */
 
 .topbar{
 
@@ -123,7 +129,7 @@ max-width:1400px;
 
 margin:auto;
 
-padding:18px 20px;
+padding:15px 20px;
 
 display:flex;
 
@@ -131,11 +137,13 @@ justify-content:space-between;
 
 align-items:center;
 
-gap:20px;
+gap:15px;
 
 }
 
-/* BRAND */
+/* =========================
+   BRAND
+========================= */
 
 .brand{
 
@@ -149,8 +157,8 @@ gap:15px;
 
 .logo{
 
-width:52px;
-height:52px;
+width:58px;
+height:58px;
 
 border-radius:50%;
 
@@ -159,21 +167,22 @@ display:flex;
 justify-content:center;
 align-items:center;
 
-border:2px solid var(--cyan);
+font-size:26px;
 
-box-shadow:
-0 0 20px var(--cyan);
+border:2px solid var(--cyan);
 
 color:var(--cyan);
 
-font-size:24px;
+box-shadow:
+0 0 20px var(--cyan),
+0 0 50px var(--cyan);
 
 animation:
-spinLogo 8s linear infinite;
+logoSpin 8s linear infinite;
 
 }
 
-@keyframes spinLogo{
+@keyframes logoSpin{
 
 from{
 
@@ -196,11 +205,14 @@ font-size:2rem;
 color:var(--red);
 
 text-shadow:
-0 0 15px var(--red);
+0 0 15px var(--red),
+0 0 40px var(--red);
 
 }
 
-/* DISCORD BUTTON */
+/* =========================
+   DISCORD BUTTON
+========================= */
 
 .discord-btn{
 
@@ -210,9 +222,9 @@ align-items:center;
 
 gap:10px;
 
-padding:12px 20px;
+padding:12px 18px;
 
-border-radius:12px;
+border-radius:14px;
 
 background:
 linear-gradient(
@@ -249,6 +261,8 @@ translateY(-3px);
 width:24px;
 height:24px;
 
+object-fit:contain;
+
 }
 
 @keyframes discordGlow{
@@ -264,15 +278,15 @@ to{
 
 box-shadow:
 0 0 35px #5865F2,
-0 0 60px #5865F2;
+0 0 70px #5865F2;
 
 }
 
 }
 
-/* ======================
+/* =========================
    NAVBAR
-====================== */
+========================= */
 
 .navbar{
 
@@ -282,10 +296,10 @@ gap:12px;
 
 overflow-x:auto;
 
-padding:15px 20px;
+padding:15px;
 
 background:
-rgba(0,0,0,.25);
+rgba(0,0,0,.35);
 
 scrollbar-width:none;
 
@@ -299,15 +313,19 @@ display:none;
 
 .nav-link{
 
-position:relative;
+display:flex;
 
-text-decoration:none;
+align-items:center;
 
-color:white;
+justify-content:center;
 
-padding:12px 22px;
+min-width:120px;
 
-border-radius:12px;
+height:56px;
+
+padding:0 20px;
+
+border-radius:14px;
 
 background:
 rgba(255,255,255,.08);
@@ -315,11 +333,13 @@ rgba(255,255,255,.08);
 border:
 1px solid rgba(255,255,255,.1);
 
+color:white;
+
+text-decoration:none;
+
 white-space:nowrap;
 
 transition:.3s;
-
-overflow:hidden;
 
 }
 
@@ -328,7 +348,7 @@ overflow:hidden;
 border-color:var(--cyan);
 
 box-shadow:
-0 0 15px var(--cyan);
+0 0 20px var(--cyan);
 
 transform:
 translateY(-2px);
@@ -340,12 +360,12 @@ translateY(-2px);
 border-color:var(--cyan);
 
 box-shadow:
-0 0 20px var(--cyan);
+0 0 25px var(--cyan);
 
 }
-   /* ======================
+   /* =========================
    HERO
-====================== */
+========================= */
 
 .hero{
 
@@ -361,7 +381,9 @@ text-align:center;
 
 .hero h2{
 
-font-size:3.5rem;
+font-size:3rem;
+
+line-height:1.2;
 
 color:var(--red);
 
@@ -379,7 +401,7 @@ heroGlow 2s infinite alternate;
 from{
 
 text-shadow:
-0 0 20px var(--red);
+0 0 15px var(--red);
 
 }
 
@@ -397,38 +419,32 @@ text-shadow:
 
 margin-top:20px;
 
-font-family:'Rajdhani',sans-serif;
+font-size:1.2rem;
 
-font-size:1.3rem;
+font-family:'Rajdhani',sans-serif;
 
 color:#ddd;
 
-max-width:800px;
+max-width:850px;
 
 margin-left:auto;
 margin-right:auto;
 
 }
 
-/* ======================
-   BUTTON
-====================== */
+/* =========================
+   BUTTONS
+========================= */
 
 .btn{
 
 display:inline-block;
 
-margin-top:25px;
+margin-top:30px;
 
-padding:14px 28px;
+padding:15px 35px;
 
-border-radius:12px;
-
-text-decoration:none;
-
-font-weight:bold;
-
-color:white;
+border-radius:14px;
 
 background:
 linear-gradient(
@@ -436,6 +452,12 @@ linear-gradient(
 var(--red),
 #ff3366
 );
+
+color:white;
+
+text-decoration:none;
+
+font-weight:bold;
 
 box-shadow:
 0 0 20px var(--red);
@@ -447,25 +469,114 @@ transition:.3s;
 .btn:hover{
 
 transform:
-translateY(-3px)
+translateY(-4px)
 scale(1.05);
 
 box-shadow:
 0 0 35px var(--red),
-0 0 60px var(--red);
+0 0 70px var(--red);
 
 }
 
-/* ======================
+/* =========================
+   SECTIONS
+========================= */
+
+.section{
+
+max-width:1200px;
+
+margin:80px auto;
+
+padding:0 20px;
+
+}
+
+.section-title{
+
+text-align:center;
+
+font-size:2.2rem;
+
+margin-bottom:30px;
+
+color:var(--cyan);
+
+text-shadow:
+0 0 20px var(--cyan);
+
+}
+
+/* =========================
+   GLASS CARD
+========================= */
+
+.glass-card{
+
+background:
+rgba(255,255,255,.08);
+
+backdrop-filter:
+blur(12px);
+
+border:
+1px solid rgba(255,255,255,.12);
+
+border-radius:20px;
+
+padding:25px;
+
+font-family:'Rajdhani',sans-serif;
+
+font-size:1.1rem;
+
+line-height:1.8;
+
+color:#ddd;
+
+transition:.3s;
+
+}
+
+.glass-card:hover{
+
+border-color:var(--cyan);
+
+box-shadow:
+0 0 20px rgba(0,247,255,.4);
+
+}
+
+/* =========================
+   FAQ
+========================= */
+
+.faq-item{
+
+margin-bottom:20px;
+
+}
+
+.faq-question{
+
+font-weight:bold;
+
+color:var(--cyan);
+
+margin-bottom:10px;
+
+}
+
+/* =========================
    SCROLL ANIMATION
-====================== */
+========================= */
 
 .hidden{
 
 opacity:0;
 
 transform:
-translateY(60px);
+translateY(50px);
 
 transition:
 all .8s ease;
@@ -481,112 +592,23 @@ translateY(0);
 
 }
 
-/* ======================
-   SECTION
-====================== */
-
-.section{
-
-max-width:1200px;
-
-margin:70px auto;
-
-padding:0 20px;
-
-}
-
-.section-title{
-
-text-align:center;
-
-font-size:2rem;
-
-color:var(--cyan);
-
-margin-bottom:25px;
-
-text-shadow:
-0 0 15px var(--cyan);
-
-}
-
-/* ======================
-   GLASS BOX
-====================== */
-
-.glass-box{
-
-background:
-rgba(255,255,255,.08);
-
-backdrop-filter:
-blur(12px);
-
-border:
-1px solid rgba(255,255,255,.12);
-
-border-radius:20px;
-
-padding:25px;
-
-line-height:1.8;
-
-font-family:'Rajdhani',sans-serif;
-
-font-size:1.1rem;
-
-color:#ddd;
-
-transition:.3s;
-
-}
-
-.glass-box:hover{
-
-border-color:var(--cyan);
-
-box-shadow:
-0 0 20px rgba(0,247,255,.4);
-
-}
-
-/* ======================
-   FAQ
-====================== */
-
-.faq-item{
-
-margin-bottom:20px;
-
-}
-
-.faq-question{
-
-color:var(--cyan);
-
-font-weight:bold;
-
-margin-bottom:10px;
-
-}
-
-/* ======================
+/* =========================
    FOOTER
-====================== */
+========================= */
 
 footer{
 
-margin-top:70px;
+margin-top:80px;
 
 padding:30px;
 
 text-align:center;
 
 background:
-rgba(0,0,0,.45);
+rgba(0,0,0,.5);
 
 border-top:
-1px solid rgba(255,255,255,.12);
+1px solid rgba(255,255,255,.1);
 
 }
 
@@ -594,13 +616,13 @@ footer p{
 
 font-family:'Rajdhani',sans-serif;
 
-color:#ccc;
+color:#aaa;
 
 }
 
-/* ======================
+/* =========================
    MOBILE
-====================== */
+========================= */
 
 @media(max-width:768px){
 
@@ -608,19 +630,17 @@ color:#ccc;
 
 flex-direction:column;
 
-gap:15px;
-
 }
 
 .brand h1{
 
-font-size:1.6rem;
+font-size:1.5rem;
 
 }
 
 .hero{
 
-padding:90px 20px;
+padding:80px 20px;
 
 }
 
@@ -636,11 +656,17 @@ font-size:1rem;
 
 }
 
+.nav-link{
+
+min-width:100px;
+
+height:52px;
+
 }
-   </style>
 
-</head>
+}
 
+</style>
 <body>
 
 <!-- GIF BACKGROUND -->
@@ -656,22 +682,26 @@ font-size:1rem;
 <div class="brand">
 
 <div class="logo">
+
 ✓
+
 </div>
 
 <h1>
+
 CyrusLinksHub
+
 </h1>
 
 </div>
 
 <a
-href="https://discord.gg/YOUR_INVITE"
+href="https://discord.gg/YOURINVITE"
 target="_blank"
 class="discord-btn">
 
 <img
-src="discord-logo.png"
+src="discord.png"
 alt="Discord"
 class="discord-logo">
 
@@ -685,34 +715,40 @@ Discord
 
 <nav class="navbar">
 
-<a href="index.html"
-class="nav-link active">
+<a href="/" class="nav-link active">
+
 🏠 Home
+
 </a>
 
-<a href="./tools/"
-class="nav-link">
+<a href="/tools/" class="nav-link">
+
 🔧 Tools
+
 </a>
 
-<a href="./games/"
-class="nav-link">
+<a href="/games/" class="nav-link">
+
 🎮 Games
+
 </a>
 
-<a href="./movies/"
-class="nav-link">
+<a href="/movies/" class="nav-link">
+
 🎬 Movies
+
 </a>
 
-<a href="./apk/"
-class="nav-link">
+<a href="/apk/" class="nav-link">
+
 📱 APKs
+
 </a>
 
-<a href="./about/"
-class="nav-link">
+<a href="/about/" class="nav-link">
+
 ℹ️ About
+
 </a>
 
 </nav>
@@ -724,18 +760,22 @@ class="nav-link">
 <section class="hero hidden">
 
 <h2>
+
 WELCOME TO
 CYRUSLINKSHUB
+
 </h2>
 
 <p>
 
 Your modern hub for useful resources,
-downloads, tools, entertainment and community updates.
+downloads, tools, guides, community updates
+and entertainment content.
 
 </p>
 
-<a href="./about/"
+<a
+href="/about/"
 class="btn">
 
 Learn More
@@ -744,7 +784,7 @@ Learn More
 
 </section>
 
-<!-- INTRODUCTION -->
+<!-- ABOUT -->
 
 <section class="section hidden">
 
@@ -754,16 +794,16 @@ Learn More
 
 </h2>
 
-<div class="glass-box">
+<div class="glass-card">
 
-CyrusLinksHub is designed to provide users with
-easy access to useful tools, entertainment resources,
-community updates and online content through a modern,
-clean and user-friendly experience.
+CyrusLinksHub is a modern resource hub
+built to provide users with easy access
+to tools, downloads, gaming resources,
+community content and useful information.
 
-Our mission is to keep everything simple,
-fast and accessible while continuously improving
-the platform with new features and resources.
+Our goal is to keep everything fast,
+organized and easy to access on both
+desktop and mobile devices.
 
 </div>
 
@@ -779,13 +819,14 @@ the platform with new features and resources.
 
 </h2>
 
-<div class="glass-box">
+<div class="glass-card">
 
-Join the CyrusLinksHub community to stay informed
-about updates, improvements and new content.
+Join the CyrusLinksHub community to stay
+updated with announcements, future updates,
+new features and discussions.
 
-Your suggestions and feedback help shape the future
-of the platform.
+Community feedback helps improve the platform
+and create a better experience for everyone.
 
 </div>
 
@@ -801,66 +842,45 @@ of the platform.
 
 </h2>
 
-<div class="glass-box faq-item">
+<div class="glass-card faq-item">
 
 <div class="faq-question">
 
-Q: Is CyrusLinksHub free to use?
+Q: Is CyrusLinksHub free?
 
 </div>
 
-Yes. The website provides free access
-to available resources and information.
+Yes. All public resources on the website
+are freely accessible.
 
 </div>
 
-<div class="glass-box faq-item">
+<br>
+
+<div class="glass-card faq-item">
 
 <div class="faq-question">
 
-Q: Are downloads safe?
-
-</div>
-
-Always verify downloaded files using
-trusted antivirus and security software.
-
-</div>
-
-<div class="glass-box faq-item">
-
-<div class="faq-question">
-
-Q: Will new content be added?
+Q: Will more content be added?
 
 </div>
 
 Yes. The platform is continuously updated
-with improvements and additional resources.
+with new resources and improvements.
 
 </div>
 
-</section>
+<br>
 
-<!-- ABOUT -->
+<div class="glass-card faq-item">
 
-<section class="section hidden">
+<div class="faq-question">
 
-<h2 class="section-title">
+Q: How can I join the community?
 
-ℹ️ About CyrusLinksHub
+</div>
 
-</h2>
-
-<div class="glass-box">
-
-CyrusLinksHub was created to bring together
-useful resources, tools, community features
-and entertainment content into one organized platform.
-
-The website focuses on performance,
-modern design and a smooth user experience
-across all devices.
+Use the Discord button at the top of the page.
 
 </div>
 
