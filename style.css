@@ -1506,3 +1506,27 @@ opacity:.9;
 /*==================================================
 END OF STYLE.CSS
 ==================================================*/
+#topBtn{
+position:fixed;
+bottom:20px;
+right:20px;
+width:55px;
+height:55px;
+display:none;
+align-items:center;
+justify-content:center;
+border:none;
+border-radius:18px;
+background:linear-gradient(135deg,#ff004d,#ff2b69);
+color:#fff;
+font-size:22px;
+cursor:pointer;
+box-shadow:0 0 20px rgba(255,0,77,.5);
+transition:.3s;
+z-index:9999;
+}
+
+#topBtn:hover{
+transform:translateY(-4px);
+box-shadow:0 0 35px rgba(255,0,77,.8);
+}
