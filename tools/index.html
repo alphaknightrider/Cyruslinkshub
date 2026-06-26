@@ -8,184 +8,698 @@
 <meta name="viewport"
 content="width=device-width, initial-scale=1.0">
 
-<title>CyrusLinksHub Tools</title>
+<title>CyrusLinksHub | Tools</title>
 
-<link
-href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;800&display=swap"
+<meta
+name="description"
+content="Minecraft Tools, Utilities, QR Generator, Password Generator and more.">
+
+<link rel="preconnect"
+href="https://fonts.googleapis.com">
+
+<link rel="preconnect"
+href="https://fonts.gstatic.com"
+crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;800&family=Rajdhani:wght@400;600;700&display=swap"
 rel="stylesheet">
 
 <style>
 
 :root{
+
 --bg:#05010a;
---card:#0d0818;
+
+--card:rgba(255,255,255,.05);
+
+--glass:rgba(255,255,255,.08);
+
 --cyan:#00f7ff;
+
 --red:#ff0048;
---glass:rgba(255,255,255,.05);
+
+--white:#ffffff;
+
+--gray:#cfcfcf;
+
+--border:rgba(255,255,255,.10);
+
 }
 
 *{
+
 margin:0;
+
 padding:0;
+
 box-sizing:border-box;
+
+}
+
+html{
+
+scroll-behavior:smooth;
+
 }
 
 body{
-font-family:'Orbitron',sans-serif;
-background:var(--bg);
+
+font-family:"Orbitron",sans-serif;
+
+background:#000;
+
 color:white;
+
 overflow-x:hidden;
+
 }
+
+/* Animated GIF Background */
+
+.background{
+
+position:fixed;
+
+top:0;
+
+left:0;
+
+width:100%;
+
+height:100%;
+
+background:url("network.gif")
+center center/
+cover no-repeat;
+
+z-index:-3;
+
+}
+
+.background::before{
+
+content:"";
+
+position:absolute;
+
+inset:0;
+
+background:rgba(0,0,0,.72);
+
+backdrop-filter:blur(3px);
+
+}
+
+/* Particles */
 
 #particles{
+
 position:fixed;
+
 top:0;
+
 left:0;
+
 width:100%;
+
 height:100%;
-z-index:-1;
+
+pointer-events:none;
+
+z-index:-2;
+
 }
 
-header{
-position:sticky;
-top:0;
-z-index:999;
-background:rgba(0,0,0,.8);
-backdrop-filter:blur(12px);
-padding:15px;
-border-bottom:1px solid rgba(0,247,255,.2);
+/* Scrollbar */
+
+::-webkit-scrollbar{
+
+width:8px;
+
 }
 
-.logo{
-display:flex;
-justify-content:center;
-align-items:center;
-gap:15px;
+::-webkit-scrollbar-track{
+
+background:#060606;
+
 }
 
-.logo-circle{
-width:60px;
-height:60px;
-border-radius:50%;
-border:2px solid var(--cyan);
-display:flex;
-align-items:center;
-justify-content:center;
-box-shadow:0 0 20px var(--cyan);
-animation:spin 8s linear infinite;
+::-webkit-scrollbar-thumb{
+
+background:var(--cyan);
+
+border-radius:50px;
+
 }
 
-.logo-circle span{
-font-size:20px;
-font-weight:bold;
-color:var(--cyan);
+/* Container */
+
+.container{
+
+width:min(1400px,95%);
+
+margin:auto;
+
 }
 
-@keyframes spin{
-from{transform:rotate(0deg);}
-to{transform:rotate(360deg);}
+/* Sections */
+
+section{
+
+padding:70px 0;
+
 }
 
-.logo h1{
-color:var(--red);
-text-shadow:0 0 15px var(--red);
-}
-
-.hero{
-text-align:center;
-padding:70px 20px;
-}
-
-.hero h2{
-font-size:3rem;
-color:var(--red);
-text-shadow:0 0 20px var(--red);
-}
-
-.hero p{
-color:#aaa;
-margin-top:10px;
-}
+/* Titles */
 
 .section-title{
+
 text-align:center;
-font-size:2rem;
-margin:40px 0 20px;
+
+font-size:2.2rem;
+
+margin-bottom:40px;
+
 color:var(--cyan);
-text-shadow:0 0 15px var(--cyan);
+
+text-shadow:
+
+0 0 12px var(--cyan),
+
+0 0 25px var(--cyan);
+
 }
 
-.tools-grid{
-max-width:1300px;
-margin:auto;
-padding:20px;
+/* Grid */
+
+.grid{
+
 display:grid;
+
 grid-template-columns:
-repeat(auto-fit,minmax(320px,1fr));
+repeat(auto-fit,minmax(280px,1fr));
+
 gap:25px;
+
 }
 
-.tool-card{
+/* Cards */
+
+.card{
+
 background:var(--glass);
-border:1px solid rgba(0,247,255,.2);
-border-radius:15px;
-padding:25px;
+
+border:1px solid var(--border);
+
+border-radius:18px;
+
+padding:22px;
+
 backdrop-filter:blur(12px);
-transition:.3s;
+
+transition:.35s;
+
 }
 
-.tool-card:hover{
-transform:translateY(-5px);
-box-shadow:0 0 25px rgba(0,247,255,.25);
+.card:hover{
+
+transform:translateY(-8px);
+
+border-color:var(--cyan);
+
+box-shadow:
+
+0 0 25px rgba(0,247,255,.25);
+
 }
 
-.tool-card h3{
-color:var(--cyan);
-margin-bottom:15px;
-}
-
-.tool-card input,
-.tool-card select{
-width:100%;
-padding:12px;
-border:none;
-outline:none;
-background:#111;
-color:white;
-border-radius:8px;
-margin-bottom:10px;
-font-family:'Orbitron',sans-serif;
-}
+/* Tool Buttons */
 
 .tool-btn{
+
+display:block;
+
 width:100%;
-padding:12px;
-background:var(--red);
+
+text-align:center;
+
+text-decoration:none;
+
+padding:14px;
+
+margin-top:12px;
+
+border-radius:12px;
+
+background:
+
+linear-gradient(135deg,
+var(--red),
+#ff3366);
+
 color:white;
-border:none;
-border-radius:8px;
-cursor:pointer;
-font-weight:bold;
-margin-top:5px;
+
+font-weight:700;
+
+transition:.3s;
+
 }
 
 .tool-btn:hover{
-box-shadow:0 0 15px var(--red);
+
+transform:translateY(-3px);
+
+box-shadow:
+
+0 0 18px var(--red);
+
+}
+ /*=====================================
+HEADER
+=====================================*/
+
+header{
+
+position:sticky;
+
+top:0;
+
+z-index:1000;
+
+background:rgba(5,5,10,.75);
+
+backdrop-filter:blur(16px);
+
+border-bottom:1px solid rgba(255,255,255,.08);
+
 }
 
-.result{
-margin-top:15px;
-line-height:1.7;
-color:#ddd;
-word-break:break-word;
+/*=====================================
+TOP BAR
+=====================================*/
+
+.topbar{
+
+display:flex;
+
+align-items:center;
+
+justify-content:space-between;
+
+padding:18px 22px;
+
+gap:20px;
+
 }
 
-footer{
+/*=====================================
+LOGO
+=====================================*/
+
+.brand{
+
+display:flex;
+
+align-items:center;
+
+gap:15px;
+
+}
+
+.logo{
+
+width:58px;
+
+height:58px;
+
+border-radius:16px;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+font-size:24px;
+
+font-weight:800;
+
+color:var(--cyan);
+
+background:rgba(255,255,255,.05);
+
+border:2px solid var(--cyan);
+
+box-shadow:
+
+0 0 20px rgba(0,247,255,.45);
+
+animation:logoGlow 3s infinite alternate;
+
+}
+
+.brand-text h1{
+
+font-size:28px;
+
+color:var(--red);
+
+text-shadow:
+
+0 0 15px var(--red);
+
+}
+
+.brand-text p{
+
+font-family:"Rajdhani",sans-serif;
+
+color:#d0d0d0;
+
+font-size:15px;
+
+}
+
+/*=====================================
+DISCORD BUTTON
+=====================================*/
+
+.discord-btn{
+
+display:flex;
+
+align-items:center;
+
+gap:10px;
+
+text-decoration:none;
+
+padding:12px 18px;
+
+border-radius:14px;
+
+background:linear-gradient(135deg,#5865F2,#7289DA);
+
+color:white;
+
+font-weight:700;
+
+transition:.3s;
+
+box-shadow:
+
+0 0 20px rgba(88,101,242,.5);
+
+animation:discordGlow 2s infinite alternate;
+
+}
+
+.discord-btn img{
+
+width:24px;
+
+height:24px;
+
+}
+
+.discord-btn:hover{
+
+transform:translateY(-3px);
+
+box-shadow:
+
+0 0 28px rgba(88,101,242,.9);
+
+}
+
+/*=====================================
+NAVBAR
+=====================================*/
+
+.navbar{
+
+display:flex;
+
+gap:12px;
+
+padding:16px 20px;
+
+overflow-x:auto;
+
+scrollbar-width:none;
+
+}
+
+.navbar::-webkit-scrollbar{
+
+display:none;
+
+}
+
+.nav-link{
+
+flex:none;
+
+text-decoration:none;
+
+padding:12px 22px;
+
+border-radius:14px;
+
+background:rgba(255,255,255,.05);
+
+border:1px solid rgba(255,255,255,.08);
+
+color:white;
+
+transition:.3s;
+
+font-weight:700;
+
+}
+
+.nav-link:hover{
+
+background:rgba(0,247,255,.12);
+
+border-color:var(--cyan);
+
+box-shadow:
+
+0 0 18px rgba(0,247,255,.3);
+
+}
+
+.nav-link.active{
+
+background:linear-gradient(135deg,var(--red),#ff3366);
+
+border:none;
+
+}
+
+/*=====================================
+HERO
+=====================================*/
+
+.hero{
+
+padding:90px 20px;
+
 text-align:center;
-padding:30px;
-margin-top:40px;
-border-top:1px solid rgba(0,247,255,.2);
-color:#888;
+
+}
+
+.hero h2{
+
+font-size:54px;
+
+color:white;
+
+text-shadow:
+
+0 0 18px var(--cyan);
+
+margin-bottom:20px;
+
+}
+
+.hero span{
+
+color:var(--red);
+
+}
+
+.hero p{
+
+max-width:850px;
+
+margin:auto;
+
+font-size:20px;
+
+line-height:1.8;
+
+font-family:"Rajdhani",sans-serif;
+
+color:#d4d4d4;
+
+}
+
+.hero-buttons{
+
+display:flex;
+
+justify-content:center;
+
+gap:20px;
+
+flex-wrap:wrap;
+
+margin-top:35px;
+
+}
+
+.hero-btn{
+
+text-decoration:none;
+
+padding:15px 30px;
+
+border-radius:14px;
+
+font-weight:700;
+
+transition:.3s;
+
+}
+
+.hero-btn.primary{
+
+background:linear-gradient(135deg,var(--red),#ff3366);
+
+color:white;
+
+box-shadow:
+
+0 0 25px rgba(255,0,72,.4);
+
+}
+
+.hero-btn.secondary{
+
+background:rgba(255,255,255,.05);
+
+border:1px solid rgba(0,247,255,.25);
+
+color:var(--cyan);
+
+}
+
+.hero-btn:hover{
+
+transform:translateY(-4px);
+
+}
+
+/*=====================================
+ANIMATIONS
+=====================================*/
+
+@keyframes logoGlow{
+
+from{
+
+box-shadow:0 0 10px rgba(0,247,255,.3);
+
+}
+
+to{
+
+box-shadow:0 0 28px rgba(0,247,255,.9);
+
+}
+
+}
+
+@keyframes discordGlow{
+
+from{
+
+box-shadow:0 0 12px rgba(88,101,242,.35);
+
+}
+
+to{
+
+box-shadow:0 0 28px rgba(88,101,242,.9);
+
+}
+
+}
+
+/*=====================================
+RESPONSIVE
+=====================================*/
+
+@media(max-width:768px){
+
+.topbar{
+
+padding:15px;
+
+}
+
+.brand-text h1{
+
+font-size:22px;
+
+}
+
+.brand-text p{
+
+display:none;
+
+}
+
+.logo{
+
+width:50px;
+
+height:50px;
+
+font-size:20px;
+
+}
+
+.discord-btn{
+
+padding:10px 14px;
+
+font-size:13px;
+
+}
+
+.discord-btn img{
+
+width:20px;
+
+height:20px;
+
+}
+
+.hero h2{
+
+font-size:36px;
+
+}
+
+.hero p{
+
+font-size:17px;
+
+}
+
 }
 
 </style>
@@ -194,17 +708,64 @@ color:#888;
 
 <body>
 
+<div class="background"></div>
+
 <canvas id="particles"></canvas>
 
 <header>
 
+<div class="container">
+
+<div class="topbar">
+
+<div class="brand">
+
 <div class="logo">
 
-<div class="logo-circle">
-<span>CL</span>
+CL
+
 </div>
 
-<h1>CyrusLinksHub Tools</h1>
+<div class="brand-text">
+
+<h1>CyrusLinksHub</h1>
+
+<p>Professional Tools Collection</p>
+
+</div>
+
+</div>
+
+<a
+href="https://discord.gg/YOURINVITE"
+target="_blank"
+class="discord-btn">
+
+<img
+src="discord.png"
+alt="Discord">
+
+Discord
+
+</a>
+
+</div>
+
+<nav class="navbar">
+
+<a href="/" class="nav-link">🏠 Home</a>
+
+<a href="/tools.html" class="nav-link active">🛠 Tools</a>
+
+<a href="/games/" class="nav-link">🎮 Games</a>
+
+<a href="/apk/" class="nav-link">📱 APK</a>
+
+<a href="/movies/" class="nav-link">🎬 Movies</a>
+
+<a href="/about/" class="nav-link">ℹ About</a>
+
+</nav>
 
 </div>
 
@@ -212,918 +773,827 @@ color:#888;
 
 <section class="hero">
 
+<div class="container">
+
 <h2>
-🔧 TOOLS HUB
+
+Ultimate <span>Tools Hub</span>
+
 </h2>
 
 <p>
-Minecraft • Utilities • Network Tools
+
+Access powerful Minecraft tools, utilities, generators, network checkers, and many more professional tools in one place.
+
 </p>
 
+<div class="hero-buttons">
+
+<a href="#minecraft" class="hero-btn primary">
+
+Explore Minecraft Tools
+
+</a>
+
+<a href="#utilities" class="hero-btn secondary">
+
+Explore Utilities
+
+</a>
+
+</div>
+
+</div>
+
 </section>
+<!--=====================================
+MINECRAFT TOOLS
+======================================-->
+
+<section id="minecraft">
+
+<div class="container">
 
 <h2 class="section-title">
+
 🎮 Minecraft Tools
+
 </h2>
 
-<div class="tools-grid">
+<div class="grid">
 
-<!-- MINECRAFT STATUS -->
+<!-- Server Checker -->
 
-<div class="tool-card">
+<div class="card">
 
-<h3>🎮 Minecraft Java + Bedrock Status</h3>
+<h3>🖥 Server Checker</h3>
 
-<input
-type="text"
-id="mc-ip"
-placeholder="play.hypixel.net">
+<p>
 
-<input
-type="number"
-id="mc-port"
-placeholder="19132 (Bedrock Optional)">
+Check Java & Bedrock servers, ping, players,
+version, MOTD and favicon.
 
-<button
-class="tool-btn"
-onclick="checkMinecraft()">
+</p>
 
-Check Server
+<a href="minecraft/server-checker/" class="tool-btn">
 
-</button>
+Open Tool →
 
-<div
-id="mc-result"
-class="result">
+</a>
 
-Enter server IP.
+</div>
+
+<!-- Skin Viewer -->
+
+<div class="card">
+
+<h3>🧑 Skin Viewer</h3>
+
+<p>
+
+View Minecraft skins in 3D,
+download skins,
+view player head and avatar.
+
+</p>
+
+<a href="minecraft/skin-viewer/" class="tool-btn">
+
+Open Tool →
+
+</a>
+
+</div>
+
+<!-- Username Lookup -->
+
+<div class="card">
+
+<h3>👤 Username Lookup</h3>
+
+<p>
+
+Lookup Minecraft usernames,
+UUIDs,
+profiles
+and player information.
+
+</p>
+
+<a href="minecraft/username-lookup/" class="tool-btn">
+
+Open Tool →
+
+</a>
+
+</div>
+
+<!-- Nickname Generator -->
+
+<div class="card">
+
+<h3>✨ Nickname Generator</h3>
+
+<p>
+
+Generate stylish,
+OG,
+PvP,
+Aesthetic and Random Minecraft usernames.
+
+</p>
+
+<a href="minecraft/nickname-generator/" class="tool-btn">
+
+Open Tool →
+
+</a>
+
+</div>
+
+<!-- PaperMC -->
+
+<div class="card">
+
+<h3>📦 PaperMC Checker</h3>
+
+<p>
+
+Latest PaperMC builds,
+downloads,
+versions and release information.
+
+</p>
+
+<a href="minecraft/papermc/" class="tool-btn">
+
+Open Tool →
+
+</a>
+
+</div>
+
+<!-- Color Codes -->
+
+<div class="card">
+
+<h3>🎨 Color Codes</h3>
+
+<p>
+
+Minecraft color codes,
+formatting codes,
+hex colors
+and gradients.
+
+</p>
+
+<a href="minecraft/color-codes/" class="tool-btn">
+
+Open Tool →
+
+</a>
+
+</div>
+
+<!-- MOTD -->
+
+<div class="card">
+
+<h3>📝 MOTD Generator</h3>
+
+<p>
+
+Generate colorful server MOTDs
+with formatting and gradients.
+
+</p>
+
+<a href="minecraft/motd-generator/" class="tool-btn">
+
+Open Tool →
+
+</a>
+
+</div>
+
+<!-- Commands -->
+
+<div class="card">
+
+<h3>⌨ Commands Guide</h3>
+
+<p>
+
+Browse useful Minecraft commands
+for Java & Bedrock Edition.
+
+</p>
+
+<a href="minecraft/commands/" class="tool-btn">
+
+Open Tool →
+
+</a>
+
+</div>
+
+<!-- Enchantments -->
+
+<div class="card">
+
+<h3>⚔ Enchantments</h3>
+
+<p>
+
+Complete enchantment list,
+levels,
+compatibility
+and IDs.
+
+</p>
+
+<a href="minecraft/enchantments/" class="tool-btn">
+
+Open Tool →
+
+</a>
+
+</div>
+
+<!-- Potions -->
+
+<div class="card">
+
+<h3>🧪 Potions Guide</h3>
+
+<p>
+
+Potion recipes,
+effects,
+durations
+and brewing guide.
+
+</p>
+
+<a href="minecraft/potions/" class="tool-btn">
+
+Open Tool →
+
+</a>
+
+</div>
+
+<!-- Banner -->
+
+<div class="card">
+
+<h3>🏳 Banner Generator</h3>
+
+<p>
+
+Create beautiful Minecraft banner patterns
+and copy designs.
+
+</p>
+
+<a href="minecraft/banner-generator/" class="tool-btn">
+
+Open Tool →
+
+</a>
+
+</div>
+
+<!-- Firework -->
+
+<div class="card">
+
+<h3>🎆 Firework Generator</h3>
+
+<p>
+
+Generate custom fireworks,
+colors,
+effects
+and commands.
+
+</p>
+
+<a href="minecraft/firework-generator/" class="tool-btn">
+
+Open Tool →
+
+</a>
 
 </div>
 
 </div>
 
-<!-- PAPERMC CHECKER -->
+</section>
+<!--=====================================
+UTILITIES
+======================================-->
 
-<div class="tool-card">
+<section id="utilities">
 
-<h3>📦 PaperMC Build Checker</h3>
-
-<select id="paper-version">
-
-<option>
-Loading versions...
-</option>
-
-</select>
-
-<button
-class="tool-btn"
-onclick="getPaperBuild()">
-
-Get Build Number
-
-</button>
-
-<div
-id="paper-result"
-class="result">
-
-Select version.
-
-</div>
-
-</div>
-<!-- MINECRAFT SKIN DOWNLOADER -->
-
-<div class="tool-card">
-
-<h3>🧑 Minecraft Skin Downloader</h3>
-
-<input
-type="text"
-id="skin-username"
-placeholder="Minecraft Username">
-
-<button
-class="tool-btn"
-onclick="downloadSkin()">
-
-Get Skin
-
-</button>
-
-<div
-id="skin-result"
-class="result">
-
-Enter username.
-
-</div>
-
-</div>
-
-<!-- MINECRAFT TEXT GENERATOR -->
-
-<div class="tool-card">
-
-<h3>🎨 Minecraft Text Generator</h3>
-
-<input
-type="text"
-id="logoText"
-placeholder="Enter text">
-
-<input
-type="color"
-id="logoColor"
-value="#00f7ff">
-
-<label>
-
-<input
-type="checkbox"
-id="logoGlow"
-checked>
-
- Glow Effect
-
-</label>
-
-<br><br>
-
-<button
-class="tool-btn"
-onclick="generateLogo()">
-
-Generate Text
-
-</button>
-
-<div
-id="logoPreview"
-class="result">
-
-Preview will appear here.
-
-</div>
-
-</div>
-
-<!-- MINECRAFT COLOR CODES -->
-
-<div class="tool-card">
-
-<h3>🎨 Minecraft Color Codes</h3>
-
-<div class="result">
-
-<span style="color:#000000">§0 Black</span><br>
-
-<span style="color:#0000AA">§1 Dark Blue</span><br>
-
-<span style="color:#00AA00">§2 Dark Green</span><br>
-
-<span style="color:#00AAAA">§3 Dark Aqua</span><br>
-
-<span style="color:#AA0000">§4 Dark Red</span><br>
-
-<span style="color:#AA00AA">§5 Dark Purple</span><br>
-
-<span style="color:#FFAA00">§6 Gold</span><br>
-
-<span style="color:#AAAAAA">§7 Gray</span><br>
-
-<span style="color:#555555">§8 Dark Gray</span><br>
-
-<span style="color:#5555FF">§9 Blue</span><br>
-
-<span style="color:#55FF55">§a Green</span><br>
-
-<span style="color:#55FFFF">§b Aqua</span><br>
-
-<span style="color:#FF5555">§c Red</span><br>
-
-<span style="color:#FF55FF">§d Pink</span><br>
-
-<span style="color:#FFFF55">§e Yellow</span><br>
-
-<span style="color:#FFFFFF">§f White</span>
-
-</div>
-
-</div>
-
-<!-- MINECRAFT FORMATTING CODES -->
-
-<div class="tool-card">
-
-<h3>✨ Minecraft Formatting Codes</h3>
-
-<div class="result">
-
-<b>§l Bold</b><br><br>
-
-<i>§o Italic</i><br><br>
-
-<u>§n Underline</u><br><br>
-
-<s>§m Strikethrough</s><br><br>
-
-§k Obfuscated / Magic Text<br><br>
-
-§r Reset Formatting
-
-</div>
-
-</div>
-
-</div>
+<div class="container">
 
 <h2 class="section-title">
+
 🛠 Utilities
+
 </h2>
 
-<div class="tools-grid">
+<div class="grid">
 
-<!-- PASSWORD GENERATOR -->
+<!-- Password Generator -->
 
-<div class="tool-card">
+<div class="card">
 
 <h3>🔐 Password Generator</h3>
 
-<button
-class="tool-btn"
-onclick="generatePassword()">
+<p>
 
-Generate Password
+Generate strong, secure passwords with
+uppercase, lowercase, numbers and symbols.
 
-</button>
+</p>
 
-<button
-class="tool-btn"
-onclick="copyPassword()">
+<a href="utilities/password-generator/" class="tool-btn">
 
-Copy Password
-
-</button>
-
-<div
-id="password-result"
-class="result">
-
-Generated password will appear here.
-
-</div>
-
-</div>
-
-<!-- QR GENERATOR -->
-
-<div class="tool-card">
-
-<h3>📷 QR Generator</h3>
-
-<input
-type="text"
-id="qr-text"
-placeholder="Enter URL or Text">
-
-<button
-class="tool-btn"
-onclick="generateQR()">
-
-Generate QR
-
-</button>
-
-<button
-class="tool-btn"
-onclick="downloadQR()">
-
-Download QR
-
-</button>
-
-<div
-id="qr-result"
-class="result">
-
-Enter text to generate QR.
-
-</div>
-
-</div>
-
-<!-- LIVE CLOCK -->
-
-<div class="tool-card">
-
-<h3>🕒 Live Date & Time</h3>
-
-<div
-id="clock-result"
-class="result">
-
-Loading...
-
-</div>
-
-</div>
-</div>
-
-<h2 class="section-title">
-🌐 Network Tools
-</h2>
-
-<div class="tools-grid">
-
-<!-- WEBSITE STATUS CHECKER -->
-
-<div class="tool-card">
-
-<h3>🌐 Website Status Checker</h3>
-
-<input
-type="text"
-id="website-url"
-placeholder="https://example.com">
-
-<button
-class="tool-btn"
-onclick="checkWebsite()">
-
-Check Website
-
-</button>
-
-<div
-id="website-result"
-class="result">
-
-Enter website URL.
-
-</div>
-
-</div>
-
-</div>
-
-<section
-style="
-max-width:1200px;
-margin:auto;
-padding:20px;
-">
-
-<div class="tool-card">
-
-<h3>
-🏠 Navigation
-</h3>
-
-<a
-href="/"
-style="text-decoration:none;">
-
-<button
-class="tool-btn">
-
-Back To Home
-
-</button>
+Open Tool →
 
 </a>
+
+</div>
+
+<!-- QR Generator -->
+
+<div class="card">
+
+<h3>📷 QR Code Generator</h3>
+
+<p>
+
+Generate QR codes for websites,
+WiFi,
+emails,
+phone numbers
+and text.
+
+</p>
+
+<a href="utilities/qr-generator/" class="tool-btn">
+
+Open Tool →
+
+</a>
+
+</div>
+
+<!-- Website Checker -->
+
+<div class="card">
+
+<h3>🌐 Website Checker</h3>
+
+<p>
+
+Check website availability,
+response time,
+HTTP status
+and latency.
+
+</p>
+
+<a href="utilities/website-checker/" class="tool-btn">
+
+Open Tool →
+
+</a>
+
+</div>
+
+<!-- UUID Generator -->
+
+<div class="card">
+
+<h3>🆔 UUID Generator</h3>
+
+<p>
+
+Generate Version 4 UUIDs instantly
+for applications and development.
+
+</p>
+
+<a href="utilities/uuid-generator/" class="tool-btn">
+
+Open Tool →
+
+</a>
+
+</div>
+
+<!-- Base64 -->
+
+<div class="card">
+
+<h3>📄 Base64 Encoder</h3>
+
+<p>
+
+Encode and decode Base64 text quickly
+and securely.
+
+</p>
+
+<a href="utilities/base64/" class="tool-btn">
+
+Open Tool →
+
+</a>
+
+</div>
+
+<!-- URL Encoder -->
+
+<div class="card">
+
+<h3>🔗 URL Encoder</h3>
+
+<p>
+
+Encode or decode URLs
+for safe web transmission.
+
+</p>
+
+<a href="utilities/url-encoder/" class="tool-btn">
+
+Open Tool →
+
+</a>
+
+</div>
+
+<!-- JSON Formatter -->
+
+<div class="card">
+
+<h3>📋 JSON Formatter</h3>
+
+<p>
+
+Beautify,
+validate
+and minify JSON files.
+
+</p>
+
+<a href="utilities/json-formatter/" class="tool-btn">
+
+Open Tool →
+
+</a>
+
+</div>
+
+<!-- Random Number -->
+
+<div class="card">
+
+<h3>🎲 Random Generator</h3>
+
+<p>
+
+Generate random numbers,
+passwords,
+colors,
+and selections.
+
+</p>
+
+<a href="utilities/random-generator/" class="tool-btn">
+
+Open Tool →
+
+</a>
+
+</div>
+
+<!-- Word Counter -->
+
+<div class="card">
+
+<h3>📝 Word Counter</h3>
+
+<p>
+
+Count words,
+characters,
+paragraphs
+and reading time.
+
+</p>
+
+<a href="utilities/word-counter/" class="tool-btn">
+
+Open Tool →
+
+</a>
+
+</div>
+
+<!-- Color Generator -->
+
+<div class="card">
+
+<h3>🎨 Color Generator</h3>
+
+<p>
+
+Generate HEX,
+RGB,
+HSL colors
+and gradients.
+
+</p>
+
+<a href="utilities/color-generator/" class="tool-btn">
+
+Open Tool →
+
+</a>
+
+</div>
+
+<!-- Timestamp -->
+
+<div class="card">
+
+<h3>🕒 Timestamp Converter</h3>
+
+<p>
+
+Convert Unix timestamps
+to readable date and time formats.
+
+</p>
+
+<a href="utilities/timestamp-converter/" class="tool-btn">
+
+Open Tool →
+
+</a>
+
+</div>
+
+<!-- Duplicate Lines -->
+
+<div class="card">
+
+<h3>📑 Duplicate Line Remover</h3>
+
+<p>
+
+Remove duplicate lines from text
+while keeping unique entries.
+
+</p>
+
+<a href="utilities/duplicate-remover/" class="tool-btn">
+
+Open Tool →
+
+</a>
+
+</div>
+
+</div>
 
 </div>
 
 </section>
+<!--=====================================
+FOOTER
+======================================-->
 
 <footer>
 
-<p>
-© 2026 CyrusLinksHub
-</p>
+<div class="container">
 
-<p
-style="
-margin-top:10px;
-color:#00f7ff;
+<h2 style="
+color:var(--cyan);
+margin-bottom:15px;
+text-shadow:0 0 15px var(--cyan);
 ">
 
-● ALL SYSTEMS OPERATIONAL
+CyrusLinksHub
+
+</h2>
+
+<p style="
+font-family:Rajdhani,sans-serif;
+font-size:18px;
+color:#d5d5d5;
+margin-bottom:25px;
+">
+
+One Hub • Unlimited Tools • Fast • Free • Professional
 
 </p>
+
+<a
+href="/"
+class="hero-btn primary">
+
+🏠 Back To Home
+
+</a>
+
+<p style="
+margin-top:40px;
+color:#888;
+font-size:15px;
+">
+
+© 2026 CyrusLinksHub
+
+</p>
+
+</div>
 
 </footer>
 
-<script>
+<!-- Scroll To Top -->
 
-/* =========================
-   PAPERMC
-========================= */
+<button id="topBtn">
 
-async function loadPaperVersions(){
-
-const select =
-document.getElementById(
-"paper-version"
-);
-
-try{
-
-const res =
-await fetch(
-"https://api.papermc.io/v2/projects/paper"
-);
-
-const data =
-await res.json();
-
-select.innerHTML="";
-
-data.versions.reverse().forEach(v=>{
-
-const option =
-document.createElement(
-"option"
-);
-
-option.value=v;
-option.textContent=v;
-
-select.appendChild(
-option
-);
-
-});
-
-}catch{
-
-select.innerHTML =
-"<option>Failed</option>";
-
-}
-
-}
-
-loadPaperVersions();
-
-async function getPaperBuild(){
-
-const version =
-document.getElementById(
-"paper-version"
-).value;
-
-const result =
-document.getElementById(
-"paper-result"
-);
-
-result.innerHTML =
-"Checking...";
-
-try{
-
-const res =
-await fetch(
-`https://api.papermc.io/v2/projects/paper/versions/${version}`
-);
-
-const data =
-await res.json();
-
-const build =
-data.builds[
-data.builds.length-1
-];
-
-result.innerHTML =
-`
-📦 Version:
-${version}
-
-<br><br>
-
-🔨 Build:
-#${build}
-`;
-
-}catch{
-
-result.innerHTML =
-"❌ Failed";
-
-}
-
-}
-
-/* =========================
-   MC STATUS
-========================= */
-
-async function checkMinecraft(){
-
-const ip =
-document.getElementById(
-"mc-ip"
-).value.trim();
-
-const result =
-document.getElementById(
-"mc-result"
-);
-
-if(!ip){
-
-result.innerHTML =
-"❌ Enter IP";
-
-return;
-
-}
-
-result.innerHTML =
-"Checking...";
-
-try{
-
-const res =
-await fetch(
-`https://api.mcstatus.io/v2/status/java/${ip}`
-);
-
-const data =
-await res.json();
-
-result.innerHTML =
-`
-${data.online ? "🟢 Online" : "🔴 Offline"}
-
-<br><br>
-
-👥 Players:
-${data.players?.online || 0}/${data.players?.max || 0}
-
-<br><br>
-
-⚙ Version:
-${data.version?.name_clean || "Unknown"}
-`;
-
-}catch{
-
-result.innerHTML =
-"❌ Server not found";
-
-}
-
-}
-
-/* =========================
-   SKIN DOWNLOADER
-========================= */
-
-async function downloadSkin(){
-
-const username =
-document.getElementById(
-"skin-username"
-).value.trim();
-
-const result =
-document.getElementById(
-"skin-result"
-);
-
-if(!username){
-
-result.innerHTML =
-"❌ Enter username";
-
-return;
-
-}
-
-result.innerHTML =
-"Loading...";
-
-try{
-
-const res =
-await fetch(
-`https://api.mojang.com/users/profiles/minecraft/${username}`
-);
-
-const data =
-await res.json();
-
-result.innerHTML =
-`
-<img
-src="https://mc-heads.net/body/${data.id}/150"
-style="
-display:block;
-margin:auto;
-">
-
-<br>
-
-<a
-href="https://mc-heads.net/skin/${data.id}"
-target="_blank">
-
-<button
-class="tool-btn">
-
-⬇ Download Skin
+⬆
 
 </button>
 
-</a>
-`;
+<style>
 
-}catch{
+#topBtn{
 
-result.innerHTML =
-"❌ Username not found";
+position:fixed;
 
-}
+right:20px;
 
-}
+bottom:20px;
 
-/* =========================
-   TEXT GENERATOR
-========================= */
+width:55px;
 
-function generateLogo(){
+height:55px;
 
-const text =
-document.getElementById(
-"logoText"
-).value || "Minecraft";
+border:none;
 
-const color =
-document.getElementById(
-"logoColor"
-).value;
+border-radius:16px;
 
-const glow =
-document.getElementById(
-"logoGlow"
-).checked;
+cursor:pointer;
 
-document.getElementById(
-"logoPreview"
-).innerHTML =
-`
-<div style="
-font-size:40px;
-font-weight:900;
-text-align:center;
-color:${color};
-text-shadow:${glow ?
-`0 0 10px ${color},
-0 0 20px ${color},
-0 0 30px ${color}` :
-'none'};
-">
-${text}
-</div>
-`;
+background:linear-gradient(135deg,var(--red),#ff3366);
+
+color:white;
+
+font-size:22px;
+
+display:none;
+
+box-shadow:0 0 20px rgba(255,0,72,.5);
+
+transition:.3s;
+
+z-index:999;
 
 }
 
-/* =========================
-   PASSWORD
-========================= */
+#topBtn:hover{
 
-function generatePassword(){
+transform:translateY(-4px);
 
-const chars =
-"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*";
-
-let password="";
-
-for(let i=0;i<16;i++){
-
-password +=
-chars.charAt(
-Math.floor(
-Math.random()*chars.length
-)
-);
+box-shadow:0 0 30px rgba(255,0,72,.8);
 
 }
 
-document.getElementById(
-"password-result"
-).innerHTML =
-password;
+.hidden{
+
+opacity:0;
+
+transform:translateY(60px);
+
+transition:1s;
 
 }
 
-function copyPassword(){
+.show{
 
-navigator.clipboard.writeText(
-document.getElementById(
-"password-result"
-).innerText
-);
+opacity:1;
 
-alert(
-"Copied!"
-);
+transform:translateY(0);
 
 }
 
-/* =========================
-   QR
-========================= */
+</style>
 
-function generateQR(){
+<script>
 
-const text =
-document.getElementById(
-"qr-text"
-).value;
+/*==============================
+Scroll Reveal
+==============================*/
 
-document.getElementById(
-"qr-result"
-).innerHTML =
-`
-<img
-id="qr-image"
-src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(text)}"
-style="
-max-width:250px;
-background:white;
-padding:10px;
-border-radius:10px;
-">
-`;
+const observer=new IntersectionObserver(entries=>{
+
+entries.forEach(entry=>{
+
+if(entry.isIntersecting){
+
+entry.target.classList.add("show");
 
 }
 
-function downloadQR(){
+});
 
-const img =
-document.getElementById(
-"qr-image"
-);
+});
 
-if(!img){
+document.querySelectorAll(".card,.section-title").forEach(el=>{
 
-alert(
-"Generate QR first"
-);
+el.classList.add("hidden");
 
-return;
+observer.observe(el);
 
-}
+});
 
-const a =
-document.createElement(
-"a"
-);
+/*==============================
+Scroll To Top
+==============================*/
 
-a.href=img.src;
+const topBtn=document.getElementById("topBtn");
 
-a.download="qr.png";
+window.onscroll=()=>{
 
-a.click();
+if(document.documentElement.scrollTop>400){
 
-}
+topBtn.style.display="block";
 
-/* =========================
-   CLOCK
-========================= */
+}else{
 
-function updateClock(){
-
-const now =
-new Date();
-
-document.getElementById(
-"clock-result"
-).innerHTML =
-`
-📅 ${now.toLocaleDateString()}
-
-<br><br>
-
-🕒 ${now.toLocaleTimeString()}
-`;
+topBtn.style.display="none";
 
 }
 
-updateClock();
+};
 
-setInterval(
-updateClock,
-1000
-);
+topBtn.onclick=()=>{
 
-/* =========================
-   WEBSITE CHECKER
-========================= */
+window.scrollTo({
 
-async function checkWebsite(){
+top:0,
 
-const url =
-document.getElementById(
-"website-url"
-).value.trim();
+behavior:"smooth"
 
-const result =
-document.getElementById(
-"website-result"
-);
+});
 
-if(!url){
+};
 
-result.innerHTML =
-"❌ Enter URL";
+/*==============================
+Particles
+==============================*/
 
-return;
+const canvas=document.getElementById("particles");
 
-}
-
-result.innerHTML =
-"Checking...";
-
-try{
-
-const start =
-Date.now();
-
-await fetch(
-`https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`
-);
-
-const ping =
-Date.now()-start;
-
-result.innerHTML =
-`
-🟢 Online
-
-<br><br>
-
-⚡ ${ping} ms
-`;
-
-}catch{
-
-result.innerHTML =
-"🔴 Offline";
-
-}
-
-}
-
-/* =========================
-   PARTICLES
-========================= */
-
-const canvas =
-document.getElementById(
-"particles"
-);
-
-const ctx =
-canvas.getContext(
-"2d"
-);
+const ctx=canvas.getContext("2d");
 
 function resize(){
 
-canvas.width =
-window.innerWidth;
+canvas.width=window.innerWidth;
 
-canvas.height =
-window.innerHeight;
+canvas.height=window.innerHeight;
 
 }
 
 resize();
 
-window.addEventListener(
-"resize",
-resize
-);
+window.addEventListener("resize",resize);
 
 const particles=[];
 
-for(let i=0;i<100;i++){
+for(let i=0;i<120;i++){
 
 particles.push({
 
 x:Math.random()*canvas.width,
+
 y:Math.random()*canvas.height,
-size:Math.random()*2+1,
-vx:Math.random()*0.4-0.2,
-vy:Math.random()*0.4-0.2
+
+r:Math.random()*2+1,
+
+dx:(Math.random()-0.5)*0.5,
+
+dy:(Math.random()-0.5)*0.5
 
 });
 
@@ -1131,42 +1601,37 @@ vy:Math.random()*0.4-0.2
 
 function animate(){
 
-ctx.clearRect(
-0,0,
-canvas.width,
-canvas.height
-);
+ctx.clearRect(0,0,canvas.width,canvas.height);
 
 particles.forEach(p=>{
 
-p.x+=p.vx;
-p.y+=p.vy;
+p.x+=p.dx;
+
+p.y+=p.dy;
 
 if(p.x<0)p.x=canvas.width;
+
 if(p.x>canvas.width)p.x=0;
+
 if(p.y<0)p.y=canvas.height;
+
 if(p.y>canvas.height)p.y=0;
 
 ctx.beginPath();
 
-ctx.arc(
-p.x,
-p.y,
-p.size,
-0,
-Math.PI*2
-);
+ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
 
-ctx.fillStyle =
-"#00f7ff";
+ctx.fillStyle="#00f7ff";
+
+ctx.shadowColor="#00f7ff";
+
+ctx.shadowBlur=10;
 
 ctx.fill();
 
 });
 
-requestAnimationFrame(
-animate
-);
+requestAnimationFrame(animate);
 
 }
 
@@ -1175,4 +1640,5 @@ animate();
 </script>
 
 </body>
+
 </html>
