@@ -5,712 +5,27 @@
 
 <meta charset="UTF-8">
 
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>CyrusLinksHub | Tools</title>
 
-<meta
-name="description"
-content="Minecraft Tools, Utilities, QR Generator, Password Generator and more.">
+<link rel="stylesheet" href="assets/style.css">
 
-<link rel="preconnect"
-href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-<link rel="preconnect"
-href="https://fonts.gstatic.com"
-crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;800&family=Rajdhani:wght@400;600;700&display=swap"
-rel="stylesheet">
-
-<style>
-
-:root{
-
---bg:#05010a;
-
---card:rgba(255,255,255,.05);
-
---glass:rgba(255,255,255,.08);
-
---cyan:#00f7ff;
-
---red:#ff0048;
-
---white:#ffffff;
-
---gray:#cfcfcf;
-
---border:rgba(255,255,255,.10);
-
-}
-
-*{
-
-margin:0;
-
-padding:0;
-
-box-sizing:border-box;
-
-}
-
-html{
-
-scroll-behavior:smooth;
-
-}
-
-body{
-
-font-family:"Orbitron",sans-serif;
-
-background:#000;
-
-color:white;
-
-overflow-x:hidden;
-
-}
-
-/* Animated GIF Background */
-
-.background{
-
-position:fixed;
-
-top:0;
-
-left:0;
-
-width:100%;
-
-height:100%;
-
-background:url("network.gif")
-center center/
-cover no-repeat;
-
-z-index:-3;
-
-}
-
-.background::before{
-
-content:"";
-
-position:absolute;
-
-inset:0;
-
-background:rgba(0,0,0,.72);
-
-backdrop-filter:blur(3px);
-
-}
-
-/* Particles */
-
-#particles{
-
-position:fixed;
-
-top:0;
-
-left:0;
-
-width:100%;
-
-height:100%;
-
-pointer-events:none;
-
-z-index:-2;
-
-}
-
-/* Scrollbar */
-
-::-webkit-scrollbar{
-
-width:8px;
-
-}
-
-::-webkit-scrollbar-track{
-
-background:#060606;
-
-}
-
-::-webkit-scrollbar-thumb{
-
-background:var(--cyan);
-
-border-radius:50px;
-
-}
-
-/* Container */
-
-.container{
-
-width:min(1400px,95%);
-
-margin:auto;
-
-}
-
-/* Sections */
-
-section{
-
-padding:70px 0;
-
-}
-
-/* Titles */
-
-.section-title{
-
-text-align:center;
-
-font-size:2.2rem;
-
-margin-bottom:40px;
-
-color:var(--cyan);
-
-text-shadow:
-
-0 0 12px var(--cyan),
-
-0 0 25px var(--cyan);
-
-}
-
-/* Grid */
-
-.grid{
-
-display:grid;
-
-grid-template-columns:
-repeat(auto-fit,minmax(280px,1fr));
-
-gap:25px;
-
-}
-
-/* Cards */
-
-.card{
-
-background:var(--glass);
-
-border:1px solid var(--border);
-
-border-radius:18px;
-
-padding:22px;
-
-backdrop-filter:blur(12px);
-
-transition:.35s;
-
-}
-
-.card:hover{
-
-transform:translateY(-8px);
-
-border-color:var(--cyan);
-
-box-shadow:
-
-0 0 25px rgba(0,247,255,.25);
-
-}
-
-/* Tool Buttons */
-
-.tool-btn{
-
-display:block;
-
-width:100%;
-
-text-align:center;
-
-text-decoration:none;
-
-padding:14px;
-
-margin-top:12px;
-
-border-radius:12px;
-
-background:
-
-linear-gradient(135deg,
-var(--red),
-#ff3366);
-
-color:white;
-
-font-weight:700;
-
-transition:.3s;
-
-}
-
-.tool-btn:hover{
-
-transform:translateY(-3px);
-
-box-shadow:
-
-0 0 18px var(--red);
-
-}
- /*=====================================
-HEADER
-=====================================*/
-
-header{
-
-position:sticky;
-
-top:0;
-
-z-index:1000;
-
-background:rgba(5,5,10,.75);
-
-backdrop-filter:blur(16px);
-
-border-bottom:1px solid rgba(255,255,255,.08);
-
-}
-
-/*=====================================
-TOP BAR
-=====================================*/
-
-.topbar{
-
-display:flex;
-
-align-items:center;
-
-justify-content:space-between;
-
-padding:18px 22px;
-
-gap:20px;
-
-}
-
-/*=====================================
-LOGO
-=====================================*/
-
-.brand{
-
-display:flex;
-
-align-items:center;
-
-gap:15px;
-
-}
-
-.logo{
-
-width:58px;
-
-height:58px;
-
-border-radius:16px;
-
-display:flex;
-
-align-items:center;
-
-justify-content:center;
-
-font-size:24px;
-
-font-weight:800;
-
-color:var(--cyan);
-
-background:rgba(255,255,255,.05);
-
-border:2px solid var(--cyan);
-
-box-shadow:
-
-0 0 20px rgba(0,247,255,.45);
-
-animation:logoGlow 3s infinite alternate;
-
-}
-
-.brand-text h1{
-
-font-size:28px;
-
-color:var(--red);
-
-text-shadow:
-
-0 0 15px var(--red);
-
-}
-
-.brand-text p{
-
-font-family:"Rajdhani",sans-serif;
-
-color:#d0d0d0;
-
-font-size:15px;
-
-}
-
-/*=====================================
-DISCORD BUTTON
-=====================================*/
-
-.discord-btn{
-
-display:flex;
-
-align-items:center;
-
-gap:10px;
-
-text-decoration:none;
-
-padding:12px 18px;
-
-border-radius:14px;
-
-background:linear-gradient(135deg,#5865F2,#7289DA);
-
-color:white;
-
-font-weight:700;
-
-transition:.3s;
-
-box-shadow:
-
-0 0 20px rgba(88,101,242,.5);
-
-animation:discordGlow 2s infinite alternate;
-
-}
-
-.discord-btn img{
-
-width:24px;
-
-height:24px;
-
-}
-
-.discord-btn:hover{
-
-transform:translateY(-3px);
-
-box-shadow:
-
-0 0 28px rgba(88,101,242,.9);
-
-}
-
-/*=====================================
-NAVBAR
-=====================================*/
-
-.navbar{
-
-display:flex;
-
-gap:12px;
-
-padding:16px 20px;
-
-overflow-x:auto;
-
-scrollbar-width:none;
-
-}
-
-.navbar::-webkit-scrollbar{
-
-display:none;
-
-}
-
-.nav-link{
-
-flex:none;
-
-text-decoration:none;
-
-padding:12px 22px;
-
-border-radius:14px;
-
-background:rgba(255,255,255,.05);
-
-border:1px solid rgba(255,255,255,.08);
-
-color:white;
-
-transition:.3s;
-
-font-weight:700;
-
-}
-
-.nav-link:hover{
-
-background:rgba(0,247,255,.12);
-
-border-color:var(--cyan);
-
-box-shadow:
-
-0 0 18px rgba(0,247,255,.3);
-
-}
-
-.nav-link.active{
-
-background:linear-gradient(135deg,var(--red),#ff3366);
-
-border:none;
-
-}
-
-/*=====================================
-HERO
-=====================================*/
-
-.hero{
-
-padding:90px 20px;
-
-text-align:center;
-
-}
-
-.hero h2{
-
-font-size:54px;
-
-color:white;
-
-text-shadow:
-
-0 0 18px var(--cyan);
-
-margin-bottom:20px;
-
-}
-
-.hero span{
-
-color:var(--red);
-
-}
-
-.hero p{
-
-max-width:850px;
-
-margin:auto;
-
-font-size:20px;
-
-line-height:1.8;
-
-font-family:"Rajdhani",sans-serif;
-
-color:#d4d4d4;
-
-}
-
-.hero-buttons{
-
-display:flex;
-
-justify-content:center;
-
-gap:20px;
-
-flex-wrap:wrap;
-
-margin-top:35px;
-
-}
-
-.hero-btn{
-
-text-decoration:none;
-
-padding:15px 30px;
-
-border-radius:14px;
-
-font-weight:700;
-
-transition:.3s;
-
-}
-
-.hero-btn.primary{
-
-background:linear-gradient(135deg,var(--red),#ff3366);
-
-color:white;
-
-box-shadow:
-
-0 0 25px rgba(255,0,72,.4);
-
-}
-
-.hero-btn.secondary{
-
-background:rgba(255,255,255,.05);
-
-border:1px solid rgba(0,247,255,.25);
-
-color:var(--cyan);
-
-}
-
-.hero-btn:hover{
-
-transform:translateY(-4px);
-
-}
-
-/*=====================================
-ANIMATIONS
-=====================================*/
-
-@keyframes logoGlow{
-
-from{
-
-box-shadow:0 0 10px rgba(0,247,255,.3);
-
-}
-
-to{
-
-box-shadow:0 0 28px rgba(0,247,255,.9);
-
-}
-
-}
-
-@keyframes discordGlow{
-
-from{
-
-box-shadow:0 0 12px rgba(88,101,242,.35);
-
-}
-
-to{
-
-box-shadow:0 0 28px rgba(88,101,242,.9);
-
-}
-
-}
-
-/*=====================================
-RESPONSIVE
-=====================================*/
-
-@media(max-width:768px){
-
-.topbar{
-
-padding:15px;
-
-}
-
-.brand-text h1{
-
-font-size:22px;
-
-}
-
-.brand-text p{
-
-display:none;
-
-}
-
-.logo{
-
-width:50px;
-
-height:50px;
-
-font-size:20px;
-
-}
-
-.discord-btn{
-
-padding:10px 14px;
-
-font-size:13px;
-
-}
-
-.discord-btn img{
-
-width:20px;
-
-height:20px;
-
-}
-
-.hero h2{
-
-font-size:36px;
-
-}
-
-.hero p{
-
-font-size:17px;
-
-}
-
-}
-
-</style>
+<link rel="icon" href="assets/logo.png">
 
 </head>
 
 <body>
 
+<!-- Background -->
+
 <div class="background"></div>
 
 <canvas id="particles"></canvas>
+
+<!-- ================= HEADER ================= -->
 
 <header>
 
@@ -726,24 +41,13 @@ CL
 
 </div>
 
-<div class="brand-text">
-
 <h1>CyrusLinksHub</h1>
 
-<p>Professional Tools Collection</p>
-
 </div>
 
-</div>
+<a href="https://discord.gg/YOURSERVER" target="_blank" class="discord-btn">
 
-<a
-href="https://discord.gg/YOURINVITE"
-target="_blank"
-class="discord-btn">
-
-<img
-src="discord.png"
-alt="Discord">
+<img src="assets/discord.png" alt="Discord">
 
 Discord
 
@@ -751,19 +55,51 @@ Discord
 
 </div>
 
+<!-- Navigation -->
+
 <nav class="navbar">
 
-<a href="/" class="nav-link">🏠 Home</a>
+<a href="index.html" class="nav-link">
 
-<a href="/tools.html" class="nav-link active">🛠 Tools</a>
+🏠 Home
 
-<a href="/games/" class="nav-link">🎮 Games</a>
+</a>
 
-<a href="/apk/" class="nav-link">📱 APK</a>
+<a href="tools.html" class="nav-link active">
 
-<a href="/movies/" class="nav-link">🎬 Movies</a>
+🛠 Tools
 
-<a href="/about/" class="nav-link">ℹ About</a>
+</a>
+
+<a href="games.html" class="nav-link">
+
+🎮 Games
+
+</a>
+
+<a href="apk.html" class="nav-link">
+
+📱 APK
+
+</a>
+
+<a href="movies.html" class="nav-link">
+
+🎬 Movies
+
+</a>
+
+<a href="music.html" class="nav-link">
+
+🎵 Music
+
+</a>
+
+<a href="about.html" class="nav-link">
+
+ℹ About
+
+</a>
 
 </nav>
 
@@ -771,33 +107,42 @@ Discord
 
 </header>
 
+<!-- ================= HERO ================= -->
+
 <section class="hero">
 
 <div class="container">
 
+<h1>
+
+🛠 CYRUSLINKSHUB TOOLS
+
+</h1>
+
 <h2>
 
-Ultimate <span>Tools Hub</span>
+Minecraft • Utilities • Network Tools
 
 </h2>
 
 <p>
 
-Access powerful Minecraft tools, utilities, generators, network checkers, and many more professional tools in one place.
+Professional online tools for Minecraft players, server owners, developers and everyday users.
+Everything is fast, modern and completely free.
 
 </p>
 
-<div class="hero-buttons">
+<div style="margin-top:35px;">
 
-<a href="#minecraft" class="hero-btn primary">
+<a href="#minecraft-tools" class="btn btn-primary">
 
-Explore Minecraft Tools
+🎮 Minecraft Tools
 
 </a>
 
-<a href="#utilities" class="hero-btn secondary">
+<a href="#utilities-tools" class="btn btn-secondary">
 
-Explore Utilities
+🛠 Utilities
 
 </a>
 
@@ -806,11 +151,10 @@ Explore Utilities
 </div>
 
 </section>
-<!--=====================================
-MINECRAFT TOOLS
-======================================-->
 
-<section id="minecraft">
+<!-- ================= MINECRAFT TOOLS ================= -->
+
+<section id="minecraft-tools">
 
 <div class="container">
 
@@ -821,21 +165,19 @@ MINECRAFT TOOLS
 </h2>
 
 <div class="grid">
-
-<!-- Server Checker -->
+ <!-- Server Checker -->
 
 <div class="card">
 
-<h3>🖥 Server Checker</h3>
+<h3>🖥 Minecraft Server Checker</h3>
 
 <p>
 
-Check Java & Bedrock servers, ping, players,
-version, MOTD and favicon.
+Check Java & Bedrock server status, players, version, MOTD, ping and server information.
 
 </p>
 
-<a href="minecraft/server-checker/" class="tool-btn">
+<a href="minecraft/server-checker/index.html" class="tool-btn">
 
 Open Tool →
 
@@ -847,17 +189,15 @@ Open Tool →
 
 <div class="card">
 
-<h3>🧑 Skin Viewer</h3>
+<h3>🧑 Skin Viewer & Downloader</h3>
 
 <p>
 
-View Minecraft skins in 3D,
-download skins,
-view player head and avatar.
+View Minecraft skins in 3D, download skins, player heads and skin URLs.
 
 </p>
 
-<a href="minecraft/skin-viewer/" class="tool-btn">
+<a href="minecraft/skin-viewer/index.html" class="tool-btn">
 
 Open Tool →
 
@@ -873,14 +213,11 @@ Open Tool →
 
 <p>
 
-Lookup Minecraft usernames,
-UUIDs,
-profiles
-and player information.
+Lookup Minecraft usernames, UUIDs, player information and profile details.
 
 </p>
 
-<a href="minecraft/username-lookup/" class="tool-btn">
+<a href="minecraft/username-lookup/index.html" class="tool-btn">
 
 Open Tool →
 
@@ -896,14 +233,11 @@ Open Tool →
 
 <p>
 
-Generate stylish,
-OG,
-PvP,
-Aesthetic and Random Minecraft usernames.
+Generate stylish, aesthetic, PvP, OG and random Minecraft usernames.
 
 </p>
 
-<a href="minecraft/nickname-generator/" class="tool-btn">
+<a href="minecraft/nickname-generator/index.html" class="tool-btn">
 
 Open Tool →
 
@@ -915,17 +249,15 @@ Open Tool →
 
 <div class="card">
 
-<h3>📦 PaperMC Checker</h3>
+<h3>📦 PaperMC Build Checker</h3>
 
 <p>
 
-Latest PaperMC builds,
-downloads,
-versions and release information.
+Check PaperMC versions, latest builds, downloads and release information.
 
 </p>
 
-<a href="minecraft/papermc/" class="tool-btn">
+<a href="minecraft/papermc/index.html" class="tool-btn">
 
 Open Tool →
 
@@ -937,18 +269,15 @@ Open Tool →
 
 <div class="card">
 
-<h3>🎨 Color Codes</h3>
+<h3>🎨 Minecraft Color Codes</h3>
 
 <p>
 
-Minecraft color codes,
-formatting codes,
-hex colors
-and gradients.
+Browse all Minecraft color codes, formatting codes and RGB/HEX references.
 
 </p>
 
-<a href="minecraft/color-codes/" class="tool-btn">
+<a href="minecraft/color-codes/index.html" class="tool-btn">
 
 Open Tool →
 
@@ -964,12 +293,11 @@ Open Tool →
 
 <p>
 
-Generate colorful server MOTDs
-with formatting and gradients.
+Create colorful server MOTDs with gradients and formatting codes.
 
 </p>
 
-<a href="minecraft/motd-generator/" class="tool-btn">
+<a href="minecraft/motd-generator/index.html" class="tool-btn">
 
 Open Tool →
 
@@ -981,16 +309,15 @@ Open Tool →
 
 <div class="card">
 
-<h3>⌨ Commands Guide</h3>
+<h3>⌨ Minecraft Commands</h3>
 
 <p>
 
-Browse useful Minecraft commands
-for Java & Bedrock Edition.
+Browse useful Java and Bedrock commands with examples and syntax.
 
 </p>
 
-<a href="minecraft/commands/" class="tool-btn">
+<a href="minecraft/commands/index.html" class="tool-btn">
 
 Open Tool →
 
@@ -1002,18 +329,15 @@ Open Tool →
 
 <div class="card">
 
-<h3>⚔ Enchantments</h3>
+<h3>⚔ Enchantments Guide</h3>
 
 <p>
 
-Complete enchantment list,
-levels,
-compatibility
-and IDs.
+Complete list of enchantments, levels, compatibility and descriptions.
 
 </p>
 
-<a href="minecraft/enchantments/" class="tool-btn">
+<a href="minecraft/enchantments/index.html" class="tool-btn">
 
 Open Tool →
 
@@ -1029,14 +353,11 @@ Open Tool →
 
 <p>
 
-Potion recipes,
-effects,
-durations
-and brewing guide.
+Potion recipes, effects, brewing guide and durations.
 
 </p>
 
-<a href="minecraft/potions/" class="tool-btn">
+<a href="minecraft/potions/index.html" class="tool-btn">
 
 Open Tool →
 
@@ -1052,12 +373,11 @@ Open Tool →
 
 <p>
 
-Create beautiful Minecraft banner patterns
-and copy designs.
+Create beautiful Minecraft banner designs with pattern previews.
 
 </p>
 
-<a href="minecraft/banner-generator/" class="tool-btn">
+<a href="minecraft/banner-generator/index.html" class="tool-btn">
 
 Open Tool →
 
@@ -1065,7 +385,7 @@ Open Tool →
 
 </div>
 
-<!-- Firework -->
+<!-- Fireworks -->
 
 <div class="card">
 
@@ -1073,14 +393,11 @@ Open Tool →
 
 <p>
 
-Generate custom fireworks,
-colors,
-effects
-and commands.
+Generate custom Minecraft fireworks with colors, effects and commands.
 
 </p>
 
-<a href="minecraft/firework-generator/" class="tool-btn">
+<a href="minecraft/firework-generator/index.html" class="tool-btn">
 
 Open Tool →
 
@@ -1090,12 +407,13 @@ Open Tool →
 
 </div>
 
-</section>
-<!--=====================================
-UTILITIES
-======================================-->
+</div>
 
-<section id="utilities">
+</section>
+
+<!-- ================= UTILITIES ================= -->
+
+<section id="utilities-tools">
 
 <div class="container">
 
@@ -1106,8 +424,7 @@ UTILITIES
 </h2>
 
 <div class="grid">
-
-<!-- Password Generator -->
+ <!-- Password Generator -->
 
 <div class="card">
 
@@ -1115,12 +432,11 @@ UTILITIES
 
 <p>
 
-Generate strong, secure passwords with
-uppercase, lowercase, numbers and symbols.
+Generate strong and secure passwords with custom length, symbols, numbers and uppercase letters.
 
 </p>
 
-<a href="utilities/password-generator/" class="tool-btn">
+<a href="utilities/password-generator/index.html" class="tool-btn">
 
 Open Tool →
 
@@ -1136,15 +452,11 @@ Open Tool →
 
 <p>
 
-Generate QR codes for websites,
-WiFi,
-emails,
-phone numbers
-and text.
+Generate QR Codes for URLs, Wi-Fi, text, email, phone numbers and more.
 
 </p>
 
-<a href="utilities/qr-generator/" class="tool-btn">
+<a href="utilities/qr-generator/index.html" class="tool-btn">
 
 Open Tool →
 
@@ -1156,18 +468,15 @@ Open Tool →
 
 <div class="card">
 
-<h3>🌐 Website Checker</h3>
+<h3>🌐 Website Status Checker</h3>
 
 <p>
 
-Check website availability,
-response time,
-HTTP status
-and latency.
+Check website status, response code, ping time and server availability.
 
 </p>
 
-<a href="utilities/website-checker/" class="tool-btn">
+<a href="utilities/website-checker/index.html" class="tool-btn">
 
 Open Tool →
 
@@ -1175,7 +484,7 @@ Open Tool →
 
 </div>
 
-<!-- UUID Generator -->
+<!-- UUID -->
 
 <div class="card">
 
@@ -1183,12 +492,11 @@ Open Tool →
 
 <p>
 
-Generate Version 4 UUIDs instantly
-for applications and development.
+Generate Version 4 UUIDs instantly for developers and applications.
 
 </p>
 
-<a href="utilities/uuid-generator/" class="tool-btn">
+<a href="utilities/uuid-generator/index.html" class="tool-btn">
 
 Open Tool →
 
@@ -1200,16 +508,15 @@ Open Tool →
 
 <div class="card">
 
-<h3>📄 Base64 Encoder</h3>
+<h3>📄 Base64 Encoder & Decoder</h3>
 
 <p>
 
-Encode and decode Base64 text quickly
-and securely.
+Encode and decode Base64 strings quickly and securely.
 
 </p>
 
-<a href="utilities/base64/" class="tool-btn">
+<a href="utilities/base64/index.html" class="tool-btn">
 
 Open Tool →
 
@@ -1217,20 +524,19 @@ Open Tool →
 
 </div>
 
-<!-- URL Encoder -->
+<!-- URL -->
 
 <div class="card">
 
-<h3>🔗 URL Encoder</h3>
+<h3>🔗 URL Encoder & Decoder</h3>
 
 <p>
 
-Encode or decode URLs
-for safe web transmission.
+Encode and decode URLs for safe transmission across the web.
 
 </p>
 
-<a href="utilities/url-encoder/" class="tool-btn">
+<a href="utilities/url-encoder/index.html" class="tool-btn">
 
 Open Tool →
 
@@ -1238,7 +544,7 @@ Open Tool →
 
 </div>
 
-<!-- JSON Formatter -->
+<!-- JSON -->
 
 <div class="card">
 
@@ -1246,36 +552,11 @@ Open Tool →
 
 <p>
 
-Beautify,
-validate
-and minify JSON files.
+Beautify, validate and minify JSON with one click.
 
 </p>
 
-<a href="utilities/json-formatter/" class="tool-btn">
-
-Open Tool →
-
-</a>
-
-</div>
-
-<!-- Random Number -->
-
-<div class="card">
-
-<h3>🎲 Random Generator</h3>
-
-<p>
-
-Generate random numbers,
-passwords,
-colors,
-and selections.
-
-</p>
-
-<a href="utilities/random-generator/" class="tool-btn">
+<a href="utilities/json-formatter/index.html" class="tool-btn">
 
 Open Tool →
 
@@ -1291,14 +572,11 @@ Open Tool →
 
 <p>
 
-Count words,
-characters,
-paragraphs
-and reading time.
+Count words, characters, paragraphs and estimate reading time.
 
 </p>
 
-<a href="utilities/word-counter/" class="tool-btn">
+<a href="utilities/word-counter/index.html" class="tool-btn">
 
 Open Tool →
 
@@ -1314,14 +592,11 @@ Open Tool →
 
 <p>
 
-Generate HEX,
-RGB,
-HSL colors
-and gradients.
+Generate HEX, RGB, HSL colors and beautiful gradients instantly.
 
 </p>
 
-<a href="utilities/color-generator/" class="tool-btn">
+<a href="utilities/color-generator/index.html" class="tool-btn">
 
 Open Tool →
 
@@ -1337,12 +612,11 @@ Open Tool →
 
 <p>
 
-Convert Unix timestamps
-to readable date and time formats.
+Convert Unix timestamps into readable local date and time formats.
 
 </p>
 
-<a href="utilities/timestamp-converter/" class="tool-btn">
+<a href="utilities/timestamp-converter/index.html" class="tool-btn">
 
 Open Tool →
 
@@ -1350,7 +624,7 @@ Open Tool →
 
 </div>
 
-<!-- Duplicate Lines -->
+<!-- Duplicate -->
 
 <div class="card">
 
@@ -1358,12 +632,31 @@ Open Tool →
 
 <p>
 
-Remove duplicate lines from text
-while keeping unique entries.
+Remove duplicate lines while preserving unique content.
 
 </p>
 
-<a href="utilities/duplicate-remover/" class="tool-btn">
+<a href="utilities/duplicate-remover/index.html" class="tool-btn">
+
+Open Tool →
+
+</a>
+
+</div>
+
+<!-- Random -->
+
+<div class="card">
+
+<h3>🎲 Random Generator</h3>
+
+<p>
+
+Generate random numbers, passwords, colors and text selections.
+
+</p>
+
+<a href="utilities/random-generator/index.html" class="tool-btn">
 
 Open Tool →
 
@@ -1376,50 +669,47 @@ Open Tool →
 </div>
 
 </section>
-<!--=====================================
-FOOTER
-======================================-->
+<!-- ================= FOOTER ================= -->
 
 <footer>
 
 <div class="container">
 
-<h2 style="
-color:var(--cyan);
-margin-bottom:15px;
-text-shadow:0 0 15px var(--cyan);
-">
+<h2>
 
 CyrusLinksHub
 
 </h2>
 
-<p style="
-font-family:Rajdhani,sans-serif;
-font-size:18px;
-color:#d5d5d5;
-margin-bottom:25px;
-">
+<p>
 
-One Hub • Unlimited Tools • Fast • Free • Professional
+One Hub • Unlimited Tools • Fast • Professional
 
 </p>
 
-<a
-href="/"
-class="hero-btn primary">
+<div style="margin-top:30px;">
+
+<a href="index.html" class="btn btn-primary">
 
 🏠 Back To Home
 
 </a>
 
-<p style="
-margin-top:40px;
-color:#888;
-font-size:15px;
-">
+<a href="https://discord.gg/YOURSERVER"
 
-© 2026 CyrusLinksHub
+target="_blank"
+
+class="btn btn-secondary">
+
+💬 Join Discord
+
+</a>
+
+</div>
+
+<p style="margin-top:40px;">
+
+© 2026 CyrusLinksHub. All Rights Reserved.
 
 </p>
 
@@ -1435,109 +725,19 @@ font-size:15px;
 
 </button>
 
-<style>
-
-#topBtn{
-
-position:fixed;
-
-right:20px;
-
-bottom:20px;
-
-width:55px;
-
-height:55px;
-
-border:none;
-
-border-radius:16px;
-
-cursor:pointer;
-
-background:linear-gradient(135deg,var(--red),#ff3366);
-
-color:white;
-
-font-size:22px;
-
-display:none;
-
-box-shadow:0 0 20px rgba(255,0,72,.5);
-
-transition:.3s;
-
-z-index:999;
-
-}
-
-#topBtn:hover{
-
-transform:translateY(-4px);
-
-box-shadow:0 0 30px rgba(255,0,72,.8);
-
-}
-
-.hidden{
-
-opacity:0;
-
-transform:translateY(60px);
-
-transition:1s;
-
-}
-
-.show{
-
-opacity:1;
-
-transform:translateY(0);
-
-}
-
-</style>
-
 <script>
 
-/*==============================
-Scroll Reveal
-==============================*/
-
-const observer=new IntersectionObserver(entries=>{
-
-entries.forEach(entry=>{
-
-if(entry.isIntersecting){
-
-entry.target.classList.add("show");
-
-}
-
-});
-
-});
-
-document.querySelectorAll(".card,.section-title").forEach(el=>{
-
-el.classList.add("hidden");
-
-observer.observe(el);
-
-});
-
-/*==============================
+/*=============================
 Scroll To Top
-==============================*/
+=============================*/
 
 const topBtn=document.getElementById("topBtn");
 
-window.onscroll=()=>{
+window.addEventListener("scroll",()=>{
 
-if(document.documentElement.scrollTop>400){
+if(window.scrollY>300){
 
-topBtn.style.display="block";
+topBtn.style.display="flex";
 
 }else{
 
@@ -1545,7 +745,7 @@ topBtn.style.display="none";
 
 }
 
-};
+});
 
 topBtn.onclick=()=>{
 
@@ -1559,9 +759,9 @@ behavior:"smooth"
 
 };
 
-/*==============================
+/*=============================
 Particles
-==============================*/
+=============================*/
 
 const canvas=document.getElementById("particles");
 
@@ -1591,9 +791,9 @@ y:Math.random()*canvas.height,
 
 r:Math.random()*2+1,
 
-dx:(Math.random()-0.5)*0.5,
+dx:(Math.random()-0.5)*0.4,
 
-dy:(Math.random()-0.5)*0.5
+dy:(Math.random()-0.5)*0.4
 
 });
 
@@ -1619,7 +819,19 @@ if(p.y>canvas.height)p.y=0;
 
 ctx.beginPath();
 
-ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+ctx.arc(
+
+p.x,
+
+p.y,
+
+p.r,
+
+0,
+
+Math.PI*2
+
+);
 
 ctx.fillStyle="#00f7ff";
 
@@ -1636,6 +848,38 @@ requestAnimationFrame(animate);
 }
 
 animate();
+
+/*=============================
+Reveal Animation
+=============================*/
+
+const observer=new IntersectionObserver(entries=>{
+
+entries.forEach(entry=>{
+
+if(entry.isIntersecting){
+
+entry.target.style.opacity="1";
+
+entry.target.style.transform="translateY(0)";
+
+}
+
+});
+
+});
+
+document.querySelectorAll(".card").forEach(card=>{
+
+card.style.opacity="0";
+
+card.style.transform="translateY(40px)";
+
+card.style.transition=".7s";
+
+observer.observe(card);
+
+});
 
 </script>
 
