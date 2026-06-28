@@ -2,397 +2,894 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tools - CyrusLinksHub</title>
-    
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
-    
-    <!-- External Style Sheet -->
-    <link rel="stylesheet" href="style.css">
 
-    <!-- Tool Custom Grid Layout Styles -->
-    <style>
-        .tools-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
-        }
+<meta charset="UTF-8">
 
-        .tool-card {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            align-items: center;
-            text-align: center;
-            padding: 20px;
-            min-height: 180px;
-        }
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        .tool-icon {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-        }
+<title>CyrusLinksHub | Tools</title>
 
-        .tool-card h3 {
-            font-size: 1.3rem;
-            color: #fff;
-            margin-bottom: 15px;
-            font-family: 'Orbitron', sans-serif;
-        }
+<meta name="theme-color" content="#05050b">
 
-        /* Overriding button margin for grid alignment */
-        .tool-card .btn {
-            margin-top: auto;
-            width: 100%;
-            padding: 10px 20px;
-            font-size: 0.9rem;
-        }
-    </style>
+<link rel="stylesheet" href="style.css">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
+
 </head>
 
 <body>
 
-    <!-- GIF BACKGROUND -->
-    <div class="gif-bg"></div>
+<!-- Animated Background -->
 
-    <!-- HEADER -->
-    <header>
-        <div class="topbar">
-            <div class="brand">
-                <div class="logo">✓</div>
-                <h1>CyrusLinksHub</h1>
-            </div>
+<div class="background"></div>
 
-            <!-- DISCORD BUTTON RIGHT SIDE -->
-            <a href="https://discord.gg/YOURINVITE" target="_blank" class="discord-btn">
-                <img src="discord.png" alt="Discord" class="discord-logo">
-                Discord
-            </a>
-        </div>
+<canvas id="particles"></canvas>
 
-        <!-- NAVBAR BELOW TITLE -->
-        <nav class="navbar">
-            <a href="index.html" class="nav-link">🏠 Home</a>
-            <a href="tool.html" class="nav-link active">🔧 Tools</a>
-            <a href="/games/" class="nav-link">🎮 Games</a>
-            <a href="/movies/" class="nav-link">🎬 Movies</a>
-            <a href="/apk/" class="nav-link">📱 APKs</a>
-            <a href="/about/" class="nav-link">ℹ️ About</a>
-        </nav>
-    </header>
+<header>
 
-    <!-- HERO SECTION -->
-    <section class="hero hidden">
-        <h2>HUB TOOLS & UTILITIES</h2>
-        <p>Explore our extensive dashboard of specialized Minecraft utilities and modern web tool configurations built for high performance.</p>
-    </section>
+<div class="container">
 
-    <!-- MINECRAFT TOOLS SECTION -->
-    <section class="section hidden" id="minecraft-tools">
-        <h2 class="section-title">🎮 Minecraft Tools</h2>
-        <div class="tools-grid">
-            
-            <div class="glass-card tool-card">
-                <div>
-                    <div class="tool-icon">🟢</div>
-                    <h3>Server Checker</h3>
-                </div>
-                <a href="#" class="btn">Launch Tool</a>
-            </div>
+<div class="topbar">
 
-            <div class="glass-card tool-card">
-                <div>
-                    <div class="tool-icon">🧑</div>
-                    <h3>Skin Viewer & Downloader</h3>
-                </div>
-                <a href="#" class="btn">Launch Tool</a>
-            </div>
+<div class="brand">
 
-            <div class="glass-card tool-card">
-                <div>
-                    <div class="tool-icon">👤</div>
-                    <h3>Username Lookup</h3>
-                </div>
-                <a href="#" class="btn">Launch Tool</a>
-            </div>
+<div class="logo">
 
-            <div class="glass-card tool-card">
-                <div>
-                    <div class="tool-icon">✨</div>
-                    <h3>Nickname Generator</h3>
-                </div>
-                <a href="#" class="btn">Launch Tool</a>
-            </div>
+CL
 
-            <div class="glass-card tool-card">
-                <div>
-                    <div class="tool-icon">📦</div>
-                    <h3>PaperMC Checker</h3>
-                </div>
-                <a href="#" class="btn">Launch Tool</a>
-            </div>
+</div>
 
-            <div class="glass-card tool-card">
-                <div>
-                    <div class="tool-icon">🎨</div>
-                    <h3>Color Codes Guide</h3>
-                </div>
-                <a href="#" class="btn">Launch Tool</a>
-            </div>
+<h1>
 
-            <div class="glass-card tool-card">
-                <div>
-                    <div class="tool-icon">🌈</div>
-                    <h3>Gradient Generator</h3>
-                </div>
-                <a href="#" class="btn">Launch Tool</a>
-            </div>
+CyrusLinksHub
 
-            <div class="glass-card tool-card">
-                <div>
-                    <div class="tool-icon">📝</div>
-                    <h3>MOTD Generator</h3>
-                </div>
-                <a href="#" class="btn">Launch Tool</a>
-            </div>
+</h1>
 
-            <div class="glass-card tool-card">
-                <div>
-                    <div class="tool-icon">⌨</div>
-                    <h3>Commands Guide</h3>
-                </div>
-                <a href="#" class="btn">Launch Tool</a>
-            </div>
+</div>
 
-            <div class="glass-card tool-card">
-                <div>
-                    <div class="tool-icon">⚔</div>
-                    <h3>Enchantments Guide</h3>
-                </div>
-                <a href="#" class="btn">Launch Tool</a>
-            </div>
+<a class="discord-btn"
 
-            <div class="glass-card tool-card">
-                <div>
-                    <div class="tool-icon">🧪</div>
-                    <h3>Potion Guide</h3>
-                </div>
-                <a href="#" class="btn">Launch Tool</a>
-            </div>
+href="https://discord.gg/YOURSERVER"
 
-            <div class="glass-card tool-card">
-                <div>
-                    <div class="tool-icon">🗺</div>
-                    <h3>Biomes Guide</h3>
-                </div>
-                <a href="#" class="btn">Launch Tool</a>
-            </div>
+target="_blank">
 
-            <div class="glass-card tool-card">
-                <div>
-                    <div class="tool-icon">🏰</div>
-                    <h3>Structures Guide</h3>
-                </div>
-                <a href="#" class="btn">Launch Tool</a>
-            </div>
+<img src="discord.png"
 
-            <div class="glass-card tool-card">
-                <div>
-                    <div class="tool-icon">📖</div>
-                    <h3>Block IDs</h3>
-                </div>
-                <a href="#" class="btn">Launch Tool</a>
-            </div>
+alt="Discord">
 
-            <div class="glass-card tool-card">
-                <div>
-                    <div class="tool-icon">📦</div>
-                    <h3>Item IDs</h3>
-                </div>
-                <a href="#" class="btn">Launch Tool</a>
-            </div>
+<span>
 
-            <div class="glass-card tool-card">
-                <div>
-                    <div class="tool-icon">🎆</div>
-                    <h3>Firework Generator</h3>
-                </div>
-                <a href="#" class="btn">Launch Tool</a>
-            </div>
+Discord
 
-            <div class="glass-card tool-card">
-                <div>
-                    <div class="tool-icon">🏳</div>
-                    <h3>Banner Generator</h3>
-                </div>
-                <a href="#" class="btn">Launch Tool</a>
-            </div>
+</span>
 
-            <div class="glass-card tool-card">
-                <div>
-                    <div class="tool-icon">📐</div>
-                    <h3>Coordinate Calc</h3>
-                </div>
-                <a href="#" class="btn">Launch Tool</a>
-            </div>
+</a>
 
-            <div class="glass-card tool-card">
-                <div>
-                    <div class="tool-icon">🧮</div>
-                    <h3>XP Calculator</h3>
-                </div>
-                <a href="#" class="btn">Launch Tool</a>
-            </div>
+</div>
 
-        </div>
-    </section>
+<nav class="navbar">
 
-    <!-- GENERAL UTILITY TOOLS SECTION -->
-    <section class="section hidden" id="utility-tools">
-        <h2 class="section-title">⚙️ General Utility Tools</h2>
-        <div class="tools-grid">
+<a href="index.html"
 
-            <div class="glass-card tool-card">
-                <div>
-                    <div class="tool-icon">🔐</div>
-                    <h3>Password Generator</h3>
-                </div>
-                <!-- Alternate Cyan utility glow variation -->
-                <a href="#" class="btn btn-cyan">Launch Tool</a>
-            </div>
+class="nav-link">
 
-            <div class="glass-card tool-card">
-                <div>
-                    <div class="tool-icon">🛡</div>
-                    <h3>Strength Checker</h3>
-                </div>
-                <a href="#" class="btn btn-cyan">Launch Tool</a>
-            </div>
+🏠 Home
 
-            <div class="glass-card tool-card">
-                <div>
-                    <div class="tool-icon">📷</div>
-                    <h3>QR Generator</h3>
-                </div>
-                <a href="#" class="btn btn-cyan">Launch Tool</a>
-            </div>
+</a>
 
-            <div class="glass-card tool-card">
-                <div>
-                    <div class="tool-icon">🌐</div>
-                    <h3>Website Checker</h3>
-                </div>
-                <a href="#" class="btn btn-cyan">Launch Tool</a>
-            </div>
+<a href="tools.html"
 
-            <div class="glass-card tool-card">
-                <div>
-                    <div class="tool-icon">🆔</div>
-                    <h3>UUID Generator</h3>
-                </div>
-                <a href="#" class="btn btn-cyan">Launch Tool</a>
-            </div>
+class="nav-link active">
 
-            <div class="glass-card tool-card">
-                <div>
-                    <div class="tool-icon">📄</div>
-                    <h3>Base64 Encoder</h3>
-                </div>
-                <a href="#" class="btn btn-cyan">Launch Tool</a>
-            </div>
+🛠 Tools
 
-            <div class="glass-card tool-card">
-                <div>
-                    <div class="tool-icon">🔗</div>
-                    <h3>URL Encoder</h3>
-                </div>
-                <a href="#" class="btn btn-cyan">Launch Tool</a>
-            </div>
+</a>
 
-            <div class="glass-card tool-card">
-                <div>
-                    <div class="tool-icon">📋</div>
-                    <h3>JSON Formatter</h3>
-                </div>
-                <a href="#" class="btn btn-cyan">Launch Tool</a>
-            </div>
+<a href="games.html"
 
-            <div class="glass-card tool-card">
-                <div>
-                    <div class="tool-icon">🎨</div>
-                    <h3>Color Generator</h3>
-                </div>
-                <a href="#" class="btn btn-cyan">Launch Tool</a>
-            </div>
+class="nav-link">
 
-            <div class="glass-card tool-card">
-                <div>
-                    <div class="tool-icon">📅</div>
-                    <h3>Timestamp Converter</h3>
-                </div>
-                <a href="#" class="btn btn-cyan">Launch Tool</a>
-            </div>
+🎮 Games
 
-            <div class="glass-card tool-card">
-                <div>
-                    <div class="tool-icon">📝</div>
-                    <h3>Word Counter</h3>
-                </div>
-                <a href="#" class="btn btn-cyan">Launch Tool</a>
-            </div>
+</a>
 
-            <div class="glass-card tool-card">
-                <div>
-                    <div class="tool-icon">📊</div>
-                    <h3>Character Counter</h3>
-                </div>
-                <a href="#" class="btn btn-cyan">Launch Tool</a>
-            </div>
+<a href="apk.html"
 
-            <div class="glass-card tool-card">
-                <div>
-                    <div class="tool-icon">📑</div>
-                    <h3>Remove Duplicate Lines</h3>
-                </div>
-                <a href="#" class="btn btn-cyan">Launch Tool</a>
-            </div>
+class="nav-link">
 
-            <div class="glass-card tool-card">
-                <div>
-                    <div class="tool-icon">🎲</div>
-                    <h3>Random Number Gen</h3>
-                </div>
-                <a href="#" class="btn btn-cyan">Launch Tool</a>
-            </div>
+📱 APK
 
-        </div>
-    </section>
+</a>
 
-    <!-- FOOTER -->
-    <footer>
-        <p>© 2026 CyrusLinksHub • Made by Kartikey</p>
-    </footer>
+<a href="movies.html"
 
-    <!-- INTERSECTION OBSERVER FOR SCROLL REVEAL -->
-    <script>
-        const observer = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add("show");
-                }
-            });
-        });
+class="nav-link">
 
-        document.querySelectorAll(".hidden").forEach(el => {
-            observer.observe(el);
-        });
-    </script>
+🎬 Movies
+
+</a>
+
+<a href="music.html"
+
+class="nav-link">
+
+🎵 Music
+
+</a>
+
+<a href="about.html"
+
+class="nav-link">
+
+ℹ About
+
+</a>
+
+</nav>
+
+</div>
+
+</header>
+
+<section class="hero">
+
+<div class="container">
+
+<h1>
+
+🛠 CYRUSLINKSHUB TOOLS
+
+</h1>
+
+<h2>
+
+Minecraft • Utilities • Network Tools
+
+</h2>
+
+<p>
+
+Professional online tools for Minecraft, networking, utilities and developers.
+
+Everything is free, fast and works directly in your browser.
+
+</p>
+
+<div style="margin-top:35px;">
+
+<a href="#minecraft"
+
+class="btn btn-primary">
+
+🎮 Minecraft Tools
+
+</a>
+
+<a href="#utilities"
+
+class="btn btn-secondary">
+
+🛠 Utilities
+
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+<section id="minecraft">
+
+<div class="container">
+
+<h2 class="section-title">
+
+🎮 Minecraft Tools
+
+</h2>
+
+<div class="grid">
+    <!-- Minecraft Server Status -->
+
+<div class="card">
+
+<h3>🖥 Java & Bedrock Server Status</h3>
+
+<p>
+
+Check Java Edition and Bedrock Edition server status, ping, version, MOTD, player count and online status.
+
+</p>
+
+<a href="minecraft-server-status.html" class="tool-btn">
+
+Open Tool →
+
+</a>
+
+</div>
+
+<!-- Skin Downloader -->
+
+<div class="card">
+
+<h3>🧑 Skin Downloader & Viewer</h3>
+
+<p>
+
+View Minecraft skins in 3D, download skins, preview player models and get direct skin URLs.
+
+</p>
+
+<a href="minecraft-skin-downloader.html" class="tool-btn">
+
+Open Tool →
+
+</a>
+
+</div>
+
+<!-- Username Lookup -->
+
+<div class="card">
+
+<h3>👤 Username Lookup</h3>
+
+<p>
+
+Lookup Minecraft usernames, UUIDs, premium account status and player information.
+
+</p>
+
+<a href="minecraft-username-lookup.html" class="tool-btn">
+
+Open Tool →
+
+</a>
+
+</div>
+
+<!-- Nickname Generator -->
+
+<div class="card">
+
+<h3>✨ Nickname Generator</h3>
+
+<p>
+
+Generate stylish Minecraft usernames including OG, PvP, aesthetic and random nicknames.
+
+</p>
+
+<a href="minecraft-nickname-generator.html" class="tool-btn">
+
+Open Tool →
+
+</a>
+
+</div>
+
+<!-- Color Codes -->
+
+<div class="card">
+
+<h3>🎨 Minecraft Color Codes</h3>
+
+<p>
+
+Complete Minecraft color codes, formatting codes, RGB values and special formatting.
+
+</p>
+
+<a href="minecraft-color-codes.html" class="tool-btn">
+
+Open Tool →
+
+</a>
+
+</div>
+
+<!-- Commands -->
+
+<div class="card">
+
+<h3>⌨ Minecraft Commands</h3>
+
+<p>
+
+Browse useful commands for Java and Bedrock Edition with syntax and examples.
+
+</p>
+
+<a href="minecraft-commands.html" class="tool-btn">
+
+Open Tool →
+
+</a>
+
+</div>
+
+<!-- Enchantments -->
+
+<div class="card">
+
+<h3>⚔ Enchantments Guide</h3>
+
+<p>
+
+Complete enchantment list, maximum levels, compatibility and descriptions.
+
+</p>
+
+<a href="minecraft-enchantments.html" class="tool-btn">
+
+Open Tool →
+
+</a>
+
+</div>
+
+<!-- Potions -->
+
+<div class="card">
+
+<h3>🧪 Potion Guide</h3>
+
+<p>
+
+Potion recipes, brewing guide, effects, durations and splash potion information.
+
+</p>
+
+<a href="minecraft-potions.html" class="tool-btn">
+
+Open Tool →
+
+</a>
+
+</div>
+
+<!-- Banner -->
+
+<div class="card">
+
+<h3>🏳 Banner Generator</h3>
+
+<p>
+
+Design Minecraft banners with patterns, colors and downloadable previews.
+
+</p>
+
+<a href="minecraft-banner-generator.html" class="tool-btn">
+
+Open Tool →
+
+</a>
+
+</div>
+
+<!-- Firework -->
+
+<div class="card">
+
+<h3>🎆 Firework Generator</h3>
+
+<p>
+
+Generate custom fireworks with colors, explosions, trails and commands.
+
+</p>
+
+<a href="minecraft-firework-generator.html" class="tool-btn">
+
+Open Tool →
+
+</a>
+
+</div>
+
+<!-- PaperMC -->
+
+<div class="card">
+
+<h3>📦 PaperMC Build Checker</h3>
+
+<p>
+
+Check the latest PaperMC versions, builds, downloads and release information.
+
+</p>
+
+<a href="papermc-build-checker.html" class="tool-btn">
+
+Open Tool →
+
+</a>
+
+</div>
+
+<!-- Requirements -->
+
+<div class="card">
+
+<h3>📚 Minecraft Resources</h3>
+
+<p>
+
+Color codes, entity IDs, dimensions, gamerules, biomes and useful Minecraft references.
+
+</p>
+
+<a href="minecraft-resources.html" class="tool-btn">
+
+Open Tool →
+
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<section id="utilities">
+
+<div class="container">
+
+<h2 class="section-title">
+
+🛠 Utilities
+
+</h2>
+
+<div class="grid">
+    <!-- Password Generator -->
+
+<div class="card">
+
+<h3>🔐 Password Generator</h3>
+
+<p>
+
+Generate secure passwords with uppercase, lowercase, numbers and symbols.
+
+</p>
+
+<a href="password-generator.html" class="tool-btn">
+
+Open Tool →
+
+</a>
+
+</div>
+
+<!-- QR Code -->
+
+<div class="card">
+
+<h3>📱 QR Code Generator</h3>
+
+<p>
+
+Generate QR Codes for websites, text, Wi-Fi, email and phone numbers.
+
+</p>
+
+<a href="qr-generator.html" class="tool-btn">
+
+Open Tool →
+
+</a>
+
+</div>
+
+<!-- Website Checker -->
+
+<div class="card">
+
+<h3>🌐 Website Status Checker</h3>
+
+<p>
+
+Check website availability, response time and HTTP status.
+
+</p>
+
+<a href="website-checker.html" class="tool-btn">
+
+Open Tool →
+
+</a>
+
+</div>
+
+<!-- Website Ping -->
+
+<div class="card">
+
+<h3>⚡ Website Ping Checker</h3>
+
+<p>
+
+Measure website response time and latency.
+
+</p>
+
+<a href="website-ping.html" class="tool-btn">
+
+Open Tool →
+
+</a>
+
+</div>
+
+<!-- UUID -->
+
+<div class="card">
+
+<h3>🆔 UUID Generator</h3>
+
+<p>
+
+Generate Version 4 UUIDs instantly.
+
+</p>
+
+<a href="uuid-generator.html" class="tool-btn">
+
+Open Tool →
+
+</a>
+
+</div>
+
+<!-- Base64 -->
+
+<div class="card">
+
+<h3>📄 Base64 Encoder / Decoder</h3>
+
+<p>
+
+Encode and decode Base64 strings quickly.
+
+</p>
+
+<a href="base64.html" class="tool-btn">
+
+Open Tool →
+
+</a>
+
+</div>
+
+<!-- URL Encoder -->
+
+<div class="card">
+
+<h3>🔗 URL Encoder / Decoder</h3>
+
+<p>
+
+Encode and decode URLs safely.
+
+</p>
+
+<a href="url-encoder.html" class="tool-btn">
+
+Open Tool →
+
+</a>
+
+</div>
+
+<!-- JSON -->
+
+<div class="card">
+
+<h3>📋 JSON Formatter</h3>
+
+<p>
+
+Beautify, validate and minify JSON.
+
+</p>
+
+<a href="json-formatter.html" class="tool-btn">
+
+Open Tool →
+
+</a>
+
+</div>
+
+<!-- Word Counter -->
+
+<div class="card">
+
+<h3>📝 Word Counter</h3>
+
+<p>
+
+Count words, characters, sentences and paragraphs.
+
+</p>
+
+<a href="word-counter.html" class="tool-btn">
+
+Open Tool →
+
+</a>
+
+</div>
+
+<!-- Color Generator -->
+
+<div class="card">
+
+<h3>🎨 Color Generator</h3>
+
+<p>
+
+Generate HEX, RGB, HSL colors and gradients.
+
+</p>
+
+<a href="color-generator.html" class="tool-btn">
+
+Open Tool →
+
+</a>
+
+</div>
+
+<!-- Timestamp -->
+
+<div class="card">
+
+<h3>🕒 Timestamp Converter</h3>
+
+<p>
+
+Convert Unix timestamps to readable dates.
+
+</p>
+
+<a href="timestamp-converter.html" class="tool-btn">
+
+Open Tool →
+
+</a>
+
+</div>
+
+<!-- Random Generator -->
+
+<div class="card">
+
+<h3>🎲 Random Generator</h3>
+
+<p>
+
+Generate random numbers, names, colors and text.
+
+</p>
+
+<a href="random-generator.html" class="tool-btn">
+
+Open Tool →
+
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+<div class="container">
+
+<h2>
+
+CyrusLinksHub
+
+</h2>
+
+<p>
+
+One Hub • Unlimited Tools • Fast • Professional
+
+</p>
+
+<div style="margin-top:30px;">
+
+<a href="index.html" class="btn btn-primary">
+
+🏠 Back To Home
+
+</a>
+
+<a href="https://discord.gg/YOURSERVER"
+
+target="_blank"
+
+class="btn btn-secondary">
+
+💬 Join Discord
+
+</a>
+
+</div>
+
+<p style="margin-top:40px;">
+
+© 2026 CyrusLinksHub. All Rights Reserved.
+
+</p>
+
+</div>
+
+</footer>
+
+<!-- Scroll To Top Button -->
+
+<button id="topBtn">
+
+⬆
+
+</button>
+
+<script>
+
+/*==========================
+Scroll To Top
+==========================*/
+
+const topBtn=document.getElementById("topBtn");
+
+window.addEventListener("scroll",()=>{
+
+if(window.scrollY>300){
+
+topBtn.style.display="flex";
+
+}else{
+
+topBtn.style.display="none";
+
+}
+
+});
+
+topBtn.onclick=()=>{
+
+window.scrollTo({
+
+top:0,
+
+behavior:"smooth"
+
+});
+
+};
+
+/*==========================
+Particles Background
+==========================*/
+
+const canvas=document.getElementById("particles");
+
+const ctx=canvas.getContext("2d");
+
+function resize(){
+
+canvas.width=window.innerWidth;
+
+canvas.height=window.innerHeight;
+
+}
+
+resize();
+
+window.addEventListener("resize",resize);
+
+const particles=[];
+
+for(let i=0;i<120;i++){
+
+particles.push({
+
+x:Math.random()*canvas.width,
+
+y:Math.random()*canvas.height,
+
+r:Math.random()*2+1,
+
+dx:(Math.random()-0.5)*0.35,
+
+dy:(Math.random()-0.5)*0.35
+
+});
+
+}
+
+function animate(){
+
+ctx.clearRect(0,0,canvas.width,canvas.height);
+
+particles.forEach(p=>{
+
+p.x+=p.dx;
+
+p.y+=p.dy;
+
+if(p.x<0)p.x=canvas.width;
+
+if(p.x>canvas.width)p.x=0;
+
+if(p.y<0)p.y=canvas.height;
+
+if(p.y>canvas.height)p.y=0;
+
+ctx.beginPath();
+
+ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+
+ctx.fillStyle="#00f7ff";
+
+ctx.shadowColor="#00f7ff";
+
+ctx.shadowBlur=10;
+
+ctx.fill();
+
+});
+
+requestAnimationFrame(animate);
+
+}
+
+animate();
+
+/*==========================
+Card Reveal Animation
+==========================*/
+
+const observer=new IntersectionObserver(entries=>{
+
+entries.forEach(entry=>{
+
+if(entry.isIntersecting){
+
+entry.target.classList.add("fade-in");
+
+}
+
+});
+
+});
+
+document.querySelectorAll(".card").forEach(card=>{
+
+observer.observe(card);
+
+});
+
+</script>
+
 </body>
 
- </html>
-                     
+</html>
