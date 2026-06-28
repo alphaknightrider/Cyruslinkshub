@@ -9,23 +9,25 @@
 
 <title>CyrusLinksHub | Tools</title>
 
+<meta name="theme-color" content="#05050b">
+
 <link rel="stylesheet" href="style.css">
 
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
 
-<link rel="icon" href="assets/logo.png">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 </head>
 
 <body>
 
-<!-- Background -->
+<!-- Animated Background -->
 
 <div class="background"></div>
 
 <canvas id="particles"></canvas>
-
-<!-- ================= HEADER ================= -->
 
 <header>
 
@@ -41,61 +43,87 @@ CL
 
 </div>
 
-<h1>CyrusLinksHub</h1>
+<h1>
+
+CyrusLinksHub
+
+</h1>
 
 </div>
 
-<a href="https://discord.gg/YOURSERVER" target="_blank" class="discord-btn">
+<a class="discord-btn"
 
-<img src="assets/discord.png" alt="Discord">
+href="https://discord.gg/YOURSERVER"
+
+target="_blank">
+
+<img src="discord.png"
+
+alt="Discord">
+
+<span>
 
 Discord
+
+</span>
 
 </a>
 
 </div>
 
-<!-- Navigation -->
-
 <nav class="navbar">
 
-<a href="index.html" class="nav-link">
+<a href="index.html"
+
+class="nav-link">
 
 🏠 Home
 
 </a>
 
-<a href="tools.html" class="nav-link active">
+<a href="tools.html"
+
+class="nav-link active">
 
 🛠 Tools
 
 </a>
 
-<a href="games.html" class="nav-link">
+<a href="games.html"
+
+class="nav-link">
 
 🎮 Games
 
 </a>
 
-<a href="apk.html" class="nav-link">
+<a href="apk.html"
+
+class="nav-link">
 
 📱 APK
 
 </a>
 
-<a href="movies.html" class="nav-link">
+<a href="movies.html"
+
+class="nav-link">
 
 🎬 Movies
 
 </a>
 
-<a href="music.html" class="nav-link">
+<a href="music.html"
+
+class="nav-link">
 
 🎵 Music
 
 </a>
 
-<a href="about.html" class="nav-link">
+<a href="about.html"
+
+class="nav-link">
 
 ℹ About
 
@@ -106,8 +134,6 @@ Discord
 </div>
 
 </header>
-
-<!-- ================= HERO ================= -->
 
 <section class="hero">
 
@@ -127,20 +153,25 @@ Minecraft • Utilities • Network Tools
 
 <p>
 
-Professional online tools for Minecraft players, server owners, developers and everyday users.
-Everything is fast, modern and completely free.
+Professional online tools for Minecraft, networking, utilities and developers.
+
+Everything is free, fast and works directly in your browser.
 
 </p>
 
 <div style="margin-top:35px;">
 
-<a href="#minecraft-tools" class="btn btn-primary">
+<a href="#minecraft"
+
+class="btn btn-primary">
 
 🎮 Minecraft Tools
 
 </a>
 
-<a href="#utilities-tools" class="btn btn-secondary">
+<a href="#utilities"
+
+class="btn btn-secondary">
 
 🛠 Utilities
 
@@ -152,9 +183,7 @@ Everything is fast, modern and completely free.
 
 </section>
 
-<!-- ================= MINECRAFT TOOLS ================= -->
-
-<section id="minecraft-tools">
+<section id="minecraft">
 
 <div class="container">
 
@@ -165,19 +194,19 @@ Everything is fast, modern and completely free.
 </h2>
 
 <div class="grid">
- <!-- Server Checker -->
+ <!-- Minecraft Server Status -->
 
 <div class="card">
 
-<h3>🖥 Minecraft Server Checker</h3>
+<h3>🖥 Java & Bedrock Server Status</h3>
 
 <p>
 
-Check Java & Bedrock server status, players, version, MOTD, ping and server information.
+Check Java Edition and Bedrock Edition server status, ping, version, MOTD, player count and online status.
 
 </p>
 
-<a href="minecraft/server-checker/index.html" class="tool-btn">
+<a href="minecraft-server-status.html" class="tool-btn">
 
 Open Tool →
 
@@ -185,19 +214,19 @@ Open Tool →
 
 </div>
 
-<!-- Skin Viewer -->
+<!-- Skin Downloader -->
 
 <div class="card">
 
-<h3>🧑 Skin Viewer & Downloader</h3>
+<h3>🧑 Skin Downloader & Viewer</h3>
 
 <p>
 
-View Minecraft skins in 3D, download skins, player heads and skin URLs.
+View Minecraft skins in 3D, download skins, preview player models and get direct skin URLs.
 
 </p>
 
-<a href="minecraft/skin-viewer/index.html" class="tool-btn">
+<a href="minecraft-skin-downloader.html" class="tool-btn">
 
 Open Tool →
 
@@ -213,11 +242,11 @@ Open Tool →
 
 <p>
 
-Lookup Minecraft usernames, UUIDs, player information and profile details.
+Lookup Minecraft usernames, UUIDs, premium account status and player information.
 
 </p>
 
-<a href="minecraft/username-lookup/index.html" class="tool-btn">
+<a href="minecraft-username-lookup.html" class="tool-btn">
 
 Open Tool →
 
@@ -233,31 +262,11 @@ Open Tool →
 
 <p>
 
-Generate stylish, aesthetic, PvP, OG and random Minecraft usernames.
+Generate stylish Minecraft usernames including OG, PvP, aesthetic and random nicknames.
 
 </p>
 
-<a href="minecraft/nickname-generator/index.html" class="tool-btn">
-
-Open Tool →
-
-</a>
-
-</div>
-
-<!-- PaperMC -->
-
-<div class="card">
-
-<h3>📦 PaperMC Build Checker</h3>
-
-<p>
-
-Check PaperMC versions, latest builds, downloads and release information.
-
-</p>
-
-<a href="minecraft/papermc/index.html" class="tool-btn">
+<a href="minecraft-nickname-generator.html" class="tool-btn">
 
 Open Tool →
 
@@ -273,31 +282,11 @@ Open Tool →
 
 <p>
 
-Browse all Minecraft color codes, formatting codes and RGB/HEX references.
+Complete Minecraft color codes, formatting codes, RGB values and special formatting.
 
 </p>
 
-<a href="minecraft/color-codes/index.html" class="tool-btn">
-
-Open Tool →
-
-</a>
-
-</div>
-
-<!-- MOTD -->
-
-<div class="card">
-
-<h3>📝 MOTD Generator</h3>
-
-<p>
-
-Create colorful server MOTDs with gradients and formatting codes.
-
-</p>
-
-<a href="minecraft/motd-generator/index.html" class="tool-btn">
+<a href="minecraft-color-codes.html" class="tool-btn">
 
 Open Tool →
 
@@ -313,11 +302,11 @@ Open Tool →
 
 <p>
 
-Browse useful Java and Bedrock commands with examples and syntax.
+Browse useful commands for Java and Bedrock Edition with syntax and examples.
 
 </p>
 
-<a href="minecraft/commands/index.html" class="tool-btn">
+<a href="minecraft-commands.html" class="tool-btn">
 
 Open Tool →
 
@@ -333,11 +322,11 @@ Open Tool →
 
 <p>
 
-Complete list of enchantments, levels, compatibility and descriptions.
+Complete enchantment list, maximum levels, compatibility and descriptions.
 
 </p>
 
-<a href="minecraft/enchantments/index.html" class="tool-btn">
+<a href="minecraft-enchantments.html" class="tool-btn">
 
 Open Tool →
 
@@ -349,15 +338,15 @@ Open Tool →
 
 <div class="card">
 
-<h3>🧪 Potions Guide</h3>
+<h3>🧪 Potion Guide</h3>
 
 <p>
 
-Potion recipes, effects, brewing guide and durations.
+Potion recipes, brewing guide, effects, durations and splash potion information.
 
 </p>
 
-<a href="minecraft/potions/index.html" class="tool-btn">
+<a href="minecraft-potions.html" class="tool-btn">
 
 Open Tool →
 
@@ -373,11 +362,11 @@ Open Tool →
 
 <p>
 
-Create beautiful Minecraft banner designs with pattern previews.
+Design Minecraft banners with patterns, colors and downloadable previews.
 
 </p>
 
-<a href="minecraft/banner-generator/index.html" class="tool-btn">
+<a href="minecraft-banner-generator.html" class="tool-btn">
 
 Open Tool →
 
@@ -385,7 +374,7 @@ Open Tool →
 
 </div>
 
-<!-- Fireworks -->
+<!-- Firework -->
 
 <div class="card">
 
@@ -393,11 +382,51 @@ Open Tool →
 
 <p>
 
-Generate custom Minecraft fireworks with colors, effects and commands.
+Generate custom fireworks with colors, explosions, trails and commands.
 
 </p>
 
-<a href="minecraft/firework-generator/index.html" class="tool-btn">
+<a href="minecraft-firework-generator.html" class="tool-btn">
+
+Open Tool →
+
+</a>
+
+</div>
+
+<!-- PaperMC -->
+
+<div class="card">
+
+<h3>📦 PaperMC Build Checker</h3>
+
+<p>
+
+Check the latest PaperMC versions, builds, downloads and release information.
+
+</p>
+
+<a href="papermc-build-checker.html" class="tool-btn">
+
+Open Tool →
+
+</a>
+
+</div>
+
+<!-- Requirements -->
+
+<div class="card">
+
+<h3>📚 Minecraft Resources</h3>
+
+<p>
+
+Color codes, entity IDs, dimensions, gamerules, biomes and useful Minecraft references.
+
+</p>
+
+<a href="minecraft-resources.html" class="tool-btn">
 
 Open Tool →
 
@@ -411,9 +440,7 @@ Open Tool →
 
 </section>
 
-<!-- ================= UTILITIES ================= -->
-
-<section id="utilities-tools">
+<section id="utilities">
 
 <div class="container">
 
@@ -432,11 +459,11 @@ Open Tool →
 
 <p>
 
-Generate strong and secure passwords with custom length, symbols, numbers and uppercase letters.
+Generate secure passwords with uppercase, lowercase, numbers and symbols.
 
 </p>
 
-<a href="utilities/password-generator/index.html" class="tool-btn">
+<a href="password-generator.html" class="tool-btn">
 
 Open Tool →
 
@@ -444,19 +471,19 @@ Open Tool →
 
 </div>
 
-<!-- QR Generator -->
+<!-- QR Code -->
 
 <div class="card">
 
-<h3>📷 QR Code Generator</h3>
+<h3>📱 QR Code Generator</h3>
 
 <p>
 
-Generate QR Codes for URLs, Wi-Fi, text, email, phone numbers and more.
+Generate QR Codes for websites, text, Wi-Fi, email and phone numbers.
 
 </p>
 
-<a href="utilities/qr-generator/index.html" class="tool-btn">
+<a href="qr-generator.html" class="tool-btn">
 
 Open Tool →
 
@@ -472,11 +499,31 @@ Open Tool →
 
 <p>
 
-Check website status, response code, ping time and server availability.
+Check website availability, response time and HTTP status.
 
 </p>
 
-<a href="utilities/website-checker/index.html" class="tool-btn">
+<a href="website-checker.html" class="tool-btn">
+
+Open Tool →
+
+</a>
+
+</div>
+
+<!-- Website Ping -->
+
+<div class="card">
+
+<h3>⚡ Website Ping Checker</h3>
+
+<p>
+
+Measure website response time and latency.
+
+</p>
+
+<a href="website-ping.html" class="tool-btn">
 
 Open Tool →
 
@@ -492,11 +539,11 @@ Open Tool →
 
 <p>
 
-Generate Version 4 UUIDs instantly for developers and applications.
+Generate Version 4 UUIDs instantly.
 
 </p>
 
-<a href="utilities/uuid-generator/index.html" class="tool-btn">
+<a href="uuid-generator.html" class="tool-btn">
 
 Open Tool →
 
@@ -508,15 +555,15 @@ Open Tool →
 
 <div class="card">
 
-<h3>📄 Base64 Encoder & Decoder</h3>
+<h3>📄 Base64 Encoder / Decoder</h3>
 
 <p>
 
-Encode and decode Base64 strings quickly and securely.
+Encode and decode Base64 strings quickly.
 
 </p>
 
-<a href="utilities/base64/index.html" class="tool-btn">
+<a href="base64.html" class="tool-btn">
 
 Open Tool →
 
@@ -524,19 +571,19 @@ Open Tool →
 
 </div>
 
-<!-- URL -->
+<!-- URL Encoder -->
 
 <div class="card">
 
-<h3>🔗 URL Encoder & Decoder</h3>
+<h3>🔗 URL Encoder / Decoder</h3>
 
 <p>
 
-Encode and decode URLs for safe transmission across the web.
+Encode and decode URLs safely.
 
 </p>
 
-<a href="utilities/url-encoder/index.html" class="tool-btn">
+<a href="url-encoder.html" class="tool-btn">
 
 Open Tool →
 
@@ -552,11 +599,11 @@ Open Tool →
 
 <p>
 
-Beautify, validate and minify JSON with one click.
+Beautify, validate and minify JSON.
 
 </p>
 
-<a href="utilities/json-formatter/index.html" class="tool-btn">
+<a href="json-formatter.html" class="tool-btn">
 
 Open Tool →
 
@@ -572,11 +619,11 @@ Open Tool →
 
 <p>
 
-Count words, characters, paragraphs and estimate reading time.
+Count words, characters, sentences and paragraphs.
 
 </p>
 
-<a href="utilities/word-counter/index.html" class="tool-btn">
+<a href="word-counter.html" class="tool-btn">
 
 Open Tool →
 
@@ -592,11 +639,11 @@ Open Tool →
 
 <p>
 
-Generate HEX, RGB, HSL colors and beautiful gradients instantly.
+Generate HEX, RGB, HSL colors and gradients.
 
 </p>
 
-<a href="utilities/color-generator/index.html" class="tool-btn">
+<a href="color-generator.html" class="tool-btn">
 
 Open Tool →
 
@@ -612,11 +659,11 @@ Open Tool →
 
 <p>
 
-Convert Unix timestamps into readable local date and time formats.
+Convert Unix timestamps to readable dates.
 
 </p>
 
-<a href="utilities/timestamp-converter/index.html" class="tool-btn">
+<a href="timestamp-converter.html" class="tool-btn">
 
 Open Tool →
 
@@ -624,27 +671,7 @@ Open Tool →
 
 </div>
 
-<!-- Duplicate -->
-
-<div class="card">
-
-<h3>📑 Duplicate Line Remover</h3>
-
-<p>
-
-Remove duplicate lines while preserving unique content.
-
-</p>
-
-<a href="utilities/duplicate-remover/index.html" class="tool-btn">
-
-Open Tool →
-
-</a>
-
-</div>
-
-<!-- Random -->
+<!-- Random Generator -->
 
 <div class="card">
 
@@ -652,11 +679,11 @@ Open Tool →
 
 <p>
 
-Generate random numbers, passwords, colors and text selections.
+Generate random numbers, names, colors and text.
 
 </p>
 
-<a href="utilities/random-generator/index.html" class="tool-btn">
+<a href="random-generator.html" class="tool-btn">
 
 Open Tool →
 
@@ -717,7 +744,7 @@ class="btn btn-secondary">
 
 </footer>
 
-<!-- Scroll To Top -->
+<!-- Scroll To Top Button -->
 
 <button id="topBtn">
 
@@ -727,9 +754,9 @@ class="btn btn-secondary">
 
 <script>
 
-/*=============================
+/*==========================
 Scroll To Top
-=============================*/
+==========================*/
 
 const topBtn=document.getElementById("topBtn");
 
@@ -759,9 +786,9 @@ behavior:"smooth"
 
 };
 
-/*=============================
-Particles
-=============================*/
+/*==========================
+Particles Background
+==========================*/
 
 const canvas=document.getElementById("particles");
 
@@ -791,9 +818,9 @@ y:Math.random()*canvas.height,
 
 r:Math.random()*2+1,
 
-dx:(Math.random()-0.5)*0.4,
+dx:(Math.random()-0.5)*0.35,
 
-dy:(Math.random()-0.5)*0.4
+dy:(Math.random()-0.5)*0.35
 
 });
 
@@ -819,19 +846,7 @@ if(p.y>canvas.height)p.y=0;
 
 ctx.beginPath();
 
-ctx.arc(
-
-p.x,
-
-p.y,
-
-p.r,
-
-0,
-
-Math.PI*2
-
-);
+ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
 
 ctx.fillStyle="#00f7ff";
 
@@ -849,9 +864,9 @@ requestAnimationFrame(animate);
 
 animate();
 
-/*=============================
-Reveal Animation
-=============================*/
+/*==========================
+Card Reveal Animation
+==========================*/
 
 const observer=new IntersectionObserver(entries=>{
 
@@ -859,9 +874,7 @@ entries.forEach(entry=>{
 
 if(entry.isIntersecting){
 
-entry.target.style.opacity="1";
-
-entry.target.style.transform="translateY(0)";
+entry.target.classList.add("fade-in");
 
 }
 
@@ -870,12 +883,6 @@ entry.target.style.transform="translateY(0)";
 });
 
 document.querySelectorAll(".card").forEach(card=>{
-
-card.style.opacity="0";
-
-card.style.transform="translateY(40px)";
-
-card.style.transition=".7s";
 
 observer.observe(card);
 
