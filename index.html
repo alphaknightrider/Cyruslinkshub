@@ -3,454 +3,133 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CyrusLinksHub</title>
-    <!-- Google Fonts -->
+    <title>CyrusLinksHub | Home</title>
+    <!-- Google Fonts matching tools.html -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
-    <style>
-        /* ======================
-           ROOT & GLOBAL STYLES
-        ====================== */
-        :root {
-            --red: #ff003c;
-            --cyan: #00f7ff;
-            --dark: #05010a;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Orbitron', sans-serif;
-            background: #000;
-            color: white;
-            overflow-x: hidden;
-        }
-
-        /* ======================
-           BACKGROUND ENGINE
-        ====================== */
-        .gif-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url("network.jpg") center center/cover no-repeat;
-            z-index: -2;
-        }
-
-        .gif-bg::after {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background: rgba(0, 0, 0, .65);
-        }
-
-        /* ======================
-           HEADER & NAVIGATION
-        ====================== */
-        header {
-            position: sticky;
-            top: 0;
-            z-index: 999;
-            background: rgba(0, 0, 0, .75);
-            backdrop-filter: blur(15px);
-            border-bottom: 2px solid var(--red);
-        }
-
-        .topbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 20px;
-            max-width: 1400px;
-            margin: auto;
-            gap: 10px;
-        }
-
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            flex: 1;
-            min-width: 0;
-        }
-
-        .logo {
-            width: 58px;
-            height: 58px;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 24px;
-            color: var(--cyan);
-            border: 2px solid var(--cyan);
-            box-shadow: 0 0 20px var(--cyan), 0 0 50px var(--cyan);
-            animation: spinLogo 8s linear infinite;
-        }
-
-        @keyframes spinLogo {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        .brand h1 {
-            font-size: 2rem;
-            white-space: nowrap;
-            color: var(--red);
-            text-shadow: 0 0 15px var(--red), 0 0 40px var(--red);
-        }
-
-        .discord-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            padding: 12px 18px;
-            border-radius: 14px;
-            background: linear-gradient(135deg, #5865F2, #7289DA);
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-            white-space: nowrap;
-            flex-shrink: 0;
-            box-shadow: 0 0 20px #5865F2;
-            animation: discordGlow 2s infinite alternate;
-            transition: .3s;
-        }
-
-        .discord-btn:hover {
-            transform: translateY(-3px);
-        }
-
-        .discord-logo {
-            width: 22px;
-            height: 22px;
-            object-fit: contain;
-        }
-
-        @keyframes discordGlow {
-            from { box-shadow: 0 0 15px #5865F2; }
-            to { box-shadow: 0 0 35px #5865F2, 0 0 70px #5865F2; }
-        }
-
-        .navbar {
-            display: flex;
-            gap: 12px;
-            overflow-x: auto;
-            padding: 15px;
-            background: rgba(0, 0, 0, .35);
-            scrollbar-width: none;
-        }
-
-        .navbar::-webkit-scrollbar {
-            display: none;
-        }
-
-        .nav-link {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-width: 120px;
-            height: 56px;
-            padding: 0 20px;
-            border-radius: 14px;
-            background: rgba(255, 255, 255, .08);
-            border: 1px solid rgba(255, 255, 255, .1);
-            text-decoration: none;
-            color: white;
-            white-space: nowrap;
-            transition: .3s;
-        }
-
-        .nav-link:hover {
-            border-color: var(--cyan);
-            box-shadow: 0 0 20px var(--cyan);
-            transform: translateY(-2px);
-        }
-
-        .nav-link.active {
-            border-color: var(--cyan);
-            box-shadow: 0 0 25px var(--cyan);
-        }
-   
-        /* ======================
-           HERO SECTION
-        ====================== */
-        .hero {
-            max-width: 1200px;
-            margin: auto;
-            padding: 120px 20px;
-            text-align: center;
-        }
-
-        .hero h2 {
-            font-size: 3.2rem;
-            line-height: 1.2;
-            color: var(--red);
-            text-shadow: 0 0 20px var(--red), 0 0 60px var(--red);
-            animation: heroGlow 2s infinite alternate;
-        }
-
-        @keyframes heroGlow {
-            from { text-shadow: 0 0 15px var(--red); }
-            to { text-shadow: 0 0 40px var(--red), 0 0 80px var(--red); }
-        }
-
-        .hero p {
-            margin-top: 20px;
-            font-family: 'Rajdhani', sans-serif;
-            font-size: 1.25rem;
-            color: #ddd;
-            max-width: 850px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .btn {
-            display: inline-block;
-            margin-top: 30px;
-            padding: 15px 35px;
-            border-radius: 14px;
-            background: linear-gradient(135deg, var(--red), #ff3366);
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-            box-shadow: 0 0 20px var(--red);
-            transition: .3s;
-        }
-
-        .btn:hover {
-            transform: translateY(-4px) scale(1.05);
-            box-shadow: 0 0 35px var(--red), 0 0 70px var(--red);
-        }
-
-        /* ======================
-           CORE CONTENT PANELS
-        ====================== */
-        .section {
-            max-width: 1200px;
-            margin: 80px auto;
-            padding: 0 20px;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.2rem;
-            margin-bottom: 30px;
-            color: var(--cyan);
-            text-shadow: 0 0 20px var(--cyan);
-        }
-
-        .glass-card {
-            background: rgba(255, 255, 255, .08);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, .12);
-            border-radius: 20px;
-            padding: 25px;
-            font-family: 'Rajdhani', sans-serif;
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: #ddd;
-            transition: .3s;
-        }
-
-        .glass-card:hover {
-            border-color: var(--cyan);
-            box-shadow: 0 0 25px rgba(0, 247, 255, .4);
-        }
-
-        .faq-item {
-            margin-bottom: 20px;
-        }
-
-        .faq-question {
-            font-weight: bold;
-            margin-bottom: 10px;
-            color: var(--cyan);
-        }
-
-        /* ======================
-           SCROLL INTERSECTION ANIMATION
-        ====================== */
-        .hidden {
-            opacity: 0;
-            transform: translateY(50px);
-            transition: all .8s cubic-bezier(0.165, 0.84, 0.44, 1);
-        }
-
-        .show {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* ======================
-           FOOTER
-        ====================== */
-        footer {
-            margin-top: 80px;
-            padding: 30px;
-            text-align: center;
-            background: rgba(0, 0, 0, .5);
-            border-top: 1px solid rgba(255, 255, 255, .1);
-        }
-
-        footer p {
-            font-family: 'Rajdhani', sans-serif;
-            color: #aaa;
-        }
-
-        /* ======================
-           RESPONSIVE RE-SCALING
-        ====================== */
-        @media(max-width:768px) {
-            .topbar {
-                flex-direction: row;
-                padding: 12px;
-            }
-            .logo {
-                width: 45px;
-                height: 45px;
-                font-size: 20px;
-            }
-            .brand h1 {
-                font-size: 1.2rem;
-            }
-            .discord-btn {
-                padding: 8px 12px;
-                font-size: .8rem;
-            }
-            .discord-logo {
-                width: 18px;
-                height: 18px;
-            }
-            .hero {
-                padding: 80px 20px;
-            }
-            .hero h2 {
-                font-size: 2rem;
-            }
-            .hero p {
-                font-size: 1rem;
-            }
-            .nav-link {
-                min-width: 100px;
-                height: 50px;
-                font-size: .9rem;
-            }
-        }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+    <!-- Linking to the exact same global stylesheet -->
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- GIF BACKGROUND CONTAINER -->
-    <div class="gif-bg"></div>
+    <!-- Animated Particle Overlay System -->
+    <div class="space-bg">
+        <div class="particles"></div>
+        <div class="particles-two"></div>
+    </div>
 
-    <!-- STICKY HEADER NODE -->
+    <!-- HEADER & NAVBAR -->
     <header>
         <div class="topbar">
             <div class="brand">
-                <div class="logo">✓</div>
-                <h1>CyrusLinksHub</h1>
+                <a href="index.html">
+                    <img src="1000042115.png" alt="CyrusLinksHub Banner Logo" class="brand-banner-logo">
+                </a>
             </div>
             <a href="https://discord.gg/YOURINVITE" target="_blank" class="discord-btn">
-                <img src="discord.png" alt="Discord" class="discord-logo">
-                Discord
+                <img src="https://cdn-icons-png.flaticon.com/512/5968/5968756.png" alt="Discord" class="discord-logo">
+                Join Discord
             </a>
         </div>
 
         <nav class="navbar">
-            <a href="/" class="nav-link active">🏠 Home</a>
-            <a href="/tools/" class="nav-link">🔧 Tools</a>
+            <a href="index.html" class="nav-link active">🏠 Home</a>
+            <a href="tools.html" class="nav-link">🔧 Tools</a>
             <a href="/games/" class="nav-link">🎮 Games</a>
-            <a href="/movies/" class="nav-link">🎬 Movies</a>
-            <a href="/apk/" class="nav-link">📱 APKs</a>
+            <a href="/apk/" class="nav-link">📱 APK</a>
+            <a href="/nodes/" class="nav-link">🖥️ Nodes</a>
+            <a href="/movies/" class="nav-link">🎬 Movie</a>
             <a href="/about/" class="nav-link">ℹ️ About</a>
         </nav>
     </header>
 
-    <!-- HERO INTRODUCTION -->
-    <section class="hero hidden">
-        <h2>WELCOME TO CYRUSLINKSHUB</h2>
-        <p>
-            Your modern destination for tools, downloads, resources, entertainment, community updates, and useful content.
-        </p>
-        <a href="/about/" class="btn">Explore More</a>
-    </section>
-
-    <!-- GENERAL WELCOME CARD -->
-    <section class="section hidden">
-        <h2 class="section-title">🚀 Welcome</h2>
-        <div class="glass-card">
-            CyrusLinksHub is a modern resource hub designed to provide users with quick access to useful tools, downloads, gaming resources, community updates, and online content.
-            <br><br>
-            The platform focuses on speed, simplicity, and a smooth user experience across both desktop and mobile devices.
-        </div>
-    </section>
-
-    <!-- HUB COMMUNITY CARD -->
-    <section class="section hidden">
-        <h2 class="section-title">🌐 Community</h2>
-        <div class="glass-card">
-            Join the CyrusLinksHub community to stay updated with announcements, future updates, website improvements, and new resources.
-            <br><br>
-            Community feedback helps improve the platform and build a better experience for everyone.
-        </div>
-    </section>
-
-    <!-- FAQ SECTION -->
-    <section class="section hidden">
-        <h2 class="section-title">❓ Frequently Asked Questions</h2>
+    <!-- MAIN HOMEPAGE CONTENT -->
+    <main class="main-container">
         
-        <div class="glass-card faq-item">
-            <div class="faq-question">Q: Is CyrusLinksHub free to use?</div>
-            Yes. All public resources available on CyrusLinksHub are freely accessible.
-        </div>
-        
-        <br>
-        
-        <div class="glass-card faq-item">
-            <div class="faq-question">Q: Will more content be added?</div>
-            Yes. The website is continuously updated with new resources, improvements, and features.
-        </div>
-        
-        <br>
-        
-        <div class="glass-card faq-item">
-            <div class="faq-question">Q: How can I join the community?</div>
-            You can join using the Discord button located beside the CyrusLinksHub title.
-        </div>
-    </section>
+        <!-- HERO INTRODUCTION -->
+        <section class="tool-section hidden">
+            <div class="glass-card intro-card" style="text-align: center; padding: 50px 30px;">
+                <h2 style="font-size: 2.5rem; margin-bottom: 15px; letter-spacing: 2px;">WELCOME TO CYRUSLINKSHUB</h2>
+                <p style="font-size: 1.25rem; color: #ddd; max-width: 850px; margin: 0 auto 25px auto; font-family: 'Rajdhani', sans-serif;">
+                    Your modern destination for tools, downloads, resources, entertainment, community updates, and useful content[span_1](start_span)[span_1](end_span).
+                </p>
+                <div style="display: flex; justify-content: center; width: 100%;">
+                    <a href="tools.html" class="btn-glow" style="max-width: 280px;">Launch Utility Terminal 🔧</a>
+                </div>
+            </div>
+        </section>
 
-    <!-- PLATFORM ABOUT CARD -->
-    <section class="section hidden">
-        <h2 class="section-title">ℹ️ About CyrusLinksHub</h2>
-        <div class="glass-card">
-            CyrusLinksHub was created to bring useful resources, entertainment, tools, and community features together in one modern platform.
-            <br><br>
-            Our goal is to provide a fast, clean, and user-friendly experience while continuously improving the website with new content and better functionality.
-        </div>
-    </section>
+        <!-- WELCOME INFORMATION SECTION -->
+        <section class="tool-section hidden">
+            <h2 class="section-title">🚀 Welcome</h2>
+            <div class="glass-card" style="padding: 30px;">
+                <p style="font-size: 1.15rem; color: #cbd5e1; margin-bottom: 0;">
+                    CyrusLinksHub is a modern resource hub designed to provide users with quick access to useful tools, downloads, gaming resources, community updates, and online content[span_2](start_span)[span_2](end_span). 
+                    <br><br>
+                    The platform focuses on speed, simplicity, and a smooth user experience across both desktop and mobile devices[span_3](start_span)[span_3](end_span).
+                </p>
+            </div>
+        </section>
 
-    <!-- SYSTEM FOOTER -->
+        <!-- COMMUNITY SECTION -->
+        <section class="tool-section hidden">
+            <h2 class="section-title">🌐 Community</h2>
+            <div class="glass-card" style="padding: 30px;">
+                <p style="font-size: 1.15rem; color: #cbd5e1; margin-bottom: 0;">
+                    Join the CyrusLinksHub community to stay updated with announcements, future updates, website improvements, and new resources[span_4](start_span)[span_4](end_span).
+                    <br><br>
+                    Community feedback helps improve the platform and build a better experience for everyone[span_5](start_span)[span_5](end_span).
+                </p>
+            </div>
+        </section>
+
+        <!-- FAQ SECTION -->
+        <section class="tool-section hidden">
+            <h2 class="section-title">❓ Frequently Asked Questions</h2>
+            
+            <div class="glass-card" style="padding: 25px; margin-bottom: 20px;">
+                <h3 style="color: var(--cyan-glow); font-size: 1.2rem; margin-bottom: 8px;">Q: Is CyrusLinksHub free to use?</h3>
+                <p style="margin-bottom: 0; color: #cbd5e1;">Yes. All public resources available on CyrusLinksHub are freely accessible[span_6](start_span)[span_6](end_span).</p>
+            </div>
+            
+            <div class="glass-card" style="padding: 25px; margin-bottom: 20px;">
+                <h3 style="color: var(--cyan-glow); font-size: 1.2rem; margin-bottom: 8px;">Q: Will more content be added?</h3>
+                <p style="margin-bottom: 0; color: #cbd5e1;">Yes. The website is continuously updated with new resources, improvements, and features[span_7](start_span)[span_7](end_span).</p>
+            </div>
+            
+            <div class="glass-card" style="padding: 25px;">
+                <h3 style="color: var(--cyan-glow); font-size: 1.2rem; margin-bottom: 8px;">Q: How can I join the community?</h3>
+                <p style="margin-bottom: 0; color: #cbd5e1;">You can join using the Discord button located beside the CyrusLinksHub title[span_8](start_span)[span_8](end_span).</p>
+            </div>
+        </section>
+
+        <!-- ABOUT SECTION -->
+        <section class="tool-section hidden">
+            <h2 class="section-title">ℹ️ About CyrusLinksHub</h2>
+            <div class="glass-card" style="padding: 30px;">
+                <p style="font-size: 1.15rem; color: #cbd5e1; margin-bottom: 0;">
+                    CyrusLinksHub was created to bring useful resources, entertainment, tools, and community features together in one modern platform[span_9](start_span)[span_9](end_span).
+                    <br><br>
+                    Our goal is to provide a fast, clean, and user-friendly experience while continuously improving the website with new content and better functionality[span_10](start_span)[span_10](end_span).
+                </p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- BACK TO TOP SHORTCUT BUTTON -->
+    <button id="backToTop" class="back-to-top" title="Go to top">▲</button>
+
+    <!-- FOOTER -->
     <footer>
-        <p>© 2026 CyrusLinksHub • Made by Kartikey</p>
+        <p>© 2026 CyrusLinksHub • Made by Kartikey[span_11](start_span)[span_11](end_span)</p>
     </footer>
 
-    <!-- HIGH-PERFORMANCE INTERSECTION SCROLL REVEAL ENGINE -->
+    <!-- Scroll Reveal Engine & Back to Top interactions -->
     <script>
-        const observer = new IntersectionObserver(entries => {
+        // High-performance scroll tracking layout animation element trigger
+        const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add("show");
@@ -458,8 +137,24 @@
             });
         }, { threshold: 0.05 });
 
-        document.querySelectorAll(".hidden").forEach(el => {
-            observer.observe(el);
+        document.querySelectorAll(".hidden").forEach(el => observer.observe(el));
+
+        // Back To Top logic routine handles element show/hide on scrolling window
+        const backToTopButton = document.getElementById("backToTop");
+
+        window.addEventListener("scroll", () => {
+            if (window.pageYOffset > 400) {
+                backToTopButton.classList.add("visible");
+            } else {
+                backToTopButton.classList.remove("visible");
+            }
+        });
+
+        backToTopButton.addEventListener("click", () => {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
         });
     </script>
 </body>
