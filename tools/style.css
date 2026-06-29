@@ -1,47 +1,39 @@
-/*==================================================
-  CYRUSLINKSHUB STYLE.CSS
-  PART 1
-==================================================*/
+/* ===================================================
+   CYRUSLINKSHUB STYLE.CSS
+   PART 1 - RESET + THEME + BACKGROUND
+=================================================== */
 
-/* Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800&family=Rajdhani:wght@400;500;600;700&display=swap');
-
-/*==============================
-ROOT
-==============================*/
 
 :root{
 
---bg:#040406;
---bg2:#0b0b12;
+--bg:#05050b;
+--card:#111114;
+--card2:#18181d;
 
 --cyan:#00f7ff;
---red:#ff004d;
+--red:#ff0055;
+--purple:#6677ff;
 
 --white:#ffffff;
+--gray:#bdbdbd;
 
---text:#d7d7d7;
+--radius:24px;
 
---glass:rgba(255,255,255,.05);
+--shadow-cyan:0 0 10px #00f7ff,
+0 0 20px rgba(0,247,255,.45);
 
---border:rgba(255,255,255,.10);
-
---radius:22px;
-
---transition:.35s ease;
+--shadow-red:0 0 10px #ff0055,
+0 0 25px rgba(255,0,85,.45);
 
 }
 
-/*==============================
-RESET
-==============================*/
+/* ========================= */
 
 *{
 
 margin:0;
-
 padding:0;
-
 box-sizing:border-box;
 
 }
@@ -54,97 +46,171 @@ scroll-behavior:smooth;
 
 body{
 
-font-family:'Orbitron',sans-serif;
+background:var(--bg);
 
-background:#000;
+font-family:'Rajdhani',sans-serif;
 
-color:#fff;
+color:white;
 
 overflow-x:hidden;
 
 min-height:100vh;
 
-}
-
-/*==============================
-BACKGROUND
-==============================*/
-
-.background{
-
-position:fixed;
-
-inset:0;
-
-z-index:-3;
-
-background:
-linear-gradient(rgba(0,0,0,.82),rgba(0,0,0,.82)),
-url("assets/network.gif");
-
-background-size:cover;
-
-background-position:center;
-
-background-repeat:no-repeat;
+position:relative;
 
 }
 
-.background::after{
+/* ========================= */
+/* CYBER BACKGROUND */
+/* ========================= */
+
+body::before{
 
 content:"";
 
-position:absolute;
+position:fixed;
 
-inset:0;
+left:0;
+top:0;
+
+width:100%;
+height:100%;
 
 background:
 
-radial-gradient(circle at 15% 25%,rgba(0,247,255,.08),transparent 30%),
+radial-gradient(circle at 20% 15%,
+rgba(0,247,255,.08),
+transparent 35%),
 
-radial-gradient(circle at 80% 60%,rgba(0,247,255,.06),transparent 30%),
+radial-gradient(circle at 80% 30%,
+rgba(255,0,85,.08),
+transparent 40%),
 
-radial-gradient(circle at 50% 40%,rgba(255,0,77,.05),transparent 35%);
+radial-gradient(circle at 50% 80%,
+rgba(0,247,255,.05),
+transparent 45%),
+
+linear-gradient(180deg,
+#040409,
+#05050b,
+#06060d);
+
+z-index:-5;
+
+animation:backgroundMove 18s ease-in-out infinite alternate;
 
 }
 
-/*==============================
-PARTICLE CANVAS
-==============================*/
+@keyframes backgroundMove{
+
+0%{
+
+transform:scale(1);
+
+}
+
+100%{
+
+transform:scale(1.08);
+
+}
+
+}
+
+/* ========================= */
+/* PARTICLES CANVAS */
+/* ========================= */
 
 #particles{
 
 position:fixed;
 
 left:0;
-
 top:0;
 
 width:100%;
-
 height:100%;
-
-z-index:-2;
 
 pointer-events:none;
 
+z-index:-4;
+
 }
 
-/*==============================
-CONTAINER
-==============================*/
+/* ========================= */
+
+a{
+
+text-decoration:none;
+
+color:white;
+
+}
+
+img{
+
+display:block;
+
+max-width:100%;
+
+}
+
+button{
+
+font-family:inherit;
+
+cursor:pointer;
+
+border:none;
+
+outline:none;
+
+}
 
 .container{
 
-width:min(1200px,92%);
+width:min(1200px,94%);
 
 margin:auto;
 
 }
 
-/*==============================
-HEADER
-==============================*/
+/* ========================= */
+
+section{
+
+padding:90px 0;
+
+position:relative;
+
+}
+
+/* ========================= */
+
+h1,h2,h3{
+
+font-family:'Orbitron',sans-serif;
+
+font-weight:700;
+
+letter-spacing:1px;
+
+}
+
+p{
+
+line-height:1.8;
+
+color:#d0d0d0;
+
+font-size:1.12rem;
+
+}
+/* ===================================================
+   PART 2 - HEADER + NAVBAR + DISCORD BUTTON
+=================================================== */
+
+/* ================= HEADER ================= */
 
 header{
 
@@ -152,37 +218,39 @@ position:sticky;
 
 top:0;
 
+left:0;
+
+width:100%;
+
 z-index:999;
 
-background:rgba(5,5,10,.78);
+background:rgba(5,5,11,.92);
 
-backdrop-filter:blur(14px);
+backdrop-filter:blur(16px);
 
-border-bottom:2px solid var(--red);
+border-bottom:2px solid rgba(255,0,85,.55);
+
+box-shadow:0 8px 30px rgba(0,0,0,.5);
 
 }
 
-/*==============================
-TOP BAR
-==============================*/
+/* ================= TOP BAR ================= */
 
 .topbar{
 
 display:flex;
 
-align-items:center;
-
 justify-content:space-between;
 
-padding:18px;
+align-items:center;
 
-gap:15px;
+padding:20px 0;
+
+gap:20px;
 
 }
 
-/*==============================
-LOGO
-==============================*/
+/* ================= LOGO ================= */
 
 .brand{
 
@@ -190,17 +258,19 @@ display:flex;
 
 align-items:center;
 
-gap:16px;
+gap:18px;
 
 }
 
 .logo{
 
-width:70px;
+width:74px;
 
-height:70px;
+height:74px;
 
-border-radius:22px;
+border-radius:24px;
+
+background:#0b0b12;
 
 border:3px solid var(--cyan);
 
@@ -210,51 +280,45 @@ align-items:center;
 
 justify-content:center;
 
-font-size:28px;
+font-size:30px;
 
 font-weight:800;
 
-color:var(--cyan);
+font-family:'Orbitron',sans-serif;
 
-background:#05050b;
+color:var(--cyan);
 
 box-shadow:
 
 0 0 12px var(--cyan),
 
-0 0 28px rgba(0,247,255,.45);
+0 0 35px rgba(0,247,255,.45);
 
-transition:var(--transition);
+transition:.35s;
 
 }
 
 .logo:hover{
 
-transform:rotate(-5deg) scale(1.05);
+transform:rotate(-8deg) scale(1.08);
 
 }
 
 .brand h1{
 
-font-size:42px;
-
-font-weight:700;
+font-size:2.3rem;
 
 color:var(--red);
 
 text-shadow:
 
-0 0 10px var(--red),
+0 0 8px var(--red),
 
-0 0 25px rgba(255,0,77,.5);
-
-white-space:nowrap;
+0 0 25px rgba(255,0,85,.45);
 
 }
 
-/*==============================
-DISCORD BUTTON
-==============================*/
+/* ================= DISCORD BUTTON ================= */
 
 .discord-btn{
 
@@ -262,55 +326,49 @@ display:flex;
 
 align-items:center;
 
-gap:10px;
+gap:12px;
 
-padding:14px 22px;
+padding:16px 24px;
 
-background:#5865F2;
+border-radius:22px;
 
-border-radius:20px;
-
-text-decoration:none;
+background:linear-gradient(135deg,#6f7dff,#5a63ff);
 
 color:#fff;
 
-font-size:18px;
-
 font-weight:700;
+
+font-size:1rem;
+
+transition:.3s;
 
 box-shadow:
 
-0 0 18px rgba(88,101,242,.5),
-
-0 0 40px rgba(88,101,242,.35);
-
-transition:var(--transition);
+0 0 18px rgba(100,120,255,.45);
 
 }
 
 .discord-btn img{
 
-width:26px;
+width:28px;
 
-height:26px;
+height:28px;
+
+object-fit:contain;
 
 }
 
 .discord-btn:hover{
 
-transform:translateY(-3px) scale(1.03);
+transform:translateY(-3px);
 
 box-shadow:
 
-0 0 22px rgba(88,101,242,.8),
-
-0 0 55px rgba(88,101,242,.45);
+0 0 25px rgba(120,130,255,.75);
 
 }
 
-/*==============================
-NAVIGATION
-==============================*/
+/* ================= NAVBAR ================= */
 
 .navbar{
 
@@ -318,9 +376,9 @@ display:flex;
 
 gap:18px;
 
-padding:18px;
-
 overflow-x:auto;
+
+padding:18px 0 20px;
 
 scrollbar-width:none;
 
@@ -332,13 +390,27 @@ display:none;
 
 }
 
+/* ================= NAV BUTTON ================= */
+
 .nav-link{
 
 flex:0 0 auto;
 
-min-width:170px;
+padding:18px 36px;
 
-height:74px;
+border-radius:24px;
+
+background:#17171b;
+
+border:1px solid rgba(255,255,255,.08);
+
+color:#fff;
+
+font-size:1.25rem;
+
+font-weight:600;
+
+transition:.3s;
 
 display:flex;
 
@@ -348,68 +420,128 @@ justify-content:center;
 
 gap:10px;
 
-text-decoration:none;
-
-font-size:22px;
-
-color:#fff;
-
-background:#151515;
-
-border:1px solid rgba(255,255,255,.12);
-
-border-radius:22px;
-
-transition:var(--transition);
+min-width:180px;
 
 }
 
 .nav-link:hover{
 
-transform:translateY(-4px);
-
-box-shadow:0 0 18px rgba(0,247,255,.25);
-
-}
-
-.nav-link.active{
-
-border:2px solid var(--cyan);
+border-color:var(--cyan);
 
 box-shadow:
 
-0 0 15px var(--cyan),
+0 0 18px rgba(0,247,255,.35);
 
-0 0 35px rgba(0,247,255,.35);
+transform:translateY(-2px);
 
-              }
-/*==================================================
- HERO SECTION
-==================================================*/
+}
+
+/* ================= ACTIVE BUTTON ================= */
+
+.nav-link.active{
+
+background:#161616;
+
+border:3px solid var(--cyan);
+
+color:#fff;
+
+box-shadow:
+
+0 0 12px var(--cyan),
+
+0 0 28px rgba(0,247,255,.55);
+
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-width:900px){
+
+.topbar{
+
+flex-direction:row;
+
+align-items:center;
+
+}
+
+.brand h1{
+
+font-size:1.8rem;
+
+}
+
+.logo{
+
+width:64px;
+
+height:64px;
+
+font-size:24px;
+
+}
+
+.discord-btn{
+
+padding:14px 18px;
+
+}
+
+.nav-link{
+
+min-width:190px;
+
+font-size:1.18rem;
+
+padding:18px 28px;
+
+}
+
+}
+/* ===================================================
+   PART 3 - HERO + BUTTONS + CARDS
+=================================================== */
+
+/* ================= HERO ================= */
 
 .hero{
 
-padding:90px 20px 70px;
+min-height:85vh;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
 
 text-align:center;
+
+padding:120px 20px 100px;
+
+position:relative;
 
 }
 
 .hero h1{
 
-font-size:65px;
+font-family:'Orbitron',sans-serif;
+
+font-size:4.5rem;
 
 font-weight:800;
 
-color:#fff;
+color:#ffffff;
+
+text-transform:uppercase;
 
 text-shadow:
 
-0 0 10px var(--cyan),
+0 0 10px #ffffff,
 
-0 0 25px var(--cyan),
+0 0 20px #00f7ff,
 
-0 0 50px rgba(0,247,255,.45);
+0 0 40px #00f7ff;
 
 margin-bottom:20px;
 
@@ -417,39 +549,39 @@ margin-bottom:20px;
 
 .hero h2{
 
-font-size:48px;
+font-size:2rem;
+
+font-weight:700;
 
 color:var(--red);
 
-margin-bottom:18px;
-
 text-shadow:
 
-0 0 12px var(--red),
+0 0 10px var(--red),
 
-0 0 30px rgba(255,0,77,.45);
+0 0 20px rgba(255,0,85,.45);
+
+margin-bottom:25px;
 
 }
 
 .hero p{
 
-max-width:900px;
+max-width:850px;
 
 margin:auto;
 
-font-size:20px;
+font-size:1.2rem;
 
-line-height:1.8;
+line-height:2;
 
-font-family:"Rajdhani",sans-serif;
+color:#d6d6d6;
 
-color:var(--text);
+margin-bottom:40px;
 
 }
 
-/*==================================================
- BUTTONS
-==================================================*/
+/* ================= BUTTONS ================= */
 
 .btn{
 
@@ -461,103 +593,95 @@ justify-content:center;
 
 gap:10px;
 
-padding:16px 35px;
+padding:18px 38px;
 
-margin:12px;
+border-radius:20px;
 
-border-radius:18px;
-
-text-decoration:none;
+font-size:1.15rem;
 
 font-weight:700;
 
-font-size:18px;
-
 transition:.35s;
 
-cursor:pointer;
+margin:8px;
 
-border:none;
+cursor:pointer;
 
 }
 
 .btn-primary{
 
-background:linear-gradient(135deg,#ff004d,#ff2b69);
+background:linear-gradient(135deg,#ff004d,#ff2d70);
 
 color:#fff;
 
 box-shadow:
 
-0 0 18px rgba(255,0,77,.5),
-
-0 0 45px rgba(255,0,77,.25);
+0 0 18px rgba(255,0,85,.45);
 
 }
 
 .btn-primary:hover{
 
-transform:translateY(-5px);
+transform:translateY(-4px);
 
 box-shadow:
 
-0 0 25px rgba(255,0,77,.8),
-
-0 0 60px rgba(255,0,77,.35);
+0 0 30px rgba(255,0,85,.8);
 
 }
 
 .btn-secondary{
 
-background:rgba(255,255,255,.05);
+background:#101116;
 
-border:1px solid rgba(0,247,255,.25);
+border:2px solid var(--cyan);
 
 color:var(--cyan);
 
 box-shadow:
 
-0 0 15px rgba(0,247,255,.15);
+0 0 15px rgba(0,247,255,.3);
 
 }
 
 .btn-secondary:hover{
 
-transform:translateY(-5px);
+background:var(--cyan);
 
-border-color:var(--cyan);
+color:#000;
+
+transform:translateY(-4px);
 
 box-shadow:
 
-0 0 25px rgba(0,247,255,.45);
+0 0 25px var(--cyan);
 
 }
 
-/*==================================================
- SECTION TITLES
-==================================================*/
+/* ================= SECTION TITLE ================= */
 
 .section-title{
 
-font-size:42px;
+font-family:'Orbitron',sans-serif;
+
+font-size:3rem;
 
 text-align:center;
 
-margin:70px 0 40px;
+margin-bottom:55px;
 
-color:var(--cyan);
+color:#fff;
 
 text-shadow:
 
 0 0 10px var(--cyan),
 
-0 0 25px rgba(0,247,255,.4);
+0 0 25px rgba(0,247,255,.45);
 
 }
 
-/*==================================================
- GRID
-==================================================*/
+/* ================= GRID ================= */
 
 .grid{
 
@@ -565,29 +689,27 @@ display:grid;
 
 grid-template-columns:
 
-repeat(auto-fit,minmax(300px,1fr));
+repeat(auto-fit,minmax(320px,1fr));
 
 gap:28px;
 
 }
 
-/*==================================================
- GLASS CARD
-==================================================*/
+/* ================= CARD ================= */
 
 .card{
 
-background:rgba(255,255,255,.05);
+background:rgba(18,18,22,.88);
 
 border:1px solid rgba(255,255,255,.08);
 
 border-radius:24px;
 
-padding:25px;
-
-backdrop-filter:blur(12px);
+padding:30px;
 
 transition:.35s;
+
+backdrop-filter:blur(15px);
 
 overflow:hidden;
 
@@ -609,17 +731,7 @@ width:100%;
 
 height:4px;
 
-background:
-
-linear-gradient(
-
-90deg,
-
-var(--cyan),
-
-var(--red)
-
-);
+background:linear-gradient(90deg,#00f7ff,#ff0055);
 
 }
 
@@ -627,79 +739,69 @@ var(--red)
 
 transform:translateY(-8px);
 
-border-color:rgba(0,247,255,.4);
+border-color:var(--cyan);
 
 box-shadow:
 
-0 0 22px rgba(0,247,255,.22);
+0 0 25px rgba(0,247,255,.35);
 
 }
 
 .card h3{
 
-font-size:28px;
+font-size:1.6rem;
+
+margin-bottom:18px;
 
 color:var(--cyan);
 
-margin-bottom:18px;
+text-shadow:
+
+0 0 10px rgba(0,247,255,.5);
 
 }
 
 .card p{
 
-font-family:"Rajdhani",sans-serif;
+font-size:1.05rem;
 
-font-size:18px;
+line-height:1.8;
 
-line-height:1.7;
+margin-bottom:25px;
 
-color:#ddd;
+color:#d2d2d2;
 
 }
 
-/*==================================================
- TOOL BUTTON
-==================================================*/
+/* ================= TOOL BUTTON ================= */
 
 .tool-btn{
 
-display:block;
+display:inline-flex;
+
+align-items:center;
+
+justify-content:center;
 
 width:100%;
 
-padding:15px;
+padding:16px;
 
-margin-top:18px;
+border-radius:18px;
 
-border-radius:16px;
-
-text-align:center;
-
-text-decoration:none;
-
-background:
-
-linear-gradient(
-
-135deg,
-
-#ff004d,
-
-#ff2b69
-
-);
+background:linear-gradient(135deg,#ff004d,#ff2d70);
 
 color:#fff;
 
-font-size:18px;
-
 font-weight:700;
+
+font-size:1.05rem;
 
 transition:.3s;
 
 box-shadow:
 
-0 0 15px rgba(255,0,77,.35);
+0 0 15px rgba(255,0,85,.4);
 
 }
 
@@ -709,290 +811,108 @@ transform:translateY(-3px);
 
 box-shadow:
 
-0 0 25px rgba(255,0,77,.6);
+0 0 25px rgba(255,0,85,.75);
 
 }
-/*==================================================
-FORMS
-==================================================*/
-
-form{
-
-width:100%;
-
-}
-
-label{
-
-display:block;
-
-margin-bottom:8px;
-
-font-size:16px;
-
-font-weight:600;
-
-color:var(--cyan);
-
-}
-
-input,
-textarea,
-select{
-
-width:100%;
-
-padding:15px 18px;
-
-margin-bottom:18px;
-
-border-radius:16px;
-
-background:rgba(255,255,255,.05);
-
-border:1px solid rgba(255,255,255,.10);
-
-color:#fff;
-
-font-size:17px;
-
-font-family:'Rajdhani',sans-serif;
-
-outline:none;
-
-transition:.3s;
-
-}
-
-textarea{
-
-resize:vertical;
-
-min-height:150px;
-
-}
-
-input:focus,
-textarea:focus,
-select:focus{
-
-border-color:var(--cyan);
-
-box-shadow:
-
-0 0 15px rgba(0,247,255,.35);
-
-}
-
-/*==================================================
-RESULT BOX
-==================================================*/
-
-.result{
-
-margin-top:18px;
-
-padding:18px;
-
-background:rgba(255,255,255,.05);
-
-border-radius:18px;
-
-border:1px solid rgba(0,247,255,.15);
-
-font-family:'Rajdhani',sans-serif;
-
-line-height:1.8;
-
-word-break:break-word;
-
-}
-
-/*==================================================
-TABLE
-==================================================*/
-
-table{
-
-width:100%;
-
-border-collapse:collapse;
-
-margin-top:20px;
-
-overflow:hidden;
-
-border-radius:18px;
-
-}
-
-th{
-
-background:#111;
-
-color:var(--cyan);
-
-padding:15px;
-
-}
-
-td{
-
-padding:15px;
-
-background:rgba(255,255,255,.04);
-
-border-top:1px solid rgba(255,255,255,.08);
-
-}
-
-/*==================================================
-BADGES
-==================================================*/
-
-.badge{
-
-display:inline-block;
-
-padding:8px 14px;
-
-border-radius:30px;
-
-background:rgba(0,247,255,.12);
-
-border:1px solid rgba(0,247,255,.25);
-
-color:var(--cyan);
-
-font-size:14px;
-
-margin:4px;
-
-}
-
-/*==================================================
-UTILITY GRID
-==================================================*/
-
-.utility-grid{
-
-display:grid;
-
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-
-gap:22px;
-
-margin-top:30px;
-
-}
-
-/*==================================================
-UTILITY CARD
-==================================================*/
-
-.utility-card{
-
-padding:22px;
-
-border-radius:22px;
-
-background:rgba(255,255,255,.05);
-
-border:1px solid rgba(255,255,255,.08);
-
-transition:.35s;
-
-}
-
-.utility-card:hover{
-
-transform:translateY(-6px);
-
-box-shadow:0 0 22px rgba(0,247,255,.25);
-
-}
-
-.utility-card h3{
-
-font-size:24px;
-
-margin-bottom:12px;
-
-color:var(--cyan);
-
-}
-
-.utility-card p{
-
-font-family:'Rajdhani',sans-serif;
-
-color:#ddd;
-
-line-height:1.7;
-
-}
-
-/*==================================================
-FOOTER
-==================================================*/
+/* ===================================================
+   PART 4 - FOOTER + ANIMATIONS + RESPONSIVE
+=================================================== */
+
+/* ================= FOOTER ================= */
 
 footer{
 
-margin-top:90px;
+margin-top:80px;
 
-padding:50px 20px;
+padding:60px 20px;
+
+background:#0a0a10;
+
+border-top:2px solid rgba(255,0,85,.35);
 
 text-align:center;
-
-background:rgba(0,0,0,.45);
-
-border-top:2px solid rgba(0,247,255,.2);
 
 }
 
 footer h2{
 
-font-size:34px;
+font-family:'Orbitron',sans-serif;
 
-color:var(--cyan);
+font-size:2rem;
 
-text-shadow:0 0 15px var(--cyan);
+color:var(--red);
 
-margin-bottom:12px;
+margin-bottom:18px;
+
+text-shadow:
+
+0 0 12px var(--red);
 
 }
 
 footer p{
 
-font-family:'Rajdhani',sans-serif;
+color:#bdbdbd;
 
-font-size:18px;
+font-size:1rem;
 
-color:#bfbfbf;
-
-margin:8px 0;
+line-height:1.8;
 
 }
 
-footer a{
+/* ================= SCROLL TOP ================= */
 
-color:var(--cyan);
+#topBtn{
 
-text-decoration:none;
+position:fixed;
 
-transition:.3s;
+right:25px;
 
-}
+bottom:25px;
 
-footer a:hover{
+width:58px;
+
+height:58px;
+
+border:none;
+
+border-radius:18px;
+
+display:none;
+
+align-items:center;
+
+justify-content:center;
+
+background:linear-gradient(135deg,#ff004d,#ff2d70);
 
 color:#fff;
 
+font-size:24px;
+
+cursor:pointer;
+
+z-index:9999;
+
+transition:.3s;
+
+box-shadow:
+
+0 0 20px rgba(255,0,85,.45);
+
 }
 
-/*==================================================
-SCROLLBAR
-==================================================*/
+#topBtn:hover{
+
+transform:translateY(-4px);
+
+box-shadow:
+
+0 0 35px rgba(255,0,85,.8);
+
+}
+
+/* ================= SCROLLBAR ================= */
 
 ::-webkit-scrollbar{
 
@@ -1002,118 +922,159 @@ width:10px;
 
 ::-webkit-scrollbar-track{
 
-background:#050505;
+background:#09090d;
 
 }
 
 ::-webkit-scrollbar-thumb{
 
-background:linear-gradient(var(--cyan),var(--red));
+background:linear-gradient(
 
-border-radius:20px;
+180deg,
 
-}
+#00f7ff,
 
-::-webkit-scrollbar-thumb:hover{
+#ff0055
 
-background:var(--cyan);
+);
 
-  }
-/*==================================================
-RESPONSIVE DESIGN
-==================================================*/
-
-@media (max-width:1200px){
-
-.container{
-
-width:95%;
+border-radius:50px;
 
 }
 
-.hero h1{
+/* ================= ANIMATIONS ================= */
 
-font-size:56px;
+.fade-in{
 
-}
+opacity:1 !important;
 
-.hero h2{
-
-font-size:42px;
+transform:translateY(0) !important;
 
 }
 
-}
+.glow{
 
-@media (max-width:992px){
-
-.topbar{
-
-flex-wrap:wrap;
-
-justify-content:center;
-
-text-align:center;
+animation:glowPulse 2.5s infinite;
 
 }
 
-.brand{
+@keyframes glowPulse{
 
-justify-content:center;
+0%{
 
-}
-
-.navbar{
-
-gap:12px;
-
-padding:14px;
+filter:drop-shadow(0 0 5px var(--cyan));
 
 }
 
-.nav-link{
+50%{
 
-min-width:150px;
-
-height:65px;
-
-font-size:18px;
+filter:drop-shadow(0 0 18px var(--cyan));
 
 }
+
+100%{
+
+filter:drop-shadow(0 0 5px var(--cyan));
+
+}
+
+}
+
+@keyframes floatCard{
+
+0%{
+
+transform:translateY(0);
+
+}
+
+50%{
+
+transform:translateY(-6px);
+
+}
+
+100%{
+
+transform:translateY(0);
+
+}
+
+}
+
+.card:hover{
+
+animation:floatCard 2s ease-in-out infinite;
+
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-width:768px){
 
 .hero{
 
-padding:70px 20px;
+padding:80px 20px;
+
+min-height:70vh;
 
 }
 
 .hero h1{
 
-font-size:46px;
+font-size:2.6rem;
 
 }
 
 .hero h2{
 
-font-size:34px;
+font-size:1.4rem;
+
+}
+
+.hero p{
+
+font-size:1rem;
 
 }
 
 .section-title{
 
-font-size:34px;
+font-size:2rem;
 
 }
 
 .grid{
 
-grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+grid-template-columns:1fr;
 
 }
 
+.card{
+
+padding:22px;
+
 }
 
-@media (max-width:768px){
+.btn{
+
+width:100%;
+
+margin:8px 0;
+
+}
+
+.tool-btn{
+
+width:100%;
+
+}
+
+.brand h1{
+
+font-size:1.5rem;
+
+}
 
 .logo{
 
@@ -1125,408 +1086,38 @@ font-size:22px;
 
 }
 
-.brand h1{
-
-font-size:26px;
-
-}
-
 .discord-btn{
 
-padding:12px 18px;
+padding:12px 16px;
 
-font-size:15px;
-
-}
-
-.discord-btn img{
-
-width:22px;
-
-height:22px;
+font-size:.9rem;
 
 }
 
-.navbar{
-
-padding:12px;
-
-gap:10px;
-
 }
 
-.nav-link{
+/* ================= DESKTOP ================= */
 
-min-width:135px;
+@media(min-width:1400px){
 
-height:60px;
+.container{
 
-font-size:16px;
-
-border-radius:18px;
+max-width:1350px;
 
 }
 
 .hero h1{
 
-font-size:38px;
+font-size:5rem;
 
 }
 
-.hero h2{
+.grid{
 
-font-size:30px;
+grid-template-columns:
 
-}
-
-.hero p{
-
-font-size:18px;
+repeat(3,1fr);
 
 }
 
-.card{
-
-padding:20px;
-
-}
-
-.card h3{
-
-font-size:24px;
-
-}
-
-.btn{
-
-width:100%;
-
-margin:10px 0;
-
-}
-
-.tool-btn{
-
-font-size:16px;
-
-}
-
-}
-
-@media (max-width:480px){
-
-.topbar{
-
-padding:12px;
-
-}
-
-.logo{
-
-width:50px;
-
-height:50px;
-
-font-size:20px;
-
-}
-
-.brand{
-
-gap:10px;
-
-}
-
-.brand h1{
-
-font-size:22px;
-
-}
-
-.discord-btn{
-
-padding:10px 14px;
-
-font-size:14px;
-
-}
-
-.discord-btn img{
-
-width:20px;
-
-height:20px;
-
-}
-
-.hero{
-
-padding:55px 15px;
-
-}
-
-.hero h1{
-
-font-size:30px;
-
-}
-
-.hero h2{
-
-font-size:24px;
-
-}
-
-.hero p{
-
-font-size:16px;
-
-}
-
-.section-title{
-
-font-size:28px;
-
-}
-
-.card{
-
-padding:18px;
-
-}
-
-.nav-link{
-
-min-width:120px;
-
-height:55px;
-
-font-size:15px;
-
-}
-
-}
-
-/*==================================================
-ANIMATIONS
-==================================================*/
-
-@keyframes glow{
-
-0%{
-
-box-shadow:0 0 8px rgba(0,247,255,.25);
-
-}
-
-50%{
-
-box-shadow:0 0 25px rgba(0,247,255,.55);
-
-}
-
-100%{
-
-box-shadow:0 0 8px rgba(0,247,255,.25);
-
-}
-
-}
-
-@keyframes redGlow{
-
-0%{
-
-box-shadow:0 0 10px rgba(255,0,77,.25);
-
-}
-
-50%{
-
-box-shadow:0 0 28px rgba(255,0,77,.7);
-
-}
-
-100%{
-
-box-shadow:0 0 10px rgba(255,0,77,.25);
-
-}
-
-}
-
-.logo{
-
-animation:glow 3s infinite;
-
-}
-
-.btn-primary{
-
-animation:redGlow 3s infinite;
-
-}
-
-/*==================================================
-FLOATING EFFECT
-==================================================*/
-
-.float{
-
-animation:float 4s ease-in-out infinite;
-
-}
-
-@keyframes float{
-
-0%{
-
-transform:translateY(0);
-
-}
-
-50%{
-
-transform:translateY(-8px);
-
-}
-
-100%{
-
-transform:translateY(0);
-
-}
-
-}
-
-/*==================================================
-FADE IN
-==================================================*/
-
-.fade-in{
-
-animation:fadeIn 1s ease;
-
-}
-
-@keyframes fadeIn{
-
-from{
-
-opacity:0;
-
-transform:translateY(20px);
-
-}
-
-to{
-
-opacity:1;
-
-transform:translateY(0);
-
-}
-
-}
-
-/*==================================================
-UTILITY CLASSES
-==================================================*/
-
-.text-center{
-
-text-align:center;
-
-}
-
-.mt-20{
-
-margin-top:20px;
-
-}
-
-.mt-40{
-
-margin-top:40px;
-
-}
-
-.mb-20{
-
-margin-bottom:20px;
-
-}
-
-.mb-40{
-
-margin-bottom:40px;
-
-}
-
-.hidden{
-
-display:none;
-
-}
-
-.show{
-
-display:block;
-
-}
-
-/*==================================================
-IMAGE
-==================================================*/
-
-img{
-
-max-width:100%;
-
-display:block;
-
-}
-
-/*==================================================
-LINKS
-==================================================*/
-
-a{
-
-transition:.3s;
-
-}
-
-a:hover{
-
-opacity:.9;
-
-}
-
-/*==================================================
-END OF STYLE.CSS
-==================================================*/
-#topBtn{
-position:fixed;
-bottom:20px;
-right:20px;
-width:55px;
-height:55px;
-display:none;
-align-items:center;
-justify-content:center;
-border:none;
-border-radius:18px;
-background:linear-gradient(135deg,#ff004d,#ff2b69);
-color:#fff;
-font-size:22px;
-cursor:pointer;
-box-shadow:0 0 20px rgba(255,0,77,.5);
-transition:.3s;
-z-index:9999;
-}
-
-#topBtn:hover{
-transform:translateY(-4px);
-box-shadow:0 0 35px rgba(255,0,77,.8);
 }
