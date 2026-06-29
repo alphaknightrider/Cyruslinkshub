@@ -4,26 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CyrusLinksHub | Tools</title>
-    <!-- Google Fonts matching the design -->
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
-    <!-- Link to the brand new stylesheet -->
+    <!-- Link to our stylesheet -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- The exact particle background from 1000042114.png -->
+    <!-- Animated Particle Overlay System -->
     <div class="space-bg">
         <div class="particles"></div>
+        <div class="particles-two"></div>
     </div>
 
     <!-- HEADER & NAVBAR -->
     <header>
         <div class="topbar">
             <div class="brand">
-                <div class="logo-box">CL</div>
-                <h1>CyrusLinksHub</h1>
+                <a href="index.html">
+                    <img src="1000042115.png" alt="CyrusLinksHub Banner Logo" class="brand-banner-logo">
+                </a>
             </div>
             <a href="https://discord.gg/YOURINVITE" target="_blank" class="discord-btn">
                 <img src="https://cdn-icons-png.flaticon.com/512/5968/5968756.png" alt="Discord" class="discord-logo">
@@ -212,7 +214,6 @@
         <p>© 2026 CyrusLinksHub • Designed Beautifully</p>
     </footer>
 
-    <!-- Smooth Reveal script -->
     <script>
         const observer = new IntersectionObserver(entries => {
             entries.forEach(entry => {
