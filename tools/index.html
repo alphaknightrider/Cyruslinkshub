@@ -24,7 +24,7 @@
         <div class="topbar">
             <div class="brand">
                 <a href="index.html">
-                    <img src="logo.png" alt="CyrusLinksHub Banner Logo" class="brand-banner-logo">
+                    <img src="1000042115.png" alt="CyrusLinksHub Banner Logo" class="brand-banner-logo">
                 </a>
             </div>
             <a href="https://discord.gg/YOURINVITE" target="_blank" class="discord-btn">
@@ -46,6 +46,19 @@
 
     <!-- MAIN TOOLS CONTAINER -->
     <main class="main-container">
+        
+        <!-- NEW INTERACTIVE TOOLS INTRODUCTION HERO BANNER -->
+        <section class="tool-section hidden">
+            <div class="glass-card intro-card">
+                <h2>🛠️ Advanced Web Utilities Terminal</h2>
+                <p>
+                    Welcome to the central utility node of <strong>CyrusLinksHub</strong>. This terminal houses a highly optimized collection of automated script managers, gaming configuration parsers, and essential developer frameworks designed to run directly within your browser container.
+                </p>
+                <p class="sub-text">
+                    Explore our categories below. All tools are built using lightweight client-side protocols ensuring instant responses, absolute tracking safety, and zero data storage logs. Scroll down to deploy your tools.
+                </p>
+            </div>
+        </section>
         
         <!-- SECTION 1: MINECRAFT TOOLS -->
         <section class="tool-section hidden">
@@ -209,20 +222,44 @@
 
     </main>
 
+    <!-- BACK TO TOP SHORTCUT BUTTON -->
+    <button id="backToTop" class="back-to-top" title="Go to top">▲</button>
+
     <!-- FOOTER -->
     <footer>
         <p>© 2026 CyrusLinksHub • Designed Beautifully</p>
     </footer>
 
+    <!-- Script handling advanced Intersection scroll reveal & Back to Top interactions -->
     <script>
-        const observer = new IntersectionObserver(entries => {
+        // High-performance scroll tracking layout animation element trigger
+        const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add("show");
                 }
             });
-        });
+        }, { threshold: 0.05 }); // Triggers smoothly when 5% of section enters viewport
+
         document.querySelectorAll(".hidden").forEach(el => observer.observe(el));
+
+        // Back To Top logic routine handles element show/hide on scrolling window
+        const backToTopButton = document.getElementById("backToTop");
+
+        window.addEventListener("scroll", () => {
+            if (window.pageYOffset > 400) { // Shows button once scrolled down 400px
+                backToTopButton.classList.add("visible");
+            } else {
+                backToTopButton.classList.remove("visible");
+            }
+        });
+
+        backToTopButton.addEventListener("click", () => {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        });
     </script>
 </body>
 </html>
