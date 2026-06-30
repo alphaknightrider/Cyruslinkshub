@@ -5,6 +5,8 @@
     --bg-gradient: linear-gradient(145deg, #0a0c16 0%, #06161c 40%, #15091d 80%, #040508 100%);
     --cyan-glow: #00f2fe;
     --blue-glow: #4facfe;
+    --discord-color: #5865F2;
+    --discord-glow: #7289DA;
     --card-bg: rgba(14, 20, 32, 0.65);
     --nav-active: #2b3a60;
 }
@@ -28,7 +30,7 @@ body {
 }
 
 /* ==========================================================================
-   ANIMATED PARTICLES BACKGROUND (Matches 1000042114.png)
+   ANIMATED PARTICLES BACKGROUND
    ========================================================================== */
 .space-bg {
     position: fixed;
@@ -68,13 +70,14 @@ body {
 }
 
 /* ==========================================================================
-   NAVIGATION HEADER & BRAND LOGO ALIGNMENT (Matches 1000042115.png)
+   NAVIGATION HEADER & BRAND LOGO ALIGNMENT
    ========================================================================== */
 header {
     background: rgba(8, 12, 22, 0.85);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(0, 242, 254, 0.2); /* Enhanced glow line on header divider */
+    box-shadow: 0 4px 20px rgba(0, 242, 254, 0.05);
     position: sticky;
     top: 0;
     z-index: 100;
@@ -106,29 +109,39 @@ header {
     transform: scale(1.02);
 }
 
+/* HIGH-GLOW DISCORD BUTTON WRAPPER */
 .discord-btn {
     display: flex;
     align-items: center;
     gap: 8px;
-    background: linear-gradient(90deg, #4458eb, #2b3eb3);
+    background: linear-gradient(135deg, var(--discord-color), var(--discord-glow));
     color: white;
     text-decoration: none;
-    font-size: 0.85rem;
+    font-size: 0.9rem;
+    font-family: 'Orbitron', sans-serif;
     font-weight: 600;
-    padding: 8px 16px;
-    border-radius: 50px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 4px 15px rgba(68, 88, 235, 0.3);
-    transition: transform 0.2s;
+    padding: 10px 20px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 15px rgba(88, 101, 242, 0.5), inset 0 0 8px rgba(255, 255, 255, 0.2);
+    transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+    animation: discordPulse 2s infinite alternate;
 }
 
 .discord-btn:hover {
-    transform: scale(1.03);
+    transform: translateY(-3px);
+    box-shadow: 0 0 30px rgba(88, 101, 242, 0.95), 0 0 10px rgba(114, 137, 218, 0.6);
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
 }
 
 .discord-logo {
-    width: 16px;
-    height: 16px;
+    width: 18px;
+    height: 18px;
+}
+
+@keyframes discordPulse {
+    0% { box-shadow: 0 0 12px rgba(88, 101, 242, 0.4); }
+    100% { box-shadow: 0 0 24px rgba(88, 101, 242, 0.8); }
 }
 
 .navbar {
@@ -150,20 +163,25 @@ header {
     text-decoration: none;
     font-size: 0.9rem;
     font-weight: 500;
-    padding: 6px 14px;
-    border-radius: 6px;
-    transition: all 0.2s;
+    padding: 8px 16px;
+    border-radius: 8px;
+    border: 1px solid transparent;
+    transition: all 0.2s ease-in-out;
     white-space: nowrap;
 }
 
 .nav-link:hover {
-    color: white;
-    background: rgba(255, 255, 255, 0.05);
+    color: var(--cyan-glow);
+    background: rgba(0, 242, 254, 0.05);
+    border-color: rgba(0, 242, 254, 0.3);
+    box-shadow: 0 0 15px rgba(0, 242, 254, 0.15);
 }
 
 .nav-link.active {
     color: white;
     background: var(--nav-active);
+    border-color: rgba(0, 242, 254, 0.4);
+    box-shadow: 0 0 15px rgba(0, 242, 254, 0.25);
 }
 
 /* ==========================================================================
@@ -184,6 +202,7 @@ header {
     font-size: 1.4rem;
     color: #ffffff;
     margin-bottom: 20px;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
 }
 
 .tools-grid {
@@ -201,38 +220,19 @@ header {
     flex-direction: column;
     justify-content: space-between;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    transition: transform 0.3s ease, border-color 0.3s ease;
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Premium introductory text panel style rule */
 .intro-card {
     border-left: 4px solid var(--cyan-glow) !important;
     padding: 32px;
-}
-
-.intro-card h2 {
-    font-family: 'Orbitron', sans-serif;
-    color: #ffffff;
-    font-size: 1.5rem;
-    margin-bottom: 12px;
-}
-
-.intro-card p {
-    font-size: 1.1rem !important;
-    color: #cbd5e1 !important;
-    max-width: 1000px;
-}
-
-.intro-card .sub-text {
-    font-size: 0.95rem !important;
-    color: #64748b !important;
-    margin-top: 10px;
-    margin-bottom: 0px !important;
+    box-shadow: 0 0 25px rgba(0, 242, 254, 0.05);
 }
 
 .glass-card:hover {
     transform: translateY(-4px);
     border-color: rgba(0, 242, 254, 0.3);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), 0 0 20px rgba(0, 242, 254, 0.15);
 }
 
 .glass-card h3 {
@@ -250,7 +250,7 @@ header {
 }
 
 /* ==========================================================================
-   TRUE HIGH-GLOW NEON GRADIENT BUTTONS
+   HIGH-GLOW NEON GRADIENT BUTTONS
    ========================================================================== */
 .btn-glow {
     display: block;
@@ -264,27 +264,28 @@ header {
     text-decoration: none;
     color: #ffffff;
     background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.25);
     
-    box-shadow: 0 0 15px rgba(0, 242, 254, 0.5), inset 0 0 8px rgba(255, 255, 255, 0.3);
-    text-shadow: 0 0 5px rgba(255, 255, 255, 0.6);
+    /* Strong ambient drop shadow glows */
+    box-shadow: 0 0 18px rgba(0, 242, 254, 0.6), inset 0 0 8px rgba(255, 255, 255, 0.4);
+    text-shadow: 0 0 6px rgba(255, 255, 255, 0.7);
     
     animation: neonPulse 2.5s infinite alternate;
-    transition: all 0.3s ease-in-out;
+    transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
 .btn-glow:hover {
-    box-shadow: 0 0 30px rgba(0, 242, 254, 0.95), 0 0 10px rgba(79, 172, 254, 0.6);
-    transform: translateY(-2px) scale(1.01);
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.9);
+    box-shadow: 0 0 35px rgba(0, 242, 254, 0.95), 0 0 15px rgba(79, 172, 254, 0.7), inset 0 0 12px rgba(255, 255, 255, 0.5);
+    transform: translateY(-2px) scale(1.02);
+    text-shadow: 0 0 12px rgba(255, 255, 255, 1);
 }
 
 @keyframes neonPulse {
     0% {
-        box-shadow: 0 0 12px rgba(0, 242, 254, 0.4), inset 0 0 4px rgba(255, 255, 255, 0.2);
+        box-shadow: 0 0 14px rgba(0, 242, 254, 0.5), inset 0 0 4px rgba(255, 255, 255, 0.2);
     }
     100% {
-        box-shadow: 0 0 22px rgba(0, 242, 254, 0.75), inset 0 0 10px rgba(255, 255, 255, 0.4);
+        box-shadow: 0 0 26px rgba(0, 242, 254, 0.85), inset 0 0 12px rgba(255, 255, 255, 0.4);
     }
 }
 
@@ -332,7 +333,7 @@ header {
    ========================================================================== */
 .hidden {
     opacity: 0;
-    transform: translateY(35px); /* Slightly increased distance for a richer sliding motion */
+    transform: translateY(35px);
     transition: opacity 0.8s ease-out, transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
