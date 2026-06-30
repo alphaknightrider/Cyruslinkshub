@@ -23,8 +23,8 @@
     <header>
         <div class="topbar">
             <div class="brand">
-                <a href="/">
-                    <img src="logo.png" alt="CyrusLinksHub Banner Logo" class="brand-banner-logo">
+                <a href="index.html">
+                    <img src="1000042115.png" alt="CyrusLinksHub Banner Logo" class="brand-banner-logo">
                 </a>
             </div>
             <a href="https://discord.gg/YOURINVITE" target="_blank" class="discord-btn">
@@ -34,10 +34,11 @@
         </div>
 
         <nav class="navbar">
-            <a href="/" class="nav-link active">🏠 Home</a>
-            <a href="/tools/" class="nav-link">🔧 Tools</a>
+            <a href="index.html" class="nav-link active">🏠 Home</a>
+            <a href="tools.html" class="nav-link">🔧 Tools</a>
             <a href="/games/" class="nav-link">🎮 Games</a>
             <a href="/apk/" class="nav-link">📱 APK</a>
+            <a href="/nodes/" class="nav-link">🖥️ Nodes</a>
             <a href="/movies/" class="nav-link">🎬 Movie</a>
             <a href="/about/" class="nav-link">ℹ️ About</a>
         </nav>
@@ -56,7 +57,8 @@
                     Your modern destination for tools, downloads, resources, entertainment, community updates, and useful content[span_0](start_span)[span_0](end_span).
                 </p>
                 <div style="display: flex; justify-content: center; width: 100%;">
-                    <a href="/" class="btn-glow" style="max-width: 280px; width: 100%;">Enjoy Our Resources🔧</a>
+                    <!-- Added the exact btn-glow class wrapper to make this button pulse with neon light -->
+                    <a href="tools.html" class="btn-glow" style="max-width: 280px; width: 100%;">Launch Utility Terminal 🔧</a>
                 </div>
             </div>
         </section>
@@ -110,7 +112,7 @@
 
         <!-- ABOUT SECTION -->
         <section class="tool-section hidden">
-            <h2 class="section-title">ℹ️ Why Choose CyrusLinksHub</h2>
+            <h2 class="section-title">ℹ️ About CyrusLinksHub</h2>
             <div class="glass-card">
                 <p style="margin-bottom: 0;">
                     CyrusLinksHub was created to bring useful resources, entertainment, tools, and community features together in one modern platform[span_8](start_span)[span_8](end_span).
@@ -125,14 +127,15 @@
     <!-- BACK TO TOP SHORTCUT BUTTON -->
     <button id="backToTop" class="back-to-top" title="Go to top">▲</button>
 
-    <!-- FOOTER -->
-    <footer>
-        <p>© 2026 CyrusLinksHub . Made by Kartikey . All Rights Reserved</p>
+    <!-- FOOTER WITH REAL VISUAL ENDING SEPARATOR -->
+    <footer style="border-top: 1px solid rgba(0, 242, 254, 0.15); background: rgba(4, 5, 8, 0.9); backdrop-filter: blur(8px); margin-top: 120px;">
+        <p style="font-family: 'Orbitron', sans-serif; letter-spacing: 1px; color: #64748b;">
+            © 2026 <span style="color: #00f2fe; text-shadow: 0 0 10px rgba(0, 242, 254, 0.3);">CyrusLinksHub</span> • Made by Kartikey[span_10](start_span)[span_10](end_span)
+        </p>
     </footer>
 
     <!-- Scroll Reveal Engine & Back to Top interactions -->
     <script>
-        // High-performance scroll tracking layout animation element trigger
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -143,7 +146,6 @@
 
         document.querySelectorAll(".hidden").forEach(el => observer.observe(el));
 
-        // Back To Top logic routine handles element show/hide on scrolling window
         const backToTopButton = document.getElementById("backToTop");
 
         window.addEventListener("scroll", () => {
