@@ -429,4 +429,109 @@
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add("show");
-     
+      }
+            });
+        }, { threshold: 0.05 });
+        document.querySelectorAll(".hidden").forEach(el => revealObserver.observe(el));
+
+        // Interactive Numeric Stats Increment Engine
+        const triggerStatsCounters = () => {
+            document.querySelectorAll('.stat-counter').forEach(counter => {
+                const targetValue = parseInt(counter.getAttribute('data-target'));
+                let currentVal = 0;
+                const incrementStep = Math.ceil(targetValue / 40);
+                
+                const updateCounterValue = () => {
+                    currentVal += incrementStep;
+                    if(currentVal >= targetValue) {
+                        counter.textContent = targetValue.toLocaleString() + (targetValue === 99 ? '%' : '+');
+                    } else {
+                        counter.textContent = currentVal.toLocaleString() + '+';
+                        requestAnimationFrame(updateCounterValue);
+                    }
+                };
+                updateCounterValue();
+            });
+        };
+        // Trigger statistics count animation upon viewing section layout
+        const statsSectionObserver = new IntersectionObserver((entries) => {
+            if(entries[0].isIntersecting) {
+                triggerStatsCounters();
+                statsSectionObserver.disconnect();
+            }
+        }, { threshold: 0.1 });
+        statsSectionObserver.observe(document.querySelector('.stats-dashboard'));
+
+        // Automated Home Typing Terminal Engine
+        const coreTypingPhrases = [
+            "The Ultimate Gaming & Utility Platform",
+            "Powerful Online Platform...",
+            "Fast & Secure Experience...",
+            "Built For Everyone...",
+            "Join Our Community..."
+        ];
+        let currentPhraseIdx = 0, currentCharIdx = 0, currentOutputStr = "", isDeletingState = false;
+        const typeTerminalCycle = () => {
+            const currentFullPhrase = coreTypingPhrases[currentPhraseIdx];
+            if (isDeletingState) {
+                currentOutputStr = currentFullPhrase.substring(0, currentCharIdx - 1);
+                currentCharIdx--;
+            } else {
+                currentOutputStr = currentFullPhrase.substring(0, currentCharIdx + 1);
+                currentCharIdx++;
+            }
+            document.getElementById("typingTarget").textContent = currentOutputStr;
+
+            let processingTimeoutDelay = isDeletingState ? 40 : 80;
+            if (!isDeletingState && currentOutputStr === currentFullPhrase) {
+                processingTimeoutDelay = 2200; // Standstill delay hold when phrase is finished text output
+                isDeletingState = true;
+            } else if (isDeletingState && currentOutputStr === "") {
+                isDeletingState = false;
+                currentPhraseIdx = (currentPhraseIdx + 1) % coreTypingPhrases.length;
+                processingTimeoutDelay = 400; // Transition buffer hold
+            }
+            setTimeout(typeTerminalCycle, processingTimeoutDelay);
+        };
+        document.addEventListener("DOMContentLoaded", () => setTimeout(typeTerminalCycle, 800));
+
+        // Mouse Parallax Coordinate Vector Grid Calculations
+        const heroSceneWrap = document.getElementById('heroScene');
+        document.addEventListener('mousemove', (e) => {
+            const calculatedXCoord = (window.innerWidth / 2 - e.clientX) * 0.02;
+            const calculatedYCoord = (window.innerHeight / 2 - e.clientY) * 0.02;
+            document.querySelectorAll('[data-depth]').forEach(parallaxLayerNode => {
+                const layerDepthCoefficient = parallaxLayerNode.getAttribute('data-depth');
+                const translateShiftX = calculatedXCoord * layerDepthCoefficient;
+                const translateShiftY = calculatedYCoord * layerDepthCoefficient;
+                parallaxLayerNode.style.transform = `translate3d(${translateShiftX}px, ${translateShiftY}px, 0)`;
+            });
+        });
+
+        // Interactive Accordion Handling for FAQ Dropdown Grid Matrix
+        document.querySelectorAll('.faq-trigger-header').forEach(headerTriggerNode => {
+            headerTriggerNode.addEventListener('click', () => {
+                const parentAccordionItemNode = headerTriggerNode.parentElement;
+                const wasActiveNode = parentAccordionItemNode.classList.contains('active');
+                document.querySelectorAll('.faq-accordion-item').forEach(item => item.classList.remove('active'));
+                if (!wasActiveNode) {
+                    parentAccordionItemNode.classList.add('active');
+                }
+            });
+        });
+
+        // Back to Top Interactive Control Operations
+        const backToTopButton = document.getElementById("backToTop");
+        window.addEventListener("scroll", () => {
+            if (window.pageYOffset > 400) {
+                backToTopButton.classList.add("visible");
+            } else {
+                backToTopButton.classList.remove("visible");
+            }
+        });
+        backToTopButton.addEventListener("click", () => {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+    </script>
+</body>
+</html>
