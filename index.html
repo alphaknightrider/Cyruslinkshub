@@ -3,13 +3,140 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CyrusLinksHub | Home</title>
-    <!-- Google Fonts matching tools.html -->
+    <title>CyrusLinksHub | The Ultimate Gaming & Utility Platform</title>
+    <!-- Premium Cyber Typography Matrix -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
-    <!-- Link to global stylesheet -->
+    <!-- Link to your exact global stylesheet -->
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* Tooltip & Extension Core Visual Overrides for Home Engine */
+        .parallax-hero-wrap {
+            position: relative;
+            width: 100%;
+            min-height: 85vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            padding: 80px 20px;
+        }
+        .parallax-layer {
+            position: absolute;
+            will-change: transform;
+            transition: transform 0.1s cubic-bezier(0.25, 1, 0.5, 1);
+            pointer-events: none;
+        }
+        .hero-layer-back {
+            z-index: 1;
+            opacity: 0.15;
+            font-size: 15rem;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 800;
+            color: var(--cyan-glow, #00f2fe);
+            white-space: nowrap;
+        }
+        .hero-content-front {
+            position: relative;
+            z-index: 5;
+            max-width: 900px;
+            text-align: center;
+        }
+        .typed-cursor {
+            color: var(--cyan-glow, #00f2fe);
+            font-weight: 800;
+            animation: typeBlink 0.7s infinite;
+            margin-left: 4px;
+        }
+        @keyframes typeBlink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+        .flex-btn-row {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 35px;
+            flex-wrap: wrap;
+        }
+        
+        /* Stats Dashboard Panel Grid Layout */
+        .stats-dashboard {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+            margin: 40px 0;
+        }
+        .stat-node-card {
+            text-align: center;
+            padding: 30px 20px;
+        }
+        .stat-counter {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--cyan-glow, #00f2fe);
+            text-shadow: 0 0 15px rgba(0, 242, 254, 0.4);
+            margin-bottom: 5px;
+        }
+        
+        /* Interactive FAQ Dropdown Blocks */
+        .faq-accordion-block {
+            max-width: 850px;
+            margin: 0 auto;
+            text-align: left;
+        }
+        .faq-accordion-item {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        .faq-accordion-item:hover {
+            border-color: rgba(0, 242, 254, 0.2);
+            background: rgba(255, 255, 255, 0.06);
+        }
+        .faq-trigger-header {
+            padding: 20px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.1rem;
+            color: #ffffff;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            user-select: none;
+        }
+        .faq-panel-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            background: rgba(0, 0, 0, 0.2);
+        }
+        .faq-panel-content p {
+            padding: 20px;
+            margin: 0;
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 1.1rem;
+            color: #cbd5e1;
+            line-height: 1.6;
+            border-top: 1px solid rgba(255, 255, 255, 0.03);
+        }
+        .faq-accordion-item.active .faq-panel-content {
+            max-height: 200px;
+        }
+        
+        @media(max-width: 992px) {
+            .stats-dashboard { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media(max-width: 550px) {
+            .stats-dashboard { grid-template-columns: 1fr; }
+            .hero-layer-back { font-size: 8rem; }
+        }
+    </style>
 </head>
 <body>
 
@@ -23,8 +150,8 @@
     <header>
         <div class="topbar">
             <div class="brand">
-                <a href="/">
-                    <img src="logo.png" alt="CyrusLinksHub Banner Logo" class="brand-banner-logo">
+                <a href="index.html">
+                    <img src="1000042115.png" alt="CyrusLinksHub Banner Logo" class="brand-banner-logo">
                 </a>
             </div>
             <a href="https://discord.gg/YOURINVITE" target="_blank" class="discord-btn">
@@ -34,90 +161,214 @@
         </div>
 
         <nav class="navbar">
-            <a href="index.html" class="nav-link active">Home</a>
-            <a href="tools.html" class="nav-link">Tools</a>
-            <a href="/games/" class="nav-link">Games</a>
-            <a href="/apk/" class="nav-link">APK</a>
-            <a href="/nodes/" class="nav-link">Nodes</a>
-            <a href="/movies/" class="nav-link">Movie</a>
-            <a href="/about/" class="nav-link">About</a>
+            <a href="index.html" class="nav-link active">🏠 Home</a>
+            <a href="tools.html" class="nav-link">🔧 Tools</a>
+            <a href="/games/" class="nav-link">🎮 Games</a>
+            <a href="/apk/" class="nav-link">📱 APK</a>
+            <a href="/nodes/" class="nav-link">🖥️ Nodes</a>
+            <a href="/movies/" class="nav-link">🎬 Movie</a>
+            <a href="/about/" class="nav-link">ℹ️ About</a>
         </nav>
     </header>
 
-    <!-- MAIN HOMEPAGE CONTENT -->
-    <main class="main-container">
+    <!-- MAIN PARALLAX HERO SECTION -->
+    <div class="parallax-hero-wrap" id="heroScene">
+        <div class="parallax-layer hero-layer-back" data-depth="0.15">CYRUS</div>
         
-        <!-- HERO INTRODUCTION -->
-        <section class="tool-section hidden">
-            <div class="glass-card intro-card" style="text-align: center; padding: 40px 20px;">
-                <h2 style="font-family: 'Orbitron', sans-serif; color: #ffffff; margin-bottom: 15px; letter-spacing: 1px;">
-                    WELCOME TO CYRUSLINKSHUB
-                </h2>
-                <p style="font-size: 1.15rem; color: #cbd5e1; max-width: 850px; margin: 0 auto 25px auto; font-family: 'Rajdhani', sans-serif; line-height: 1.6;">
-                    Your modern destination for tools, downloads, resources, entertainment, community updates, and useful content.
-                </p>
-                <div style="display: flex; justify-content: center; width: 100%;">
-                    <a href="tools.html" class="btn-glow" style="max-width: 280px; width: 100%;">Launch Utility Terminal</a>
-                </div>
+        <div class="hero-content-front">
+            <p style="font-family: 'Orbitron', sans-serif; color: #64748b; font-size: 1rem; letter-spacing: 4px; margin-bottom: 10px; text-transform: uppercase;">WELCOME TO</p>
+            <h1 style="font-family: 'Orbitron', sans-serif; font-size: 3.5rem; font-weight: 800; color: #ffffff; letter-spacing: 2px; margin-bottom: 15px;">CYRUSLINKSHUB</h1>
+            
+            <!-- Automated Core Typing Infrastructure Display -->
+            <div style="min-height: 40px; font-family: 'Rajdhani', sans-serif; font-size: 1.6rem; font-weight: 600; color: #cbd5e1; letter-spacing: 0.5px;">
+                <span id="typingTarget"></span><span class="typed-cursor">|</span>
             </div>
-        </section>
-
-        <!-- WELCOME INFORMATION SECTION -->
-        <section class="tool-section hidden">
-            <h2 class="section-title">Welcome</h2>
-            <div class="glass-card">
-                <p style="margin-bottom: 0;">
-                    CyrusLinksHub is a modern resource hub designed to provide users with quick access to useful tools, downloads, gaming resources, community updates, and online content. 
-                    <br><br>
-                    The platform focuses on speed, simplicity, and a smooth user experience across both desktop and mobile devices.
-                </p>
+            
+            <div class="flex-btn-row">
+                <a href="tools.html" class="btn-glow">🚀 Explore Tools</a>
+                <a href="https://discord.gg/YOURINVITE" target="_blank" class="btn-glow" style="border-color: rgba(255,255,255,0.15);">💬 Join Discord</a>
             </div>
-        </section>
+        </div>
+    </div>
 
-        <!-- COMMUNITY SECTION -->
+    <!-- MAIN APP STRUCTURE CONTENT CONTAINER -->
+    <main class="main-container">
+
+        <!-- ABOUT PLATFORM CORE MODULE -->
         <section class="tool-section hidden">
-            <h2 class="section-title">Community</h2>
-            <div class="glass-card">
-                <p style="margin-bottom: 0;">
-                    Join the CyrusLinksHub community to stay updated with announcements, future updates, website improvements, and new resources.
-                    <br><br>
-                    Community feedback helps improve the platform and build a better experience for everyone.
+            <h2 class="section-title">About CyrusLinksHub</h2>
+            <div class="glass-card" style="padding: 45px 30px; text-align: center;">
+                <p style="font-size: 1.3rem; line-height: 1.8; max-width: 900px; margin: 0 auto; font-family: 'Rajdhani', sans-serif; color: #f1f5f9;">
+                    CyrusLinksHub is a modern online platform designed for gamers, creators, developers and technology enthusiasts.
+                </p>
+                <div style="width: 60px; height: 1px; background: rgba(0,242,254,0.3); margin: 30px auto;"></div>
+                <p style="font-size: 1.15rem; line-height: 1.7; max-width: 850px; margin: 0 auto; color: #94a3b8; font-family: 'Rajdhani', sans-serif;">
+                    Our goal is to provide high-quality online tools, gaming resources, downloads and an active community through one fast, secure and modern website.
                 </p>
             </div>
         </section>
 
-        <!-- FAQ SECTION -->
+        <!-- WHAT WE OFFER UTILITY MATRIX -->
         <section class="tool-section hidden">
-            <h2 class="section-title">Frequently Asked Questions</h2>
+            <h2 class="section-title">What We Offer</h2>
             <div class="tools-grid">
                 
                 <div class="glass-card" style="justify-content: flex-start;">
-                    <h3 style="color: #00f2fe; margin-bottom: 8px;">Q: Is CyrusLinksHub free to use?</h3>
-                    <p style="margin-bottom: 0;">Yes. All public resources available on CyrusLinksHub are freely accessible.</p>
+                    <h3 style="color: #00f2fe; margin-bottom: 10px;">🛠 Online Tools</h3>
+                    <p style="margin-bottom: 0;">Modern browser tools.</p>
                 </div>
-                
+
                 <div class="glass-card" style="justify-content: flex-start;">
-                    <h3 style="color: #00f2fe; margin-bottom: 8px;">Q: Will more content be added?</h3>
-                    <p style="margin-bottom: 0;">Yes. The website is continuously updated with new resources, improvements, and features.</p>
+                    <h3 style="color: #00f2fe; margin-bottom: 10px;">🎮 Gaming Resources</h3>
+                    <p style="margin-bottom: 0;">Helpful gaming utilities.</p>
                 </div>
-                
+
                 <div class="glass-card" style="justify-content: flex-start;">
-                    <h3 style="color: #00f2fe; margin-bottom: 8px;">Q: How can I join the community?</h3>
-                    <p style="margin-bottom: 0;">You can join using the Discord button located beside the CyrusLinksHub title.</p>
+                    <h3 style="color: #00f2fe; margin-bottom: 10px;">📱 APK Collection</h3>
+                    <p style="margin-bottom: 0;">Useful Android apps.</p>
+                </div>
+
+                <div class="glass-card" style="justify-content: flex-start;">
+                    <h3 style="color: #00f2fe; margin-bottom: 10px;">🎬 Movies</h3>
+                    <p style="margin-bottom: 0;">Entertainment resources.</p>
+                </div>
+
+                <div class="glass-card" style="justify-content: flex-start;">
+                    <h3 style="color: #00f2fe; margin-bottom: 10px;">🎵 Music</h3>
+                    <p style="margin-bottom: 0;">Music content.</p>
+                </div>
+
+                <div class="glass-card" style="justify-content: flex-start;">
+                    <h3 style="color: #00f2fe; margin-bottom: 10px;">☁ Community</h3>
+                    <p style="margin-bottom: 0;">Discord & updates.</p>
                 </div>
 
             </div>
         </section>
 
-        <!-- ABOUT SECTION -->
+        <!-- WHY CHOOSE US PARAMETERS -->
         <section class="tool-section hidden">
-            <h2 class="section-title">About CyrusLinksHub</h2>
-            <div class="glass-card">
-                <p style="margin-bottom: 0;">
-                    CyrusLinksHub was created to bring useful resources, entertainment, tools, and community features together in one modern platform.
-                    <br><br>
-                    Our goal is to provide a fast, clean, and user-friendly experience while continuously improving the website with new content and better functionality.
+            <h2 class="section-title">Why Choose Us</h2>
+            <div class="tools-grid" style="grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));">
+                
+                <div class="glass-card" style="text-align: center; padding: 30px 20px;">
+                    <h4 style="color: #ffffff; font-family: 'Orbitron', sans-serif; font-size: 1.1rem; margin-bottom: 8px;">⚡ Fast Performance</h4>
+                </div>
+
+                <div class="glass-card" style="text-align: center; padding: 30px 20px;">
+                    <h4 style="color: #ffffff; font-family: 'Orbitron', sans-serif; font-size: 1.1rem; margin-bottom: 8px;">🔒 Secure Platform</h4>
+                </div>
+
+                <div class="glass-card" style="text-align: center; padding: 30px 20px;">
+                    <h4 style="color: #ffffff; font-family: 'Orbitron', sans-serif; font-size: 1.1rem; margin-bottom: 8px;">🌍 Community Driven</h4>
+                </div>
+
+                <div class="glass-card" style="text-align: center; padding: 30px 20px;">
+                    <h4 style="color: #ffffff; font-family: 'Orbitron', sans-serif; font-size: 1.1rem; margin-bottom: 8px;">🚀 Modern Design</h4>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- PLATFORM CORE PERFORMANCE METRICS (STATISTICS) -->
+        <section class="tool-section hidden">
+            <h2 class="section-title">System Metrics</h2>
+            <div class="stats-dashboard">
+                
+                <div class="glass-card stat-node-card">
+                    <div class="stat-counter" data-target="2500">0</div>
+                    <p style="font-family: 'Rajdhani', sans-serif; color: #94a3b8; font-size: 1rem; text-transform: uppercase; margin: 0; letter-spacing: 1px;">Active Members</p>
+                </div>
+
+                <div class="glass-card stat-node-card">
+                    <div class="stat-counter" data-target="45">0</div>
+                    <p style="font-family: 'Rajdhani', sans-serif; color: #94a3b8; font-size: 1rem; text-transform: uppercase; margin: 0; letter-spacing: 1px;">Online Tools</p>
+                </div>
+
+                <div class="glass-card stat-node-card">
+                    <div class="stat-counter" data-target="99">0</div>
+                    <p style="font-family: 'Rajdhani', sans-serif; color: #94a3b8; font-size: 1rem; text-transform: uppercase; margin: 0; letter-spacing: 1px;">Uptime percentage</p>
+                </div>
+
+                <div class="glass-card stat-node-card">
+                    <div class="stat-counter" data-target="150">0</div>
+                    <p style="font-family: 'Rajdhani', sans-serif; color: #94a3b8; font-size: 1rem; text-transform: uppercase; margin: 0; letter-spacing: 1px;">Daily Requests</p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- COMMUNITY VERIFICATION PORTAL -->
+        <section class="tool-section hidden">
+            <h2 class="section-title">Join Our Community</h2>
+            <div class="glass-card" style="padding: 40px; text-align: center;">
+                <div class="tools-grid" style="grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); margin-bottom: 35px; border-bottom: 1px solid rgba(255,255,255,0.04); padding-bottom: 25px;">
+                    <div style="font-family: 'Rajdhani', sans-serif; font-size: 1.2rem; color: #cbd5e1;">✔ Friendly Members</div>
+                    <div style="font-family: 'Rajdhani', sans-serif; font-size: 1.2rem; color: #cbd5e1;">✔ Fast Support</div>
+                    <div style="font-family: 'Rajdhani', sans-serif; font-size: 1.2rem; color: #cbd5e1;">✔ Regular Updates</div>
+                    <div style="font-family: 'Rajdhani', sans-serif; font-size: 1.2rem; color: #cbd5e1;">✔ Giveaways</div>
+                    <div style="font-family: 'Rajdhani', sans-serif; font-size: 1.2rem; color: #cbd5e1;">✔ Events</div>
+                </div>
+                <div style="display: flex; justify-content: center; width: 100%;">
+                    <a href="https://discord.gg/YOURINVITE" target="_blank" class="btn-glow" style="max-width: 260px; width: 100%;">Join Discord</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- SYSTEM FAQ ACCORDION MATRIX -->
+        <section class="tool-section hidden">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <div class="faq-accordion-block">
+                
+                <div class="faq-accordion-item">
+                    <div class="faq-trigger-header">What is CyrusLinksHub? <span>▼</span></div>
+                    <div class="faq-panel-content">
+                        <p>CyrusLinksHub is a premium, modern unified platform designed to serve core utilities, optimized browser tools, application downlinks, entertainment files, and high-quality programming directories to digital creators and gaming professionals.</p>
+                    </div>
+                </div>
+
+                <div class="faq-accordion-item">
+                    <div class="faq-trigger-header">Are all tools free? <span>▼</span></div>
+                    <div class="faq-panel-content">
+                        <p>Yes. Every tool deployed across our platform utility matrix runs fully open-source and natively unmetered within consumer web interfaces without requiring registration or license keys.</p>
+                    </div>
+                </div>
+
+                <div class="faq-accordion-item">
+                    <div class="faq-trigger-header">How do I join Discord? <span>▼</span></div>
+                    <div class="faq-panel-content">
+                        <p>Simply click any premium community terminal launcher across our top nav headers or dedicated footer modules to resolve the global platform invitation directly to your Discord client app.</p>
+                    </div>
+                </div>
+
+                <div class="faq-accordion-item">
+                    <div class="faq-trigger-header">How often is the website updated? <span>▼</span></div>
+                    <div class="faq-panel-content">
+                        <p>Our platform indexes and updates libraries automatically on a weekly basis, shipping core security compliance refactors, node configurations, and features designed alongside community developer modules.</p>
+                    </div>
+                </div>
+
+                <div class="faq-accordion-item">
+                    <div class="faq-trigger-header">Can I suggest new tools? <span>▼</span></div>
+                    <div class="faq-panel-content">
+                        <p>Absolutely. We prioritize user-led functionality upgrades. Feel free to log into our secure active user network on Discord or open structural request pulls directly within our system repository pipeline channels.</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- CALL TO ACTION TERMINAL -->
+        <section class="tool-section hidden" style="margin-top: 100px; margin-bottom: 60px;">
+            <div class="glass-card" style="text-align: center; padding: 50px 30px; border-color: rgba(0,242,254,0.25); background: linear-gradient(145deg, rgba(4,5,8,0.9), rgba(0,242,254,0.03));">
+                <h2 style="font-family: 'Orbitron', sans-serif; color: #ffffff; margin-bottom: 15px; letter-spacing: 1px;">Ready To Explore?</h2>
+                <p style="font-size: 1.2rem; color: #94a3b8; max-width: 700px; margin: 0 auto 30px auto; font-family: 'Rajdhani', sans-serif;">
+                    Discover premium online tools and become part of the CyrusLinksHub community.
                 </p>
+                <div class="flex-btn-row">
+                    <a href="tools.html" class="btn-glow">Explore Tools</a>
+                    <a href="https://discord.gg/YOURINVITE" target="_blank" class="btn-glow" style="border-color: rgba(255,255,255,0.12);">Join Discord</a>
+                </div>
             </div>
         </section>
 
@@ -126,74 +377,56 @@
     <!-- BACK TO TOP SHORTCUT BUTTON -->
     <button id="backToTop" class="back-to-top" title="Go to top">▲</button>
 
-    <!-- CENTERED TEXT ONLY SYSTEM FOOTER -->
+    <!-- CENTERED TEXT ONLY SYSTEM FOOTER (NO SYMBOLS / NO EMOJIS) -->
     <footer class="system-footer">
         
-        <!-- Gaming Pages Block -->
+        <!-- Logo Text Base Layout Node -->
         <div class="footer-group">
-            <h3 class="footer-group-title">Gaming Pages</h3>
-            <ul class="footer-text-list">
-                <li>Free Fire Max</li>
-                <li>Roblox</li>
-                <li>Minecraft</li>
-                <li>GTA V</li>
-                <li>Fortnite</li>
-            </ul>
+            <h3 class="footer-group-title" style="font-size: 1.6rem; font-weight: 800; letter-spacing: 3px;">LOGO</h3>
         </div>
 
-        <!-- Navigation Block -->
+        <!-- Navigation Columns Text Grid Layout -->
         <div class="footer-group">
             <h3 class="footer-group-title">Navigation</h3>
             <ul class="footer-text-list">
                 <li>Home</li>
+                <li>Tools</li>
                 <li>Games</li>
-                <li>Top</li>
+                <li>About</li>
             </ul>
         </div>
 
-        <!-- Status Block -->
+        <!-- Resources Column Block -->
         <div class="footer-group">
-            <h3 class="footer-group-title">Status</h3>
-            <div class="status-node">
-                <span class="status-indicator-dot"></span> ALL SYSTEMS OPERATIONAL
-            </div>
-            <div class="status-subtext">Server Node: CYRUS_MAIN_HUB</div>
+            <h3 class="footer-group-title">Resources</h3>
+            <ul class="footer-text-list">
+                <li>APK</li>
+                <li>Movies</li>
+                <li>Music</li>
+            </ul>
         </div>
 
-        <!-- Base Copyright Row -->
+        <!-- Community Channels Column Block -->
+        <div class="footer-group">
+            <h3 class="footer-group-title">Community</h3>
+            <ul class="footer-text-list">
+                <li>Discord</li>
+                <li>GitHub</li>
+                <li>YouTube</li>
+            </ul>
+        </div>
+
+        <!-- Base System Copyright Block -->
         <div class="footer-copyright">
-            © 2026 CyrusLinksHub • Home Hub<br>Made by Kartikey
+            Copyright 2026 CyrusLinksHub<br>All Rights Reserved.
         </div>
     </footer>
 
-    <!-- Scroll Reveal Engine & Back to Top interactions -->
+    <!-- INTERACTIVE SCRIPTS LOADER ENGINE -->
     <script>
-        const observer = new IntersectionObserver((entries) => {
+        // Intersection Scroll Reveal Engine
+        const revealObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add("show");
-                }
-            });
-        }, { threshold: 0.05 });
-
-        document.querySelectorAll(".hidden").forEach(el => observer.observe(el));
-
-        const backToTopButton = document.getElementById("backToTop");
-
-        window.addEventListener("scroll", () => {
-            if (window.pageYOffset > 400) {
-                backToTopButton.classList.add("visible");
-            } else {
-                backToTopButton.classList.remove("visible");
-            }
-        });
-
-        backToTopButton.addEventListener("click", () => {
-            window.scrollTo({
-                top: 0,
-                behavior: "smooth"
-            });
-        });
-    </script>
-</body>
-</html>
+     
