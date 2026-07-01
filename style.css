@@ -31,7 +31,7 @@ body {
 }
 
 /* ==========================================================================
-   2. SPACE BG & ANIMATED PARTICLE ENGINE
+   2. TOOLS.HTML EXACT BACKGROUND LAYOUT (MOBILE OPTIMIZED)
    ========================================================================== */
 .space-bg {
     position: fixed;
@@ -39,30 +39,34 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: radial-gradient(ellipse at bottom, #0a0516 0%, #020105 100%);
+    background: url("network.jpg") center center/cover no-repeat;
     z-index: -2;
-    overflow: hidden;
 }
 
+.space-bg::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(5, 1, 10, 0.80);
+}
+
+/* Optional high-performance pure CSS particle overlays */
 .particles, .particles-two {
     position: absolute;
-    width: 2px;
-    height: 2px;
+    width: 1px;
+    height: 1px;
     background: transparent;
     top: 0;
     left: 0;
 }
 
-/* Simulated starry distribution using box-shadow maps */
 .particles {
-    box-shadow: 446px 235px #fff, 123px 456px #fff, 789px 12px #fff, 345px 678px #fff, 901px 321px #fff, 543px 890px rgba(0,242,254,0.5), 12px 765px rgba(255,0,60,0.5);
-    width: 1px;
-    height: 1px;
+    box-shadow: 446px 235px #fff, 123px 456px #fff, 789px 12px #fff, 345px 678px #fff, 901px 321px #fff;
     animation: spaceFlyby 90s linear infinite;
 }
 
 .particles-two {
-    box-shadow: 234px 654px #fff, 876px 123px #fff, 456px 890px #fff, 89px 432px rgba(0,242,254,0.6), 678px 12px rgba(255,0,60,0.4);
+    box-shadow: 234px 654px rgba(0,242,254,0.4), 876px 123px #fff, 456px 890px rgba(255,0,60,0.3);
     width: 2px;
     height: 2px;
     animation: spaceFlyby 60s linear infinite;
@@ -80,9 +84,9 @@ header {
     position: sticky;
     top: 0;
     z-index: 1000;
-    background: rgba(5, 1, 10, 0.8);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(0, 242, 254, 0.1);
+    background: rgba(5, 1, 10, 0.85);
+    backdrop-filter: blur(15px);
+    border-bottom: 2px solid var(--red-glow);
 }
 
 .topbar {
@@ -131,14 +135,14 @@ header {
     justify-content: center;
     gap: 10px;
     padding: 10px 20px;
-    background: rgba(0, 0, 0, 0.2);
+    background: rgba(0, 0, 0, 0.35);
     overflow-x: auto;
     white-space: nowrap;
-    scrollbar-width: none; /* Firefox */
+    scrollbar-width: none;
 }
 
 .navbar::-webkit-scrollbar {
-    display: none; /* Chrome/Safari */
+    display: none;
 }
 
 .nav-link {
@@ -198,15 +202,15 @@ header {
 .glass-card {
     background: var(--card-bg);
     border: 1px solid var(--card-border);
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(12px);
     border-radius: 16px;
     padding: 25px;
     transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
 .glass-card:hover {
-    border-color: rgba(0, 242, 254, 0.25);
-    box-shadow: 0 10px 30px rgba(0, 242, 254, 0.05), inset 0 0 15px rgba(0, 242, 254, 0.02);
+    border-color: rgba(0, 242, 254, 0.3);
+    box-shadow: 0 10px 30px rgba(0, 242, 254, 0.08), inset 0 0 15px rgba(0, 242, 254, 0.03);
     transform: translateY(-2px);
 }
 
@@ -217,31 +221,32 @@ header {
 }
 
 /* ==========================================================================
-   5. INTERACTIVE BUTTONS & UI INTERFACES
+   5. INTERACTIVE BUTTONS & NEON EFFECT SYSTEMS
    ========================================================================== */
 .btn-glow {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 12px 28px;
+    padding: 14px 32px;
     font-family: 'Orbitron', sans-serif;
     font-size: 0.9rem;
     font-weight: 600;
     color: #ffffff;
     background: transparent;
-    border: 1px solid rgba(0, 242, 254, 0.4);
+    border: 1px solid var(--cyan-glow);
     border-radius: 8px;
     text-decoration: none;
     letter-spacing: 1px;
     cursor: pointer;
-    box-shadow: 0 0 15px rgba(0, 242, 254, 0.1);
+    box-shadow: 0 0 15px rgba(0, 242, 254, 0.15), inset 0 0 10px rgba(0, 242, 254, 0.05);
     transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .btn-glow:hover {
-    border-color: var(--cyan-glow);
-    box-shadow: 0 0 25px rgba(0, 242, 254, 0.35);
-    transform: scale(1.02);
+    border-color: #ffffff;
+    background-color: rgba(0, 242, 254, 0.05);
+    box-shadow: 0 0 30px rgba(0, 242, 254, 0.45), inset 0 0 15px rgba(0, 242, 254, 0.1);
+    transform: scale(1.03);
 }
 
 .back-to-top {
@@ -250,7 +255,7 @@ header {
     right: 30px;
     width: 45px;
     height: 45px;
-    background: rgba(5, 1, 10, 0.8);
+    background: rgba(5, 1, 10, 0.85);
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 8px;
     color: #ffffff;
@@ -291,7 +296,7 @@ header {
 }
 
 /* ==========================================================================
-   7. PREMIUM CENTERED TEXT-ONLY SYSTEM FOOTER (NO EMOJIS / NO SYMBOLS)
+   7. PURE TEXT-ONLY SYSTEM FOOTER (NO EMOJIS / NO SYMBOLS)
    ========================================================================== */
 .system-footer {
     margin-top: 120px;
