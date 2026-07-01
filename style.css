@@ -1,12 +1,14 @@
 /* ==========================================================================
-   THEME VARIABLES & AMBIENT BACKGROUND
+   1. CORE VARIABLES & RESETS
    ========================================================================== */
 :root {
-    --bg-gradient: linear-gradient(145deg, #0a0c16 0%, #06161c 40%, #15091d 80%, #040508 100%);
+    --bg-dark: #05010a;
+    --card-bg: rgba(255, 255, 255, 0.04);
+    --card-border: rgba(255, 255, 255, 0.08);
     --cyan-glow: #00f2fe;
-    --blue-glow: #4facfe;
-    --card-bg: rgba(14, 20, 32, 0.65);
-    --nav-active: #2b3a60;
+    --red-glow: #ff003c;
+    --text-primary: #ffffff;
+    --text-muted: #94a3b8;
 }
 
 * {
@@ -17,18 +19,19 @@
 
 html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
 }
 
 body {
-    font-family: 'Rajdhani', sans-serif;
-    background: #040508;
-    color: #e2e8f0;
-    overflow-x: hidden;
+    font-family: 'Orbitron', sans-serif;
+    background-color: var(--bg-dark);
+    color: var(--text-primary);
     min-height: 100vh;
+    overflow-x: hidden;
 }
 
 /* ==========================================================================
-   ANIMATED PARTICLES BACKGROUND (Matches 1000042114.png)
+   2. SPACE BG & ANIMATED PARTICLE ENGINE
    ========================================================================== */
 .space-bg {
     position: fixed;
@@ -36,304 +39,250 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: var(--bg-gradient);
+    background: radial-gradient(ellipse at bottom, #0a0516 0%, #020105 100%);
     z-index: -2;
     overflow: hidden;
 }
 
 .particles, .particles-two {
     position: absolute;
-    inset: 0;
-    background-image: 
-        radial-gradient(circle at 15% 25%, #00f2fe 1px, transparent 1px),
-        radial-gradient(circle at 75% 15%, #00f2fe 1.5px, transparent 1.5px),
-        radial-gradient(circle at 40% 70%, #4facfe 1.2px, transparent 1.2px),
-        radial-gradient(circle at 85% 80%, #00f2fe 1px, transparent 1px),
-        radial-gradient(circle at 25% 85%, #4facfe 1.5px, transparent 1.5px),
-        radial-gradient(circle at 60% 45%, #00f2fe 1px, transparent 1px);
-    background-size: 500px 500px;
-    animation: floatParticles 25s linear infinite;
-    opacity: 0.5;
+    width: 2px;
+    height: 2px;
+    background: transparent;
+    top: 0;
+    left: 0;
+}
+
+/* Simulated starry distribution using box-shadow maps */
+.particles {
+    box-shadow: 446px 235px #fff, 123px 456px #fff, 789px 12px #fff, 345px 678px #fff, 901px 321px #fff, 543px 890px rgba(0,242,254,0.5), 12px 765px rgba(255,0,60,0.5);
+    width: 1px;
+    height: 1px;
+    animation: spaceFlyby 90s linear infinite;
 }
 
 .particles-two {
-    background-size: 350px 350px;
-    animation: floatParticles 40s linear infinite reverse;
-    opacity: 0.3;
+    box-shadow: 234px 654px #fff, 876px 123px #fff, 456px 890px #fff, 89px 432px rgba(0,242,254,0.6), 678px 12px rgba(255,0,60,0.4);
+    width: 2px;
+    height: 2px;
+    animation: spaceFlyby 60s linear infinite;
 }
 
-@keyframes floatParticles {
-    from { transform: translateY(0px) rotate(0deg); }
-    to { transform: translateY(-500px) rotate(10deg); }
+@keyframes spaceFlyby {
+    from { transform: translateY(0px); }
+    to { transform: translateY(-2000px); }
 }
 
 /* ==========================================================================
-   NAVIGATION HEADER & BRAND LOGO ALIGNMENT (Matches 1000042115.png)
+   3. HEADER, NAVBAR & BANNER
    ========================================================================== */
 header {
-    background: rgba(8, 12, 22, 0.85);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     position: sticky;
     top: 0;
-    z-index: 100;
+    z-index: 1000;
+    background: rgba(5, 1, 10, 0.8);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(0, 242, 254, 0.1);
 }
 
 .topbar {
-    max-width: 1300px;
-    margin: 0 auto;
-    padding: 10px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-}
-
-.brand {
-    display: flex;
-    align-items: center;
+    padding: 15px 4%;
+    max-width: 1400px;
+    margin: 0 auto;
 }
 
 .brand-banner-logo {
-    height: 55px;
+    height: 45px;
     width: auto;
     object-fit: contain;
     display: block;
-    transition: transform 0.2s ease;
-}
-
-.brand-banner-logo:hover {
-    transform: scale(1.02);
 }
 
 .discord-btn {
-    display: flex;
+    display: inline-flex;
     align-items: center;
     gap: 8px;
-    background: linear-gradient(90deg, #4458eb, #2b3eb3);
-    color: white;
+    padding: 10px 20px;
+    background: linear-gradient(135deg, #5865F2 0%, #404eed 100%);
+    color: #ffffff;
     text-decoration: none;
-    font-size: 0.85rem;
+    font-family: 'Rajdhani', sans-serif;
     font-weight: 600;
-    padding: 8px 16px;
-    border-radius: 50px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 4px 15px rgba(68, 88, 235, 0.3);
-    transition: transform 0.2s;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(88, 101, 242, 0.3);
+    transition: all 0.3s ease;
 }
 
 .discord-btn:hover {
-    transform: scale(1.03);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(88, 101, 242, 0.5);
 }
 
 .discord-logo {
-    width: 16px;
-    height: 16px;
+    width: 18px;
+    height: 18px;
 }
 
 .navbar {
     display: flex;
-    gap: 8px;
-    max-width: 1300px;
-    margin: 0 auto;
-    padding: 10px 20px 15px 20px;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px 20px;
+    background: rgba(0, 0, 0, 0.2);
     overflow-x: auto;
-    scrollbar-width: none;
+    white-space: nowrap;
+    scrollbar-width: none; /* Firefox */
 }
 
 .navbar::-webkit-scrollbar {
-    display: none;
+    display: none; /* Chrome/Safari */
 }
 
 .nav-link {
-    color: #94a3b8;
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 600;
+    font-size: 1.05rem;
+    color: var(--text-muted);
     text-decoration: none;
-    font-size: 0.9rem;
-    font-weight: 500;
-    padding: 6px 14px;
+    padding: 8px 16px;
     border-radius: 6px;
-    transition: all 0.2s;
-    white-space: nowrap;
+    transition: all 0.3s ease;
 }
 
-.nav-link:hover {
-    color: white;
+.nav-link:hover, .nav-link.active {
+    color: var(--text-primary);
     background: rgba(255, 255, 255, 0.05);
-}
-
-.nav-link.active {
-    color: white;
-    background: var(--nav-active);
+    box-shadow: inset 0 0 8px rgba(0, 242, 254, 0.1);
 }
 
 /* ==========================================================================
-   GRID LAYOUT, CARDS & INTRO HERO STYLE
+   4. LAYOUT CONTAINERS & GLASS CARDS
    ========================================================================== */
 .main-container {
-    max-width: 1300px;
-    margin: 40px auto;
-    padding: 0 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    position: relative;
+    z-index: 10;
 }
 
 .tool-section {
-    margin-bottom: 50px;
+    margin-bottom: 80px;
 }
 
 .section-title {
     font-family: 'Orbitron', sans-serif;
-    font-size: 1.4rem;
+    font-size: 1.8rem;
+    font-weight: 600;
     color: #ffffff;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
+    letter-spacing: 1px;
+    position: relative;
+    display: inline-block;
 }
 
-.tools-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
-    gap: 20px;
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 40px;
+    height: 2px;
+    background: var(--cyan-glow);
+    box-shadow: 0 0 8px var(--cyan-glow);
 }
 
 .glass-card {
     background: var(--card-bg);
-    border: 1px solid rgba(255, 255, 255, 0.06);
-    border-radius: 12px;
-    padding: 24px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    transition: transform 0.3s ease, border-color 0.3s ease;
-}
-
-/* Premium introductory text panel style rule */
-.intro-card {
-    border-left: 4px solid var(--cyan-glow) !important;
-    padding: 32px;
-}
-
-.intro-card h2 {
-    font-family: 'Orbitron', sans-serif;
-    color: #ffffff;
-    font-size: 1.5rem;
-    margin-bottom: 12px;
-}
-
-.intro-card p {
-    font-size: 1.1rem !important;
-    color: #cbd5e1 !important;
-    max-width: 1000px;
-}
-
-.intro-card .sub-text {
-    font-size: 0.95rem !important;
-    color: #64748b !important;
-    margin-top: 10px;
-    margin-bottom: 0px !important;
+    border: 1px solid var(--card-border);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    padding: 25px;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
 .glass-card:hover {
-    transform: translateY(-4px);
-    border-color: rgba(0, 242, 254, 0.3);
+    border-color: rgba(0, 242, 254, 0.25);
+    box-shadow: 0 10px 30px rgba(0, 242, 254, 0.05), inset 0 0 15px rgba(0, 242, 254, 0.02);
+    transform: translateY(-2px);
 }
 
-.glass-card h3 {
-    font-size: 1.15rem;
-    color: #ffffff;
-    font-weight: 600;
-    margin-bottom: 10px;
-}
-
-.glass-card p {
-    font-size: 0.95rem;
-    color: #94a3b8;
-    line-height: 1.5;
-    margin-bottom: 24px;
+.tools-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px;
 }
 
 /* ==========================================================================
-   TRUE HIGH-GLOW NEON GRADIENT BUTTONS
+   5. INTERACTIVE BUTTONS & UI INTERFACES
    ========================================================================== */
 .btn-glow {
-    display: block;
-    text-align: center;
-    width: 100%;
-    padding: 12px;
-    border-radius: 8px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 28px;
     font-family: 'Orbitron', sans-serif;
-    font-weight: 600;
     font-size: 0.9rem;
-    text-decoration: none;
+    font-weight: 600;
     color: #ffffff;
-    background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    
-    box-shadow: 0 0 15px rgba(0, 242, 254, 0.5), inset 0 0 8px rgba(255, 255, 255, 0.3);
-    text-shadow: 0 0 5px rgba(255, 255, 255, 0.6);
-    
-    animation: neonPulse 2.5s infinite alternate;
-    transition: all 0.3s ease-in-out;
+    background: transparent;
+    border: 1px solid rgba(0, 242, 254, 0.4);
+    border-radius: 8px;
+    text-decoration: none;
+    letter-spacing: 1px;
+    cursor: pointer;
+    box-shadow: 0 0 15px rgba(0, 242, 254, 0.1);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .btn-glow:hover {
-    box-shadow: 0 0 30px rgba(0, 242, 254, 0.95), 0 0 10px rgba(79, 172, 254, 0.6);
-    transform: translateY(-2px) scale(1.01);
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.9);
+    border-color: var(--cyan-glow);
+    box-shadow: 0 0 25px rgba(0, 242, 254, 0.35);
+    transform: scale(1.02);
 }
 
-@keyframes neonPulse {
-    0% {
-        box-shadow: 0 0 12px rgba(0, 242, 254, 0.4), inset 0 0 4px rgba(255, 255, 255, 0.2);
-    }
-    100% {
-        box-shadow: 0 0 22px rgba(0, 242, 254, 0.75), inset 0 0 10px rgba(255, 255, 255, 0.4);
-    }
-}
-
-/* ==========================================================================
-   NEON GLOW BACK TO TOP UTILITY ELEMENT
-   ========================================================================== */
 .back-to-top {
     position: fixed;
     bottom: 30px;
     right: 30px;
     width: 45px;
     height: 45px;
-    background: rgba(14, 20, 32, 0.85);
-    color: var(--cyan-glow);
-    border: 1px solid rgba(0, 242, 254, 0.3);
-    border-radius: 50%;
-    cursor: pointer;
+    background: rgba(5, 1, 10, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    color: #ffffff;
     font-size: 1rem;
+    cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
     z-index: 99;
     opacity: 0;
     visibility: hidden;
-    transform: translateY(15px);
-    box-shadow: 0 0 15px rgba(0, 242, 254, 0.2);
-    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    transition: all 0.3s ease;
 }
 
 .back-to-top.visible {
     opacity: 1;
     visibility: visible;
-    transform: translateY(0);
 }
 
 .back-to-top:hover {
-    background: var(--cyan-glow);
-    color: #040508;
-    box-shadow: 0 0 25px rgba(0, 242, 254, 0.8);
-    transform: translateY(-3px);
+    border-color: var(--cyan-glow);
+    color: var(--cyan-glow);
+    box-shadow: 0 0 15px rgba(0, 242, 254, 0.2);
 }
 
 /* ==========================================================================
-   SCROLL REVEAL & RESPONSIVENESS
+   6. SCROLL REVEAL TRIGGERS
    ========================================================================== */
 .hidden {
     opacity: 0;
-    transform: translateY(35px); /* Slightly increased distance for a richer sliding motion */
-    transition: opacity 0.8s ease-out, transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+    transform: translateY(25px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
 
 .show {
@@ -341,28 +290,110 @@ header {
     transform: translateY(0);
 }
 
-footer {
+/* ==========================================================================
+   7. PREMIUM CENTERED TEXT-ONLY SYSTEM FOOTER (NO EMOJIS / NO SYMBOLS)
+   ========================================================================== */
+.system-footer {
+    margin-top: 120px;
+    padding: 70px 20px 40px 20px;
+    background: rgba(4, 2, 8, 0.95);
+    border-top: 1px solid rgba(0, 242, 254, 0.15);
     text-align: center;
-    padding: 40px;
-    color: #475569;
-    font-size: 0.9rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.03);
+    position: relative;
+    z-index: 10;
 }
 
+.footer-group {
+    margin-bottom: 45px;
+}
+
+.footer-group-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--cyan-glow);
+    text-shadow: 0 0 10px rgba(0, 242, 254, 0.3);
+    margin-bottom: 18px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.footer-text-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-text-list li {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1.15rem;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+}
+
+.status-node {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1rem;
+    color: var(--cyan-glow);
+    text-shadow: 0 0 10px rgba(0, 242, 254, 0.3);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 5px;
+}
+
+.status-indicator-dot {
+    width: 7px;
+    height: 7px;
+    background-color: var(--cyan-glow);
+    border-radius: 50%;
+    display: inline-block;
+    box-shadow: 0 0 10px var(--cyan-glow);
+}
+
+.status-subtext {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.9rem;
+    color: #475569;
+    margin-top: 8px;
+    letter-spacing: 0.5px;
+}
+
+.footer-copyright {
+    margin-top: 60px;
+    padding-top: 30px;
+    border-top: 1px solid rgba(255, 255, 255, 0.04);
+    font-family: 'Rajdhani', sans-serif;
+    color: #475569;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    letter-spacing: 1px;
+}
+
+/* ==========================================================================
+   8. RESPONSIVE MEDIA CONSTRAINTS
+   ========================================================================== */
 @media (max-width: 768px) {
-    .tools-grid {
-        grid-template-columns: 1fr;
-    }
     .topbar {
-        padding: 8px 15px;
+        padding: 12px 15px;
     }
     .brand-banner-logo {
-        height: 40px;
+        height: 35px;
     }
-    .back-to-top {
-        bottom: 20px;
-        right: 20px;
-        width: 40px;
-        height: 40px;
+    .discord-btn {
+        padding: 8px 14px;
+        font-size: 0.9rem;
+    }
+    .section-title {
+        font-size: 1.5rem;
+    }
+    .system-footer {
+        margin-top: 80px;
+        padding: 50px 15px 30px 15px;
+    }
+    .footer-group {
+        margin-bottom: 35px;
     }
 }
